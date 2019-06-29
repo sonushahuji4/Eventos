@@ -1,0 +1,77 @@
+/* <script>
+$(document).ready(function()
+{
+        $('.like').on('click', function(events)
+        {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            var postId = $(this).attr('data-post');
+            var postId = parseInt(postId,10)
+            //alert(postId);
+
+
+            $.ajax(
+                    {
+                            type: 'POST',
+                            url:  '/posts/like/' + $(this).attr('data-post'),
+                            contentType: "application/json", 
+                            //data: JSON.stringify(data),
+                            success : function(response)
+                            {
+                                                 
+                                    if(response)
+                                    {
+                                            console.log("checking success data from ajax =>",JSON.stringify(response))
+                                            $('.countLikes').html(1000);
+                                           // $('.countLikes').attr($(this).attr('data-post'),100);
+                                            //alert(dataformserver);
+                                    }
+                                            
+                                   
+                            },
+                            error : function()
+                            {
+                                    alert('error from server');
+                            }
+                    }
+            );
+        })
+        
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="card-footer">
+                                                        <% if(item.event_id != -1){ %>
+                                                                <button class="like bg-btn fa fa-thumbs-up" data-post="<%= item.event_id %>"></button>
+                                                        <% }
+                                                        else{ %>
+                                                                <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id %>"></button>
+                                                        <% } %>
+                                                               <span class="countLikes"><%=item.Likes.length%></span>
+                                                        <!-- <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id%>"></button> -->
+                                                        <!-- <span class="toggle_likes" data-postID="<%= item.event_id %>">Like</span> -->
+                                                        
+                                                         |
+                                                        <i class="far fa-comments"></i>
+                                                
+                                                        <i class="fas fa-stopwatch"></i>
+                                                        Remind |
+
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                        Interested |
+                                                        <i class="far fa-meh"></i>
+                                                        Going |
+                                                </div> */

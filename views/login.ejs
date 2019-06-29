@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../public/bootsrap/css/bootstrap.min.css">
+<style>
+.mycontent-left 
+{
+    margin: 20px; 
+    border-right: 1px solid #808B96;
+}
+.my-icon {
+    vertical-align: middle;
+    font-size: 40px;
+}
+
+.my-text {
+    font-family: "Courier-new";
+}
+
+.my-fancy-container {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 60px;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+        <br />
+
+        <div class="container">
+            <div class="container">
+                    <div class="row">
+                            <a href=""><img src="../public/image/eventologo1.png" alt="" class="rounded" style="width:200px; height:60px"></a>
+                    </div>
+                    <div class="form-group">
+                            <div class="col">
+                                    <h1 class="text-center"> Sign Up </h1>
+                                    <p class="text-center">Already have an Evento account? <a href="#">Log In</a></p>
+                            </div>
+                    </div>
+            </div>
+            <br /><br />
+                <div class="row">
+                        <div class="col">
+                          <div class="container">
+                                <form class="form-signin" method="POST" action="/login/register">
+
+                                                <div class="form-group row">
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" placeholder="First name" name="firstname">
+                                                        </div>
+                                                        <div class="col">
+                                                                <input type="text" class="form-control" placeholder="Last name" name="lastname">
+                                                        </div>      
+                                                </div>
+                                       
+                                       
+                                        
+                                                <div class="form-group row">
+                                                        <div class="col">
+                                                                <select id="inputState" class="form-control">
+                                                                        <option selected>Choose Gender</option>
+                                                                        <option>Male</option>
+                                                                        <option>Female</option>
+                                                                        <option>Other</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="col">
+                                                              <input type="date" class="form-control" placeholder="Date of birth" name="dob">
+                                                              <small id="passwordHelpBlock" class="form-text text-muted">Choose your date of birth</small>
+                                                        </div>      
+                                                </div>
+                                        
+                                        
+
+                                        
+
+
+                                                <div class="form-group row">
+                                                        <div class="col">
+                                                            <input type="tel" class="form-control" placeholder="Contact Number" name="mobile">
+                                                        </div>
+                                                        <div class="col">
+                                                                <input type="email" class="form-control" placeholder="Email-Id" name="email">
+                                                        </div>      
+                                                </div>
+                                        
+
+                                        
+
+                                                <div class="form-group row">
+                                                        <div class="col">
+                                                            <input type="text" class="form-control" placeholder="Username" name="username">
+                                                        </div>
+                                                        <div class="col">
+                                                                <input type="text" class="form-control" placeholder="Password" name="password">
+                                                        </div>      
+                                                </div>
+                                        
+
+                                        <button type="submit" class="btn btn-outline-primary btn-lg btn-block">Sign Up</button>
+                                      </form>
+                          </div>
+                        </div>
+
+                        <div class="mycontent-left">
+                        </div>
+                        <div class="col">
+                          <div class="container">
+                                <form class="form-signin" method="POST" action="/login">
+                                        <div class="form-group col-md-10">
+                                          <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+                                          
+                                        </div>
+                                        <div class="form-group col-md-10">
+                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-outline-primary btn-lg btn-block" style="margin-left:13px;width: 380px">Log In</button>
+                                      </form>
+                                      <br /><br />
+                                      <div class="row">
+                                          
+                                            <a href=""><img src="../public/image/facebboklogo.png" alt="" class="rounded" style="margin-bottom:10px;margin-left:30px; height:40px;"></a>
+                                            <a href=""><img src="../public/image/googlelogo.png" alt="" class="rounded" style="margin-left:30px;height:40px;"></a>
+                                      </div>
+                          </div>
+                        </div>
+                      </div>
+        
+        </div>
+</body>
+</html>
