@@ -1,39 +1,64 @@
 {
-  "name": "evento",
-  "version": "1.0.0",
-  "description": "",
-  "main": "start",
-  "scripts": {
-    "test": "node server.js"
+  "_from": "array-flatten@1.1.1",
+  "_id": "array-flatten@1.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=",
+  "_location": "/array-flatten",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "array-flatten@1.1.1",
+    "name": "array-flatten",
+    "escapedName": "array-flatten",
+    "rawSpec": "1.1.1",
+    "saveSpec": null,
+    "fetchSpec": "1.1.1"
   },
-  "author": "sonu shahuji",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.3.1",
-    "cors": "^2.8.5",
-    "dateformat": "^3.0.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "express-ejs-layouts": "^2.5.0",
-    "express-hbs": "^2.1.2",
-    "express-mysql-session": "^2.1.0",
-    "express-partials": "^0.3.0",
-    "express-session": "^1.16.1",
-    "express-validator": "^5.3.1",
-    "joi": "^14.3.1",
-    "jquery": "^3.4.0",
-    "local-storage": "^2.0.0",
-    "multer": "^1.4.1",
-    "mysql2": "^1.6.5",
-    "passport": "^0.4.0",
-    "router": "^1.3.3",
-    "sequelize": "^5.8.1",
-    "session-file-store": "^1.2.0",
-    "tether": "^1.4.6"
+  "_requiredBy": [
+    "/express"
+  ],
+  "_resolved": "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz",
+  "_shasum": "9a5f699051b1e7073328f2a008968b64ea2955d2",
+  "_spec": "array-flatten@1.1.1",
+  "_where": "D:\\Evento\\node_modules\\express",
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
   },
+  "bugs": {
+    "url": "https://github.com/blakeembrey/array-flatten/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Flatten an array of nested arrays into a single flat array",
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0"
-  }
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "pre-commit": "^1.0.7",
+    "standard": "^3.7.3"
+  },
+  "files": [
+    "array-flatten.js",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/blakeembrey/array-flatten",
+  "keywords": [
+    "array",
+    "flatten",
+    "arguments",
+    "depth"
+  ],
+  "license": "MIT",
+  "main": "array-flatten.js",
+  "name": "array-flatten",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/array-flatten.git"
+  },
+  "scripts": {
+    "test": "istanbul cover _mocha -- -R spec"
+  },
+  "version": "1.1.1"
 }
