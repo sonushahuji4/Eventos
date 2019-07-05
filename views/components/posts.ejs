@@ -1,0 +1,70 @@
+<% if (items.length > 0)
+{ %>
+  <% items.forEach(function(item,  index)
+  {%>
+
+
+        
+    <div class="card mb-3">
+            <div class="card-header">
+                    <% if(item.User.user_profile_pic){ %>
+                            <a href=""><img src="../public/profile_image/<%= item.User.user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                        
+                    <% } else { %>
+                    
+                       <a href=""> <img src="../public/profile_image/icon.jpg" alt="profile image 1" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                  <% } %>
+
+                  <span class="ml-2 viewclick" data-view="<%= item.User.user_id %>"><%= item.User.user_firstname%> <%= item.User.user_lastname%></span>
+            </div>
+            
+            <div class="card-body">
+                <ul class="nav">
+                        <li>
+                                <a href="/post/<%= item.event_id %>">
+                                    <img src="../public/image/<%= item.e_imagepath %>" alt="error check >" class="img-fluid">
+                                </a>
+                          
+                        </li>
+                </ul>          
+            </div>
+            <div class="card-footer">
+                    <% if(item.event_id != -1){ %>
+                            <button class="like bg-btn fa fa-thumbs-up" data-post="<%= item.event_id %>"></button>
+                            <span class="countLikes" id="countLikes<%= item.event_id %>"><%=item.Likes.length%></span>
+                            
+                    <% }
+                    else{ %>
+                            <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id %>"></button>
+                            <span class="countLikes" id="countLikes<%= item.event_id %>"><%=item.Likes.length%></span>
+                            
+                    <% } %>
+                           
+                    <!-- <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id%>"></button> -->
+                    <!-- <span class="toggle_likes" data-postID="<%= item.event_id %>">Like</span> -->
+                    <button class="post_comment bg-btn fa fa-comments" id="<%= item.event_id %>"></button>
+                    <!-- <i class="far fa-comments"></i> -->
+                    <span class="countComments"><%=item.Comments.length%></span>
+
+            </div>
+            
+    </div> 
+    <!-- new display comments hiden-->
+    <div id="comment_form<%= item.event_id %>" style="display:none;">
+    
+    <span id="old_comment<%= item.event_id %>"></span>
+                    <div class="form-group">
+                            <textarea name="comment" class="form-control" id="comment<%= item.event_id %>"></textarea>
+                    </div>
+                    <div class="form-group">
+                            <button type="button" data-po="<%= item.event_id %>" name="submit_comment" class="btn btn-primary btn-xs submit_comment">Comment</button>
+                    </div>
+                    </div>         
+
+    <%}); %>
+<%}
+else
+{
+  %> 
+  <p> <strong>There are no recods available</strong></p>
+<%  } %>
