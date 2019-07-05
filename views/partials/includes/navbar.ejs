@@ -12,26 +12,128 @@
             <a class="nav-link" href="http://localhost:4000/posts">Feeds  <span class="sr-only">(current)</span></a>
         </li>
 
-          <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="/Map">Map</a>
-          </li>
-          <li class="nav-item">
+        </li>
+        
+        <li class="nav-item">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                   <i class="fa fa-bell noti-icon"></i>
-                  <span class="badge badge-danger badge-pill noti-icon-badge">4</span>
-                 </a>
-          </li>
-          <li class="nav-item">
+                  <span class="badge badge-danger badge-pill noti-icon-badge"></span>
+              </a>
+        </li>
+        <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
-          </li>
+        </li>
 
 
           
        
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline" style="margin-right:400px;">
+        <input class="form-control mr-sm-2 search" id="search" type="text" placeholder="Search" aria-label="Search" style="width:500px">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="process_search">Search</button>
       </form>
     </div>
   </nav>
+  
+  <div class="container" style="z-index:1; position: absolute; width: 535px; margin-left: 505px ">
+            
+      <ul class="list-group" id="search_result">
+    
+      </ul>
+    </div>
+
+  <script>
+    // Implementing User Search Option(API)
+    $(document).ready(function()
+    {
+      $('#search').keyup(function()
+      {
+        //alert("inside search")
+        $('#search_result').html('');
+        var search_Field = $('#search').val();
+        //alert(search_Field)
+        var expression = new RegExp(search_Field,"i");
+        //alert(expression)
+        $.ajax(
+        {
+          url:"/posts/findUser",
+          method:"GET",
+          //data:{expression:expression},
+          success:function(response)
+          {
+            //alert(response)
+              $.each(response, function(key, value)
+              {
+               //alert(value.user_firstname)
+                if (value.user_firstname.search(expression) != -1 || value.user_email.search(expression) != -1)
+                {
+                  $('#search_result').append('<div class="card" '+value.user_id+'><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
+                }
+              });
+
+              $('#search_result').on('click', 'li', function() 
+              {
+                  var click_text = $(this).text().split('|');
+                  $('#search').val($.trim(click_text[0]));
+                  $("#result").html('');
+              });
+              $('#process_search').on('click',function()
+              {
+                //alert("in process search")
+                var get_content = document.getElementById('search').value
+               // var trimStr = $.trim(myStr);
+                var content = $.trim(get_content)
+                //alert(content)
+                $.ajax({
+                  url:"/posts/processSearch",
+                  method:"POST", 
+                  data:{get_content:content},
+                  success:function(response)
+                  {
+                    //alert(response.user_id)
+                    window.location.assign('viewprofile/'+response.user_id);
+                  },
+                  error:function(jqXHR, textStatus, errorThrown)
+                  {
+                    console.log('jqXHR:');
+                    console.log(jqXHR);
+                    console.log('textStatus:');
+                    console.log(textStatus);
+                    console.log('errorThrown:');
+                    console.log(errorThrown);
+                    alert(errorThrown);
+                  }
+                })
+              })
+
+          },
+          error:function(jqXHR, textStatus, errorThrown)
+          {
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+            alert(errorThrown);
+          }
+
+        })
+        
+        // $.getJSON('data.json', function(data) 
+        // {
+        //   alert("in")
+          // $.each(data, function(key, value)
+          // {
+          //   alert(value.name)
+          //   if (value.name.search(expression) != -1 || value.location.search(expression) != -1)
+          //   {
+          //     $('#search_result').append('<li class="list-group-item link-class"><img src="'+value.image+'" height="40" width="40" class="img-thumbnail" /> '+value.name+' | <span class="text-muted">'+value.location+'</span></li>');
+          //   }
+          // });   
+        // });
+      });
+    });
+  </script>

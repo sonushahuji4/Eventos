@@ -47,22 +47,22 @@ app.get('/', (req, res, next)=>
 {
     const user_id = req.session.user_id;
 
-    Posts.findAll()
-    .then((postsdata)=>
-    {
-        console.log(postsdata)
-            res.render('profileimage',{title:'profileimage',items:postsdata});
+    // Posts.findAll()
+    // .then((postsdata)=>
+    // {
+    //     console.log(postsdata)
+    //         res.render('profileimage',{title:'profileimage',items:postsdata});
         
-    })
-    .catch((err)=>
-    {
-        console.error(err)
-        res.status(501).send({
-            error : "error..... check console log"
-        })
-    })
+    // })
+    // .catch((err)=>
+    // {
+    //     console.error(err)
+    //     res.status(501).send({
+    //         error : "error..... check console log"
+    //     })
+    // })
 
-   //res.render('profileimage', { title: 'profileimage' });
+   res.render('profileimage', { title: 'profileimage' });
     
 })
 
@@ -85,6 +85,11 @@ app.use('/',userpost);
 // user profile
 const userprofile = require('./routes/api/profile_api');
 app.use('/',userprofile);
+
+// view user profile
+const viewprofile = require('./routes/api/viewprofile');
+app.use('/',viewprofile);
+
 
 // app.put('/updatauserdata/:id',function (req,res)
 // {

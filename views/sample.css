@@ -1,77 +1,117 @@
-/* <script>
-$(document).ready(function()
-{
-        $('.like').on('click', function(events)
-        {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            var postId = $(this).attr('data-post');
-            var postId = parseInt(postId,10)
-            //alert(postId);
+data = [
+            {
+                color: 'rgba(223, 83, 83, .5)',
+                data: [
+                        [1435334434000,39600000], // [2015-01-01, 20:00] 
+                        [1435349900000,55080000], // [2015-01-02, 11:00]
+                        [1435345565000,50760000],
+                        [1435352535000,57720000],
+                        [1435343345000,48540000],
+                        [1435346691000,51840000],
+                        [1435348933000,54120000],
+                        [1435351444000,56640000],
+                        [1435008000000,58800000],
+                        [1434992040000,42840000],
+                        [1435077180000,41580000],
+                        [1435076520000,40920000],
+                        [1435180800000,58800000],
+                        [1435176480000,54480000],
+                        [1435170720000,48720000],
+                        [1435170720000,48720000],
+                        [1435163520000,41520000],
+                        [1435161240000,39240000],
+                        [1435157820000,35820000],
+                        [1435259100000,50700000],
+                        [1435258800000,50400000],
+                        [1435255740000,47340000],
+                        [1435254420000,46020000],
+                        [1435253820000,45420000],
+                        [1435248540000,40140000],
+                        [1435247400000,39000000],
+                        [1435243140000,34740000],
+                        [1435345260000,50460000],
+                        [1435343640000,48840000],
+                        [1435343280000,48480000],
+                        [1435342920000,48120000],
+                        [1435342500000,47700000],
+                        [1435339080000,44280000],
+                        [1435332780000,37980000],
+                        [1435332360000,37560000]
+                      ]
+            }
+        ]
 
+        $('#container').highcharts({
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            global: {
+                useUTC: false
+            },
+            title: {
+                text: 'test'
+            },
+            tooltip: {
+                formatter: function() {
+                    return  '<b>' + this.series.name +'</b><br/>' +
+                        Highcharts.dateFormat('%m/%d/%Y %H:%M', this.x);
+                }
+            },
 
-            $.ajax(
-                    {
-                            type: 'POST',
-                            url:  '/posts/like/' + $(this).attr('data-post'),
-                            contentType: "application/json", 
-                            //data: JSON.stringify(data),
-                            success : function(response)
-                            {
-                                                 
-                                    if(response)
-                                    {
-                                            console.log("checking success data from ajax =>",JSON.stringify(response))
-                                            $('.countLikes').html(1000);
-                                           // $('.countLikes').attr($(this).attr('data-post'),100);
-                                            //alert(dataformserver);
-                                    }
-                                            
-                                   
-                            },
-                            error : function()
-                            {
-                                    alert('error from server');
+            xAxis: {
+                title: {
+                    text: 'Day of the week'
+                },
+                 type: 'datetime',
+                 //maxPadding: 0.0,
+                "labels": {
+                    "formatter": function() {
+                         return Highcharts.dateFormat("%A", this.value)
+                    }                    
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Time of the day'
+                },
+                type: 'datetime',
+                "labels": {
+                    "formatter": function() {
+                        return Highcharts.dateFormat("%l:%M %p", this.value)
+                    }                    
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                backgroundColor: '#FFFFFF',
+                borderWidth: 1
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 5,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
                             }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
                     }
-            );
-        })
-        
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="card-footer">
-                                                        <% if(item.event_id != -1){ %>
-                                                                <button class="like bg-btn fa fa-thumbs-up" data-post="<%= item.event_id %>"></button>
-                                                        <% }
-                                                        else{ %>
-                                                                <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id %>"></button>
-                                                        <% } %>
-                                                               <span class="countLikes"><%=item.Likes.length%></span>
-                                                        <!-- <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id%>"></button> -->
-                                                        <!-- <span class="toggle_likes" data-postID="<%= item.event_id %>">Like</span> -->
-                                                        
-                                                         |
-                                                        <i class="far fa-comments"></i>
-                                                
-                                                        <i class="fas fa-stopwatch"></i>
-                                                        Remind |
-
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                        Interested |
-                                                        <i class="far fa-meh"></i>
-                                                        Going |
-                                                </div> */
+                }
+            },
+            series: data
+        });
+    

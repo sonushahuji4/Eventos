@@ -315,16 +315,26 @@ router.get('/posts/get_user',function(req,res,next)
     console.log("get_user data");
     console.log("user_id",req.session.user_id);
     const user_id = req.session.user_id
+    const status = "accept"
     Users.findAll( {
                         where:
                         {
                             user_id:{[Op.notIn]:[user_id]}
                         },
-                        include:[{model:Follows}]
+                        include:[{model:Follows,where:
+                                                     {
+                                                        user_id:{[Op.notIn]:[user_id]},
+                                                                                                                 
+                                                        
+                                                        
+                                                        
+                                                      }
+                                }]
                         //limit: 3
                     })
     .then((get_user)=>
     {
+        console.log(get_user)
         res.send(get_user);
     })
     .catch((err)=>
@@ -343,14 +353,18 @@ router.post('/posts/follow', function(req,res,next)
     console.log("inside follow api")
     const user_id = req.session.user_id; // who's sending the request
     var action = req.body.action;
-    const sender_id = Number(req.body.sender_id) // to whom you want to send follow request
+    const sender_id =req.body.sender_id // to whom you want to send follow request
     if(action == "Follow")
     {
         action = "requested"  // requesting a user to accept the request
         Follows.create({user_id:user_id,receiver_id:sender_id,status:action})
         .then((response)=>
         {
-            res.send("success") // request has been sent to the user
+            if(response)
+            {
+                res.send({msg:"requested",success:true}) // request has been sent to the user
+            }
+            
         })
         .catch(()=>
         {
@@ -364,16 +378,19 @@ router.post('/posts/follow', function(req,res,next)
     else if(action == "Accept") //   Need to accept the user to follow you and update database from "requested" to "accept"
     {
         action = "requested"
-        console.log(user_id,sender_id,action)
-        Follows.findOne({where:{[Op.or]:[{user_id:user_id,receiver_id:sender_id,status:action},{receiver_id:sender_id,user_id:user_id,status:action}]}})
+
+        Follows.findAll({where:{receiver_id:user_id,user_id:sender_id,status:action}})
         .then((response_during_search)=>
         {
             if(response_during_search)
             {
-                Follows.update({user_id:user_id,receiver_id:sender_id,status:action})
+                action = "accept"
+
+                Follows.update({status:action},{where:{receiver_id:user_id,user_id:sender_id}})
                 .then((response_after_update)=>
                 {
-                    res.send("success") // user has accept the request
+                    console.log(response_after_update)
+                    res.send({msg:"accept",success:true}) // user has accept the request
                 })
                 .catch(()=>
                 {
@@ -402,7 +419,7 @@ router.post('/posts/follow', function(req,res,next)
     else // just nitify user that he or she is already following or requested the other user
     {
         // ((action == "Following") || (action == "Requested"))
-        res.send(action)
+        res.send({msg:action,success:true})
     }
     
     //res.send("success");
@@ -438,4 +455,65 @@ router.get('/posts/get_follow',function(req,res,next)
                         console.log(err)
                     })
 })
+
+router.get('/posts/findUser',function(req,res,next)
+{
+    console.log("in findUser API")
+    
+    Users.findAll()
+    .then((find_All_User)=>
+    {
+        console.log("find_All_User",find_All_User);
+        res.send(find_All_User)
+    })
+    .catch((err)=>
+    {
+
+    })
+    //res.send("success")
+})
+
+router.post('/posts/processSearch', function(req,res,next)
+{
+    console.log("Inside proessSearch")
+    const user_name = req.body.get_content;
+    var firstname = user_name.split(" ")
+    var name = firstname[0]
+    var sur = firstname[1]
+    console.log("firstname",name)
+    //console.log("firstname",sur)
+    //res.send(name,sur)
+    Users.findOne({where:{user_firstname:name},attributes:['user_id']})
+    .then((user_id)=>
+    {
+        res.send(user_id)
+    })
+    .catch((err)=>
+    {
+
+    })
+
+    //     Users.findAll({where:{user_firstname:name},include:[{model:Posts,include:[{model:Likes,include:[{model:Users}]}]}]})
+    //     .then((user)=>
+    //     {
+    //         //console.log("user checking api.........")
+    //         //console.log(user)
+    //         //const data = 'findUserProfile',{items:user}
+           
+    //         //res.send("user")
+    //         res.render('findUserProfile.ejs',{title:'findUserProfile',items:user});
+    //         //res.redirect("http://localhost:4000/profile");
+    //     })
+    //     .catch((err)=>
+    //     {
+
+    //     })
+    // }
+    // else{
+
+    // }
+    //console.log("in process Search",data)
+});
+
+
 module.exports = router;

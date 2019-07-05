@@ -6,7 +6,6 @@
 
     <br /> <br /> <br /> <br />
 
-   
 
    
     <div class="container-fluid fixed-bottom bg-transparent" style="background-color:#F4F6F6">
@@ -234,10 +233,11 @@
                                                                 <a href=""><img src="../public/profile_image/<%= item.User.user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
                                                             
                                                         <% } else { %>
-                                                            <img src="../public/profile_image/icon.jpg" alt="profile image 1" class="rounded-circle border border-danger" style="width:50px; height:50px">
+                                                        
+                                                           <a href=""> <img src="../public/profile_image/icon.jpg" alt="profile image 1" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
                                                       <% } %>
 
-                                                      <span class="ml-2" style="color:rgba(0,0,0,0.5)"><%= item.User.user_firstname%> <%= item.User.user_lastname%></span>
+                                                      <span class="ml-2 viewclick" data-view="<%= item.User.user_id %>"><%= item.User.user_firstname%> <%= item.User.user_lastname%></span>
                                                 </div>
                                                 
                                                 <div class="card-body">
@@ -259,7 +259,7 @@
                                                         else{ %>
                                                                 <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id %>"></button>
                                                                 <span class="countLikes" id="countLikes<%= item.event_id %>"><%=item.Likes.length%></span>
-                                                                <span class="countLikes" style="display:none" data-post_count="<%= item.event_id %>"><%=item.Likes.length%></span>
+                                                                
                                                         <% } %>
                                                                
                                                         <!-- <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= item.event_id%>"></button> -->
@@ -402,7 +402,7 @@ $(document).ready(function() // main script starts
                                 if(response !='')
                                 {
                                         user_id = Number(response)
-                                        alert(user_id)
+                                        //alert(user_id)
                                         //return response;
                                 }
                         },
@@ -477,14 +477,14 @@ $(document).ready(function() // main script starts
                                                 
                                                        }
                                                        if((user_id == follow_receiver_id) && (status !=""))
-                                                       {
+                                                                                                            {
                                                                flag = true
                                                         suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
                         `<div class="card col-lg-4" data-user_id="${user_id}">
                                 
                                 <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
+                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
                                 <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
                         </div>`;
@@ -504,7 +504,7 @@ $(document).ready(function() // main script starts
                                 
                                 <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
+                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
                                 <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
                         </div>`;
@@ -521,7 +521,7 @@ $(document).ready(function() // main script starts
                                 
                                 <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
+                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
                                 <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
                         </div>`;
@@ -558,6 +558,7 @@ $(document).ready(function() // main script starts
                 var sender_id =$(this).data('sender_id'); // get user_id to whom you want to send request
                 var action = $(this).data('action') // status ..what you want to do follow or unfollow /follow,requested/following(accept)
                 
+                
                 var parent  = $(this)
                 $.ajax({
                                 url:"/posts/follow",
@@ -565,13 +566,30 @@ $(document).ready(function() // main script starts
                                 data:{sender_id:sender_id,action:action},
                                 success:function(response)
                                 {
-                                        alert(response)
-                                        if(response == "success")
+                                        if((response.msg == "accept") && (response.success == true)) // user has accept the request
                                         {
-                                                alert("request has been sent")
-                        //parent.html(<button data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">Requested</button>)
-                                
+                                                alert("You have accepted the request")
+                                                
+                                                action = "Following"
+                                                $('#followbtn'+sender_id).html(action);
+                                               
+                                               //$('#followbtn'+sender_id).html('<button data-action="'+action+'" data-sender_id="'+sender_id+'" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">'+action+'</button>')
                                         }
+                                        else if((response.msg == "requested") && (response.success == true)) // request has been sent to the user
+                                        {
+                                                //parent.html(<button data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">Requested</button>)
+                                                alert("requested")
+                                        }
+                                        else{
+                                                if((response.msg) && (response.success == true))
+                                                {
+                                                        alert(response.msg)
+                                                }
+                                        }
+                                        
+                        
+                                
+                                        
                                         
                                 },
                                 error: function(jqXHR, textStatus, errorThrown)
@@ -700,6 +718,32 @@ $(document).ready(function() // main script starts
                
         });
     
+        $(document).on('click','.viewclick' ,function()
+        {
+                var view =$(this).data('view');
+                // ajax call
+                // pass user_id
+               // alert(view)
+                $.ajax({
+                        url:"/viewprofile/" + view,
+                        method: "GET",
+                        success:function(response)
+                        {
+                               // alert("view profile");
+                                window.location.assign('viewprofile/'+view);
+                        },
+                        error:function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        }
+                })
+        });
 
 }); // main script ends
 </script>
