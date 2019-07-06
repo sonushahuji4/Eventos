@@ -530,39 +530,33 @@ router.get('/posts/testapi',function (req,res)
 	
 // });
 
-// router.get('/posts/testapik', function(req, res)
-// {
-//     // Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-//     //     where:{user_id:{[Op.in]:[{include:[{model:Follows,attributes: ['receiver_id'],where:{user_id:user_id,status:status}}]}]}}
+router.get('/posts/testapik', function(req, res)
+{
+    
+    const user_id = req.session.user_id;
+    console.log("user_id check =>>",user_id)
+    const status ="accept"
+  Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+                where:{user_id:{[Op.in]:[sequelize.literal('SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept"')]}}
 
-//     //     }) {include:[{model:Follows,attributes: ['receiver_id'],where:{user_id:user_id,status:status}}]}
-//     //WHERE `Posts`.user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept");
-//     const user_id = req.session.user_id;
-//     console.log("user_id check =>>",user_id)
-//     //{include:[{ model: Likes},{ model: Comments},{ model: Users}]}
-//     const status ="accept"
-//     //{ id: {in: [1,2,3,4]} [Op.in]: [1, 2]
-// //   Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-// //                 where:{user_id:{[Op.in]:[4]}}
-
-// //                 })
-// Posts.findAll({where:{user_id:{[Op.in]:[{include:[{model:Follows,attributes: ['receiver_id'],where:{user_id:user_id,status:status}}]}]}}})
-//   .then(users => 
-//     {
-//         console.log("Posts data Testing =>",users);
-//         res.send(users);
-//   })
-//     .catch((err)=>
-//     {
-//         console.error(err)
-//         res.status(501)
-//         .send({
-//                 error : "error..... check console log"
-//               })
-//     })
+                })
+//Posts.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept")')]}}})
+  .then(users => 
+    {
+        console.log("Posts data Testing =>",users);
+        res.send(users);
+  })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501)
+        .send({
+                error : "error..... check console log"
+              })
+    })
     
 	
-// });
+});
 
 
 module.exports = router;
