@@ -22,18 +22,75 @@ const Likes = Like_Model(sequelize, Sequelize)
 const Comments = Comment_Model(sequelize, Sequelize)
 const Follows = Follow_Model(sequelize, Sequelize)
 
-Users.hasMany(Posts,{foreignKey: 'user_id'})
-Posts.belongsTo(Users,{foreignKey: 'user_id'})
-Likes.belongsTo(Users,{foreignKey: 'user_id'})
-Users.hasMany(Likes,{foreignKey: 'user_id'})
-Users.hasMany(Comments,{foreignKey: 'user_id'})
-Posts.hasMany(Likes,{foreignKey: 'event_id'})
-Posts.hasMany(Comments,{foreignKey: 'event_id'})
-Users.hasMany(Follows,{foreignKey: 'user_id'})
+// Users.hasMany(Posts,{foreignKey: 'user_id'})
+// Posts.belongsTo(Users,{foreignKey: 'user_id'})
+// Likes.belongsTo(Users,{foreignKey: 'user_id'})
+// Users.hasMany(Likes,{foreignKey: 'user_id'})
+// Users.hasMany(Comments,{foreignKey: 'user_id'})
+// Posts.hasMany(Likes,{foreignKey: 'event_id'})
+// Posts.hasMany(Comments,{foreignKey: 'event_id'})
+// Users.hasMany(Follows,{foreignKey: 'user_id'})
+// Follows.belongsTo(Users,{foreignKey: 'user_id'})
+
+// exprimenting with user,posts,comments,likes,
+// user can create many posts
+// user can like as many posts as user want
+// user can comment on as many posts as user want
+
+
+Users.hasMany(Posts,{foreignKey: 'user_id'});
+Users.hasMany(Follows,{foreignKey: 'user_id'});
 Follows.belongsTo(Users,{foreignKey: 'user_id'})
+Posts.belongsTo(Users,{foreignKey: 'user_id'})
+Comments.belongsTo(Users,{foreignKey: 'user_id'})
+Likes.belongsTo(Users,{foreignKey: 'user_id'})
+
+Comments.belongsTo(Posts,{foreignKey: 'event_id'})
+Likes.belongsTo(Posts,{foreignKey: 'event_id'})
+
+Posts.hasMany(Comments,{foreignKey: 'event_id'});
+Posts.hasMany(Likes,{foreignKey: 'event_id'});
+
+// Follows.hasMany(Posts,{foreignKey: 'receiver_id'});
+// Posts.belongsTo(Follows,{foreignKey: 'receiver_id'})
 
 
+{
+  // Get a reference to the dialect-specific query generator. This is what Sequelize
+  // uses to assemble the various components of the resultant SQL statements.
+  const queryGenerator = sequelize.getQueryInterface().QueryGenerator
 
+  // Get the original "SELECT" fragment generator so we can proxy it.
+  const oldSelectFromTableFragment = queryGenerator.selectFromTableFragment;
+
+  // Provide a proxy implementation that will look for an {options.comment} value.
+  queryGenerator.selectFromTableFragment = function( options, model, attributes, tables, mainTableAs ) {
+
+      var baseFragment = oldSelectFromTableFragment.apply( this, arguments );
+
+      // Prepend SQL comment if option is present.
+      var fragment = options.comment
+          ? ( prepareComment( options.comment ) + baseFragment )
+          : baseFragment
+      ;
+
+      return( fragment );
+
+  };
+
+  // I prepare the comment for use as a query prefix.
+  function prepareComment( comment ) {
+
+      var sanitizedComment = String( comment )
+          .replace( /[\r\n]+/g, " " ) // Strip new lines.
+          .replace( /\/\*|\*\\/g, " " ) // Strip comments.
+      ;
+
+      return( "/* " + sanitizedComment + " */ " );
+
+  }
+
+}
 // sequelize.sync({ force: true })
 //   .then(() => {
 //     console.log(`Database & tables created!`)

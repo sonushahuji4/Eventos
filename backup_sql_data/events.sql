@@ -37,6 +37,7 @@ CREATE TABLE `comments` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 --
 -- Dumping data for table `comments`
 --
@@ -45,7 +46,19 @@ INSERT INTO `comments` (`comment_id`, `user_id`, `event_id`, `comment`, `created
 (1, 3, 16, 'miss you guys..!', '2019-06-28 09:39:08', '2019-06-28 09:39:08');
 
 -- --------------------------------------------------------
+ALTER TABLE `follows`
+  ADD CONSTRAINT `follows_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `follows_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE `follows`
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`follow_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `receiver_id` (`user_id`);
+  ALTER TABLE `follows`
+  ADD CONSTRAINT `follows_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `follows_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `posts` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 --
 -- Table structure for table `follows`
 --
@@ -58,6 +71,16 @@ CREATE TABLE `follows` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `follows`
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`follow_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `receiver_id` (`receiver_id`);
+  ALTER TABLE `follows`
+  ADD CONSTRAINT `follows_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `follows_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `posts` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Dumping data for table `follows`
@@ -115,6 +138,16 @@ CREATE TABLE `posts` (
 --
 -- Dumping data for table `posts`
 --
+
+INSERT INTO `posts` (`event_id`, `user_id`, `event_message`, `e_imagepath`, `createdAt`, `updatedAt`,`receiver_id`) VALUES
+(1, 1, 'my first post', '1560348509176.jpg', '2019-06-12 14:08:29', '2019-06-12 14:08:29',1),
+(2, 4, 'my first post', '1560349638201.jpg', '2019-06-12 14:27:18', '2019-06-12 14:27:18',4),
+(3, 2, 'my first post', '1560349675427.png', '2019-06-12 14:27:55', '2019-06-12 14:27:55',2),
+(4, 3, 'my first post', '1560349801816.jpg', '2019-06-12 14:30:01', '2019-06-12 14:30:01',3),
+(9, 4, 'my second post', '1560360304730.jpeg', '2019-06-12 17:25:04', '2019-06-12 17:25:04',4),
+(16, 1, 'my second post', '1560362165989.jpg', '2019-06-12 17:56:06', '2019-06-12 17:56:06',1),
+(17, 1, 'mmsd', '1560362687706.jpg', '2019-06-12 18:04:47', '2019-06-12 18:04:47',1);
+
 
 INSERT INTO `posts` (`event_id`, `user_id`, `event_message`, `e_imagepath`, `createdAt`, `updatedAt`) VALUES
 (1, 1, 'my first post', '1560348509176.jpg', '2019-06-12 14:08:29', '2019-06-12 14:08:29'),
@@ -176,7 +209,7 @@ ALTER TABLE `comments`
 ALTER TABLE `follows`
   ADD PRIMARY KEY (`follow_id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `receiver_id` (`receiver_id`);
+  ADD KEY `receiver_id` (`user_id`);
 
 --
 -- Indexes for table `likes`
@@ -217,6 +250,10 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `follows`
   MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `follows`
+  ADD PRIMARY KEY (`follow_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `receiver_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for table `likes`
