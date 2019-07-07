@@ -47,12 +47,16 @@ var upload = multer({
 router.get('/posts', function(req, res)
 {
     const user_id = req.session.user_id;
-    console.log("user_id check =>>",user_id)
-    //{include:[{ model: Likes},{ model: Comments},{ model: Users}]}
-    Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}]})
+    const status = "accept";
+    Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
+            
+        }
+
+        })
     .then((postdata)=>
     {
-        //res.json(postdata.rows)  
+
         Users.findAll({where:{user_id:user_id}})
         .then((userdata)=>
         {
@@ -537,10 +541,9 @@ router.get('/posts/testapik', function(req, res)
     console.log("user_id check =>>",user_id)
     const status ="accept"
   Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-                where:{user_id:{[Op.in]:[sequelize.literal('SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept"')]}}
+                where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}}
 
                 })
-//Posts.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept")')]}}})
   .then(users => 
     {
         console.log("Posts data Testing =>",users);
