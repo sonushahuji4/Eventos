@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var dateFormat = require('dateformat');
 const {Users,Posts,Likes,Comments} = require('./model/model_index');
+//var io = require('socket.io');
 
 var app = express();
 app.use(express.json());
@@ -46,6 +47,8 @@ const baseUrl = "http://localhost:4000/";
 app.get('/', (req, res, next)=>
 {
     const user_id = req.session.user_id;
+    res.render('testingpurpose',{title:'testingpurpose'});
+    
 
     // Posts.findAll()
     // .then((postsdata)=>
@@ -62,9 +65,28 @@ app.get('/', (req, res, next)=>
     //     })
     // })
 
-   res.render('profileimage', { title: 'profileimage' });
+   //res.render('profileimage', { title: 'profileimage' });
     
 })
+
+// _users = [];
+// _connections = [];
+
+// io.sockets.on('connection',function(socket)
+// {
+// 	_connections.push(socket);
+
+// 	// for connection
+// 	console.log('Connected: %s sockets connected',_connections.length);
+
+// 	// for disconnect
+// 	socket.on('disconnect', function(data)
+// 	{
+// 		_connections.splice(_connections.indexOf(socket),1);
+// 	    console.log('Disconnected: %s sockets connected',_connections.length);
+// 	})
+// });
+
 
 // user registeration
 const userRegisteration = require('./routes/api/registeration');

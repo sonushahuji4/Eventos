@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "bower": "^1.8.8",
     "cors": "^2.8.5",
     "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
@@ -21,6 +22,7 @@
     "express-partials": "^0.3.0",
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
+    "install": "^0.13.0",
     "joi": "^14.3.1",
     "jquery": "^3.4.0",
     "local-storage": "^2.0.0",
@@ -31,6 +33,7 @@
     "sequelize": "^5.8.1",
     "session-file-store": "^1.2.0",
     "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "tether": "^1.4.6"
   },
   "devDependencies": {

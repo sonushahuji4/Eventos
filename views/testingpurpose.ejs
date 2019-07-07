@@ -1,0 +1,61 @@
+
+    <!-- nav bar -->
+    <%- include('partials/includes/header') %>
+    <%- include('partials/includes/navbar') %>
+    <br /> <br /> <br /> <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                    <div class="card text-center" style="width: 18rem;">
+                            <div class="card-header">
+                                    <h3>Online Users</h3>
+                            </div>
+
+                            <ul class="list-group list-group-flush" id="users">
+                              <li class="list-group-item">Cras justo odio</li>
+                            </ul>
+                    </div>
+               
+
+            </div>
+
+            <div class="col-md-8">
+                <div class="chat" id="chat"></div>
+
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label>Enter Message</label>
+                        <textarea class="form-control" id="message"></textarea><br />
+                        <input type="submit" class="btn btn-primary" value="Send Message" />
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function()
+        {
+            var socket = io.connect();
+            var $messageForm = $('#messageForm');
+            var $message = $('#message')
+            var $chat = $('#chat')
+            //alert("hello")
+            $messageForm.submit(function(e)
+            {
+                e.preventDefault();
+                //console.log('Submmited');
+                //alert('Submmited');
+                socket.emit('send message', $message.val());
+                $message.val(' ');
+            })
+
+            socket.on('new message', function(data)
+            {
+                $chat.append('<div class="card">  <div class="card-body" style="background:#D5F5E3">' +data.msg+ '</div></div>');
+            });
+        });
+
+    </script>

@@ -4,6 +4,7 @@ const Post_Model = require('./postbody_model')
 const User_Model = require('./user_model')
 const Comment_Model = require('./comment_model')
 const Follow_Model = require('./model_follow')
+const send_message_model = require('./send_message_model');
 
 const sequelize = new Sequelize('events','root',null, {
   host: 'localhost',
@@ -21,6 +22,7 @@ const Posts = Post_Model(sequelize, Sequelize)
 const Likes = Like_Model(sequelize, Sequelize)
 const Comments = Comment_Model(sequelize, Sequelize)
 const Follows = Follow_Model(sequelize, Sequelize)
+const MessageBox = send_message_model(sequelize, Sequelize)
 
 // Users.hasMany(Posts,{foreignKey: 'user_id'})
 // Posts.belongsTo(Users,{foreignKey: 'user_id'})
@@ -51,46 +53,14 @@ Likes.belongsTo(Posts,{foreignKey: 'event_id'})
 Posts.hasMany(Comments,{foreignKey: 'event_id'});
 Posts.hasMany(Likes,{foreignKey: 'event_id'});
 
+Users.hasMany(MessageBox,{foreignKey: 'user_id'});
+MessageBox.belongsTo(Users,{foreignKey: 'user_id'})
+
+
 // Follows.hasMany(Posts,{foreignKey: 'receiver_id'});
 // Posts.belongsTo(Follows,{foreignKey: 'receiver_id'})
 
 
-{
-  // Get a reference to the dialect-specific query generator. This is what Sequelize
-  // uses to assemble the various components of the resultant SQL statements.
-  const queryGenerator = sequelize.getQueryInterface().QueryGenerator
-
-  // Get the original "SELECT" fragment generator so we can proxy it.
-  const oldSelectFromTableFragment = queryGenerator.selectFromTableFragment;
-
-  // Provide a proxy implementation that will look for an {options.comment} value.
-  queryGenerator.selectFromTableFragment = function( options, model, attributes, tables, mainTableAs ) {
-
-      var baseFragment = oldSelectFromTableFragment.apply( this, arguments );
-
-      // Prepend SQL comment if option is present.
-      var fragment = options.comment
-          ? ( prepareComment( options.comment ) + baseFragment )
-          : baseFragment
-      ;
-
-      return( fragment );
-
-  };
-
-  // I prepare the comment for use as a query prefix.
-  function prepareComment( comment ) {
-
-      var sanitizedComment = String( comment )
-          .replace( /[\r\n]+/g, " " ) // Strip new lines.
-          .replace( /\/\*|\*\\/g, " " ) // Strip comments.
-      ;
-
-      return( "/* " + sanitizedComment + " */ " );
-
-  }
-
-}
 // sequelize.sync({ force: true })
 //   .then(() => {
 //     console.log(`Database & tables created!`)
@@ -101,5 +71,6 @@ module.exports = {
     Posts,
     Likes,
     Comments,
-    Follows
+    Follows,
+    MessageBox
 }
