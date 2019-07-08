@@ -112,12 +112,16 @@ $(document).on('click', '.send_chat', function()
           data:{to_user_id:to_user_id, chat_message:chat_message},
           success:function(response)
           {
+
             $('#chat_message_'+to_user_id).val('');// clear chat box
+            var $chat_history= document.getElementById("chat_history_"+to_user_id);
+            $chat_history.innerHTML = "";
             response.forEach(function(item, index)
             { 
             var time = new Date(item.createdAt);
-             var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-              $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');         
+             var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+             $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+             // $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');         
             })
 
           }
@@ -131,13 +135,18 @@ $(document).on('click', '.send_chat', function()
       url: "/posts/get_user_chat_history",
       method: "POST",
       data: {to_user_id:to_user_id},
-      success:function(response){
+      success:function(response)
+      {
+        //let old_comment = document.getElementById("old_comment"+post_id)
+        var $chat_history= document.getElementById("chat_history_"+to_user_id);
+        $chat_history.innerHTML = "";
         response.forEach(function(item, index)
             { 
               
               var time = new Date(item.createdAt);
              var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
-             $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');
+             $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+            // $chat_history.append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');
             })
 
         
