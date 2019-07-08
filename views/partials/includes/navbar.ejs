@@ -24,7 +24,9 @@
         </li>
         <li class="nav-item">
           <form class="message_notification">
-          <a class="nav-link" href="#"><i class="fab fa-facebook-messenger"></i></a>
+          <a class="nav-link" href="#"><i class="fab fa-facebook-messenger"></i>
+            <span class="get_notified_when_message_comes"></span>
+          </a>
         </form>
       </li>
         <li class="nav-item">
@@ -65,7 +67,39 @@ $(document).ready(function()
     setInterval(function()
     {
       update_chat_history_data();
-    }, 5000);
+    }, 2000);
+
+    var user_id_from_db = 0; 
+      get_user_id();
+        
+
+      function get_user_id()
+        {
+                $.ajax(
+                {
+                        url:"/posts/user_id",
+                        method:"GET",
+                        success:function(response)
+                        {       
+                                if(response !='')
+                                {
+                                  user_id_from_db = Number(response)
+                                        //alert(user_id)
+                                        //return response;
+                                }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                                {
+                                        console.log('jqXHR:');
+                                        console.log(jqXHR);
+                                        console.log('textStatus:');
+                                        console.log(textStatus);
+                                        console.log('errorThrown:');
+                                        console.log(errorThrown);
+                                        alert(errorThrown);
+                        }
+                });
+        }
 
 
     // Dialog Box
@@ -94,9 +128,10 @@ $(document).ready(function()
 
       $("#user_dialog_"+to_user_id).dialog(
       {
-        autoOpen:true,
+        autoOpen:false,
         width:400
       });
+      $('#user_dialog_'+to_user_id).dialog('open');
    
     });
 
@@ -105,6 +140,7 @@ $(document).on('click', '.send_chat', function()
     {
         var to_user_id = $(this).attr('id');
         var chat_message = $('#chat_message_'+to_user_id).val();
+        //alert(chat_message);
         $.ajax(
         {
           url:"/posts/get_chat_message",
@@ -120,8 +156,17 @@ $(document).on('click', '.send_chat', function()
             { 
             var time = new Date(item.createdAt);
              var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-             $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+             //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
              // $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');         
+             if(user_id_from_db == item.user_id) // if you
+              {
+                //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px">You..</div></div></div>`;
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+              }
+              else{ // else other
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+               // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px">others..</div></div></div>`;
+              }
             })
 
           }
@@ -143,11 +188,20 @@ $(document).on('click', '.send_chat', function()
         response.forEach(function(item, index)
             { 
               
-              var time = new Date(item.createdAt);
+             var time = new Date(item.createdAt);
              var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
-             $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+            // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
             // $chat_history.append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');
-            })
+              if(user_id_from_db == item.user_id) // if you
+              {
+                //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px">You..</div></div></div>`;
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+              }
+              else{ // else other
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+               // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px">others..</div></div></div>`;
+              }
+          })
 
         
       },
@@ -176,7 +230,7 @@ $(document).on('click','.message_notification',function()
     {
       //alert("clicked works..");
       var $message_notification = $('.message_notification');
-      var $message_list = $('#message_list');
+      //var $message_list = $('#message_list');
 
       $.ajax(
         {
@@ -184,16 +238,21 @@ $(document).on('click','.message_notification',function()
           method:"GET",
           success:function(response)
           {
+              //$message_list.val('');
+              var $message_list= document.getElementById("message_list");
+              $message_list.innerHTML = '';
               $.each(response, function(key, value)
               {
                
-                  $message_list.append('<div class="card message_click" data-username="'+value.user_firstname+ ' ' +value.user_lastname+'" data-userid="'+value.user_id+'"><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
+                  $message_list.innerHTML =  $message_list.innerHTML + `<div class="card message_click" data-username="${value.user_firstname+ ' ' +value.user_lastname}" data-userid="${value.user_id}"><li class="list-group-item link-class"><img src="${value.user_profile_pic}" height="40" width="40" class="img-thumbnail" /> ${value.user_firstname+ ' ' +value.user_lastname}</li></div>`;
+                  //$message_list.append('<div class="card message_click" data-username="'+value.user_firstname+ ' ' +value.user_lastname+'" data-userid="'+value.user_id+'"><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
                   
               });
-              $message_notification.on('click', function(){
-                    $message_list.slideToggle('slow');
-                    $message_list.val(' ');
-                  });
+              
+              $('#message_list').slideToggle('slow');
+              
+                  
+                
 
           },
           error:function(jqXHR, textStatus, errorThrown)

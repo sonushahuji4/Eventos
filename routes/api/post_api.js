@@ -475,8 +475,9 @@ router.post('/posts/get_chat_message',function (req,res)
     const user_id = req.session.user_id; // who's sending to message
     const to_user_id = req.body.to_user_id; // to whom the message has been sent
     const chat_message = req.body.chat_message; // chat content
+    const status_seen_unseen = "seen";
 
-    MessageBox.create({user_id:user_id, msg_receiver_id:to_user_id, message_content:chat_message})
+    MessageBox.create({user_id:user_id, msg_receiver_id:to_user_id, message_content:chat_message,status_seen_unseen:status_seen_unseen})
     .then((user)=>
     { 
         if(user)
