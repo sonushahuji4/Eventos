@@ -23,12 +23,14 @@
               </a>
         </li>
         <li class="nav-item">
+          <form class="message_notification">
+          <a class="nav-link" href="#"><i class="fab fa-facebook-messenger"></i></a>
+        </form>
+      </li>
+        <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
         </li>
 
-
-          
-       
       </ul>
       <form class="form-inline" style="margin-right:400px;">
         <input class="form-control mr-sm-2 search" id="search" type="text" placeholder="Search" aria-label="Search" style="width:500px">
@@ -36,17 +38,171 @@
       </form>
     </div>
   </nav>
-  
+
+  <!-- for search list display-->
   <div class="container" style="z-index:1; position: absolute; width: 535px; margin-left: 505px ">
-            
-      <ul class="list-group" id="search_result">
-    
-      </ul>
-    </div>
+            <ul class="list-group" id="search_result"></ul>
+  </div>
+
+  <!-- for chat(message) display list -->
+  <div class="container" style="z-index:1; position: absolute; width: 535px; margin-left: 50px ">
+      <br /><br />  
+    <ul class="list-group" id="message_list"></ul>
+  </div>
 
   <script>
-    // Implementing User Search Option(API)
-    $(document).ready(function()
+    
+// search query here
+// message notifiaction
+// chat dilog box ui 
+// get chat history to display
+// update_chat_history_data
+// open chat dialog box
+// insert data into chat box
+
+$(document).ready(function()
+{
+    setInterval(function()
+    {
+      update_chat_history_data();
+    }, 5000);
+
+
+    // Dialog Box
+    function make_chat_dialog_box(to_user_id, to_user_name)
+    {
+    var modal_content = '<div id="user_dialog_'+to_user_id+'" class="user_dialog" title="You have chat with '+to_user_name+'">';
+    modal_content += '<div style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="'+to_user_id+'" id="chat_history_'+to_user_id+'">';
+    modal_content += get_user_chat_history(to_user_id);
+    modal_content += '</div>';
+    modal_content += '<div class="form-group">';
+    modal_content += '<textarea name="chat_message_'+to_user_id+'" id="chat_message_'+to_user_id+'" class="form-control"></textarea>';
+    modal_content += '</div><div class="form-group" align="right">';
+    modal_content+= '<button type="button" name="send_chat" id="'+to_user_id+'" class="btn btn-info send_chat">Send</button></div></div>';
+    $('#user_model_details').html(modal_content);
+    }
+
+    // Dilog Box for chat application show box
+    $(document).on('click', '.message_click', function()
+    {
+
+      var to_user_id =$(this).data('userid'); // get user_id to whom you want to send request
+      var to_user_name = $(this).data('username') // status ..what you want to do follow or unfollow /follow,requested/following(accept)
+      var $message_list = $('#message_list');
+      $message_list.slideToggle('slow');
+      make_chat_dialog_box(to_user_id, to_user_name);
+
+      $("#user_dialog_"+to_user_id).dialog(
+      {
+        autoOpen:true,
+        width:400
+      });
+   
+    });
+
+// insert data into chat box
+$(document).on('click', '.send_chat', function()
+    {
+        var to_user_id = $(this).attr('id');
+        var chat_message = $('#chat_message_'+to_user_id).val();
+        $.ajax(
+        {
+          url:"/posts/get_chat_message",
+          method:"POST",
+          data:{to_user_id:to_user_id, chat_message:chat_message},
+          success:function(response)
+          {
+            $('#chat_message_'+to_user_id).val('');// clear chat box
+            response.forEach(function(item, index)
+            { 
+            var time = new Date(item.createdAt);
+             var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+              $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');         
+            })
+
+          }
+        })
+    });
+
+    // get chat history to display
+  function get_user_chat_history(to_user_id)
+  {
+    $.ajax({
+      url: "/posts/get_user_chat_history",
+      method: "POST",
+      data: {to_user_id:to_user_id},
+      success:function(response){
+        response.forEach(function(item, index)
+            { 
+              
+              var time = new Date(item.createdAt);
+             var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
+             $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');
+            })
+
+        
+      },
+
+    })
+  }
+  
+  function update_chat_history_data()
+  {
+
+      $('.chat_history').each(function()
+      {
+        var to_user_id = $(this).data('touserid');
+        get_user_chat_history(to_user_id);
+      });
+  } 
+
+$(document).on('click', '.ui-button-icon', function()
+{
+ $('.user_dialog').dialog('destroy').remove();
+});
+
+
+
+$(document).on('click','.message_notification',function()
+    {
+      //alert("clicked works..");
+      var $message_notification = $('.message_notification');
+      var $message_list = $('#message_list');
+
+      $.ajax(
+        {
+          url:"/posts/findUser",
+          method:"GET",
+          success:function(response)
+          {
+              $.each(response, function(key, value)
+              {
+               
+                  $message_list.append('<div class="card message_click" data-username="'+value.user_firstname+ ' ' +value.user_lastname+'" data-userid="'+value.user_id+'"><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
+                  
+              });
+              $message_notification.on('click', function(){
+                    $message_list.slideToggle('slow');
+                    $message_list.val(' ');
+                  });
+
+          },
+          error:function(jqXHR, textStatus, errorThrown)
+          {
+            console.log('jqXHR:');
+            console.log(jqXHR);
+            console.log('textStatus:');
+            console.log(textStatus);
+            console.log('errorThrown:');
+            console.log(errorThrown);
+            alert(errorThrown);
+          }
+
+        })
+    });
+
+// Implementing User Search Option(API)
+$(document).ready(function()
     {
       $('#search').keyup(function()
       {
@@ -122,18 +278,9 @@
 
         })
         
-        // $.getJSON('data.json', function(data) 
-        // {
-        //   alert("in")
-          // $.each(data, function(key, value)
-          // {
-          //   alert(value.name)
-          //   if (value.name.search(expression) != -1 || value.location.search(expression) != -1)
-          //   {
-          //     $('#search_result').append('<li class="list-group-item link-class"><img src="'+value.image+'" height="40" width="40" class="img-thumbnail" /> '+value.name+' | <span class="text-muted">'+value.location+'</span></li>');
-          //   }
-          // });   
-        // });
       });
     });
+
+  });
+
   </script>

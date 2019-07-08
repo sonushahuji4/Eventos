@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
 const sequelize = require('../../config/db');
-const {Users,Posts,Likes,Comments,Follows} = require('../../model/model_index');
+const {Users,Posts,Likes,Comments,Follows,MessageBox} = require('../../model/model_index');
 
 const multer = require('multer');
 const path = require('path');
@@ -469,20 +469,55 @@ router.post('/posts/processSearch', function(req,res,next)
 });
 
 
-// for testing purpose api
-router.get('/posts/testapi',function (req,res)
+// chat 
+router.post('/posts/get_chat_message',function (req,res)
 {
-    const user_id = req.session.user_id;
+    const user_id = req.session.user_id; // who's sending to message
+    const to_user_id = req.body.to_user_id; // to whom the message has been sent
+    const chat_message = req.body.chat_message; // chat content
 
-    Posts.findAll({where:{user_id:user_id}})
-    .then((data)=>
-    {
-        res.send(data);
+    MessageBox.create({user_id:user_id, msg_receiver_id:to_user_id, message_content:chat_message})
+    .then((user)=>
+    { 
+        if(user)
+        {
+            MessageBox.findAll({where: {[Op.or]:[{user_id:user_id,msg_receiver_id:to_user_id},{user_id:to_user_id,msg_receiver_id:user_id}]},order: sequelize.literal('createdAt ASC')})            
+            .then((data)=>
+            {
+                res.send(data)
+            })
+            .catch((err)=>
+            {
+
+            })
+        }
+        else{
+
+        }
     })
     .catch((err)=>
     {
-        console.log(err);
-        res.send(err);
+        console.error(err)
+        res.send({err})
+    })
+    //res.send("success");
+    
+  
+});
+
+router.post('/posts/get_user_chat_history',function (req,res)
+{
+    const user_id = req.session.user_id; // who's sending to message
+    const to_user_id = req.body.to_user_id; // to whom the message has been sent
+    //const chat_message = req.body.chat_message; // chat content
+    MessageBox.findAll({where: {[Op.or]:[{user_id:user_id,msg_receiver_id:to_user_id},{user_id:to_user_id,msg_receiver_id:user_id}]},order: sequelize.literal('createdAt ASC')})            
+    .then((data)=>
+    {
+        res.send(data)
+    })
+    .catch((err)=>
+    {
+
     })
     
   
