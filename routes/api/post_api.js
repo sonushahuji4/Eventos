@@ -524,6 +524,27 @@ router.post('/posts/get_user_chat_history',function (req,res)
   
 });
 
+router.get('/posts/count_unseen_message', function(req,res){
+
+    const user_id = req.session.user_id; // who's sending to message
+    //const to_user_id = req.body.to_user_id; // to whom the message has been sent
+    //const chat_message = req.body.chat_message; // chat content
+    const status_seen_unseen = "unseen";
+    MessageBox.findAll({where:{msg_receiver_id:user_id,status_seen_unseen:status_seen_unseen}})            
+    .then((data)=>
+    {
+        res.send(data);
+    })
+    .catch((err)=>
+    {
+
+    })
+});
+// function count_unseen_message(user_id,to_user_id)
+// {
+
+// }
+
 
 
 

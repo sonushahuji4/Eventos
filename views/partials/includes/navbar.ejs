@@ -52,18 +52,19 @@
     <ul class="list-group" id="message_list"></ul>
   </div>
 
+                      
+                            <!-- socket.io cdn library for socket.io-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
   <script>
-    
-// search query here
-// message notifiaction
-// chat dilog box ui 
-// get chat history to display
-// update_chat_history_data
-// open chat dialog box
-// insert data into chat box
+  
 
 $(document).ready(function()
 {
+    // Get Socket Connection first
+
+    var socket_connection = io.connect('') //     var socket_connection = io.connect('http://localhost:4000/');
+    
+    
     setInterval(function()
     {
       update_chat_history_data();
@@ -116,7 +117,7 @@ $(document).ready(function()
     $('#user_model_details').html(modal_content);
     }
 
-    // Dilog Box for chat application show box
+    // Dilog Box appear after clicking the user list 
     $(document).on('click', '.message_click', function()
     {
 
@@ -182,7 +183,7 @@ $(document).on('click', '.send_chat', function()
       data: {to_user_id:to_user_id},
       success:function(response)
       {
-        //let old_comment = document.getElementById("old_comment"+post_id)
+
         var $chat_history= document.getElementById("chat_history_"+to_user_id);
         $chat_history.innerHTML = "";
         response.forEach(function(item, index)
@@ -190,16 +191,15 @@ $(document).on('click', '.send_chat', function()
               
              var time = new Date(item.createdAt);
              var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
-            // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
-            // $chat_history.append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');
+        
               if(user_id_from_db == item.user_id) // if you
               {
-                //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px">You..</div></div></div>`;
+        
                 $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
               }
               else{ // else other
                 $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
-               // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px">others..</div></div></div>`;
+              
               }
           })
 
@@ -208,6 +208,33 @@ $(document).on('click', '.send_chat', function()
 
     })
   }
+
+  function count_unseen_message()
+  {
+    var $get_notified_when_message_comes = $('.get_notified_when_message_comes');
+    $.ajax({
+      url: "/posts/count_unseen_message",
+      method: "GET",
+     // data: {user_id_from_db:user_id_from_db},
+      success:function(response)
+      {
+        //alert(response.length)
+        $get_notified_when_message_comes.append('<small>'+response.length+'</small>')
+        //var $get_notified_when_message_comes = $('.get_notified_when_message_comes');
+        //alert(response.count);
+        // response.forEach(function(item, index)
+        // { `</small style=""><small><em>10</em></small>`
+        //   alert(item.count);
+            
+        // })
+
+        
+      },
+
+    }) 
+  }
+  
+  count_unseen_message();
   
   function update_chat_history_data()
   {
@@ -224,6 +251,18 @@ $(document).on('click', '.ui-button-icon', function()
  $('.user_dialog').dialog('destroy').remove();
 });
 
+
+
+// checking  for socket.io connection
+if(socket_connection !== undefined)
+{
+    alert("connected to socket.io");
+    // will get data from db and update the chat box
+    socket_connection.on("get_data_from_database",function()
+    {
+
+    });
+}
 
 
 $(document).on('click','.message_notification',function()
