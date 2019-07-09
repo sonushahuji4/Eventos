@@ -182,6 +182,7 @@ $(document).ready(function() // main script starts
                 
 
         
+        
         fetch_user(); // calling fetch_user() functin when page loads
         //fetch_user();
         function fetch_user()
@@ -207,6 +208,7 @@ $(document).ready(function() // main script starts
                                                 var status =""
                                                 let fullname = response[i].user_firstname + ' ' + response[i].user_lastname;
                                                 let image = response[i].user_profile_pic 
+                                                //alert(image)
                                                 let userid = response[i].user_id;
                                                 for(var j = 0, len_follow = response[i].Follows.length; j < len_follow; j++)
                                                 {
@@ -248,7 +250,7 @@ $(document).ready(function() // main script starts
                                                         suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
                         `<div class="card col-lg-4" data-user_id="${user_id}">
                                 
-                                <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
+                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
                                 <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
@@ -270,7 +272,7 @@ $(document).ready(function() // main script starts
                                                                 suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
                         `<div class="card col-lg-4" data-user_id="${user_id}">
                                 
-                                <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
+                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
                                 <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
@@ -287,7 +289,7 @@ $(document).ready(function() // main script starts
                         suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
                         `<div class="card col-lg-4" data-user_id="${user_id}">
                                 
-                                <img src="../public/profile_image/"${image} alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
+                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
                                 <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
                                 <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
