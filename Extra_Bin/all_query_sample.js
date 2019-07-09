@@ -56,3 +56,7 @@ FROM `posts`AS `Posts` LEFT OUTER JOIN `Likes` AS `Likes` ON `Posts`.`event_id` 
     
 	
 // });
+
+
+// Row Query Example
+SELECT *FROM users WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept")

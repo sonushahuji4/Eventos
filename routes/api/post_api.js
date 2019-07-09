@@ -540,14 +540,47 @@ router.get('/posts/count_unseen_message', function(req,res){
 
     })
 });
+
+router.post('/posts/get_single_user', function(req,res){
+
+    const to_user_id = req.body.to_user_id; 
+    
+    Users.findOne({where:{user_id:to_user_id}})            
+    .then((data)=>
+    {
+        res.send(data);
+    })
+    .catch((err)=>
+    {
+
+    })
+});
 // function count_unseen_message(user_id,to_user_id)
 // {
 
 // }
 
+// Get all online user (if they are following each other)
+router.get('/posts/online_user_list', function(req,res)
+{
+
+    const user_id = req.session.user_id; 
+    Users.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}}})    
+    .then((data)=>
+    {
+        res.send(data);
+    })
+    .catch((err)=>
+    {
+
+    })
+});
 
 
-
+// Users.findAll({where:{[Op.or]:[{user_id:
+//     {[Op.in]:
+//         [sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+//         {user_id:user_id}]  }})         
 
 
 

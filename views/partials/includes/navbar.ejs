@@ -53,18 +53,15 @@
   </div>
 
                       
-                            <!-- socket.io cdn library for socket.io-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+  
   <script>
   
 
 $(document).ready(function()
 {
     // Get Socket Connection first
+    var socket = io.connect();
 
-    var socket_connection = io.connect('') //     var socket_connection = io.connect('http://localhost:4000/');
-    
-    
     setInterval(function()
     {
       update_chat_history_data();
@@ -104,16 +101,17 @@ $(document).ready(function()
 
 
     // Dialog Box
-    function make_chat_dialog_box(to_user_id, to_user_name)
+    function make_chat_dialog_box(to_user_id, to_user_name,user_profile_pic)
     {
-    var modal_content = '<div id="user_dialog_'+to_user_id+'" class="user_dialog" title="You have chat with '+to_user_name+'">';
-    modal_content += '<div style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="'+to_user_id+'" id="chat_history_'+to_user_id+'">';
+      //var modal_content = '<div><img src="'+user_profile_pic+' height="40" width="40" class="img-thumbnail" /></div>';
+    var modal_content = '<div id="user_dialog_'+to_user_id+'"  class="user_dialog roundbox boxshadow"  title="'+to_user_name+'">';
+    modal_content += '<div style="background-color:#F5F5F5;height:300px; overflow-y: scroll; margin-bottom:20px;" class="chat_history" data-touserid="'+to_user_id+'" id="chat_history_'+to_user_id+'">';
     modal_content += get_user_chat_history(to_user_id);
     modal_content += '</div>';
-    modal_content += '<div class="form-group">';
-    modal_content += '<textarea name="chat_message_'+to_user_id+'" id="chat_message_'+to_user_id+'" class="form-control"></textarea>';
-    modal_content += '</div><div class="form-group" align="right">';
-    modal_content+= '<button type="button" name="send_chat" id="'+to_user_id+'" class="btn btn-info send_chat">Send</button></div></div>';
+    modal_content += '<div class="row">';
+    modal_content += '<div class="col-8"> <input type="tex" name="chat_message_'+to_user_id+'" id="chat_message_'+to_user_id+'" class="form-control"/></div>';
+    modal_content += '<div class="col">';
+    modal_content+= '<button type="button" name="send_chat" id="'+to_user_id+'" class="btn btn-info rounded mycustombtn send_chat">Send</button></div></div></div></div>';
     $('#user_model_details').html(modal_content);
     }
 
@@ -123,16 +121,40 @@ $(document).ready(function()
 
       var to_user_id =$(this).data('userid'); // get user_id to whom you want to send request
       var to_user_name = $(this).data('username') // status ..what you want to do follow or unfollow /follow,requested/following(accept)
+      var user_profile_pic = $(this).data('user_profile_pic');
+      //alert(user_profile_pic);
       var $message_list = $('#message_list');
       $message_list.slideToggle('slow');
-      make_chat_dialog_box(to_user_id, to_user_name);
-
+      make_chat_dialog_box(to_user_id, to_user_name,user_profile_pic);
       $("#user_dialog_"+to_user_id).dialog(
       {
         autoOpen:false,
-        width:400
+        width:350,
+        minHeight: 'auto',
+        dialogClass: "MyClass"
+        
+        
+        //fontsize:1em
+        
       });
-      $('#user_dialog_'+to_user_id).dialog('open');
+      $('#user_dialog_'+to_user_id).dialog('open').prev().css({"color": "white",
+      "background-color": "#343a40",
+      "font-family": "sans-serif"
+    });
+
+      // $.ajax(
+      //   {
+      //     url:"/posts/get_single_user",
+      //     method:"POST",
+      //     data:{to_user_id:to_user_id},
+      //     success:function(response)
+      //     {
+      //       make_chat_dialog_box(to_user_id, to_user_name);
+           
+      //     }
+      //   })
+
+     
    
     });
 
@@ -195,10 +217,10 @@ $(document).on('click', '.send_chat', function()
               if(user_id_from_db == item.user_id) // if you
               {
         
-                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-left:80px; background:#D5F5E3;height:60px;border-radius: 5px 20px 0px 15px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
               }
               else{ // else other
-                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-right:80px; background:#FBEEE6;height:60px;border-radius: 5px 5px 10px 0px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
               
               }
           })
@@ -208,6 +230,8 @@ $(document).on('click', '.send_chat', function()
 
     })
   }
+
+
 
   function count_unseen_message()
   {
@@ -253,18 +277,6 @@ $(document).on('click', '.ui-button-icon', function()
 
 
 
-// checking  for socket.io connection
-if(socket_connection !== undefined)
-{
-    alert("connected to socket.io");
-    // will get data from db and update the chat box
-    socket_connection.on("get_data_from_database",function()
-    {
-
-    });
-}
-
-
 $(document).on('click','.message_notification',function()
     {
       //alert("clicked works..");
@@ -283,7 +295,7 @@ $(document).on('click','.message_notification',function()
               $.each(response, function(key, value)
               {
                
-                  $message_list.innerHTML =  $message_list.innerHTML + `<div class="card message_click" data-username="${value.user_firstname+ ' ' +value.user_lastname}" data-userid="${value.user_id}"><li class="list-group-item link-class"><img src="${value.user_profile_pic}" height="40" width="40" class="img-thumbnail" /> ${value.user_firstname+ ' ' +value.user_lastname}</li></div>`;
+                  $message_list.innerHTML =  $message_list.innerHTML + `<div class="card message_click" data-user_profile_pic ="${value.user_profile_pic}" data-username="${value.user_firstname+ ' ' +value.user_lastname}" data-userid="${value.user_id}"><li class="list-group-item link-class"><img src="${value.user_profile_pic}" height="40" width="40" class="img-thumbnail" /> ${value.user_firstname+ ' ' +value.user_lastname}</li></div>`;
                   //$message_list.append('<div class="card message_click" data-username="'+value.user_firstname+ ' ' +value.user_lastname+'" data-userid="'+value.user_id+'"><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
                   
               });
