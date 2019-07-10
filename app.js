@@ -112,6 +112,10 @@ app.use('/',userprofile);
 const viewprofile = require('./routes/api/viewprofile');
 app.use('/',viewprofile);
 
+// craete event and submit
+const createvent = require('./routes/api/event_page');
+app.use('/event',createvent);
+
 
 // app.put('/updatauserdata/:id',function (req,res)
 // {

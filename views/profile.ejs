@@ -59,7 +59,7 @@
                         <% if(item.user_profile_pic){ %>
                          
                         <img id="profile_image" class="card-img rounded-circle " src="../public/profile_image/<%= item.user_profile_pic %>" alt="Card image" style="width:100px; height:100px">
-                        <i for="upload" class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image"></i>        
+                                
                         <span id = "status"></span>
                         <!-- <div class="form-group">
                                 <label for="upload" id="upload_user_image" class="btn btn-sm btn-primary">Upload Image</label>
@@ -68,9 +68,12 @@
 
                         <!-- <input id="default_file" type="file"/> -->
                         <form class="upload" enctype="multipart/form-data" id="form_data" data-user_id="<%= item.user_id %>">
-                        <input type="file" id="datafile" name="userPhoto"/>
+
+                        <input id="datafile" type="file" name="userPhoto" style="visibility:hidden"/>
+                        <span title="attach file" class="attachFileSpan" onclick="document.getElementById('datafile').click()"><i for="upload" class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image"></i></label></span>
+                        <!-- <input type="file" id="datafile" name="userPhoto"/> -->
                                  
-                        <input type="submit" value="submit"/> 
+                        <input type="submit" value="submit" class="btn btn-sm btn-primary"/> 
                         </form>
 
                         

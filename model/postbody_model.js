@@ -4,9 +4,19 @@ module.exports = (sequelize, type) => {
         event_id  	     : {type : Sequelize.INTEGER(11), allowNull : false, autoIncrement: true, primaryKey: true},
         user_id 	     : {type : Sequelize.INTEGER(11), required : true, unique : false, allowNull : false, trim : true},
         event_message 	 : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true},
-        e_imagepath      :{type : Sequelize.STRING, required : true, allowNull : false}
+        e_imagepath      :{type : Sequelize.STRING, required : true, allowNull : false},
+        event_name 	     : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true}, 
+        event_type 	     : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true}, 
+        event_location 	     : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true}, 
+        event_description 	     : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true}, 
+        event_organization 	     : {type : Sequelize.STRING, required : true, unique : false, allowNull : false, trim : true}, 
+        event_start_date   : {type : Sequelize.DATEONLY, required : true, allowNull : false},
+        event_end_date     : {type : Sequelize.DATEONLY, required : true, allowNull : false},
+        registeration_closed_for_event : {type : 'TIMESTAMP',allowNull : true}
     })
 }
+
+    
 
 
 // const db = require('../config/db') // including db.js from config folder

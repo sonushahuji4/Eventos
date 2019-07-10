@@ -71,14 +71,14 @@ border:1.5px solid white;
   {
 margin-left: 5px;
 }
-/* .user_info span{
+ .post_info span{
 font-size: 12px;
-color:#808B96;
+color:red;
 }
-.user_info p{
+.post_info p{
 font-size: 6px;
 color: rgba(255,255,255,0.6);
-} */
+}
 
 .icon-bar {
   position: fixed;
@@ -106,3 +106,123 @@ color: rgba(255,255,255,0.6);
   margin-left: 75px;
   font-size: 30px;
 }
+
+.left_side_bar{
+  height: 100%;
+  width: 100px;
+  left: 0;
+  position: fixed;
+  background-color:#343a40;
+}
+
+.left_side_bar ul li a{
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.left_side_bar ul li a:hover {
+  background-color: #000;
+}
+.tools_name{
+  padding-top: 10px;
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+  background-color: #000;
+}
+
+.form_side_bar{
+  top:30px;
+  height: 100%;
+  width: 600px;
+  left:100px;
+  transition: all .3s ease-out;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  position: fixed;
+  background-color:#FBFCFC;
+  bottom:0;
+}
+
+.attachFileSpan{
+  color:#2b6dad;
+  cursor:pointer;
+  }
+  .attachFileSpan:hover{
+  text-decoration: underline;
+  }
+/* create event side bar */
+/* .creaet_event_side_bar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.creaet_event_side_bar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.creaet_event_side_bar a:hover {
+  color: #f1f1f1;
+}
+
+.main_event {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  /* font-size: 28px; Increased text to enable scrolling */
+  /* padding: 0px 10px;
+} */
+/* 
+.create_event_form_side_bar {
+
+
+
+  transition: all .3s ease-out;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color:#FDFEFE;
+
+  height: 100%;
+  width: 800px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left:10;
+  background-color:red;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.creaet_evcreate_event_form_side_barent_side_bar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.create_event_form_side_bar a:hover {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .creaet_event_side_bar {padding-top: 15px;}
+  .creaet_event_side_bar a {font-size: 18px;}
+} */ 
