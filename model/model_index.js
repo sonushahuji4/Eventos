@@ -5,6 +5,7 @@ const User_Model = require('./user_model')
 const Comment_Model = require('./comment_model')
 const Follow_Model = require('./model_follow')
 const send_message_model = require('./send_message_model');
+const Login_Details_model = require('./login_details_modul');
 
 const sequelize = new Sequelize('events','root',null, {
   host: 'localhost',
@@ -23,6 +24,7 @@ const Likes = Like_Model(sequelize, Sequelize)
 const Comments = Comment_Model(sequelize, Sequelize)
 const Follows = Follow_Model(sequelize, Sequelize)
 const MessageBox = send_message_model(sequelize, Sequelize)
+const Login_Details = Login_Details_model(sequelize, Sequelize)
 
 // Users.hasMany(Posts,{foreignKey: 'user_id'})
 // Posts.belongsTo(Users,{foreignKey: 'user_id'})
@@ -39,7 +41,8 @@ const MessageBox = send_message_model(sequelize, Sequelize)
 // user can like as many posts as user want
 // user can comment on as many posts as user want
 
-
+Users.hasMany(Login_Details,{foreignKey: 'user_id'});
+Login_Details.belongsTo(Users,{foreignKey: 'user_id'})
 Users.hasMany(Posts,{foreignKey: 'user_id'});
 Users.hasMany(Follows,{foreignKey: 'user_id'});
 Follows.belongsTo(Users,{foreignKey: 'user_id'})
@@ -72,5 +75,6 @@ module.exports = {
     Likes,
     Comments,
     Follows,
-    MessageBox
+    MessageBox,
+    Login_Details
 }

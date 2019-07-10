@@ -65,20 +65,20 @@ right: 0.4em;
 border:1.5px solid white;
 }
 .offline{
-  background-color: #c23616 !important;
+  background-color:#E5E8E8 !important;
   }
-  .user_info{
-
-margin-left: 15px;
+  .user_info
+  {
+margin-left: 5px;
 }
-.user_info span{
-font-size: 16px;
-color:#1C2833;
+/* .user_info span{
+font-size: 12px;
+color:#808B96;
 }
 .user_info p{
-font-size: 10px;
+font-size: 6px;
 color: rgba(255,255,255,0.6);
-}
+} */
 
 .icon-bar {
   position: fixed;

@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
 const sequelize = require('../../config/db');
-const {Users,Posts,Likes,Comments,Follows,MessageBox} = require('../../model/model_index');
+const {Users,Posts,Likes,Comments,Follows,MessageBox,Login_Details} = require('../../model/model_index');
+var dateTime = require('node-datetime');
+
 
 const multer = require('multer');
 const path = require('path');
@@ -526,9 +528,7 @@ router.post('/posts/get_user_chat_history',function (req,res)
 
 router.get('/posts/count_unseen_message', function(req,res){
 
-    const user_id = req.session.user_id; // who's sending to message
-    //const to_user_id = req.body.to_user_id; // to whom the message has been sent
-    //const chat_message = req.body.chat_message; // chat content
+    const user_id = req.session.user_id;
     const status_seen_unseen = "unseen";
     MessageBox.findAll({where:{msg_receiver_id:user_id,status_seen_unseen:status_seen_unseen}})            
     .then((data)=>
@@ -555,20 +555,20 @@ router.post('/posts/get_single_user', function(req,res){
 
     })
 });
-// function count_unseen_message(user_id,to_user_id)
-// {
-
-// }
 
 // Get all online user (if they are following each other)
 router.get('/posts/online_user_list', function(req,res)
 {
 
     const user_id = req.session.user_id; 
-    Users.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}}})    
-    .then((data)=>
+    //{include:[{ model: Login_Details}],
+    Users.findAll({where:{user_id:{
+        [Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]
+                                }},include:[{model:Login_Details}]})    
+    .then((user_data)=>
     {
-        res.send(data);
+
+        res.send(user_data);
     })
     .catch((err)=>
     {
@@ -577,13 +577,80 @@ router.get('/posts/online_user_list', function(req,res)
 });
 
 
-// Users.findAll({where:{[Op.or]:[{user_id:
-//     {[Op.in]:
-//         [sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
-//         {user_id:user_id}]  }})         
+// Get all online user (if they are following each other)
+router.get('/posts/message_notify', function(req,res)
+{
 
+    const user_id = req.session.user_id; 
+    const unseen = "unseen";
+    //{include:[{ model: Login_Details}],
+    Users.findAll({where:{user_id:{
+        [Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]
+                                }},include:[{model:MessageBox,where:{status_seen_unseen:unseen}},{model:Login_Details}]})    
+    .then((user_data)=>
+    {
+        if(user_data !="")
+        {
+            res.send(user_data);
+        }
+        else{
+            Users.findAll({where:{user_id:{
+                [Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]
+                                        }},include:[{model:MessageBox},{model:Login_Details}]})   
+            .then((data)=>
+            {
+                res.send(data)
+            }) 
+            .catch((err)=>
+            {
 
+            })
+                                
+        }
 
+    })
+    .catch((err)=>
+    {
 
+    })
+});
+
+router.post('/posts/update_unseen_message', function(req,res){
+
+    const to_user_id = req.body.to_user_id; 
+    const user_id = req.session.user_id;
+    const unseen = "unseen";
+    const seen  = "seen";
+    console.log("to_user_id ==>",to_user_id);
+    
+    MessageBox.findAll({where:{user_id:to_user_id,msg_receiver_id:user_id,status_seen_unseen:unseen}})            
+    .then((data)=>
+    {
+        // console.log(data);
+        if(data !="")
+        {
+            if(data)
+            {
+                MessageBox.update({status_seen_unseen:seen},{where:{user_id:to_user_id,msg_receiver_id:user_id,status_seen_unseen:unseen}})
+                .then((updated_message)=>{
+                    res.send(updated_message);
+                })
+                .catch((err)=>
+                {
+
+                })
+            }
+            
+        }
+        else{
+            res.send("success");
+        }
+
+    })
+    .catch((err)=>
+    {
+
+    })
+});
 
 module.exports = router;

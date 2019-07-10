@@ -3,8 +3,9 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const path = require('path');
 const dateFormat = require('dateformat');
+var dateTime = require('node-datetime');
 
-const {Users,Posts,Likes,Comments} = require('../../model/model_index');
+const {Users,Posts,Likes,Comments,Login_Details} = require('../../model/model_index');
 //const dboperation = require('../../DbOperation/DbOperation');
 const Sequelize = require('sequelize');
 const expressValidator = require('express-validator');
@@ -57,9 +58,58 @@ router.post('/login', (req, res, next)=>
             {
                 if(users.user_username == username && users.user_password == password)
                 {
-                    req.session.email = users.user_email;
-                    req.session.user_id = users.user_id;
-                    res.redirect("http://localhost:4000/posts");
+                    Login_Details.findOne({where:{user_id:users.user_id}}) // if you find then update else create new one
+                    .then((user_data)=>
+                    {
+                        var dt = dateTime.create();
+                        var formatted = dt.format('Y-m-d H:M:S');
+                        console.log("formatted",formatted);
+                        const online = "online";
+
+                        if(user_data) // update
+                        {
+                            Login_Details.update({last_activity:formatted,offline_online_status:online},{where:{user_id:users.user_id}})
+                            .then((data)=>
+                            {
+                                req.session.email = users.user_email;
+                                req.session.user_id = users.user_id;
+                                //res.send(data);
+                                res.redirect("http://localhost:4000/posts");
+                               
+                            })
+                            .catch((err)=>
+                            {
+                                console.error(err)
+                                res.status(501).send({
+                                    error : "error..... check console log"
+                                })
+                            })
+                        }
+                        else{ // create new one
+                            Login_Details.create({user_id:users.user_id,last_activity:formatted,offline_online_status:online})
+                            .then((data)=>
+                            {
+                                req.session.email = users.user_email;
+                                req.session.user_id = users.user_id;
+                                res.redirect("http://localhost:4000/posts");
+                                //res.send(data);
+                            })
+                            .catch((err)=>
+                            {
+                                console.error(err)
+                                res.status(501).send({
+                                    error : "error..... check console log"
+                                })
+                            })
+                        }
+                    })
+                    .catch((err)=>
+                    {
+
+                    })
+                    // req.session.email = users.user_email;
+                    // req.session.user_id = users.user_id;
+                    // res.redirect("http://localhost:4000/posts");
                     //res.render('home', { title: 'home' }); 
                 }
                 

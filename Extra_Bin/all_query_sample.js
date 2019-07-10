@@ -60,3 +60,11 @@ FROM `posts`AS `Posts` LEFT OUTER JOIN `Likes` AS `Likes` ON `Posts`.`event_id` 
 
 // Row Query Example
 SELECT *FROM users WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept")
+
+
+
+
+SELECT `User`.`user_id` AS `User.user_id`, `User`.`user_firstname` AS `User.user_firstname`, `User`.`user_lastname` AS `User.user_lastname`, `User`.`user_dob` AS `User.user_dob`, `User`.`user_gender` AS `User.user_gender`, `User`.`user_mobile_no` AS `User.user_mobile_no`, `User`.`user_email` AS `User.user_email`, `User`.`user_username` AS `User.user_username`, `User`.`user_password` AS `User.user_password`, `User`.`user_profile_pic` AS `User.user_profile_pic`, `User`.`createdAt` AS `User.createdAt`, `User`.`updatedAt` AS `User.updatedAt`,
+`Logins`.`login_id` AS `Logins.login_id`, `Logins`.`user_id` AS `Logins.user_id`, `Logins`.`last_activity` AS `Logins.last_activity`, `Logins`.`is_type` AS `Logins.is_type`,`Logins`.`offline_online_status` AS `Logins.offline_online_status`
+FROM `users`AS `User` LEFT OUTER JOIN `login_details` AS `Logins` ON `User`.`user_id` = `Logins`.`user_id` 
+WHERE `User`.user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept");
