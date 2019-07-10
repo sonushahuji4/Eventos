@@ -58,6 +58,9 @@ router.post('/login', (req, res, next)=>
             {
                 if(users.user_username == username && users.user_password == password)
                 {
+                    req.session.email = users.user_email;
+                    req.session.user_id = users.user_id;
+
                     Login_Details.findOne({where:{user_id:users.user_id}}) // if you find then update else create new one
                     .then((user_data)=>
                     {
@@ -68,11 +71,10 @@ router.post('/login', (req, res, next)=>
 
                         if(user_data) // update
                         {
-                            Login_Details.update({last_activity:formatted,offline_online_status:online},{where:{user_id:users.user_id}})
+                            Login_Details.update({last_activity:formatted,offline_online_status:online},{where:{user_id:req.session.user_id}})
                             .then((data)=>
                             {
-                                req.session.email = users.user_email;
-                                req.session.user_id = users.user_id;
+
                                 //res.send(data);
                                 res.redirect("http://localhost:4000/posts");
                                
@@ -86,11 +88,10 @@ router.post('/login', (req, res, next)=>
                             })
                         }
                         else{ // create new one
-                            Login_Details.create({user_id:users.user_id,last_activity:formatted,offline_online_status:online})
+                            Login_Details.create({user_id:req.session.user_id,last_activity:formatted,offline_online_status:online})
                             .then((data)=>
                             {
-                                req.session.email = users.user_email;
-                                req.session.user_id = users.user_id;
+
                                 res.redirect("http://localhost:4000/posts");
                                 //res.send(data);
                             })

@@ -48,7 +48,7 @@
 
   <!-- for chat(message) display list -->
   <div class="container" style="z-index:1; position: absolute; width: 535px; margin-left: 50px ">
-      <br /><br />  
+      <br /><br /> <br /><br /> <br /> 
     <ul class="list-group" id="message_list"></ul>
   </div>
 
@@ -160,13 +160,12 @@ $(document).ready(function()
 
         $(document).on('click','.online_user',function()
         {
+          
                 var to_user_id = $(this).data('online_user_id');
                 var to_user_name = $(this).data('online_user_firstname');
                 var user_profile_pic = $(this).data('online_user_profile_pic');
                 const flag = false;
-                alert(to_user_id);
-                alert(to_user_name);
-                alert(user_profile_pic);
+
 
                 $.ajax(
                 {
@@ -376,42 +375,22 @@ $(document).on('click','.message_notification',function()
 
               for (var i = 0, len = response.length; i < len; i++)
               {      
-                //alert(response[i].user_firstname); 
-                //alert(response[i].MessageBoxes.length)
+
                 
                  for(var j = 0, len_Login_Details = response[i].Login_Details.length; j < len_Login_Details; j++)
                 {
-                  //alert(response[i].Login_Details[j].offline_online_status);
+                
                       var time = new Date(response[i].Login_Details[j].last_activity);
                       var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                      alert("kkkkkkkkkk")
-
                       if(response[i].Login_Details[j].offline_online_status == "online")
                       {
-                        alert("online")
-                        $message_list.innerHTML = $message_list.innerHTML + 
-  `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}"><li class="list-group-item link-class"><div class="d-flex bd-highlight online_user">
-    <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img">
-      <span class="online_icon"></span> 
-    </div>
-    <div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/>
-      <small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small><strong>${response[i].Login_Details[j].offline_online_status}</strong></small></small>
-    </div> 
-  </div> </li></div>`;
-  alert("online")
+            $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}"><li class="list-group-item link-class"><div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"> <span class="online_icon"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small><strong>${response[i].Login_Details[j].offline_online_status}</strong></small></small></div></div> </li></div>`;
+ 
                       }
                       else{
-                        alert("offline")
-    $message_list.innerHTML = $message_list.innerHTML + 
-  `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}"><li class="list-group-item link-class"> <div class="d-flex bd-highlight online_user">
-    <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img">
-      <span class="online_icon offline"></span> 
-    </div>
-    <div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/>
-      <small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small>Last seen <small>${showtime}</small></small>
-    </div> 
-  </div> </li></div>`;
-  alert("offline")
+                      
+    $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}" ><li class="list-group-item link-class"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small>Last seen <small>${showtime}</small></small></div> </div> </li></div>`;
+
                       }
                                         
                 }
@@ -435,6 +414,7 @@ $(document).on('click','.message_notification',function()
 
         })
     });
+
 
 // Implementing User Search Option(API)
 $(document).ready(function()
