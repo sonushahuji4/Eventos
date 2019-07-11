@@ -142,7 +142,7 @@
                                             <small class="form-text text-muted">If no Registeration data & time, then don't mention</small>
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary btn_sub_mit" >Submit</button>
+                                        <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
                                       </form>
                               
                 </div>    
@@ -151,20 +151,27 @@
           </div>
           <div class="col-6">
            <div class="container">
+             
+             
               <div class="container" style="padding-top: 50px">
                   <div class="card mb-3">
                     <div class="row">
                       
                       <div class="col-10" style="padding-left:50px;padding-top:20px">
                           <div class="d-flex bd-highlight">
-                            <div class="img_cont"><img src="../public/profile_image/1561319146507.JPG" class="rounded-circle user_img"></div>
-                            
-                          <div class="user_info">Sonu Shahuji<br/>
+                              <% if(items.user_profile_pic){ %>
+                            <div class="img_cont"><img src="../public/profile_image/<%= items.user_profile_pic %>" class="rounded-circle user_img"></div>
+                            <% } else { %>
+                              <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div>
+                              <% } %>
+                          <div class="user_info"><%=items.user_firstname %> <%=items.user_lastname %><br/>
                             <small>Last seen 2 hrs</small><br/><i class="fas fa-map-marker-alt"></i>
                             <small style="padding-left:10px" id="show_location"></small>
                           </div> 
                         </div>
-                      </div>   
+                      </div>  
+                      
+                     
 
                           <div class="col-2" style="padding-left:20px;padding-top:20px">
                               <i style="font-size:24px" class="fa">&#xf0c9;</i>
@@ -193,7 +200,7 @@
                     </div>
                     </div>
                       <div class="card-body" id="display_image">
-                          <!-- <ul class="nav"><li><a href="#"><img src="../public/image/14470445_10153658737411157_7705584624605064405_n.jpg" alt="error check >" class="img-fluid"></a></li></ul>           -->
+                          
                       </div>
                       <div class="card-footer">
                               <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;"></button>
@@ -203,6 +210,7 @@
               </div>  
                   
               </div>
+            
            </div>
           </div>
        </div>
@@ -212,10 +220,11 @@
     <script>
       $(document).ready(function()
       {
-
+        var fileName = "";
         $('input[type="file"]').change(function(e)
         {
           var fileName = e.target.files[0].name;
+          alert(fileName);
           let display_image = document.getElementById("display_image");
           display_image.innerHTML = "";
 
@@ -283,10 +292,11 @@
 
         $(document).on('click','.btn_sub_mit',function()
         {
-
+          alert(fileName);
           var event_name = $('#event_name').val();
           var event_title = $('#event_title').val();
           var event_description = $('#event_description').val();event_state
+          var event_read_more = $('#event_read_more').val();
           var event_city = $('#event_city').val();
           var event_country = $('#event_country').val();
           var event_state = $('#event_state').val();
@@ -304,20 +314,54 @@
           var event_register_clase_date = $('#event_register_clase_date').val();
           var event_register_clase_time = $('#event_register_clase_time').val();
           var event_register_am_pa = $('#event_register_am_pa ').val();
+          
+
+          $.ajax(
+                {
+                        url:"/event",
+                        method:"POST",
+                        data:{event_name:event_name},
+                        success:function(response)
+                        {       
+                               alert(response);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                                {
+                                        console.log('jqXHR:');
+                                        console.log(jqXHR);
+                                        console.log('textStatus:');
+                                        console.log(textStatus);
+                                        console.log('errorThrown:');
+                                        console.log(errorThrown);
+                                        alert(errorThrown);
+                        }
+                });
       
-            alert(event_register_clase_date);
-            alert(event_register_clase_time)
-           alert(event_register_am_pa);
         })
           
 
       });
     
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    // var $event_name = document.getElementById('');
-    </script>
+   </script>
+
+<!--    
+alert(event_name);
+alert(event_title)
+alert(event_description);
+alert(event_read_more);
+
+alert(event_country)
+alert(event_city);
+alert(event_state);
+alert(event_type);
+alert(event_organization)
+alert(event_start_date);
+alert(event_start_time);
+alert(event_select_start_am_pa)
+alert(event_end_date);
+alert(event_end_time);
+
+alert(event_select_end_am_pa);
+alert(event_register_clase_date);
+alert(event_register_clase_time)
+alert(event_register_am_pa); -->

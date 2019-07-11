@@ -40,69 +40,45 @@ var upload = multer({
     }
 });
 
-// find user_id
-// whoever I follow, I must see their posts
-// go to follow table
-// get that particular user_id(reciever_id) and status should be "accept"
-// then go to post table and find that particular user_id ka post
 
-router.get('/', function(req, res)
+router.get('/event', function(req, res)
 {
     const user_id = req.session.user_id;
     
-        
-    res.render('event_page',{title:'Event'}); 
+    Users.findOne({where:{user_id:user_id}})
+    .then((user_data)=>
+    {
+       // res.send(user_data);
+        res.render('event_page',{title:'Event',items:user_data});
+    })
+    .catch((err)=>{
+
+    }) 
     
-	
 });
 
 // upload post api
-router.post('/event', upload.single('feedsposts'),function (req,res)
+router.post('/event',function (req,res)
 {
-    console.log("image path short => ", req.file)
-    if(req.file)
-    {
-        const user_id = req.session.user_id;
-        Users.findOne({ where:{user_id:user_id}})
-        .then((users)=>
-        {
-
-                 if(users)
-                 {
-                     const user_id = users.user_id;
-                     const message = req.body.message;
-                     const imagepath = req.file.filename;
-
-                    Posts.create({user_id:user_id, event_message: message, e_imagepath: imagepath})
-                    .then((user)=>
-                    {
-                        res.redirect("http://localhost:4000/posts");
-                        //res.render('home',{title:'home',items:user});
-                    })
-                    .catch((err)=>
-                    {
-                        console.error(err)
-                        res.status(501).send({
-                            error : "error..... check console log"
-                        })
-                    })
-                 }
-             
-        })
-        .catch((err)=>
-        {
-             console.error(err)
-             res.status(501).send({
-                 error : "error..... check console log"
-             })
-        })
-    }
-    else
-    {
-        //query +=  " '"+req.file.path+"')";
-        res.status("sent file");
-
-    }
+    const user_id = req.session.user_id;
+    const event_name = req.body.event_name;
+    console.log(event_name);
+    res.send(event_name);
+    // Posts.create({user_id:user_id, event_message: message, e_imagepath: imagepath})
+    // .then((user)=>
+    // {
+    //     res.redirect("http://localhost:4000/posts");
+    //     //res.render('home',{title:'home',items:user});
+    // })
+    // .catch((err)=>
+    // {
+    //     console.error(err)
+    //     res.status(501).send({
+    //         error : "error..... check console log"
+    //     })
+    // })               
+       
+   
 });
 
 
