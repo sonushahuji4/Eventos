@@ -35,17 +35,22 @@
             <nav class="navbar-nav form_side_bar">
 
                 <div class="container" style="padding:30px">
-                        <form>
+                  
+                    <form class="upload" enctype="multipart/form-data" id="form_data">
+                      <div class="form-group" id="upload_image_post">
+                          <input id="userPhoto" type="file" name="userPhoto" style="visibility:hidden"/>
+                          <span title="attach file" class="attachFileSpan" onclick="document.getElementById('userPhoto').click()"><img src="../public/image/upload_image.png" class="rounded-circle border" style="width:65px; height:65px"/> OR <img src="../public/image/upload_video_1.png" class="rounded-circle border" style="width:60px; height:60px"/></span>
+                          <div class="progress">
+                              <div class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                      </div>
+                      </form>
 
+                
 
-                            <div class="form-group">
-                                <input id="myInput" type="file" style="visibility:hidden"/>
-                                <span title="attach file" class="attachFileSpan" onclick="document.getElementById('myInput').click()"><img src="../public/image/upload_image.png" class="rounded-circle border" style="width:65px; height:65px"/> OR <img src="../public/image/upload_video_1.png" class="rounded-circle border" style="width:60px; height:60px"/></span>
-                                
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
+                        <form enctype="multipart/form-data">
+
+                            
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
                                     <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Name">
@@ -56,6 +61,9 @@
                                 </div>
                                 <div class="form-group">
                                   <textarea class="form-control" id="event_description" name="event_description" placeholder="Tell us about the event"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="event_read_more" name="event_read_more" placeholder="Add content to Read More"></textarea>
                                 </div>
                                
                                 <div class="form-row">
@@ -151,7 +159,10 @@
                           <div class="d-flex bd-highlight">
                             <div class="img_cont"><img src="../public/profile_image/1561319146507.JPG" class="rounded-circle user_img"></div>
                             
-                            <div class="user_info">Sonu Shahuji<br/><small>Last seen 2 hrs</small><br/><i class="fas fa-map-marker-alt"></i><small style="padding-left:10px">Mumbai,Andheri</small></div> 
+                          <div class="user_info">Sonu Shahuji<br/>
+                            <small>Last seen 2 hrs</small><br/><i class="fas fa-map-marker-alt"></i>
+                            <small style="padding-left:10px" id="show_location"></small>
+                          </div> 
                         </div>
                       </div>   
 
@@ -164,37 +175,33 @@
 
                      
                     <div class="row">
-                        <span style="padding-left:35px"><strong>Title for the event</strong></span>
-                     <p><div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
-                      Click on the icon to read more...<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Read More</a>
+                        <span style="padding-left:35px" id="show_title">
+                        </span>
+                     
+                      <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                      <p id="tell_us_about_the_event"></p>
                       
                       <div class="collapse" id="collapseExample">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. 
-                        </div>
+                             
+                      </div>
 
 
                       
                         
                         
 
-                    </div></p> 
                     </div>
-                      <div class="card-body">
-                          <ul class="nav">
-                                  <li>
-                                          <a href="#">
-                                              <img src="../public/image/14470445_10153658737411157_7705584624605064405_n.jpg" alt="error check >" class="img-fluid">
-                                          </a>
-                                    
-                                  </li>
-                          </ul>          
+                    </div>
+                      <div class="card-body" id="display_image">
+                          <!-- <ul class="nav"><li><a href="#"><img src="../public/image/14470445_10153658737411157_7705584624605064405_n.jpg" alt="error check >" class="img-fluid"></a></li></ul>           -->
                       </div>
                       <div class="card-footer">
                               <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;"></button>
                               <button class="post_comment bg-btn fa fa-comments"></button>
                       </div>
                       
-              </div>       
+              </div>  
+                  
               </div>
            </div>
           </div>
@@ -205,6 +212,74 @@
     <script>
       $(document).ready(function()
       {
+
+        $('input[type="file"]').change(function(e)
+        {
+          var fileName = e.target.files[0].name;
+          let display_image = document.getElementById("display_image");
+          display_image.innerHTML = "";
+
+          display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
+        });
+
+        $('#event_title').on('click',function()
+        {
+          var event_title = $('#event_title').val();
+          //alert(event_name);
+          let show_title = document.getElementById("show_title");
+          show_title.innerHTML = "";
+
+          show_title.innerHTML =  show_title.innerHTML + `<strong>${event_title}</strong>`;
+        });
+
+        $('#event_description').on('click',function()
+        {
+          var event_description = $('#event_description').val();
+          //alert(event_description);
+          let tell_us_about_the_event = document.getElementById("tell_us_about_the_event");
+          tell_us_about_the_event.innerHTML = "";
+
+          tell_us_about_the_event.innerHTML =  tell_us_about_the_event.innerHTML + `${event_description}<a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Read More</a>`;
+        });
+
+        $('#event_read_more').on('click',function()
+        {
+          var event_read_more = $('#event_read_more').val();
+          //alert(event_description);
+          let collapseExample = document.getElementById("collapseExample");
+          collapseExample.innerHTML = "";
+
+          collapseExample.innerHTML =  collapseExample.innerHTML + `<p>${event_read_more}</p>`;
+        });
+        var event_country = "";
+        $('#event_country').on('click',function()
+        {
+          event_country = $('#event_country').val();
+          let show_location = document.getElementById("show_location")
+          show_location.innerHTML = "";
+
+          show_location.innerHTML =  show_location.innerHTML + `${event_country},`;
+        });
+        var event_city = "";
+        $('#event_city').on('click',function()
+        {
+          event_city = $('#event_city').val();
+          let show_location = document.getElementById("show_location")
+          show_location.innerHTML = "";
+
+          show_location.innerHTML =  show_location.innerHTML + `${event_country},${event_city}`;
+        });
+
+      
+        $('#event_state').on('click',function()
+        {
+          var event_state = $('#event_state').val();
+          let show_location = document.getElementById("show_location")
+          show_location.innerHTML = "";
+
+          show_location.innerHTML =  show_location.innerHTML + `${event_country},${event_city},${event_state}`;
+        });
+
 
         $(document).on('click','.btn_sub_mit',function()
         {

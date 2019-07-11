@@ -62,6 +62,8 @@ router.get('/profile', function(req, res)
 	
 });
 
+
+
 router.post('/profile/image/:id',function (req,res)
 {
     upload(req,res,function(err) 
