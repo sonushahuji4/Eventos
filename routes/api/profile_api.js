@@ -36,7 +36,7 @@ var upload = multer({
                   return cb(null,true);
           
     }
-}).single('userPhoto');;
+}).single('userPhoto');
 
 router.get('/profile', function(req, res)
 {

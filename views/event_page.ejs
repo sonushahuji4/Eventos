@@ -44,10 +44,103 @@
                               <div class="progress-bar" role="progressbar"  aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                       </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <input type="text" class="form-control" id="event_title" placeholder="Event Title">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <textarea class="form-control" id="event_description" name="event_description" placeholder="Tell us about the event"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <textarea class="form-control" id="event_read_more" name="event_read_more" placeholder="Add content to Read More"></textarea>
+                      </div>
+                     
+                      <div class="form-row">
+                        <div class="form-group col-md-4">
+                          <input type="text" class="form-control" id="event_country" placeholder="Country">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="text" class="form-control" id="event_city" placeholder="City">
+                        </div>
+                        <div class="form-group col-md-4">
+                          <input type="text" class="form-control" id="event_state" placeholder="State">
+                        </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="event_type" name="event_type" placeholder="Event Type">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <input type="text" class="form-control" id="event_organization" name="event_organization" placeholder="Organization">
+                          </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="event_start_date">Start Date</label>
+                              <input type="date" class="form-control" id="event_start_date">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="event_start_time">Start Time</label>
+                              <input type="time" class="form-control" id="event_start_time">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="event_select_start_am_pa">Select</label>
+                                <select id="event_select_start_am_pa" class="form-control">
+                                    <option selected>AM</option>
+                                    <option>PM</option>
+                                </select>
+                              </div>
+                          </div>
+
+                          <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="event_end_date">End Date</label>
+                                <input type="date" class="form-control" id="event_end_date">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="event_end_time">End Time</label>
+                                <input type="time" class="form-control" id="event_end_time">
+                              </div>
+                              <div class="form-group col-md-4">
+                                  <label for="event_select_end_am_pa">Select</label>
+                                  <select id="event_select_end_am_pa" class="form-control">
+                                      <option selected>AM</option>
+                                      <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                  <label for="event_register_clase_date">Registeration Close</label>
+                                  <input type="date" class="form-control" id="event_register_clase_date">
+                              
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="event_register_clase_time">Registeration Close</label>
+                                  <input type="time" class="form-control" id="event_register_clase_time">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="event_register_am_pa">Select</label>
+                                    <select id="event_register_am_pa" class="form-control">
+                                        <option selected>AM</option>
+                                        <option>PM</option>
+                                      </select>
+                                  </div>
+                                  <small class="form-text text-muted">If no Registeration data & time, then don't mention</small>
+                              </div>
+                              
+                              <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
                       </form>
 
                 
-
+<!-- 
                         <form enctype="multipart/form-data">
 
                             
@@ -143,7 +236,7 @@
                                         </div>
                                         
                                         <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
-                                      </form>
+                                      </form> -->
                               
                 </div>    
                             
@@ -220,15 +313,93 @@
     <script>
       $(document).ready(function()
       {
-        var fileName = "";
+        var image_data = "";
         $('input[type="file"]').change(function(e)
         {
+          var formData = new FormData();
           var fileName = e.target.files[0].name;
-          alert(fileName);
-          let display_image = document.getElementById("display_image");
-          display_image.innerHTML = "";
+          image_data = e.target.files[0];
 
-          display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
+
+
+        let display_image = document.getElementById("display_image");
+        display_image.innerHTML = "";
+        display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
+        formData.append('userPhoto',image_data) 
+
+
+        $('#form_data').submit(function(e)
+        {
+            e.preventDefault();
+
+          var event_name = $('#event_name').val();
+          var event_title = $('#event_title').val();
+          var event_description = $('#event_description').val();event_state
+          var event_read_more = $('#event_read_more').val();
+          var event_city = $('#event_city').val();
+          var event_country = $('#event_country').val();
+          var event_state = $('#event_state').val();
+          var event_type = $('#event_type').val();
+          var event_organization = $('#event_organization ').val();
+
+          var event_start_date = $('#event_start_date').val();
+          var event_start_time = $('#event_start_time').val();
+          var event_select_start_am_pa = $('#event_select_start_am_pa ').val();
+
+          var event_end_date = $('#event_end_date').val();
+          var event_end_time = $('#event_end_time').val();
+          var event_select_end_am_pa = $('#event_select_end_am_pa ').val();
+
+          var event_register_clase_date = $('#event_register_clase_date').val();
+          var event_register_clase_time = $('#event_register_clase_time').val();
+          var event_register_am_pa = $('#event_register_am_pa ').val();
+          
+          formData.append('event_name',event_name);
+          formData.append('event_title', event_title);
+          formData.append('event_description', event_description);
+          formData.append('event_read_more', event_read_more);
+          formData.append('event_city', event_city);
+          formData.append('event_country', event_country);
+          formData.append('event_state', event_state);
+          formData.append('event_type', event_type);
+          formData.append('event_organization', event_organization);
+          formData.append('event_start_date', event_start_date);
+          formData.append('event_start_time', event_start_time);
+          formData.append('event_select_start_am_pa', event_select_start_am_pa);
+
+          formData.append('event_end_date', event_end_date);
+          formData.append('event_end_time', event_end_time);
+          formData.append('event_select_end_am_pa', event_select_end_am_pa);
+          formData.append('event_register_clase_date', event_register_clase_date);
+          formData.append('event_register_clase_time', event_register_clase_time);
+          formData.append('event_register_am_pa', event_register_am_pa);
+
+            alert("working...");
+            $.ajax(
+                {
+                        url:"/event",
+                        method:"POST",
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data:formData,
+                        success:function(response)
+                        {       
+                               alert(response);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                                {
+                                        console.log('jqXHR:');
+                                        console.log(jqXHR);
+                                        console.log('textStatus:');
+                                        console.log(textStatus);
+                                        console.log('errorThrown:');
+                                        console.log(errorThrown);
+                                        alert(errorThrown);
+                        }
+                });
+        })
+        
         });
 
         $('#event_title').on('click',function()
@@ -259,6 +430,8 @@
           collapseExample.innerHTML = "";
 
           collapseExample.innerHTML =  collapseExample.innerHTML + `<p>${event_read_more}</p>`;
+
+          
         });
         var event_country = "";
         $('#event_country').on('click',function()
@@ -290,54 +463,102 @@
         });
 
 
-        $(document).on('click','.btn_sub_mit',function()
-        {
-          alert(fileName);
-          var event_name = $('#event_name').val();
-          var event_title = $('#event_title').val();
-          var event_description = $('#event_description').val();event_state
-          var event_read_more = $('#event_read_more').val();
-          var event_city = $('#event_city').val();
-          var event_country = $('#event_country').val();
-          var event_state = $('#event_state').val();
-          var event_type = $('#event_type').val();
-          var event_organization = $('#event_organization ').val();
+//         $(document).on('click','.btn_sub_mit',function()
+//         {
+         
+          // var event_name = $('#event_name').val();
+          // var event_title = $('#event_title').val();
+          // var event_description = $('#event_description').val();event_state
+          // var event_read_more = $('#event_read_more').val();
+          // var event_city = $('#event_city').val();
+          // var event_country = $('#event_country').val();
+          // var event_state = $('#event_state').val();
+          // var event_type = $('#event_type').val();
+          // var event_organization = $('#event_organization ').val();
 
-          var event_start_date = $('#event_start_date').val();
-          var event_start_time = $('#event_start_time').val();
-          var event_select_start_am_pa = $('#event_select_start_am_pa ').val();
+          // var event_start_date = $('#event_start_date').val();
+          // var event_start_time = $('#event_start_time').val();
+          // var event_select_start_am_pa = $('#event_select_start_am_pa ').val();
 
-          var event_end_date = $('#event_end_date').val();
-          var event_end_time = $('#event_end_time').val();
-          var event_select_end_am_pa = $('#event_select_end_am_pa ').val();
+          // var event_end_date = $('#event_end_date').val();
+          // var event_end_time = $('#event_end_time').val();
+          // var event_select_end_am_pa = $('#event_select_end_am_pa ').val();
 
-          var event_register_clase_date = $('#event_register_clase_date').val();
-          var event_register_clase_time = $('#event_register_clase_time').val();
-          var event_register_am_pa = $('#event_register_am_pa ').val();
+          // var event_register_clase_date = $('#event_register_clase_date').val();
+          // var event_register_clase_time = $('#event_register_clase_time').val();
+          // var event_register_am_pa = $('#event_register_am_pa ').val();
+             
+// // alert(event_name);
+// // alert(event_title)
+// // alert(event_description);
+// // alert(event_read_more);
+
+// // alert(event_country)
+// // alert(event_city);
+// // alert(event_state);
+// // alert(event_type);
+// // alert(event_organization)
+// // alert(event_start_date);
+// // alert(event_start_time);
+// // alert(event_select_start_am_pa)
+// // alert(event_end_date);
+// // alert(event_end_time);
+
+// // alert(event_select_end_am_pa);
+// // alert(event_register_clase_date);
+// // alert(event_register_clase_time)
+// // alert(event_register_am_pa);
+
+//         // var formData = new FormData(image_data);
+        //   formData.append('event_name', "event_name");
+        //  formData.append('file', image_data);
+        //   formData.append('event_name', event_name);
+        //   formData.append('fievent_titlele', event_title);
+        //   formData.append('event_description', event_description);
+        //   formData.append('event_read_more', event_read_more);
+        //   formData.append('event_city', event_city);
+        //   formData.append('event_country', event_country);
+        //   formData.append('event_state', event_state);
+        //   formData.append('event_type', event_type);
+        //   formData.append('event_organization', event_organization);
+        //   formData.append('event_start_date', event_start_date);
+        //   formData.append('event_start_time', event_start_time);
+        //   formData.append('event_select_start_am_pa', event_select_start_am_pa);
+
+        //   formData.append('event_end_date', event_end_date);
+        //   formData.append('event_end_time', event_end_time);
+        //   formData.append('event_select_end_am_pa', event_select_end_am_pa);
+        //   formData.append('event_register_clase_date', event_register_clase_date);
+        //   formData.append('event_register_clase_time', event_register_clase_time);
+        //   formData.append('event_register_am_pa', event_register_am_pa);
+          
           
 
-          $.ajax(
-                {
-                        url:"/event",
-                        method:"POST",
-                        data:{event_name:event_name},
-                        success:function(response)
-                        {       
-                               alert(response);
-                        },
-                        error: function(jqXHR, textStatus, errorThrown)
-                                {
-                                        console.log('jqXHR:');
-                                        console.log(jqXHR);
-                                        console.log('textStatus:');
-                                        console.log(textStatus);
-                                        console.log('errorThrown:');
-                                        console.log(errorThrown);
-                                        alert(errorThrown);
-                        }
-                });
+          // $.ajax(
+          //       {
+          //               url:"/event",
+          //               method:"POST",
+          //               cache: false,
+          //               contentType: false,
+          //               processData: false,
+          //               data:formData,
+          //               success:function(response)
+          //               {       
+          //                      alert(response);
+          //               },
+          //               error: function(jqXHR, textStatus, errorThrown)
+          //                       {
+          //                               console.log('jqXHR:');
+          //                               console.log(jqXHR);
+          //                               console.log('textStatus:');
+          //                               console.log(textStatus);
+          //                               console.log('errorThrown:');
+          //                               console.log(errorThrown);
+          //                               alert(errorThrown);
+          //               }
+          //       });
       
-        })
+//         })
           
 
       });

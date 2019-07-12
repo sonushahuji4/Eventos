@@ -390,7 +390,7 @@ $(document).ready(function()
         {	 
                 e.preventDefault();
                 var formData = new FormData($(this)[0]);
-                
+                alert(formData);
                 $.ajax({
                 url: '/profile/image/' + $(this).attr('data-user_id'),
                 type: "POST",

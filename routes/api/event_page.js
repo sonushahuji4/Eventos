@@ -17,7 +17,7 @@ router.use('/views', express.static(path.join(__dirname, 'views')));
 var storage = multer.diskStorage({
     destination: function(req, file, cb)
     {
-        cb(null,path.join(__dirname,'../../public/image'))
+        cb(null,path.join(__dirname,'../../public/profile_image'))
     },
     filename: function(req, file, cb)
     {
@@ -38,7 +38,7 @@ var upload = multer({
                   return cb(null,true);
           
     }
-});
+}).single('userPhoto');
 
 
 router.get('/event', function(req, res)
@@ -60,23 +60,34 @@ router.get('/event', function(req, res)
 // upload post api
 router.post('/event',function (req,res)
 {
-    const user_id = req.session.user_id;
-    const event_name = req.body.event_name;
-    console.log(event_name);
-    res.send(event_name);
-    // Posts.create({user_id:user_id, event_message: message, e_imagepath: imagepath})
-    // .then((user)=>
-    // {
-    //     res.redirect("http://localhost:4000/posts");
-    //     //res.render('home',{title:'home',items:user});
-    // })
-    // .catch((err)=>
-    // {
-    //     console.error(err)
-    //     res.status(501).send({
-    //         error : "error..... check console log"
-    //     })
-    // })               
+
+    upload(req,res,function(err) 
+    {
+
+        if(err) 
+        {
+            console.log("errrrrr..........",err)
+            return res.end("Error uploading file.");
+        }
+        if(req.file)
+        {
+            const imagepath = req.file.filename;
+            const user_id = req.session.user_id;
+            
+            Posts.create({user_id:user_id,event_message:req.body.event_title,e_imagepath:imagepath,event_name:req.body.event_name,event_type:req.body.event_type,event_location:req.body.event_city,event_description:req.body.event_description,event_organization:req.body.event_organization,event_start_date:req.body.event_start_date,event_end_date:req.body.event_end_date,registeration_closed_for_event:req.body.event_register_clase_date})
+            .then((data)=>
+            {
+                res.send("success");
+            })
+            .catch((err)=>
+            {
+
+            })
+
+
+       
+        }
+    });             
        
    
 });
