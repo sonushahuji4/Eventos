@@ -60,7 +60,7 @@
 $(document).ready(function()
 {
     // Get Socket Connection first
-    var socket = io.connect();
+    // var socket = io.connect();
 
     setInterval(function()
     {
@@ -123,7 +123,7 @@ $(document).ready(function()
                                         for(var j = 0, len_Login_Details = response[i].Login_Details.length; j < len_Login_Details; j++)
                                         {
                                           var time = new Date(response[i].Login_Details[j].last_activity);
-                                 var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                                          var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
                                           if(response[i].Login_Details[j].offline_online_status == "online")
                                           {
@@ -139,6 +139,7 @@ $(document).ready(function()
                                         
                                         }
                                   }
+                                  
                                 }
                                 else{
                                         alert("data null");

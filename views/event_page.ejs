@@ -59,18 +59,7 @@
                       <div class="form-group">
                           <textarea class="form-control" id="event_read_more" name="event_read_more" placeholder="Add content to Read More"></textarea>
                       </div>
-                     
-                      <div class="form-row">
-                        <div class="form-group col-md-4">
-                          <input type="text" class="form-control" id="event_country" placeholder="Country">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="text" class="form-control" id="event_city" placeholder="City">
-                        </div>
-                        <div class="form-group col-md-4">
-                          <input type="text" class="form-control" id="event_state" placeholder="State">
-                        </div>
-                      </div>
+
                       <div class="form-row">
                           <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="event_type" name="event_type" placeholder="Event Type">
@@ -135,108 +124,22 @@
                                   </div>
                                   <small class="form-text text-muted">If no Registeration data & time, then don't mention</small>
                               </div>
+
+                              <div class="form-row">
+                                  <div class="form-group col-md-3">
+                                    <label for="share_locaton" class="form-control col-form-label">Share Location</label>
+                                  </div>
+                                  <div class="form-group col-md-9"><!--controls-->
+                                      <input id="pac-input" class="form-control" type="text" placeholder="Search Box">
+                                     
+                                  </div>
+                                  <div id="map"></div>
+                                </div>
                               
                               <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
                       </form>
 
                 
-<!-- 
-                        <form enctype="multipart/form-data">
-
-                            
-                                <div class="form-row">
-                                  <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Name">
-                                  </div>
-                                  <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="event_title" placeholder="Event Title">
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <textarea class="form-control" id="event_description" name="event_description" placeholder="Tell us about the event"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="event_read_more" name="event_read_more" placeholder="Add content to Read More"></textarea>
-                                </div>
-                               
-                                <div class="form-row">
-                                  <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="event_country" placeholder="Country">
-                                  </div>
-                                  <div class="form-group col-md-4">
-                                      <input type="text" class="form-control" id="event_city" placeholder="City">
-                                  </div>
-                                  <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="event_state" placeholder="State">
-                                  </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                      <input type="text" class="form-control" id="event_type" name="event_type" placeholder="Event Type">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                      <input type="text" class="form-control" id="event_organization" name="event_organization" placeholder="Organization">
-                                    </div>
-                                  </div>
-
-                                  <div class="form-row">
-                                      <div class="form-group col-md-4">
-                                        <label for="event_start_date">Start Date</label>
-                                        <input type="date" class="form-control" id="event_start_date">
-                                      </div>
-                                      <div class="form-group col-md-4">
-                                        <label for="event_start_time">Start Time</label>
-                                        <input type="time" class="form-control" id="event_start_time">
-                                      </div>
-                                      <div class="form-group col-md-4">
-                                          <label for="event_select_start_am_pa">Select</label>
-                                          <select id="event_select_start_am_pa" class="form-control">
-                                              <option selected>AM</option>
-                                              <option>PM</option>
-                                          </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                          <label for="event_end_date">End Date</label>
-                                          <input type="date" class="form-control" id="event_end_date">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                          <label for="event_end_time">End Time</label>
-                                          <input type="time" class="form-control" id="event_end_time">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="event_select_end_am_pa">Select</label>
-                                            <select id="event_select_end_am_pa" class="form-control">
-                                                <option selected>AM</option>
-                                                <option>PM</option>
-                                              </select>
-                                          </div>
-                                      </div>
-
-                                      <div class="form-row">
-                                          <div class="form-group col-md-4">
-                                            <label for="event_register_clase_date">Registeration Close</label>
-                                            <input type="date" class="form-control" id="event_register_clase_date">
-                                        
-                                          </div>
-                                          <div class="form-group col-md-4">
-                                            <label for="event_register_clase_time">Registeration Close</label>
-                                            <input type="time" class="form-control" id="event_register_clase_time">
-                                          </div>
-                                          <div class="form-group col-md-4">
-                                              <label for="event_register_am_pa">Select</label>
-                                              <select id="event_register_am_pa" class="form-control">
-                                                  <option selected>AM</option>
-                                                  <option>PM</option>
-                                                </select>
-                                            </div>
-                                            <small class="form-text text-muted">If no Registeration data & time, then don't mention</small>
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
-                                      </form> -->
                               
                 </div>    
                             
@@ -310,6 +213,113 @@
 
     </div>
 
+
+    <script>
+         
+      function initAutocomplete() 
+      {
+          var map = new google.maps.Map(document.getElementById('map'), 
+          {
+            center: {lat: 19.188919, lng: 73.041193},
+            zoom: 15,
+            mapTypeId: 'roadmap'
+          });
+  
+          // Create the search box and link it to the UI element.
+          var input = document.getElementById('pac-input');
+          var searchBox = new google.maps.places.SearchBox(input);
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  
+          // Bias the SearchBox results towards current map's viewport.
+          map.addListener('bounds_changed', function() 
+      {
+            searchBox.setBounds(map.getBounds());
+          });
+  
+          var markers = [];
+          // Listen for the event fired when the user selects a prediction and retrieve
+          // more details for that place.
+          searchBox.addListener('places_changed', function() 
+      {
+            var places = searchBox.getPlaces();
+  
+            if (places.length == 0) 
+        {
+              return;
+            }
+  
+            // Clear out the old markers.
+            markers.forEach(function(marker) 
+        {
+              marker.setMap(null);
+            });
+            markers = [];
+  
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) 
+        {
+              if (!place.geometry) 
+        {
+                console.log("Returned place contains no geometry");
+                return;
+              }
+              var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+              };
+  
+              // Create a marker for each place.
+              markers.push(new google.maps.Marker({
+                map: map,
+                title: place.formatted_address,
+                position: place.geometry.location,
+                animation: google.maps.Animation.DROP
+              }));
+        
+             console.log(place.address_components);
+             console.log(place.formatted_address);
+             console.log(place.geometry.location.lat());
+             console.log(place.geometry.location.lng());
+  
+              if (place.geometry.viewport) 
+        {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+              } else {
+                bounds.extend(place.geometry.location);
+              }
+            });
+            map.fitBounds(bounds);
+          });
+        }
+  
+  function geocodePosition(pos) 
+  {
+    geocoder.geocode(
+    {
+      latLng: pos
+    }, 
+    function(responses) 
+    {
+      if (responses && responses.length > 0) 
+    {
+        updateMarkerAddress(responses[0].formatted_address);
+      } 
+    else 
+    {
+        updateMarkerAddress('Cannot determine address at this location.');
+      }
+    });
+  }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nPlSt_nM7PSKD8So8anbUbBYICFWcCA&libraries=places&callback=initAutocomplete"
+           async defer></script>
+
+
     <script>
       $(document).ready(function()
       {
@@ -319,13 +329,11 @@
           var formData = new FormData();
           var fileName = e.target.files[0].name;
           image_data = e.target.files[0];
-
-
-
-        let display_image = document.getElementById("display_image");
-        display_image.innerHTML = "";
-        display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
-        formData.append('userPhoto',image_data) 
+          let display_image = document.getElementById("display_image");
+          display_image.innerHTML = "";
+          display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
+          formData.append('userPhoto',image_data) 
+          
 
 
         $('#form_data').submit(function(e)
@@ -374,7 +382,7 @@
           formData.append('event_register_clase_time', event_register_clase_time);
           formData.append('event_register_am_pa', event_register_am_pa);
 
-            alert("working...");
+            
             $.ajax(
                 {
                         url:"/event",
@@ -463,6 +471,36 @@
         });
 
 
+
+          
+
+      });
+    
+   </script>
+
+<!--    
+alert(event_name);
+alert(event_title)
+alert(event_description);
+alert(event_read_more);
+
+alert(event_country)
+alert(event_city);
+alert(event_state);
+alert(event_type);
+alert(event_organization)
+alert(event_start_date);
+alert(event_start_time);
+alert(event_select_start_am_pa)
+alert(event_end_date);
+alert(event_end_time);
+
+alert(event_select_end_am_pa);
+alert(event_register_clase_date);
+alert(event_register_clase_time)
+alert(event_register_am_pa); -->
+
+<!-- 
 //         $(document).on('click','.btn_sub_mit',function()
 //         {
          
@@ -558,31 +596,4 @@
           //               }
           //       });
       
-//         })
-          
-
-      });
-    
-   </script>
-
-<!--    
-alert(event_name);
-alert(event_title)
-alert(event_description);
-alert(event_read_more);
-
-alert(event_country)
-alert(event_city);
-alert(event_state);
-alert(event_type);
-alert(event_organization)
-alert(event_start_date);
-alert(event_start_time);
-alert(event_select_start_am_pa)
-alert(event_end_date);
-alert(event_end_time);
-
-alert(event_select_end_am_pa);
-alert(event_register_clase_date);
-alert(event_register_clase_time)
-alert(event_register_am_pa); -->
+//         }) -->
