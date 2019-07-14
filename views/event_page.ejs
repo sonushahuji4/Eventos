@@ -372,6 +372,7 @@
       var main_city_name = "NA";
       var area2_name = "NA";
       var area1_name = "NA";
+      var postal_code = "NA";
       var full_address = "NA";
       var latitude = "NA";
       var logitude = "NA";
@@ -440,7 +441,7 @@ function initAutocomplete()
                 animation: google.maps.Animation.DROP
               }));
         
-             console.log(place.address_components);
+             //console.log(place.address_components);
              const address = place.address_components;
              for(i=0, len = address.length; i < len; i++)
              {
@@ -448,20 +449,20 @@ function initAutocomplete()
 
                 for(key in arraydata)
                 {
-                  alert(arraydata[key]);
+                  //alert(arraydata[key]);
                   if(arraydata[key] == "country") // country
                   {
                     country_name = JSON.stringify(address[i].long_name); 
                     //alert(country_name);
                   }
-                  else if(arraydata[key] == "administrative_area_level_2") // state
+                  else if(arraydata[key] == "administrative_area_level_1") // state
                   {
                     state_name = JSON.stringify(address[i].long_name);
                     //alert(state_name);
                   }
-                  else if(arraydata[key] == "administrative_area_level_1") // city
+                  else if(arraydata[key] == "administrative_area_level_2") // city
                   {
-                    city_sub_city_name = JSON.stringify(address[i].long_name);
+                   city_sub_city_name = JSON.stringify(address[i].long_name);
                     //alert(city_sub_city_name);
                   }
                   else if(arraydata[key] == "locality") //  main city name
@@ -477,20 +478,22 @@ function initAutocomplete()
                   else if(arraydata[key] == "sublocality_level_1") //  sublocality_level_1
                   {
                     area1_name = JSON.stringify(address[i].long_name); 
-                    //alert(area1_name);
+                    //alert(area1_name);postal_code
+                  }
+                  else if(arraydata[key] == "postal_code") //  sublocality_level_1
+                  {
+                    postal_code = JSON.stringify(address[i].long_name); 
+                    //alert(area1_name);postal_code
                   }
                   
                   
                 }
               
-                //alert(JSON.stringify(address[i]));
              }
              full_address = JSON.stringify(place.formatted_address);
              latitude = JSON.stringify(place.geometry.location.lat());
              logitude = JSON.stringify(place.geometry.location.lng());  
-            //  alert(full_address)
-            //  alert(latitude)
-            //  alert(logitude);
+            
              console.log(place.formatted_address);
              console.log(place.geometry.location.lat());
              console.log(place.geometry.location.lng());
@@ -508,8 +511,7 @@ function initAutocomplete()
             map.fitBounds(bounds);
           });
         }
-  //alert("in map ")
-  //alert(myname);
+
   function geocodePosition(pos) 
   {
     geocoder.geocode(
@@ -578,9 +580,8 @@ function initAutocomplete()
           formData.append('event_title', event_title);
           formData.append('event_description', event_description);
           formData.append('event_read_more', event_read_more);
-          // formData.append('event_city', event_city);
-          // formData.append('event_country', event_country);
-          // formData.append('event_state', event_state);
+          
+
           formData.append('event_type', event_type);
           formData.append('event_organization', event_organization);
           formData.append('event_start_date', event_start_date);
@@ -602,6 +603,7 @@ function initAutocomplete()
           formData.append('main_city_name', main_city_name);
           formData.append('area1_name', area1_name);
           formData.append('area2_name', area2_name);
+          formData.append('postal_code', postal_code);
 
           formData.append('full_address', full_address);
           formData.append('latitude', latitude);
