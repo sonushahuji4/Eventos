@@ -73,17 +73,19 @@ router.post('/event',function (req,res)
         {
             const imagepath = req.file.filename;
             const user_id = req.session.user_id;
-            const s_date = moment(new Date,'YYYY-MM-DD');
-            
-            Posts.create({user_id:user_id,event_message:req.body.event_title,e_imagepath:imagepath,event_name:req.body.event_name,event_type:req.body.event_type,event_location:req.body.event_city,event_description:req.body.event_description,event_organization:req.body.event_organization,event_start_date:req.body.event_start_date,event_end_date:req.body.event_end_date,registeration_closed_for_event:req.body.event_register_clase_date})
-            .then((data)=>
-            {
-                res.send("success");
-            })
-            .catch((err)=>
-            {
+            //const s_date = moment(new Date,'YYYY-MM-DD');
+            console.log("chekcing data of file =>",req.file);
+            console.log("chekcing data of map =>",req.body);
+            res.send("success")
+            // Posts.create({user_id:user_id,event_message:req.body.event_title,e_imagepath:imagepath,event_name:req.body.event_name,event_type:req.body.event_type,event_location:req.body.event_city,event_description:req.body.event_description,event_organization:req.body.event_organization,event_start_date:req.body.event_start_date,event_end_date:req.body.event_end_date,registeration_closed_for_event:req.body.event_register_clase_date})
+            // .then((data)=>
+            // {
+            //     res.send("success");
+            // })
+            // .catch((err)=>
+            // {
 
-            })
+            // })
 
 
        

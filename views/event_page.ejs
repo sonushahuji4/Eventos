@@ -133,7 +133,7 @@
                                       <input id="pac-input" class="form-control" type="text" placeholder="Search Box">
                                      
                                   </div>
-                                  <div id="map"></div>
+                                  <div id="map" style="width:600px; height:400px"></div>
                                 </div>
                               
                               <button type="submit" class="btn btn-primary btn_sub_mit">Submit</button>
@@ -216,7 +216,167 @@
 
     <script>
          
-      function initAutocomplete() 
+  //     function initAutocomplete() 
+  //     {
+  //         var map = new google.maps.Map(document.getElementById('map'), 
+  //         {
+  //           center: {lat: 19.188919, lng: 73.041193},
+  //           zoom: 15,
+  //           mapTypeId: 'roadmap'
+  //         });
+  
+  //         // Create the search box and link it to the UI element.
+  //         var input = document.getElementById('pac-input');
+  //         var searchBox = new google.maps.places.SearchBox(input);
+  //         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  
+  //         // Bias the SearchBox results towards current map's viewport.
+  //         map.addListener('bounds_changed', function() 
+  //         {
+  //           searchBox.setBounds(map.getBounds());
+  //         });
+  
+  //         var markers = [];
+  //         // Listen for the event fired when the user selects a prediction and retrieve
+  //         // more details for that place.
+  //         searchBox.addListener('places_changed', function() 
+  //         {
+  //           var places = searchBox.getPlaces();
+  
+  //           if (places.length == 0) 
+  //           {
+  //             return;
+  //           }
+  
+  //           // Clear out the old markers.
+  //           markers.forEach(function(marker) 
+  //           {
+  //             marker.setMap(null);
+  //           });
+  //           markers = [];
+  
+  //           // For each place, get the icon, name and location.
+  //           var bounds = new google.maps.LatLngBounds();
+  //           places.forEach(function(place) 
+  //           {
+  //             if (!place.geometry) 
+  //             {
+  //               console.log("Returned place contains no geometry");
+  //               return;
+  //             }
+  //             var icon = {
+  //               url: place.icon,
+  //               size: new google.maps.Size(71, 71),
+  //               origin: new google.maps.Point(0, 0),
+  //               anchor: new google.maps.Point(17, 34),
+  //               scaledSize: new google.maps.Size(25, 25)
+  //             };
+  
+  //             // Create a marker for each place.
+  //             markers.push(new google.maps.Marker({
+  //               map: map,
+  //               title: place.formatted_address,
+  //               position: place.geometry.location,
+  //               animation: google.maps.Animation.DROP
+  //             }));
+        
+  //            console.log(place.address_components);
+  //            const address = place.address_components;
+  //            for(i=0, len = address.length; i < len; i++)
+  //            {
+  //              var arraydata = address[i].types;
+
+  //               for(key in arraydata)
+  //               {
+  //                 alert(arraydata[key]);
+  //                 if(arraydata[key] == "country") // country
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+  //                 else if(arraydata[key] == "administrative_area_level_2") // state
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+  //                 else if(arraydata[key] == "administrative_area_level_1") // city
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+  //                 else if(arraydata[key] == "locality") //  main city name
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+  //                 else if(arraydata[key] == "sublocality_level_2") //  sublocality_level_2
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+  //                 else if(arraydata[key] == "sublocality_level_1") //  sublocality_level_1
+  //                 {
+  //                   alert(JSON.stringify(address[i].long_name));
+  //                 }
+                  
+                  
+  //               }
+              
+  //               //alert(JSON.stringify(address[i]));
+  //            }
+            
+  //            alert(JSON.stringify(place.formatted_address))
+  //            alert(JSON.stringify(place.geometry.location.lat()))
+  //            alert(JSON.stringify(place.geometry.location.lng()));
+  //            console.log(place.formatted_address);
+  //            console.log(place.geometry.location.lat());
+  //            console.log(place.geometry.location.lng());
+  
+  //             if (place.geometry.viewport) 
+  //             {
+  //               // Only geocodes have viewport.
+  //               bounds.union(place.geometry.viewport);
+  //             } 
+  //             else 
+  //             {
+  //               bounds.extend(place.geometry.location);
+  //             }
+  //           });
+  //           map.fitBounds(bounds);
+  //         });
+  //       }
+  
+  // function geocodePosition(pos) 
+  // {
+  //   geocoder.geocode(
+  //   {
+  //     latLng: pos
+  //   }, 
+  //   function(responses) 
+  //   {
+  //     if (responses && responses.length > 0) 
+  //     {
+  //       updateMarkerAddress(responses[0].formatted_address);
+  //     } 
+  //     else 
+  //     {
+  //       updateMarkerAddress('Cannot determine address at this location.');
+  //     }
+  //   });
+  // }
+      </script>
+      <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nPlSt_nM7PSKD8So8anbUbBYICFWcCA&libraries=places&callback=initAutocomplete"
+           async defer></script> -->
+
+
+    <script>
+      //const myname ="sonu shahuji";
+      var country_name = "NA";
+      var state_name = "NA";
+      var city_sub_city_name = "NA";
+      var main_city_name = "NA";
+      var area2_name = "NA";
+      var area1_name = "NA";
+      var full_address = "NA";
+      var latitude = "NA";
+      var logitude = "NA";
+
+function initAutocomplete() 
       {
           var map = new google.maps.Map(document.getElementById('map'), 
           {
@@ -232,7 +392,7 @@
   
           // Bias the SearchBox results towards current map's viewport.
           map.addListener('bounds_changed', function() 
-      {
+          {
             searchBox.setBounds(map.getBounds());
           });
   
@@ -240,17 +400,17 @@
           // Listen for the event fired when the user selects a prediction and retrieve
           // more details for that place.
           searchBox.addListener('places_changed', function() 
-      {
+          {
             var places = searchBox.getPlaces();
   
             if (places.length == 0) 
-        {
+            {
               return;
             }
   
             // Clear out the old markers.
             markers.forEach(function(marker) 
-        {
+            {
               marker.setMap(null);
             });
             markers = [];
@@ -258,9 +418,9 @@
             // For each place, get the icon, name and location.
             var bounds = new google.maps.LatLngBounds();
             places.forEach(function(place) 
-        {
+            {
               if (!place.geometry) 
-        {
+              {
                 console.log("Returned place contains no geometry");
                 return;
               }
@@ -281,22 +441,75 @@
               }));
         
              console.log(place.address_components);
+             const address = place.address_components;
+             for(i=0, len = address.length; i < len; i++)
+             {
+               var arraydata = address[i].types;
+
+                for(key in arraydata)
+                {
+                  alert(arraydata[key]);
+                  if(arraydata[key] == "country") // country
+                  {
+                    country_name = JSON.stringify(address[i].long_name); 
+                    //alert(country_name);
+                  }
+                  else if(arraydata[key] == "administrative_area_level_2") // state
+                  {
+                    state_name = JSON.stringify(address[i].long_name);
+                    //alert(state_name);
+                  }
+                  else if(arraydata[key] == "administrative_area_level_1") // city
+                  {
+                    city_sub_city_name = JSON.stringify(address[i].long_name);
+                    //alert(city_sub_city_name);
+                  }
+                  else if(arraydata[key] == "locality") //  main city name
+                  {
+                    main_city_name = JSON.stringify(address[i].long_name); 
+                    //alert(main_city_name);
+                  }
+                  else if(arraydata[key] == "sublocality_level_2") //  sublocality_level_2
+                  {
+                    area2_name = JSON.stringify(address[i].long_name);
+                    //alert(area2_name);
+                  }
+                  else if(arraydata[key] == "sublocality_level_1") //  sublocality_level_1
+                  {
+                    area1_name = JSON.stringify(address[i].long_name); 
+                    //alert(area1_name);
+                  }
+                  
+                  
+                }
+              
+                //alert(JSON.stringify(address[i]));
+             }
+             full_address = JSON.stringify(place.formatted_address);
+             latitude = JSON.stringify(place.geometry.location.lat());
+             logitude = JSON.stringify(place.geometry.location.lng());  
+            //  alert(full_address)
+            //  alert(latitude)
+            //  alert(logitude);
              console.log(place.formatted_address);
              console.log(place.geometry.location.lat());
              console.log(place.geometry.location.lng());
   
               if (place.geometry.viewport) 
-        {
+              {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
-              } else {
+              } 
+              else 
+              {
                 bounds.extend(place.geometry.location);
               }
             });
             map.fitBounds(bounds);
           });
         }
-  
+  //alert("in map ")
+  //alert(myname);
   function geocodePosition(pos) 
   {
     geocoder.geocode(
@@ -306,24 +519,23 @@
     function(responses) 
     {
       if (responses && responses.length > 0) 
-    {
+      {
         updateMarkerAddress(responses[0].formatted_address);
       } 
-    else 
-    {
+      else 
+      {
         updateMarkerAddress('Cannot determine address at this location.');
       }
     });
   }
-      </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nPlSt_nM7PSKD8So8anbUbBYICFWcCA&libraries=places&callback=initAutocomplete"
-           async defer></script>
+       
 
-
-    <script>
       $(document).ready(function()
       {
-        var image_data = "";
+      //  initAutocomplete();
+    //  alert("in ajax");
+     // alert(myname);
+       
         $('input[type="file"]').change(function(e)
         {
           var formData = new FormData();
@@ -342,7 +554,7 @@
 
           var event_name = $('#event_name').val();
           var event_title = $('#event_title').val();
-          var event_description = $('#event_description').val();event_state
+          var event_description = $('#event_description').val();
           var event_read_more = $('#event_read_more').val();
           var event_city = $('#event_city').val();
           var event_country = $('#event_country').val();
@@ -366,9 +578,9 @@
           formData.append('event_title', event_title);
           formData.append('event_description', event_description);
           formData.append('event_read_more', event_read_more);
-          formData.append('event_city', event_city);
-          formData.append('event_country', event_country);
-          formData.append('event_state', event_state);
+          // formData.append('event_city', event_city);
+          // formData.append('event_country', event_country);
+          // formData.append('event_state', event_state);
           formData.append('event_type', event_type);
           formData.append('event_organization', event_organization);
           formData.append('event_start_date', event_start_date);
@@ -381,6 +593,20 @@
           formData.append('event_register_clase_date', event_register_clase_date);
           formData.append('event_register_clase_time', event_register_clase_time);
           formData.append('event_register_am_pa', event_register_am_pa);
+
+          // map data
+
+          formData.append('country_name', country_name);
+          formData.append('state_name', state_name);
+          formData.append('city_sub_city_name', city_sub_city_name);
+          formData.append('main_city_name', main_city_name);
+          formData.append('area1_name', area1_name);
+          formData.append('area2_name', area2_name);
+
+          formData.append('full_address', full_address);
+          formData.append('latitude', latitude);
+          formData.append('logitude', logitude);
+
 
             
             $.ajax(
@@ -477,7 +703,8 @@
       });
     
    </script>
-
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nPlSt_nM7PSKD8So8anbUbBYICFWcCA&libraries=places&callback=initAutocomplete"
+           async defer></script>
 <!--    
 alert(event_name);
 alert(event_title)
