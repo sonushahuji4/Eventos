@@ -434,13 +434,13 @@ $(document).ready(function() // main script starts
                                 response.forEach(function(item, index)
                                 { 
                                         var comment_data = item.comment
-                                        //old_comment.append(document.createTextNode(comment_data));
-                                        //$("#old_comment"+post_id).html(`<div class="jumbotron jumbotron-fluid"><p class="lead">${comment_data}</p></div>`);
-                                        old_comment.innerHTML =  old_comment.innerHTML + `<div class="jumbotron"><p class="lead">${comment_data}</p></div>`;
-                                        //document.getElementById("old_comment"+post_id).innerHTML=item.comment+document.getElementById("old_comment"+post_id).innerHTML;                              
+                                       
+                                        old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-2"><a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="error" class="rounded-circle border border-danger" style="width:30px; height:30px"></a></div><div class="col-10"><p>'+comment_data+' <br/><small>5hr</small></p></div></div><hr>';
+                                       
                                 })
                                         // document.getElementById("demo").innerHTML += '<br>' + employee.name;
-                                        $('#comment_form'+post_id).slideToggle('slow');         
+                                $("#old_comment"+post_id).slideToggle('slow'); 
+                                              
                         }
 
                 
@@ -466,7 +466,7 @@ $(document).ready(function() // main script starts
                                         if(data == "success")
                                         {
                                                 document.getElementById("comment"+post_id).value=""
-                                                $('#comment_form'+post_id).slideUp('slow');
+                                                //$('#comment_form'+post_id).slideUp('slow');
                                         }
                                         
                                 },
