@@ -41,16 +41,13 @@
                         <h5><span style="padding-left:35px" id="show_title"><%= item.event_message %></span></h5>
                              
                         <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
-                                <!-- <p><%= item.event_description %> ...<span data-btn_hide_show="<%= item.event_id %>" class="hide_show">Read More</span></p>
-
-                                <div id="collapse" data-btn_show="<%= item.event_id %>" style="display:none">
-                                <p><%= item.event_read_more_option %></p>
-                                </div> -->
-                               <p><%= item.event_description %><span id="dots">...</span><span id="more" style="display: none;"><%= item.event_read_more_option %></p></span></p>
+                               
+                               <p><%= item.event_description %><span id="dots">...</span><span id="more" style="display: none;"><%= item.event_read_more_option %></span>
                                <span data-btn_hide_show="<%= item.event_id %>" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                            </p>
+
                         
-                              <!-- <p id="tell_us_about_the_event"><%= item.event_description %><span id="dots">...</span><span id="more"><%= item.event_read_more_option %></span></p>
-                              <button onclick="read_More_hide_show_Option()"  id="<%=item.event_id%>">Read more</button> -->
+                            
                               
         
                         </div>
