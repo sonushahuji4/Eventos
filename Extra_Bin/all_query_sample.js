@@ -68,3 +68,41 @@ SELECT `User`.`user_id` AS `User.user_id`, `User`.`user_firstname` AS `User.user
 `Logins`.`login_id` AS `Logins.login_id`, `Logins`.`user_id` AS `Logins.user_id`, `Logins`.`last_activity` AS `Logins.last_activity`, `Logins`.`is_type` AS `Logins.is_type`,`Logins`.`offline_online_status` AS `Logins.offline_online_status`
 FROM `users`AS `User` LEFT OUTER JOIN `login_details` AS `Logins` ON `User`.`user_id` = `Logins`.`user_id` 
 WHERE `User`.user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept");
+
+
+
+// find near by location
+SELECT event_id,event_message,event_area_1_name, ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance FROM posts HAVING distance < 25 ORDER BY distance LIMIT 0 , 20;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Posts.findAndCountAll(
+                        {
+                            include:[{ model: Likes},{ model: Comments},{ model: Users}],
+                            where:{
+                                    [Op.or]:[
+                                    {
+                                        user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                                        {user_id:user_id}]
+        
+    }
+
+    })

@@ -660,4 +660,36 @@ router.post('/posts/update_unseen_message', function(req,res){
     })
 });
 
+router.post('/posts/testing', function(req, res)
+{
+    const user_id = req.session.user_id;
+    const status = "accept";
+    const event_latitude = req.body.event_latitude;
+    const event_logitude = req.body.event_logitude;
+
+    Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
+            
+        }
+
+        })
+    .then((postdata)=>
+    {
+
+      res.send(postdata.rows);
+        
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501)
+        .send({
+                error : "error..... check console log"
+              })
+    })
+    
+	
+});
+
+
 module.exports = router;
