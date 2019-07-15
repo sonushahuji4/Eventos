@@ -141,12 +141,54 @@
 
 
 <script>
+        function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
     
 $(document).ready(function() // main script starts
 {
         // ...........................................................................  All METHODS  ....................................................................// 
         
+        // // read more hide and show option
         
+        $(document).on('click','.hide_show',function()
+        {
+                var dots = document.getElementById("dots");
+                var moreText = document.getElementById("more");
+                var btnText = document.getElementById("myBtn");
+                if (dots.style.display === "none") 
+                {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Read more"; 
+                        moreText.style.display = "none";
+                } 
+                else 
+                {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Read less"; 
+                        moreText.style.display = "inline";
+                }
+
+        //         alert("clicked...")
+        //         const btn_hide_show = $(this).data('btn_hide_show'); 
+        //         var $btn_show  = $(this).data('btn_show');
+        //         alert(btn_hide_show);
+        //        // btn_hide_show.show();
+        //         $btn_show.slideToggle('slow');
+        });
+
         // Get all users from database (hint: for follow or unfollow) (display all user for suggestion to follow)
         var user_id = 0; 
         get_user_id();
@@ -180,7 +222,7 @@ $(document).ready(function() // main script starts
                 });
         }
                 
-
+        
         
         
         fetch_user(); // calling fetch_user() functin when page loads
@@ -431,13 +473,29 @@ $(document).ready(function() // main script starts
                         {
                                 let old_comment = document.getElementById("old_comment"+post_id)
                                 old_comment.innerHTML = ""; // make it null first then populate data again
-                                response.forEach(function(item, index)
-                                { 
-                                        var comment_data = item.comment
+                                for (var i = 0, len = response.length; i < len; i++)
+                                {    // alert(response.length);
+                                        var comment_data = response[i].comment;
+                                        var comment_time = response[i].createdAt;
+                                       // alert(comment_data);
+                                        //alert(comment_time);  
+                                       // alert(response[i].User.length);
+                                        //alert(response[i].User.user_profile_pic);
+                                        var user_image = response[i].User.user_profile_pic;
+                                        
+                                        
+                                        old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-1"><a href=""><img class="rounded-circle" src="../public/profile_image/'+user_image+'" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a></div><div class="col-11"><p>'+comment_data+' <br/><small>'+comment_time+'</small></p></div></div><hr>';
+
                                        
-                                        old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-2"><a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="error" class="rounded-circle border border-danger" style="width:30px; height:30px"></a></div><div class="col-10"><p>'+comment_data+' <br/><small>5hr</small></p></div></div><hr>';
+                                        
+                                }
+                                // response.forEach(function(item, index)
+                                // { 
+                                        // var comment_data = item.comment
                                        
-                                })
+                                        // old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-2"><a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="error" class="rounded-circle border border-danger" style="width:30px; height:30px"></a></div><div class="col-10"><p>'+comment_data+' <br/><small>5hr</small></p></div></div><hr>';
+                                       
+                                // })
                                         // document.getElementById("demo").innerHTML += '<br>' + employee.name;
                                 $("#old_comment"+post_id).slideToggle('slow'); 
                                               

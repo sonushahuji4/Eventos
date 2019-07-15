@@ -322,8 +322,8 @@ function initAutocomplete()
                   else if(arraydata[key] == "sublocality_level_2") //  sublocality_level_2
                   {
                     area2_name = JSON.stringify(address[i].long_name);
-                    //alert(area2_name);
                   }
+                    //alert(area2_name);
                   else if(arraydata[key] == "sublocality_level_1") //  sublocality_level_1
                   {
                     area1_name = JSON.stringify(address[i].long_name); 
@@ -389,9 +389,10 @@ function initAutocomplete()
           var formData = new FormData();
           var fileName = e.target.files[0].name;
           image_data = e.target.files[0];
+          //alert(fileName);
           let display_image = document.getElementById("display_image");
           display_image.innerHTML = "";
-          display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/profile_image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
+          display_image.innerHTML =  display_image.innerHTML + `<ul class="nav"> <li> <a href="#"> <img src="../public/image/${fileName}" alt="error check" class="img-fluid"></a></li></ul>`;
           formData.append('userPhoto',image_data) 
           
 
@@ -467,7 +468,15 @@ function initAutocomplete()
                         data:formData,
                         success:function(response)
                         {       
-                               alert(response);
+                               //alert(response);
+                
+                               if(response == "success")
+                               {
+                                 window.location.replace('http://localhost:4000/posts');
+                               }
+                               else{
+                                 alert("check err message");
+                               }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
                                 {

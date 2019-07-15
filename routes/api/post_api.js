@@ -64,7 +64,7 @@ router.get('/posts', function(req, res)
         .then((userdata)=>
         {
             //res.send(postdata.rows)
-            res.render('home',{title:'home',items:postdata.rows,user:userdata});
+           res.render('home',{title:'home',items:postdata.rows,user:userdata});
         }) 
         .catch((err)=>
         {
@@ -209,6 +209,10 @@ router.post('/posts/add_comment/:id', function(req, res, next)
         res.status(501).send({error : "error..... check console log"})
     })
 });
+// Comments.findAll(
+//     {include:[{ model: Users}],where:{event_id:post_id}
+//     }
+// )
 
 // fetch all comments
 router.post('/posts/fetch_add_comment', function(req, res, next)
@@ -221,7 +225,10 @@ router.post('/posts/fetch_add_comment', function(req, res, next)
     //console.log(post_id,action);
     if(action == "fetch_all_comment")
     {
-        Comments.findAll({where:{event_id:post_id}})
+        Comments.findAll(
+            {include:[{ model: Users}],where:{event_id:post_id}
+            }
+        )
         .then((comment_response)=>
         {
             //console.log(comment_response)
