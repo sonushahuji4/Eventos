@@ -160,7 +160,58 @@
 $(document).ready(function() // main script starts
 {
         // ...........................................................................  All METHODS  ....................................................................// 
-        
+        // set interval ...it will continouly update the latitude and longitude of user
+        setInterval(function()
+        {
+                get_lat_and_lon();
+        }, 5000);
+
+        // get latitude and longitude of user
+        function get_lat_and_lon()
+        {
+                if (!navigator.geolocation) 
+                {
+                        console.log("Geolocation is not supported by your browser");
+                } 
+                else 
+                {
+                        
+                        navigator.geolocation.getCurrentPosition(function(position)
+                        {
+                                const latitude  = position.coords.latitude;
+                                const longitude = position.coords.longitude;
+                                console.log("latitude",latitude)
+                                console.log("longitude",longitude)
+
+                                $.ajax(
+                                {
+                                        url:"/login/get_lat_and_lon",
+                                        method:"POST",
+                                        data:{latitude:latitude,longitude:longitude},
+                                        success:function(response)
+                                        {       
+                                                if(response !='')
+                                                {
+                                                        
+                                                        alert(response);
+                                                        //return response;
+                                                }
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown)
+                                                {
+                                                        console.log('jqXHR:');
+                                                        console.log(jqXHR);
+                                                        console.log('textStatus:');
+                                                        console.log(textStatus);
+                                                        console.log('errorThrown:');
+                                                        console.log(errorThrown);
+                                                        alert(errorThrown);
+                                        }
+                                });
+
+                        });
+                }
+        }
         // // read more hide and show option
         
         $(document).on('click','.hide_show',function()

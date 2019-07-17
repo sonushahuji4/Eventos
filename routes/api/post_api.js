@@ -666,9 +666,16 @@ router.post('/posts/testing', function(req, res)
     const status = "accept";
     const event_latitude = req.body.event_latitude;
     const event_logitude = req.body.event_logitude;
+    // steps 
+    // 1st get ur lat and lon from login_detail table
+    const miles = 3959;
+    const km = 6371;
+    const radius_input = 25;
+    const post_limit_display = 20;
 
-    Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
+    // SELECT event_id,user_id,event_message,event_area_1_name, ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20
+
+    Posts.findAndCountAll({where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
             
         }
 

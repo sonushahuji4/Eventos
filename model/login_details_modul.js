@@ -6,5 +6,7 @@ module.exports = (sequelize, type) => {
         last_activity 	     : {type : 'TIMESTAMP', defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), allowNull : false},
         is_type 	 : {type : Sequelize.STRING,trim : true},
         offline_online_status 	 : {type : Sequelize.STRING,allowNull : false,trim : true},
+        latitude 	 : {type : Sequelize.STRING, unique : false, trim : true},
+        longitide 	 : {type : Sequelize.STRING, unique : false, trim : true}
     })
 }

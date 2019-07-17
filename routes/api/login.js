@@ -5,9 +5,11 @@ const path = require('path');
 const dateFormat = require('dateformat');
 var dateTime = require('node-datetime');
 
-const {Users,Posts,Likes,Comments,Login_Details} = require('../../model/model_index');
-//const dboperation = require('../../DbOperation/DbOperation');
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op
+const sequelize = require('../../config/db');
+
+const {Users,Posts,Likes,Comments,Login_Details} = require('../../model/model_index');
 const expressValidator = require('express-validator');
 router.use(expressValidator())
 
@@ -196,35 +198,43 @@ router.post('/login/register', (req, res, next)=>
     }
 });
 
-const datasess = function passdata(user_id)
-{
-    return user_id;
-}
-
-// getUser = function(id, callback)
+// const datasess = function passdata(user_id)
 // {
-//     let sql = `SELECT * From user WHERE id = ?`;
-//     db.query(sql, [id], function(err, data)
-//     {
-//         console.log("id ", id);
-//         if(err)
-//         {
-//             callback(err);
-//         }
-//         else
-//         {
-//             console.log("in user ", data);
-//             callback(null, data);
-//         }
-//     })
+//     return user_id;
 // }
-// passport.serializeUser(function(user_id,email, mobile, done)
-// {
-//     done(null, user_id,email, mobile)
-// });
-// passport.deserializeUser(function(user_id,email, mobile, done)
-// {
-//         done(null, user_id,email, mobile);
-// });
+
+router.post('/login/get_lat_and_lon', (req, res, next)=>
+{
+    const user_id = req.session.user_id;
+    const lat = req.body.latitude;
+    const lon = req.body.longitude;
+    const miles = 3959;
+    const km = 6371;
+    const radius_input = 25;
+    const post_limit_display = 20;
+    const distance = 8;
+
+     // SELECT event_id,user_id,event_message,event_area_1_name, ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20
+// [sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]     
+sequelize.query('SELECT ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance *FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20')
+    .then(([results, metadata])=>
+    {
+
+      res.send(metadata);
+        
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501)
+        .send({
+                error : "error..... check console log"
+              })
+    })
+
+    
+});
+
 
 module.exports = router;
+

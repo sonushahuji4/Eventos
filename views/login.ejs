@@ -135,3 +135,27 @@
         </div>
 </body>
 </html>
+
+<script>
+
+        $(document).ready(function()
+        {
+          if (!navigator.geolocation) 
+          {
+            status.textContent = 'Geolocation is not supported by your browser';
+          } 
+          else 
+          {
+            status.textContent = 'Locating…';
+            navigator.geolocation.getCurrentPosition(function(position)
+            {
+              const latitude  = position.coords.latitude;
+              const longitude = position.coords.longitude;
+              console.log("latitude",latitude)
+              console.log("longitude",longitude)
+            });
+          }
+        })
+      
+      
+      </script>
