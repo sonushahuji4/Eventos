@@ -121,11 +121,11 @@ Posts.findAndCountAll(
 
 
 
+
 'SELECT count(`Posts`.`event_id`) AS `count` FROM `Posts` AS `Posts` LEFT OUTER JOIN `Likes` AS `Likes` ON `Posts`.`event_id` = `Likes`.`event_id` LEFT OUTER JOIN `Comments` AS `Comments` ON `Posts`.`event_id` = `Comments`.`event_id` LEFT OUTER JOIN `Users` AS `User` ON `Posts`.`user_id` = `User`.`user_id` WHERE (`Posts`.`user_id` IN (( 3959 * acos( cos( radians(19.1250432) ) * cos( radians(`Posts`.event_latitude ) ) * cos( radians(`Posts`.event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians(`Posts`.event_latitude ) ) ) ) FROM `Posts` AS Posts WHERE `Posts`.user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept") OR `Posts`.user_id = 1 HAVING 8 < 25 ORDER BY distance LIMIT 0 , 20));' },
 
      'SELECT count(`Posts`.`event_id`) AS `count` FROM `Posts` AS `Posts` LEFT OUTER JOIN `Likes` AS `Likes` ON `Posts`.`event_id` = `Likes`.`event_id` LEFT OUTER JOIN `Comments` AS `Comments` ON `Posts`.`event_id` = `Comments`.`event_id` LEFT OUTER JOIN `Users` AS `User` ON `Posts`.`user_id` = `User`.`user_id` WHERE (`Posts`.`user_id` IN (( 3959 * acos( cos( radians(19.1250432) ) * cos( radians(`Posts`.event_latitude ) ) * cos( radians(`Posts`.event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians(`Posts`.event_latitude ) ) ) ) FROM `Posts` AS Posts WHERE `Posts`.user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id=1 and `Follows`.status="accept") OR `Posts`.user_id = 1 HAVING 8 < 25 ORDER BY distance LIMIT 0 , 20));' }
   [nodemon] restarting due to changes...
-
 
 
 
@@ -151,3 +151,16 @@ WHERE (`Posts`.`user_id` IN
  SELECT event_id,user_id,event_message,event_area_1_name, 
  ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) )
   AS distance FROM posts WHERE user_id IN (SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept") OR user_id = 1 HAVING distance < 25ORDER BY distance LIMIT 0 , 20
+
+
+  //( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) 
+//( 3959 * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) ) 
+const query = '( 3959 * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) ) '
+Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
+    attributes: ['event_id','user_id','e_imagepath','event_message','event_name','event_description','event_read_more_option','event_type','event_organization','event_country_name','event_state_name','event_sub_city_name','event_main_city_name','event_area_1_name','event_area_2_name','event_postal_code','event_full_address','event_latitude','event_logitude','event_start_date','event_start_time','event_start_am_or_pm','event_end_date','event_end_time','event_end_am_or_pm','event_registeration_date_close','event_registeration_time_close','event_registeration_am_or_pm_close',[sequelize.literal(query),'distance']],
+   // where: sequelize.where('distance', {$lt: radius_input}),
+    //order: sequelize.col('distance'),
+    order: [[sequelize.literal('distance')]],
+  limit: 15
+})

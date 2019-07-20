@@ -212,15 +212,14 @@ router.post('/login/get_lat_and_lon', (req, res, next)=>
     const km = 6371;
     const radius_input = 25;
     const post_limit_display = 20;
-    const distance = 8;
+    var distance = 8;
 
-
-Posts.findAll({//include:[{ model: Likes},{ model: Comments},{ model: Users}],
+const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) ) '
+Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
     where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
-    attributes: ['event_id','user_id','event_message',[sequelize.literal("( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) "),'distance']],
-    //order: sequelize.col('distance < 25'),
-    order: [[sequelize.literal('distance < 25')]],
-  limit: 15
+    attributes: ['event_id','user_id','e_imagepath','event_message','event_name','event_description','event_read_more_option','event_type','event_organization','event_country_name','event_state_name','event_sub_city_name','event_main_city_name','event_area_1_name','event_area_2_name','event_postal_code','event_full_address','event_latitude','event_logitude','event_start_date','event_start_time','event_start_am_or_pm','event_end_date','event_end_time','event_end_am_or_pm','event_registeration_date_close','event_registeration_time_close','event_registeration_am_or_pm_close',[sequelize.literal(query),'distance']],
+    order: [[sequelize.literal('distance')]],
+  limit: post_limit_display
 })
 .then((data)=>
     {
@@ -240,6 +239,4 @@ Posts.findAll({//include:[{ model: Likes},{ model: Comments},{ model: Users}],
     
 });
 
-
 module.exports = router;
-

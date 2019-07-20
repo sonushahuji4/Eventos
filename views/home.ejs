@@ -87,6 +87,7 @@
         <%}<!-- if ends here -->
         else
         {%> 
+                <!-- /////////////////////////////////////////////////////////////////////////////////////// -->
                 <p> <strong>There are no recods available</strong></p>
         <%}%><!-- else ends here -->
 
@@ -95,13 +96,26 @@
 
             <!-- /////////////////////////////////////////////////////////////////////////////////////// -->
                                             <!-- adding main middle page -->
-            <!-- /////////////////////////////////////////////////////////////////////////////////////// -->
 
             <div class="col-md-6">
 
                 <!-- create posts -->
                 <%- include('components/create_posts') %>
-                <hr><input class="form-control" type="text" placeholder="View Feeds By" aria-label="Search"><hr> 
+                <hr> 
+
+                <div class="input-group">
+                        <select class="custom-select">
+                          <option selected>View Feeds By (default is current location)...</option>
+                          <option value="area">Area</option>
+                          <option value="city">City</option>
+                          <option value="state">State</option>
+                          <option value="country">Country</option>
+                        </select>
+                        
+                          <button class="btn btn-default" type="button" >Select</button>
+                        
+                      </div>
+                <hr> 
 
                 <!-- Suggestions box -->
                 <%- include('components/user_suggestion_box') %>
@@ -193,7 +207,7 @@ $(document).ready(function() // main script starts
                                                 if(response !='')
                                                 {
                                                         
-                                                        alert(response);
+                                                       // alert(response);
                                                         //return response;
                                                 }
                                         },
