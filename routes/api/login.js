@@ -214,13 +214,18 @@ router.post('/login/get_lat_and_lon', (req, res, next)=>
     const post_limit_display = 20;
     const distance = 8;
 
-     // SELECT event_id,user_id,event_message,event_area_1_name, ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20
-// [sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]     
-sequelize.query('SELECT ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance *FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20')
-    .then(([results, metadata])=>
+
+Posts.findAll({//include:[{ model: Likes},{ model: Comments},{ model: Users}],
+    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
+    attributes: ['event_id','user_id','event_message',[sequelize.literal("( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin(radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) "),'distance']],
+    //order: sequelize.col('distance < 25'),
+    order: [[sequelize.literal('distance < 25')]],
+  limit: 15
+})
+.then((data)=>
     {
 
-      res.send(metadata);
+     res.send(data);
         
     })
     .catch((err)=>
