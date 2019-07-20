@@ -214,12 +214,15 @@ router.post('/login/get_lat_and_lon', (req, res, next)=>
     const post_limit_display = 20;
     var distance = 8;
 
-const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) ) '
+const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) )'
+
 Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
     where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
-    attributes: ['event_id','user_id','e_imagepath','event_message','event_name','event_description','event_read_more_option','event_type','event_organization','event_country_name','event_state_name','event_sub_city_name','event_main_city_name','event_area_1_name','event_area_2_name','event_postal_code','event_full_address','event_latitude','event_logitude','event_start_date','event_start_time','event_start_am_or_pm','event_end_date','event_end_time','event_end_am_or_pm','event_registeration_date_close','event_registeration_time_close','event_registeration_am_or_pm_close',[sequelize.literal(query),'distance']],
-    order: [[sequelize.literal('distance')]],
-  limit: post_limit_display
+    attributes:{include:[[sequelize.literal(query),'distance']]},
+    where: sequelize.where(sequelize.literal(query), '<=',25),
+    order: sequelize.col('distance'),
+    limit: 15,
+    offset: 0
 })
 .then((data)=>
     {
