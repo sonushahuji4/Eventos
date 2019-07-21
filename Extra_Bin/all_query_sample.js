@@ -278,10 +278,9 @@ $view_feeds_by.innerHTML = $view_feeds_by.innerHTML + `<div class="card text-whi
 
         
     <div class="card mb-3">
-
-                <div class="row">
+      <div class="row">
                       
-                                <div class="col-10" style="padding-left:50px;padding-top:20px">
+                      <div class="col-10" style="padding-left:50px;padding-top:20px">
                                     <div class="d-flex bd-highlight">
                                        <!-- if condition -- >
                                       <div class="img_cont">
@@ -411,3 +410,26 @@ else
 <%  } %></div>
 
 
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML + `<div class="card mb-3"> <div class="row"> <div class="col-10" style="padding-left:50px;padding-top:20px"> <div class="d-flex bd-highlight"> `  
+                                                                           
+                                                                           if (post_data[i].User.user_profile_pic)
+                                                                           {
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +                                         ` <div class="img_cont">  <img src="../public/profile_image/${post_data[i].User.user_profile_pic}" class="rounded-circle user_img"> </div> `
+                                    
+                                                                           }else
+                                                                           {
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +                                      ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `  
+                                                                           }
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +                   `<div class="user_info viewclick" data-view="${post_data[i].User.user_id}">${post_data[i].User.user_firstname} ${post_data[i].User.user_lastname}<br/> <small><i class="far fa-clock"></i> 2 hrs ago</small> <br/> `
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +    `<small><a href="http://maps.google.com/?q=${post_data[i].event_latitude},${post_data[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>`
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +     `<small style="padding-left:10px" id="show_location"></small>`
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +     ` </div>`
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +                   ` </div> ` 
+                                                                   
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +           ` </div> ` 
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +   ` </div> ` 
+                                           
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML +   ` </div> ` 
+                                           ;
+                                   }
+                             

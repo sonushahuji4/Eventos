@@ -386,24 +386,53 @@ $(document).ready(function() // main script starts
                         method:"POST",
                         data:{latitude:latitude,longitude:longitude,common_name,selected_option},
                         success:function(response)
-                        {       
+                        {     
+
                                 if(response !='')
                                 {
                                         var $view_feeds_by= document.getElementById("view_feeds_by");
-                                        $view_feeds_by.innerHTML = "";
+                                        //$view_feeds_by.innerHTML = "";
+                                        let innerHTML = ''
 
-                        
-                                        for(var i=0, len = response.length; i < len; i++)
+                                        const  post_data = response.feeds_data;
+                                        for(var i=0, len = post_data.length; i < len; i++)
                                         {
-                                                alert(response[i].event_message);
-                                                alert(response[i].Likes.length);
-                                                alert(response[i].Comments.length);
-                                                alert(response[i].User.user_firstname);
-                                                $view_feeds_by.innerHTML = $view_feeds_by.innerHTML + `<div class="d-flex bd-highlight online_user" data-online_user_profile_pic="${response[i].e_imagepath}" data-online_user_firstname="${response[i].event_id}" data-online_user_id="${response[i].user_id}"><div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"><span class="online_icon"></span> </div><div class="user_info">${response[i].User.user_firstname} ${response[i].User.user_lastname}<br/></div> </div>`;
+                                                // alert(post_data[i].event_message);
+                                                // alert(post_data[i].Likes.length);
+                                                // alert(post_data[i].Comments.length);
+                                                // alert(post_data[i].User.user_firstname);
+                                                // alert("user data")
+                                                // alert(response.user_data.user_email);
+                                                
+                                                innerHTML += `<div class="card mb-3">
+                                                        <div class="row">
+                                                                <div class="col-10" style="padding-left:50px;padding-top:20px">
+                                                                        <div class="d-flex bd-highlight">`;
+                                                                                if (post_data[i].User.user_profile_pic) 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"> 
+                                                                                        <img src="../public/profile_image/${post_data[i].User.user_profile_pic}" class="rounded-circle user_img"> 
+                                                                                        </div> `
+                                                                                } 
+                                                                                else 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+                                                                                }
+                                                                innerHTML += ` <div class="user_info viewclick" data-view="${post_data[i].User.user_id}">${post_data[i].User.user_firstname} ${post_data[i].User.user_lastname}<br/>
+                                                                                        <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+                                                                                        <small><a href="http://maps.google.com/?q=${post_data[i].event_latitude},${post_data[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                        <small style="padding-left:10px" id="show_location"></small>
+                                                                                </div> 
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>`;
+                                                
                                         }
+                                        $view_feeds_by.innerHTML = innerHTML;
                                   
                                 
-                                //alert(JSON.stringify(response));
+                               
                                
                                 }
                         },

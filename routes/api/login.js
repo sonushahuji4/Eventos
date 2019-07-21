@@ -205,8 +205,7 @@ router.post('/login/register', (req, res, next)=>
 
 router.post('/login/get_lat_and_lon', (req, res, next)=>
 {
-    //const user_id = req.session.user_id;
-    user_id = 2;
+    const user_id = req.session.user_id;
     const lat = req.body.latitude;
     const lon = req.body.longitude;
     const selected_option = req.body.selected_option;
@@ -294,10 +293,23 @@ router.post('/login/get_lat_and_lon', (req, res, next)=>
                 [{user_id:user_id}]],
                 [Op.and]:{event_country_name:{[Op.like]:  '%' + common_name + '%'}}}
         })
-        .then((data)=>
+        .then((feeds_data)=>
             {
-                console.log(data);
-            res.send(data);
+                Users.findOne({where:{user_id:user_id}})
+                .then((user_data)=>
+                {
+                    res.send({feeds_data,user_data});
+                }) 
+                .catch((err)=>
+                {
+                    console.error(err)
+                    res.status(501)
+                    .send({
+                            error : "error..... check console log"
+                        })    
+                })
+                //console.log(data);
+            //res.send(data);
                 
             })
             .catch((err)=>
