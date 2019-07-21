@@ -102,19 +102,19 @@
                 <!-- create posts -->
                 <%- include('components/create_posts') %>
                 <hr> 
-
-                <div class="input-group">
-                        <select class="custom-select">
-                          <option selected>View Feeds By (default is current location)...</option>
-                          <option value="area">Area</option>
-                          <option value="city">City</option>
-                          <option value="state">State</option>
-                          <option value="country">Country</option>
+                <form>
+                        <label>View Feeds By : </label>
+                        <select class="view_feeds_by">
+                                <option value="current_location">Current Location</option>
+                                <option value="area">Area</option>
+                                <option value="city">City</option>
+                                <option value="state">State</option>
+                                <option value="country">Country</option>
                         </select>
-                        
-                          <button class="btn btn-default" type="button" >Select</button>
-                        
-                      </div>
+                    </form>
+
+               
+                      
                 <hr> 
 
                 <!-- Suggestions box -->
@@ -152,7 +152,8 @@
     
     
     <%- include('partials/includes/footer') %>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nPlSt_nM7PSKD8So8anbUbBYICFWcCA"
+    async defer></script>
 
 <script>
         function myFunction() {
@@ -175,14 +176,16 @@ $(document).ready(function() // main script starts
 {
         // ...........................................................................  All METHODS  ....................................................................// 
         // set interval ...it will continouly update the latitude and longitude of user
-        setInterval(function()
-        {
-                get_lat_and_lon();
-        }, 5000);
+        // setInterval(function()
+        // {
+        //         get_lat_and_lon();
+        // }, 5000);
 
         // get latitude and longitude of user
-        function get_lat_and_lon()
+        $("select.view_feeds_by").change(function()
         {
+                var selected_option = $(this).children("option:selected").val();
+
                 if (!navigator.geolocation) 
                 {
                         console.log("Geolocation is not supported by your browser");
@@ -190,42 +193,216 @@ $(document).ready(function() // main script starts
                 else 
                 {
                         
+                        var common_name = "NA";
+                        var status_got_data = false;
+                        var flag_status_in = false;
                         navigator.geolocation.getCurrentPosition(function(position)
                         {
                                 const latitude  = position.coords.latitude;
                                 const longitude = position.coords.longitude;
-                                console.log("latitude",latitude)
-                                console.log("longitude",longitude)
-
-                                $.ajax(
+                                var latlng = new google.maps.LatLng(latitude, longitude);
+                                var geocoder = geocoder = new google.maps.Geocoder();
+                                geocoder.geocode({ 'latLng': latlng }, function (results, status) 
                                 {
-                                        url:"/login/get_lat_and_lon",
-                                        method:"POST",
-                                        data:{latitude:latitude,longitude:longitude},
-                                        success:function(response)
-                                        {       
-                                                if(response !='')
+                                       
+                                        const address = results[1].address_components;
+                                        console.log(address)
+                                        if( selected_option == "area")
+                                        {
+                                                for( i = 0; i < address.length; i++)
                                                 {
+                                                        var arraydata = address[i].types; 
+
+                                                        for(key in arraydata)
+                                                        {     
+                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                                if( (arraydata[key] == "sublocality_level_2") || (arraydata[key] == "sublocality_level_1") ) // area
+                                                                {
+                                                                        
+                                                                       common_name = address[i].long_name; 
+                                                                       flag_status_in = true;
+                                                                        alert(common_name);
+                                                                }
+                                                                if(flag_status_in == true)
+                                                                {
+                                                                        status_got_data = true;
+                                                                        flag_status_in = false;
+                                                                        break;
+                                                                }
+                                                        }
+                                                        if(status_got_data == true)
+                                                        {
+                                                                break;
+                                                        }
                                                         
-                                                       // alert(response);
-                                                        //return response;
                                                 }
-                                        },
-                                        error: function(jqXHR, textStatus, errorThrown)
+                                                if(status_got_data == true)
                                                 {
-                                                        console.log('jqXHR:');
-                                                        console.log(jqXHR);
-                                                        console.log('textStatus:');
-                                                        console.log(textStatus);
-                                                        console.log('errorThrown:');
-                                                        console.log(errorThrown);
-                                                        alert(errorThrown);
+                                                        status_got_data = false;
+                                                        view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
+
+                                                }
                                         }
+                                        else if(selected_option == "city")
+                                        {
+                                                for( i = 0; i < address.length; i++)
+                                                {
+                                                        var arraydata = address[i].types; 
+
+                                                        for(key in arraydata)
+                                                        {     
+                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                                if(arraydata[key] == "administrative_area_level_2") // city
+                                                                {
+                                                                        
+                                                                       common_name = address[i].long_name; 
+                                                                       flag_status_in = true;
+                                                                        alert(common_name);
+                                                                }
+                                                                if(flag_status_in == true)
+                                                                {
+                                                                        status_got_data = true;
+                                                                        flag_status_in = false;
+                                                                        break;
+                                                                }
+                                                        }
+                                                        if(status_got_data == true)
+                                                        {
+                                                                break;
+                                                        }
+                                                        
+                                                }
+                                                if(status_got_data == true)
+                                                {
+                                                        status_got_data = false;
+                                                        view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
+
+                                                }
+                                        }
+                                        else if(selected_option == "state")
+                                        {
+                                                for( i = 0; i < address.length; i++)
+                                                {
+                                                        var arraydata = address[i].types; 
+
+                                                        for(key in arraydata)
+                                                        {     
+                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                                if(arraydata[key] == "administrative_area_level_1") // state
+                                                                {
+                                                                        
+                                                                       common_name = address[i].long_name; 
+                                                                       flag_status_in = true;
+                                                                        alert(common_name);
+                                                                }
+                                                                if(flag_status_in == true)
+                                                                {
+                                                                        status_got_data = true;
+                                                                        flag_status_in = false;
+                                                                        break;
+                                                                }
+                                                        }
+                                                        if(status_got_data == true)
+                                                        {
+                                                                break;
+                                                        }
+                                                        
+                                                }
+                                                if(status_got_data == true)
+                                                {
+                                                        status_got_data = false;
+                                                        view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
+
+                                                }
+                                        }
+                                        else if(selected_option == "country")
+                                        {
+                                                for( i = 0; i < address.length; i++)
+                                                {
+                                                        var arraydata = address[i].types; 
+
+                                                        for(key in arraydata)
+                                                        {     
+                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                                if(arraydata[key] == "country") // country
+                                                                {
+                                                                        
+                                                                       common_name = address[i].long_name; 
+                                                                       flag_status_in = true;
+                                                                        alert(common_name);
+                                                                }
+                                                                if(flag_status_in == true)
+                                                                {
+                                                                        status_got_data = true;
+                                                                        flag_status_in = false;
+                                                                        break;
+                                                                }
+                                                        }
+                                                        if(status_got_data == true)
+                                                        {
+                                                                break;
+                                                        }
+                                                        
+                                                }
+                                                if(status_got_data == true)
+                                                {
+                                                        status_got_data = false;
+                                                        view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
+
+                                                }
+
+                                                
+                                        }
+                                        else
+                                        { // selected_option == "current_location"
+                                                alert("current location")
+                                                view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
+                                        }
+
+
+             
+                                       
                                 });
+
+
 
                         });
                 }
+                
+        });
+
+        function view_feed_by_sort(latitude,longitude,common_name,selected_option)
+        {
+
+                $.ajax(
+                {
+                        url:"/login/get_lat_and_lon",
+                        method:"POST",
+                        data:{latitude:latitude,longitude:longitude,common_name,selected_option},
+                        success:function(response)
+                        {       
+                                if(response !='')
+                                {
+                                alert(JSON.stringify(response));
+                                //alert(response);
+                                        //return response;
+                                }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                                {
+                                        console.log('jqXHR:');
+                                        console.log(jqXHR);
+                                        console.log('textStatus:');
+                                        console.log(textStatus);
+                                        console.log('errorThrown:');
+                                        console.log(errorThrown);
+                                        alert(errorThrown);
+                        }
+                });
+              
+
         }
+
         // // read more hide and show option
         
         $(document).on('click','.hide_show',function()

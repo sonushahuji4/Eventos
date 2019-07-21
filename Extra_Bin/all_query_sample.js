@@ -164,3 +164,92 @@ Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
     order: [[sequelize.literal('distance')]],
   limit: 15
 })
+
+
+if( status == true)
+{
+        status = false;
+          console.log("latitude",latitude);
+          console.log("longitude",longitude);
+
+          $.ajax(
+          {
+                  url:"/login/get_lat_and_lon",
+                  method:"POST",
+                  data:{latitude:latitude,longitude:longitude},
+                  success:function(response)
+                  {       
+                          if(response !='')
+                          {
+                                  
+                          alert(response);
+                                  //return response;
+                          }
+                  },
+                  error: function(jqXHR, textStatus, errorThrown)
+                          {
+                                  console.log('jqXHR:');
+                                  console.log(jqXHR);
+                                  console.log('textStatus:');
+                                  console.log(textStatus);
+                                  console.log('errorThrown:');
+                                  console.log(errorThrown);
+                                  alert(errorThrown);
+                  }
+          });
+}      
+
+
+if( selected_option == "area")
+{
+        status = true;
+        alert("area")
+        break;
+}
+else if(selected_option == "city")
+{
+        alert("city")
+        status = true;
+        break;
+}
+else if(selected_option == "state")
+{
+        alert("state")
+        status = true;
+        break;
+}
+else if(selected_option == "country")
+{
+        for( i = 0; i < address.length; i++)
+        {
+                var arraydata = address[i].types; 
+
+                for(key in arraydata)
+                {
+                        
+                        
+                alert(JSON.stringify(arraydata[key]));
+                }
+                // if(status == true)
+                // {
+                //         alert("outside for 1 loop"); 
+                //         break;
+                // }
+                
+        }
+        // if(arraydata[key] == "country") // country
+        // {
+        //         alert("in co")
+        //         country_name = JSON.stringify(arraydata[key].long_name); 
+        //         alert(country_name);
+        // }
+        // alert("country")
+        // status = true;
+        // break;
+}
+else
+{ // selected_option == "current location"
+        alert("current location")
+        status = true;
+        break;
+}

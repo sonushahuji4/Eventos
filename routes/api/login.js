@@ -205,41 +205,144 @@ router.post('/login/register', (req, res, next)=>
 
 router.post('/login/get_lat_and_lon', (req, res, next)=>
 {
-    const user_id = req.session.user_id;
+    //const user_id = req.session.user_id;
+    user_id = 2;
     const lat = req.body.latitude;
     const lon = req.body.longitude;
+    const selected_option = req.body.selected_option;
+    const common_name = req.body.common_name;
     const miles = 3959;
     const km = 6371;
     const radius_input = 25;
     const post_limit_display = 20;
     var distance = 8;
 
-const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) )'
+    if(selected_option == "area")
+    {
+        Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
 
-Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
-    attributes:{include:[[sequelize.literal(query),'distance']]},
-    where: sequelize.where(sequelize.literal(query), '<=',25),
-    order: sequelize.col('distance'),
-    limit: 15,
-    offset: 0
-})
-.then((data)=>
+            where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                 [{user_id:user_id}]],
+                 [Op.and]:{event_area_1_name:{[Op.like]:  '%' + common_name + '%'}}}
+         })
+         .then((data)=>
+             {
+                console.log(data);
+             res.send(data);
+                 
+             })
+             .catch((err)=>
+             {
+                 console.error(err)
+                 res.status(501)
+                 .send({
+                         error : "error..... check console log"
+                     })
+             })
+    }
+    else if(selected_option == "city")
+    {
+        Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+            where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                 [{user_id:user_id}]],
+                 [Op.and]:{event_main_city_name:{[Op.like]:  '%' + common_name + '%'}}}
+         })
+         .then((data)=>
+             {
+                console.log(data);
+             res.send(data);
+                 
+             })
+             .catch((err)=>
+             {
+                 console.error(err)
+                 res.status(501)
+                 .send({
+                         error : "error..... check console log"
+                     })
+             })
+    }
+    else if(selected_option == "state")
+    {
+        Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+            where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                 [{user_id:user_id}]],
+                 [Op.and]:{event_state_name:{[Op.like]:  '%' + common_name + '%'}}}
+         })
+         .then((data)=>
+             {
+                console.log(data);
+             res.send(data);
+                 
+             })
+             .catch((err)=>
+             {
+                 console.error(err)
+                 res.status(501)
+                 .send({
+                         error : "error..... check console log"
+                     })
+             })
+    }
+    else if(selected_option == "country")
+    {
+        Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+           where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                [{user_id:user_id}]],
+                [Op.and]:{event_country_name:{[Op.like]:  '%' + common_name + '%'}}}
+        })
+        .then((data)=>
+            {
+                console.log(data);
+            res.send(data);
+                
+            })
+            .catch((err)=>
+            {
+                console.error(err)
+                res.status(501)
+                .send({
+                        error : "error..... check console log"
+                    })
+            })
+    
+    }
+    else if(selected_option == "current_location")
     {
 
-     res.send(data);
-        
-    })
-    .catch((err)=>
-    {
-        console.error(err)
-        res.status(501)
-        .send({
-                error : "error..... check console log"
-              })
-    })
+        const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) )'
 
+        Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+            where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]},
+            attributes:{include:[[sequelize.literal(query),'distance']]},
+            where: sequelize.where(sequelize.literal(query), '<=',25),
+            order: sequelize.col('distance'),
+            limit: 15,
+            offset: 0
+        })
+        .then((data)=>
+            {
+
+            res.send(data);
+                
+            })
+            .catch((err)=>
+            {
+                console.error(err)
+                res.status(501)
+                .send({
+                        error : "error..... check console log"
+                    })
+            })
+
+            
+       
+    }
     
 });
+
 
 module.exports = router;

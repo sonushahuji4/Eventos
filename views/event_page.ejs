@@ -301,37 +301,37 @@ function initAutocomplete()
                   //alert(arraydata[key]);
                   if(arraydata[key] == "country") // country
                   {
-                    country_name = JSON.stringify(address[i].long_name); 
+                    country_name = address[i].long_name; 
                     //alert(country_name);
                   }
                   else if(arraydata[key] == "administrative_area_level_1") // state
                   {
-                    state_name = JSON.stringify(address[i].long_name);
+                    state_name = address[i].long_name;
                     //alert(state_name);
                   }
                   else if(arraydata[key] == "administrative_area_level_2") // city
                   {
-                   city_sub_city_name = JSON.stringify(address[i].long_name);
+                   city_sub_city_name = address[i].long_name;
                     //alert(city_sub_city_name);
                   }
                   else if(arraydata[key] == "locality") //  main city name
                   {
-                    main_city_name = JSON.stringify(address[i].long_name); 
+                    main_city_name = address[i].long_name; 
                     //alert(main_city_name);
                   }
                   else if(arraydata[key] == "sublocality_level_2") //  sublocality_level_2
                   {
-                    area2_name = JSON.stringify(address[i].long_name);
+                    area2_name = address[i].long_name;
                   }
                     //alert(area2_name);
                   else if(arraydata[key] == "sublocality_level_1") //  sublocality_level_1
                   {
-                    area1_name = JSON.stringify(address[i].long_name); 
+                    area1_name = address[i].long_name; 
                     //alert(area1_name);postal_code
                   }
                   else if(arraydata[key] == "postal_code") //  sublocality_level_1
                   {
-                    postal_code = JSON.stringify(address[i].long_name); 
+                    postal_code = address[i].long_name; 
                     //alert(area1_name);postal_code
                   }
                   
@@ -339,9 +339,9 @@ function initAutocomplete()
                 }
               
              }
-             full_address = JSON.stringify(place.formatted_address);
-             latitude = JSON.stringify(place.geometry.location.lat());
-             logitude = JSON.stringify(place.geometry.location.lng());  
+             full_address = place.formatted_address;
+             latitude = place.geometry.location.lat();
+             logitude = place.geometry.location.lng();  
             
              console.log(place.formatted_address);
              console.log(place.geometry.location.lat());
