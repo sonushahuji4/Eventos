@@ -118,10 +118,14 @@
                 <hr> 
 
                 <!-- Suggestions box -->
+                
                 <%- include('components/user_suggestion_box') %>
                 
+                
                 <!-- user posts display-->
+                <div id="view_feeds_by">
                 <%- include('components/posts') %>
+                </div>
 
             </div>
 
@@ -373,6 +377,8 @@ $(document).ready(function() // main script starts
 
         function view_feed_by_sort(latitude,longitude,common_name,selected_option)
         {
+                //var parent  = $(this)
+                //parent.html(response.count)
 
                 $.ajax(
                 {
@@ -383,9 +389,22 @@ $(document).ready(function() // main script starts
                         {       
                                 if(response !='')
                                 {
-                                alert(JSON.stringify(response));
-                                //alert(response);
-                                        //return response;
+                                        var $view_feeds_by= document.getElementById("view_feeds_by");
+                                        $view_feeds_by.innerHTML = "";
+
+                        
+                                        for(var i=0, len = response.length; i < len; i++)
+                                        {
+                                                alert(response[i].event_message);
+                                                alert(response[i].Likes.length);
+                                                alert(response[i].Comments.length);
+                                                alert(response[i].User.user_firstname);
+                                                $view_feeds_by.innerHTML = $view_feeds_by.innerHTML + `<div class="d-flex bd-highlight online_user" data-online_user_profile_pic="${response[i].e_imagepath}" data-online_user_firstname="${response[i].event_id}" data-online_user_id="${response[i].user_id}"><div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"><span class="online_icon"></span> </div><div class="user_info">${response[i].User.user_firstname} ${response[i].User.user_lastname}<br/></div> </div>`;
+                                        }
+                                  
+                                
+                                //alert(JSON.stringify(response));
+                               
                                 }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
@@ -672,6 +691,7 @@ $(document).ready(function() // main script starts
                 var postId = $(this).attr('data-post');
                 var postId = parseInt(postId,10)
                 //var parent  = $(this)
+                //parent.html(response.count)
                 $.ajax(
                         {
                                 type: 'POST',

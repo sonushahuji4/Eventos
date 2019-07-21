@@ -253,3 +253,161 @@ else
         status = true;
         break;
 }
+
+var $view_feeds_by= document.getElementById("view_feeds_by");
+                                $view_feeds_by.innerHTML = "";
+$view_feeds_by.innerHTML = $view_feeds_by.innerHTML + `<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Primary card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    <div class="card mb-3">
+
+                <div class="row">
+                      
+                                <div class="col-10" style="padding-left:50px;padding-top:20px">
+                                    <div class="d-flex bd-highlight">
+                                       <!-- if condition -- >
+                                      <div class="img_cont">
+                                        <img src="../public/profile_image/<%= item.User.user_profile_pic %>" class="rounded-circle user_img">
+                                      </div>
+                                      <!-- else condition --></div>
+                                        <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div>
+                                      <!-- else condition ends -->
+                                    <div class="user_info viewclick" data-view="<%= item.User.user_id %>"><!-- 1st name and last name<br/>
+                                     
+                                        <small><i class="far fa-clock"></i> 2 hrs ago</small>
+
+                                      <br/>
+                                      <small><a href="http://maps.google.com/?q=<%= item.event_latitude %>,<%= item.event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                      <small style="padding-left:10px" id="show_location"></small>
+                                    </div> 
+                                  </div>
+                                </div>  
+                                
+                               
+          
+                                    <div class="col-2" style="padding-left:20px;padding-top:20px">
+                                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
+                                        
+                                    </div>
+                </div>
+
+                <div class="row">
+                        <h5><span style="padding-left:35px" id="show_title"><%= item.event_message %></span></h5>
+                             
+                        <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                               
+                               <p><%= item.event_description %><span id="dots">...</span><span id="more" style="display: none;"><%= item.event_read_more_option %></span>
+                               <span data-btn_hide_show="<%= item.event_id %>" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                            </p>
+
+                        
+                            
+                              
+        
+                        </div>
+                </div>
+ 
+            
+            
+                <ul class="nav">
+                        <li>
+                                <a href="/post/<%= item.event_id %>">
+                                    <img src="../public/image/<%= item.e_imagepath %>" alt="error check >" class="img-fluid">
+                                </a>
+                          
+                        </li>
+                </ul>          
+            
+
+           
+            <div class="container">
+                    <div class="row">
+
+                            <div class="col-md-6 like" style="padding-top:10px" data-post="<%= item.event_id %>">
+                                <a href=""><i class="fas fa-thumbs-up"></i></a>
+                                       
+                                <span class="countLikes" id="countLikes<%= item.event_id %>" style="cursor: pointer;"> <%=item.Likes.length%> Like</span>
+                                
+                            </div>
+                            <div class="col-md-4 post_comment" id="<%= item.event_id %>" style="padding-top:10px">
+                                        <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                        <span class="countComments" style="cursor: pointer;"> <%=item.Comments.length%> comments</span>
+                               
+                            </div>
+                            <div class="col-md-2" style="padding-top:10px">
+                                        <i class="fas fa-share"></i>
+                                        <span>share</span>
+                               
+                            </div>
+                            
+                            
+                    </div>
+            </div>
+            <hr>
+            <div class="container">
+                    <div class="row">
+                        <% user.forEach(function(item,  index)
+                        {%>
+                        <% if(item.user_profile_pic){ %>
+                            <div class="col-md-2" style="padding-top:10px">
+                                <a href=""><img class="rounded-circle" src="../public/profile_image/<%= item.user_profile_pic %>" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                            </div>
+                            <% } else { %> 
+                            <div class="col-md-2" style="padding-top:10px">
+                                        <a href=""><img class="rounded-circle" src="../public/profile_image/icon.jpg" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                            </div>
+                            <% } %>
+                        <%}); %>
+                            <div class="col-md-7">
+                                        <div class="form-group" id="comment_form<%= item.event_id %>">
+                                                        <input class="form-control" name="comment" type="text" placeholder="Your comments" id="comment<%= item.event_id %>"/>
+                                        </div>
+                            </div>
+                            <div class="col-md-3" style="padding-top:10px">
+                                <button type="button" data-po="<%= item.event_id %>" name="submit_comment" class="btn btn-default submit_comment">comment</button>
+                            </div>
+                    </div>
+                    <!-- new display comments hiden-->
+
+                   <div class="container" id="old_comment<%= item.event_id %>">
+                           
+
+                   </div>
+                               
+                               
+                    
+     
+            </div>
+            
+               
+            
+    </div> 
+    
+
+    <%}); %>
+<%}
+else
+{
+  %> 
+  <p> <strong>There are no recods available</strong></p>
+<%  } %></div>
+
+
