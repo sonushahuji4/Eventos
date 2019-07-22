@@ -591,6 +591,7 @@ router.get('/posts/message_notify', function(req,res)
     const user_id = req.session.user_id; 
     const unseen = "unseen";
     //{include:[{ model: Login_Details}],
+    console.log("inside message notify api =>>>>>")
     Users.findAll({where:{user_id:{
         [Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]
                                 }},include:[{model:MessageBox,where:{status_seen_unseen:unseen}},{model:Login_Details}]})    
@@ -598,6 +599,7 @@ router.get('/posts/message_notify', function(req,res)
     {
         if(user_data !="")
         {
+            console.log("if not null then",user_data);
             res.send(user_data);
         }
         else{
@@ -606,6 +608,7 @@ router.get('/posts/message_notify', function(req,res)
                                         }},include:[{model:MessageBox},{model:Login_Details}]})   
             .then((data)=>
             {
+                console.log("if  null then",data);
                 res.send(data)
             }) 
             .catch((err)=>

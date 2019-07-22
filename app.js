@@ -44,10 +44,10 @@ const title ="Evento ";
 const baseUrl = "http://localhost:4000/";
 
 
-app.get('/', (req, res, next)=>
-{
-    const user_id = req.session.user_id;
-    res.render('testingpurpose',{title:'testingpurpose'});
+// app.get('/', (req, res, next)=>
+// {
+//     const user_id = req.session.user_id;
+//     res.render('testingpurpose',{title:'testingpurpose'});
     
 
     // Posts.findAll()
@@ -67,7 +67,7 @@ app.get('/', (req, res, next)=>
 
    //res.render('profileimage', { title: 'profileimage' });
     
-})
+//})
 
 // _users = [];
 // _connections = [];

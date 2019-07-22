@@ -24,9 +24,13 @@
         </li>
         <li class="nav-item">
           <form class="message_notification">
-          <a class="nav-link" href="#"><i class="fab fa-facebook-messenger"></i>
+            <div class="nav-link" style="cursor: pointer;">
+              <i class="fab fa-facebook-messenger"></i>
+              <span class="get_notified_when_message_comes"></span>
+            </div>
+          <!-- <a class="nav-link" href=""><i class="fab fa-facebook-messenger"></i>
             <span class="get_notified_when_message_comes"></span>
-          </a>
+          </a> -->
         </form>
       </li>
         <li class="nav-item">
@@ -165,7 +169,7 @@ $(document).ready(function()
                 var to_user_id = $(this).data('online_user_id');
                 var to_user_name = $(this).data('online_user_firstname');
                 var user_profile_pic = $(this).data('online_user_profile_pic');
-                const flag = false;
+                var flag = false;
 
 
                 $.ajax(
@@ -359,8 +363,9 @@ $(document).on('click', '.ui-button-icon', function()
 
 $(document).on('click','.message_notification',function()
     {
-    
+
       var $message_notification = $('.message_notification');
+      
       
 
       $.ajax(
@@ -373,6 +378,7 @@ $(document).on('click','.message_notification',function()
               
               var $message_list= document.getElementById("message_list");
               $message_list.innerHTML = '';
+              
 
               for (var i = 0, len = response.length; i < len; i++)
               {      
@@ -385,12 +391,12 @@ $(document).on('click','.message_notification',function()
                       var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
                       if(response[i].Login_Details[j].offline_online_status == "online")
                       {
-            $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}"><li class="list-group-item link-class"><div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"> <span class="online_icon"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small><strong>${response[i].Login_Details[j].offline_online_status}</strong></small></small></div></div> </li></div>`;
+            $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}"><li class="list-group-item link-class" style="cursor: pointer;"><div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"> <span class="online_icon"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small><strong>${response[i].Login_Details[j].offline_online_status}</strong></small></small></div></div> </li></div>`;
  
                       }
                       else{
                       
-    $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}" ><li class="list-group-item link-class"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small>Last seen <small>${showtime}</small></small></div> </div> </li></div>`;
+    $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user data-online_user_profile_pic="${response[i].user_profile_pic}" data-online_user_firstname="${response[i].user_firstname}" data-online_user_id="${response[i].user_id}" ><li class="list-group-item link-class" style="cursor: pointer;"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/profile_image/${response[i].user_profile_pic}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].user_firstname} ${response[i].user_lastname}<br/><small style="color:#F44336"><strong>${response[i].MessageBoxes.length} message</strong></small><br/><small>Last seen <small>${showtime}</small></small></div> </div> </li></div>`;
 
                       }
                                         

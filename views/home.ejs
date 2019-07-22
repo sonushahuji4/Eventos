@@ -447,31 +447,34 @@ $(document).ready(function() // main script starts
                                                                         </a>
                                                                 
                                                                 </li>
-                                                        </ul>
-
-                                                        <div class="container">
+                                                        </ul>`;
+                                        
+                                        innerHTML += `<div class="container">
                                                                 <div class="row">
-
                                                                         <div class="col-md-6 like" style="padding-top:10px" data-post="${post_data[i].event_id}">
                                                                                 <a href=""><i class="fas fa-thumbs-up"></i></a>
-                                                                                
+                                       
                                                                                 <span class="countLikes" id="countLikes${post_data[i].event_id}" style="cursor: pointer;"> ${post_data[i].Likes.length} Like</span>
-                                                                                
-                                                                        </div>
-                                                                        <div class="col-md-4 post_comment" id="${post_data[i].event_id}" style="padding-top:10px">
-                                                                                        <i class="fas fa-comments" style="cursor: pointer;"></i>
-                                                                                        <span class="countComments" style="cursor: pointer;"> ${post_data[i].Comments.length} comments</span>
+                                
+                                                                        </div>`;
+
+                                                  innerHTML += `        <div class="col-md-4 post_comment" id="${post_data[i].event_id}" style="padding-top:10px">
+                                                                                <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                                                                <span class="countComments" style="cursor: pointer;"> ${post_data[i].Comments.length} comments</span>
                                                                         
                                                                         </div>
+
                                                                         <div class="col-md-2" style="padding-top:10px">
                                                                                         <i class="fas fa-share"></i>
                                                                                         <span>share</span>
                                                                         
                                                                         </div>
-                                                                        
-                                                                        
+
                                                                 </div>
                                                         </div>
+
+                                                        
+                                                        
                                                         <hr>
 
                                                         <div class="container">
@@ -797,13 +800,16 @@ $(document).ready(function() // main script starts
 
         
         // like post section
-        $('.like').on('click', function(events)
+        //$('.like').on('click', function(events)
+        $(document).on('click', '.like', function(events)
         {
-                event.preventDefault();
-                event.stopPropagation();
                 
+                events.preventDefault();
+                events.stopPropagation();
+        
                 var postId = $(this).attr('data-post');
                 var postId = parseInt(postId,10)
+        
                 //var parent  = $(this)
                 //parent.html(response.count)
                 $.ajax(
