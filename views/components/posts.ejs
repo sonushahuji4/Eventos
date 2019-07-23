@@ -38,26 +38,34 @@
                                 
                                
           
-                                    <div class="col-2" style="padding-left:20px;padding-top:20px">
-                                        <i style="font-size:24px" class="fa">&#xf0c9;</i>
-                                        
-                                    </div>
+                                <div class="col-2" style="padding-left:20px;padding-top:20px">
+                                    <i style="font-size:24px" class="fa">&#xf0c9;</i>
+                                </div>
                 </div>
 <!-- new row starts here -->
                 <div class="row">
+                        <div class="container">
 
-                        <div class="title">
-                        <h5><span style="padding-left:35px" id="show_title"><%= item.event_message %></span></h5>
+                                <% if(item.event_start_date > onlyDate){ %>
+                                    <span class="events_status" style="margin-left:20px;background: #FDD835"></span>
+                                    <span>Up-coming Event</span>
+                                  <% } else if(item.event_start_date < onlyDate){ %>  
+                                    <span class="events_status" style="margin-left:20px;background: #D50000"></span>
+                                       <span>In-active Event</span>
+                                 <% } else { %>
+                                    <span class="events_status" style="margin-left:20px;background:#4cd137"></span>
+                                       <span>Active Event</span>
+                                    <% } %>
+                             
+                            <div class="title">
+                            <h5><span style="padding-left:20px" id="show_title"><%= item.event_message %></span></h5>
+                            </div>
                         </div>
                         <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
                                
                                <p><%= item.event_description %><span id="dots">...</span><span id="more" style="display: none;"><%= item.event_read_more_option %></span>
                                <span data-btn_hide_show="<%= item.event_id %>" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
                             </p>
-
-                        
-                            
-                              
         
                         </div>
                 </div>
