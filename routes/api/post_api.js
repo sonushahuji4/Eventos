@@ -663,41 +663,65 @@ router.post('/posts/update_unseen_message', function(req,res){
     })
 });
 
-router.post('/posts/testing', function(req, res)
+router.get('/posts/testing', function(req, res)
 {
+    // this is for upcoming and active events based on event happing date
+    // Posts.findAll({
+    //     where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+    //              [{user_id:user_id}]],
+    //              [Op.and]:{[Op.or]:[{event_start_date:{[Op.gte]:onlyDate}},{event_registeration_date_close:{[Op.gte]:onlyDate}}]}},
+    //              attributes:['event_id','user_id','event_start_date','event_registeration_date_close']
+
+    
+    // })
+
+    
+    // })
+
+
+    // active events
+    // Posts.findAll({
+    //     where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+    //              [{user_id:user_id}]],
+    //              [Op.and]:{event_start_date:onlyDate}},
+    //              attributes:['event_id','user_id','event_start_date','event_registeration_date_close']
+
+    
+    // })
+
+    // past events
+    // Posts.findAll({
+    //     where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+    //              [{user_id:user_id}]],
+    //              [Op.and]:{event_start_date:{[Op.lt]:onlyDate}}},
+    //              attributes:['event_id','user_id','event_start_date','event_registeration_date_close']
+
+    
+    // })
+
     const user_id = req.session.user_id;
     const status = "accept";
-    const event_latitude = req.body.event_latitude;
-    const event_logitude = req.body.event_logitude;
-    // steps 
-    // 1st get ur lat and lon from login_detail table
-    const miles = 3959;
-    const km = 6371;
-    const radius_input = 25;
-    const post_limit_display = 20;
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+   // var date_ = todayDateTime.getMonth();
+//attributes:['event_id','user_id','event_start_date','event_registeration_date_close']
+    //res.send(onlyDate);
+    Posts.findAll({
+        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                 [{user_id:user_id}]],
+                 [Op.and]:{event_start_date:{[Op.lt]:onlyDate}}},
+                 attributes:['event_id','user_id','event_start_date','event_registeration_date_close']
 
-    // SELECT event_id,user_id,event_message,event_area_1_name, ( 3959 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) AS distance FROM posts WHERE user_id IN (SELECT receiver_id FROM follows WHERE user_id = 1 AND status ="accept") OR user_id = 1 HAVING distance < 25 ORDER BY distance LIMIT 0 , 20
-
-    Posts.findAndCountAll({where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
-            
-        }
-
-        })
-    .then((postdata)=>
+    
+    })
+    .then((data)=>
     {
-
-      res.send(postdata.rows);
-        
+        res.send(data);
     })
     .catch((err)=>
     {
-        console.error(err)
-        res.status(501)
-        .send({
-                error : "error..... check console log"
-              })
+        res.send(err);
     })
-    
 	
 });
 
