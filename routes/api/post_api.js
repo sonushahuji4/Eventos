@@ -55,10 +55,8 @@ router.get('/posts', function(req, res)
     onlyDate = onlyDate.toISOString().slice(0,10)
     Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
         where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
-        {user_id:user_id}],
-        [Op.and]:{[Op.or]:[{event_start_date:{[Op.gte]:onlyDate}},{event_registeration_date_close:{[Op.gte]:onlyDate}}]}
-            
-        }
+        {user_id:user_id}] 
+    }
 
         })
     .then((postdata)=>
@@ -68,7 +66,7 @@ router.get('/posts', function(req, res)
         .then((userdata)=>
         {
             //res.send(postdata.rows)
-           res.render('home',{title:'home',items:postdata.rows,user:userdata});
+           res.render('home',{title:'home',items:postdata.rows,user:userdata,onlyDate:onlyDate});
         }) 
         .catch((err)=>
         {

@@ -65,6 +65,14 @@ right: 0.4em;
 border:1.5px solid white;
 }
 
+.events_status{
+  height:10px;
+  width:10px;
+  border-radius: 50%;
+  bottom: 0.2em;
+  right: 0.4em;
+  display: inline-block;
+  }
 
 .offline{
   background-color:#E5E8E8 !important;

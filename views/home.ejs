@@ -387,6 +387,8 @@ $(document).ready(function() // main script starts
 
                                 if(response.feeds_data !='')
                                 {
+                                        var onlyDate = new Date();
+                                        onlyDate = onlyDate.toISOString().slice(0,10)
                                         var $view_feeds_by= document.getElementById("view_feeds_by");
                                         //$view_feeds_by.innerHTML = "";
                                         let innerHTML = ''
@@ -427,7 +429,26 @@ $(document).ready(function() // main script starts
                                                                         </div>
                                                         </div>
                                                         <div class="row">
-                                                                <h5><span style="padding-left:35px" id="show_title">${post_data[i].event_message}</span></h5>
+                                                                        <div class="container">`;
+                                                                                if(post_data[i].event_start_date > onlyDate)
+                                                                                {
+                                                                         innerHTML += ` <span class="events_status" style="margin-left:20px;background: #FDD835"></span>
+                                                                                        <span>Up-coming Event</span>`;
+                                                                                }
+                                                                                else if(post_data[i].event_start_date < onlyDate)
+                                                                                {
+                                                                        innerHTML += ` <span class="events_status" style="margin-left:20px;background: #D50000"></span>
+                                                                                       <span>In-active Event</span>`;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                        innerHTML += ` <span class="events_status" style="margin-left:20px;background:#4cd137"></span>
+                                                                                       <span>Active Event</span>`;
+                                                                                }
+                                                          innerHTML += `        <div class="title">
+                                                                                      <h5><span style="padding-left:20px" id="show_title">${post_data[i].event_message}</span></h5>
+                                                                                </div>
+                                                                        </div>
                              
                                                                 <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
                                
@@ -1167,6 +1188,8 @@ $(document).ready(function() // main script starts
                         {
                                 if(response.feeds_data !='')
                                 {
+                                        var onlyDate = new Date();
+                                        onlyDate = onlyDate.toISOString().slice(0,10)
                                         var $view_feeds_by= document.getElementById("view_feeds_by");
                                         //$view_feeds_by.innerHTML = "";
                                         let innerHTML = ''
@@ -1207,7 +1230,27 @@ $(document).ready(function() // main script starts
                                                                         </div>
                                                         </div>
                                                         <div class="row">
-                                                                <h5><span style="padding-left:35px" id="show_title">${post_data[i].event_message}</span></h5>
+                                                                        <div class="container">`;
+                                                                                if(post_data[i].event_start_date > onlyDate)
+                                                                                {
+                                                                         innerHTML += ` <span class="events_status" style="margin-left:20px;background: #FDD835"></span>
+                                                                                        <span>Up-coming Event</span>`;
+                                                                                }
+                                                                                else if(post_data[i].event_start_date < onlyDate)
+                                                                                {
+                                                                        innerHTML += ` <span class="events_status" style="margin-left:20px;background: #D50000"></span>
+                                                                                       <span>In-active Event</span>`;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                        innerHTML += ` <span class="events_status" style="margin-left:20px;background:#4cd137"></span>
+                                                                                       <span>Active Event</span>`;
+                                                                                }
+                                                          innerHTML += `        <div class="title">
+                                                                                      <h5><span style="padding-left:20px" id="show_title">${post_data[i].event_message}</span></h5>
+                                                                                </div>
+                                                                        </div>
+                                                                
                              
                                                                 <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
                                
