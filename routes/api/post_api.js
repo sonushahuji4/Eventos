@@ -680,27 +680,6 @@ router.post('/posts/events_options', function(req,res)
     var onlyDate = new Date();
     onlyDate = onlyDate.toISOString().slice(0,10)
     
-    if(selected_option_locations == "current_location")
-    {
-        if((action_option == "upcoming_events") && (selected_option_locations == "current_location"))
-        {
-            res.send({action_option,selected_option_locations})
-        }
-        else if((action_option == "active_events") && (selected_option_locations == "current_location") )
-        {
-            res.send({action_option,selected_option_locations})
-        }
-        else if((action_option =="past_events") && (selected_option_locations == "current_location") )
-        {
-            res.send({action_option,selected_option_locations})
-        }
-        else
-        {
-            res.send("some error...events_options api try to fix it..!");
-        }
-    }
-    else
-    {
         if(action_option == "upcoming_events")
         {
             if(selected_option_locations == "area")
@@ -852,6 +831,52 @@ router.post('/posts/events_options', function(req,res)
                                 error : "error..... check console log"
                             })
                     })
+            
+            }
+            else if(selected_option_locations == "current_location")
+            {
+
+                const query = '( '+km+' * acos( cos( radians('+lat+') ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians('+lon+') ) + sin( radians('+lat+') ) * sin( radians( event_latitude ) ) ) )'
+
+                Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+                    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                        [{user_id:user_id}]],
+                        [Op.and]:[{event_start_date:{[Op.gte]:onlyDate}}]},
+                    attributes:{include:[[sequelize.literal(query),'distance']]},
+                    where: sequelize.where(sequelize.literal(query), '<=',25),
+                    order: sequelize.col('distance'),
+                    limit: 15,
+                    offset: 0
+                })
+                .then((feeds_data)=>
+                    {
+
+                        Users.findOne({where:{user_id:user_id}})
+                        .then((user_data)=>
+                        {
+                            res.send({feeds_data,user_data});
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                    //res.send(data);
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501)
+                        .send({
+                                error : "error..... check console log"
+                            })
+                    })
+
+                    
             
             }
             //res.send({action_option,selected_option_locations})
@@ -1170,7 +1195,7 @@ router.post('/posts/events_options', function(req,res)
         {
             res.send("some error...events_options api try to fix it..!");
         }
-    }
+    
 
 })
 

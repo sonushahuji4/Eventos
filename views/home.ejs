@@ -385,7 +385,7 @@ $(document).ready(function() // main script starts
                         success:function(response)
                         {     
 
-                                if(response !='')
+                                if(response.feeds_data !='')
                                 {
                                         var $view_feeds_by= document.getElementById("view_feeds_by");
                                         //$view_feeds_by.innerHTML = "";
@@ -519,6 +519,9 @@ $(document).ready(function() // main script starts
                                 
                                
                                
+                                }
+                                else{
+                                        alert("no events available");
                                 }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
@@ -1017,7 +1020,7 @@ $(document).ready(function() // main script starts
                                                 if(status_got_data == true)
                                                 {
                                                         status_got_data = false;
-                                                        events_options(latitude,longitude,common_name,selected_option,action_option);  // call function ajax for backend here;
+                                                        events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
 
                                                 }
                                         }
@@ -1053,7 +1056,7 @@ $(document).ready(function() // main script starts
                                                 if(status_got_data == true)
                                                 {
                                                         status_got_data = false;
-                                                        events_options(latitude,longitude,common_name,selected_option,action_option);  // call function ajax for backend here;
+                                                        events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
 
                                                 }
                                         }
@@ -1089,7 +1092,7 @@ $(document).ready(function() // main script starts
                                                 if(status_got_data == true)
                                                 {
                                                         status_got_data = false;
-                                                        events_options(latitude,longitude,common_name,selected_option,action_option);  // call function ajax for backend here;
+                                                        events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
 
                                                 }
                                         }
@@ -1125,7 +1128,7 @@ $(document).ready(function() // main script starts
                                                 if(status_got_data == true)
                                                 {
                                                         status_got_data = false;
-                                                        events_options(latitude,longitude,common_name,selected_option,action_option);  // call function ajax for backend here;
+                                                        events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
 
                                                 }
 
@@ -1134,7 +1137,7 @@ $(document).ready(function() // main script starts
                                         else
                                         { // selected_option == "current_location"
                                                 alert("current location")
-                                                events_options(latitude,longitude,common_name,selected_option,action_option);  // call function ajax for backend here;
+                                                events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
                                         }
 
 
@@ -1162,7 +1165,147 @@ $(document).ready(function() // main script starts
 
                         success:function(response)
                         {
-                               alert(JSON.stringify(response));
+                                if(response.feeds_data !='')
+                                {
+                                        var $view_feeds_by= document.getElementById("view_feeds_by");
+                                        //$view_feeds_by.innerHTML = "";
+                                        let innerHTML = ''
+
+                                        const  post_data = response.feeds_data;
+                                        for(var i=0, len = post_data.length; i < len; i++)
+                                        {
+                                                // alert(post_data[i].event_message);
+                                                // alert(post_data[i].Likes.length);
+                                                // alert(post_data[i].Comments.length);
+                                                // alert(post_data[i].User.user_firstname);
+                                                // alert("user data")
+                                                // alert(response.user_data.user_email);
+                                                
+                                   innerHTML += `<div class="card mb-3">
+                                                        <div class="row">
+                                                                <div class="col-10" style="padding-left:50px;padding-top:20px">
+                                                                        <div class="d-flex bd-highlight">`;
+                                                                                if (post_data[i].User.user_profile_pic) 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"> 
+                                                                                        <img src="../public/profile_image/${post_data[i].User.user_profile_pic}" class="rounded-circle user_img"> 
+                                                                                        </div> `
+                                                                                } 
+                                                                                else 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+                                                                                }
+                                                                 innerHTML += ` <div class="user_info viewclick" data-view="${post_data[i].User.user_id}">${post_data[i].User.user_firstname} ${post_data[i].User.user_lastname}<br/>
+                                                                                        <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+                                                                                        <small><a href="http://maps.google.com/?q=${post_data[i].event_latitude},${post_data[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                        <small style="padding-left:10px" id="show_location"></small>
+                                                                                </div> 
+                                                                        </div>
+                                                                </div>
+                                                                        <div class="col-2" style="padding-left:20px;padding-top:20px">
+                                                                                <i style="font-size:24px" class="fa">&#xf0c9;</i>
+                                                                        </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <h5><span style="padding-left:35px" id="show_title">${post_data[i].event_message}</span></h5>
+                             
+                                                                <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                               
+                                                                        <p>${post_data[i].event_description}<span id="dots">...</span><span id="more" style="display: none;">${post_data[i].event_read_more_option}</span>
+                                                                        <span data-btn_hide_show="${post_data[i].event_id}" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                                                                        </p>
+                                                                </div>
+                                                        </div>
+
+                                                        <ul class="nav">
+                                                                <li>
+                                                                        <a href="/post/${post_data[i].event_id}">
+                                                                        <img src="../public/image/${post_data[i].e_imagepath}" alt="error check >" class="img-fluid">
+                                                                        </a>
+                                                                
+                                                                </li>
+                                                        </ul>`;
+                                        
+                                        innerHTML += `<div class="container">
+                                                                <div class="row">
+                                                                        <div class="col-md-6 like" style="padding-top:10px" data-post="${post_data[i].event_id}">
+                                                                                <a href=""><i class="fas fa-thumbs-up"></i></a>
+                                       
+                                                                                <span class="countLikes" id="countLikes${post_data[i].event_id}" style="cursor: pointer;"> ${post_data[i].Likes.length} Like</span>
+                                
+                                                                        </div>`;
+
+                                                  innerHTML += `        <div class="col-md-4 post_comment" id="${post_data[i].event_id}" style="padding-top:10px">
+                                                                                <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                                                                <span class="countComments" style="cursor: pointer;"> ${post_data[i].Comments.length} comments</span>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-md-2" style="padding-top:10px">
+                                                                                        <i class="fas fa-share"></i>
+                                                                                        <span>share</span>
+                                                                        
+                                                                        </div>
+
+                                                                </div>
+                                                        </div>
+
+                                                        
+                                                        
+                                                        <hr>
+
+                                                        <div class="container">
+                                                                <div class="row">`;
+                                                                        
+                                                                        if(response.user_data.user_profile_pic)
+                                                                        {
+                                                                                innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                <a href=""><img class="rounded-circle" src="../public/profile_image/${response.user_data.user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                              </div>`
+                                                                        }
+                                                                        else 
+                                                                        { 
+                                                                                innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                <a href=""><img class="rounded-circle" src="../public/profile_image/icon.jpg" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                              </div>`
+                                                                        }
+                                                                        
+                                                                        innerHTML += `  <div class="col-md-7">
+                                                                                                <div class="form-group" id="comment_form${post_data[i].event_id}">
+                                                                                                        <input class="form-control" name="comment" type="text" placeholder="Your comments" id="comment${post_data[i].event_id}"/>
+                                                                                                </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3" style="padding-top:10px">
+                                                                                                <button type="button" data-po="${post_data[i].event_id}" name="submit_comment" class="btn btn-default submit_comment">comment</button>
+                                                                                        </div>
+                                                                </div>
+                                                                
+
+                                                                <div class="container" id="old_comment${post_data[i].event_id}">
+                                                                        
+
+                                                                </div>
+                                                                        
+                                                                        
+                                                                
+                                                
+                                                        </div>
+                                                </div>`;
+                                                
+                                        }
+                                        $view_feeds_by.innerHTML = innerHTML;
+                                  
+                                
+                               
+                               
+                                }
+                                else
+                                {
+                                        alert("no events available");
+                                }
+                                console.log(response);
+                               //alert(JSON.stringify(response));
                         },
                         error:function(jqXHR, textStatus, errorThrown)
                         {
