@@ -703,7 +703,158 @@ router.post('/posts/events_options', function(req,res)
     {
         if(action_option == "upcoming_events")
         {
-            res.send({action_option,selected_option_locations})
+            if(selected_option_locations == "area")
+            {
+                Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+                    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                        [{user_id:user_id}]],
+                        [Op.and]:[{event_start_date:{[Op.gte]:onlyDate}},{event_area_1_name:{[Op.like]:  '%' + common_name + '%'}}]}
+                })
+                .then((feeds_data)=>
+                    {
+                        Users.findOne({where:{user_id:user_id}})
+                        .then((user_data)=>
+                        {
+                            res.send({feeds_data,user_data});
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                        //console.log(data);
+                    //res.send(data);
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501)
+                        .send({
+                                error : "error..... check console log"
+                            })
+                    })
+            }
+            else if(selected_option_locations == "city")
+            {
+                Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+                    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                        [{user_id:user_id}]],
+                        [Op.and]:[{event_start_date:{[Op.gte]:onlyDate}},{event_main_city_name:{[Op.like]:  '%' + common_name + '%'}}]
+                        
+                    }
+                })
+                .then((feeds_data)=>
+                    {
+                        Users.findOne({where:{user_id:user_id}})
+                        .then((user_data)=>
+                        {
+                            res.send({feeds_data,user_data});
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                       // console.log(data);
+                    //res.send(data);
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501)
+                        .send({
+                                error : "error..... check console log"
+                            })
+                    })
+            }
+            else if(selected_option_locations == "state")
+            {
+                Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+                    where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                        [{user_id:user_id}]],
+                        [Op.and]:[{event_start_date:{[Op.gte]:onlyDate}},{event_state_name:{[Op.like]:  '%' + common_name + '%'}}]
+                        
+                    }
+                })
+                .then((feeds_data)=>
+                    {
+                        Users.findOne({where:{user_id:user_id}})
+                        .then((user_data)=>
+                        {
+                            res.send({feeds_data,user_data});
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                       // console.log(data);
+                    //res.send(data);
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501)
+                        .send({
+                                error : "error..... check console log"
+                            })
+                    })
+            }
+            else if(selected_option_locations == "country")
+            {
+                Posts.findAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
+
+                where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+                        [{user_id:user_id}]],
+                        [Op.and]:[{event_start_date:{[Op.gte]:onlyDate}},{event_country_name:{[Op.like]:  '%' + common_name + '%'}}]
+                        
+                    }
+                })
+                .then((feeds_data)=>
+                    {
+                        Users.findOne({where:{user_id:user_id}})
+                        .then((user_data)=>
+                        {
+                            res.send({feeds_data,user_data});
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                        //console.log(data);
+                    //res.send(data);
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501)
+                        .send({
+                                error : "error..... check console log"
+                            })
+                    })
+            
+            }
+            //res.send({action_option,selected_option_locations})
         }
         else if(action_option == "active_events")
         {
