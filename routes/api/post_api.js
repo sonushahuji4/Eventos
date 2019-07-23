@@ -51,8 +51,12 @@ router.get('/posts', function(req, res)
     const user_id = req.session.user_id;
     console.log("user_id in GET=>",user_id)
     const status = "accept";
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
     Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
-        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},{user_id:user_id}]
+        where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
+        {user_id:user_id}],
+        [Op.and]:{[Op.or]:[{event_start_date:{[Op.gte]:onlyDate}},{event_registeration_date_close:{[Op.gte]:onlyDate}}]}
             
         }
 
@@ -663,6 +667,56 @@ router.post('/posts/update_unseen_message', function(req,res){
     })
 });
 
+router.post('/posts/events_options', function(req,res)
+{
+    const user_id = req.session.user_id;
+    const action_option = req.body.action_option;
+    const selected_option_locations = req.body.selected_option;
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    
+    if(selected_option_locations == "current_location")
+    {
+    if(selected_option_locations == "current_location")
+        if((action_option == "upcoming_events") && (selected_option_locations == "current_location"))
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else if((action_option == "active_events") && (selected_option_locations == "current_location") )
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else if((action_option =="past_events") && (selected_option_locations == "current_location") )
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else
+        {
+            res.send("some error...events_options api try to fix it..!");
+        }
+    }
+    else
+    {
+        if(action_option == "upcoming_events")
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else if(action_option == "active_events")
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else if(action_option =="past_events")
+        {
+            res.send({action_option,selected_option_locations})
+        }
+        else
+        {
+            res.send("some error...events_options api try to fix it..!");
+        }
+    }
+
+})
+
 router.get('/posts/testing', function(req, res)
 {
     // this is for upcoming and active events based on event happing date
@@ -716,7 +770,7 @@ router.get('/posts/testing', function(req, res)
     })
     .then((data)=>
     {
-        res.send(data);
+        res.send("data");
     })
     .catch((err)=>
     {

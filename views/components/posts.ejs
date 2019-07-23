@@ -25,9 +25,16 @@
                                       <br/>
                                       <small><a href="http://maps.google.com/?q=<%= item.event_latitude %>,<%= item.event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
                                       <small style="padding-left:10px" id="show_location"></small>
+                                      
+                                        
+                                  
+                                
                                     </div> 
+                                    
                                   </div>
+                                  
                                 </div>  
+                                
                                 
                                
           
@@ -38,8 +45,10 @@
                 </div>
 <!-- new row starts here -->
                 <div class="row">
+
+                        <div class="title">
                         <h5><span style="padding-left:35px" id="show_title"><%= item.event_message %></span></h5>
-                             
+                        </div>
                         <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
                                
                                <p><%= item.event_description %><span id="dots">...</span><span id="more" style="display: none;"><%= item.event_read_more_option %></span>

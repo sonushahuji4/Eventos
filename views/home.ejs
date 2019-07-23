@@ -103,7 +103,6 @@
                 <%- include('components/create_posts') %>
                 <hr> 
                 <form>
-                
                         <select class="form-control view_feeds_by">
                                 <option selected>View Feeds By</option>
                                 <option value="current_location">Current Location</option>
@@ -112,10 +111,7 @@
                                 <option value="state">State</option>
                                 <option value="country">Country</option>
                         </select>
-                    </form>
-
-               
-                      
+                    </form>      
                 <hr> 
 
                 <!-- Suggestions box -->
@@ -956,6 +952,47 @@ $(document).ready(function() // main script starts
                         }
                 })
         });
+
+        var selected_option = "current_location";
+        $("select.view_events_with_options").change(function()
+        {
+                selected_option = $(this).children("option:selected").val();
+        })
+
+        $(document).on('click','.events_options',function()
+        {
+                //alert("click event options");
+                var action_option = $(this).data('clicked-option');
+                
+                
+
+                alert(selected_option);
+                $.ajax({
+                        url:"/posts/events_options",
+                        method: "POST",
+                        data:{action_option:action_option,selected_option:selected_option},
+
+                        success:function(response)
+                        {
+                               alert(JSON.stringify(response));
+                        },
+                        error:function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        }
+                })
+        });
+
+        function events_options()
+        {
+                
+        }
 
 }); // main script ends
 </script>

@@ -1,15 +1,28 @@
 
 <!-- display events options-->
 <div class="card mb-3">
+    
     <div class="card-header bg-transparent">Events</div>
+    
+                <form>
+                        <select class="card-header view_events_with_options" style="margin-left:25px;margin-right:25px; width: 300px">
+                                
+                                <option selected value="current_location">Current Location</option>
+                                <option value="area">Area</option>
+                                <option value="city">City</option>
+                                <option value="state">State</option>
+                                <option value="country">Country</option>
+                        </select>
+                    </form>      
+                
     <div class="card-body">
         <ul class="nav">
                 <li class="card-body">        
-                                <a href=""><img src="../public/image/Upcoming-Events.png" alt="" class="rounded-circle border border-danger" style="width:100px; height:100px;"></a>
+                                <img src="../public/image/Upcoming-Events.png" alt="" class="rounded-circle border border-danger events_options" data-clicked-option="upcoming_events" style="width:100px; height:100px;cursor: pointer;">
                                 Upcoming Events
-                                <a href=""><img src="../public/image/activeevents.png" alt="" class="rounded-circle border border-danger" style="width:100px; height:100px"></a>
+                                <img src="../public/image/activeevents.png" alt="" class="rounded-circle border border-danger events_options" data-clicked-option="active_events" style="width:100px; height:100px;cursor: pointer;">
                                 Active Events
-                                <a href=""><img src="../public/image/pastevents.png" alt="" class="rounded-circle border border-danger" style="width:100px; height:100px"></a>
+                                <img src="../public/image/pastevents.png" alt="" class="rounded-circle border border-danger events_options" data-clicked-option="past_events" style="width:100px; height:100px;cursor: pointer;">
                                 Previous Events
                   
                 </li>
