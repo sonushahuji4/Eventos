@@ -1,4 +1,83 @@
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Column chart</title>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	</head>
+	<body>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    
+	<script>
+	Highcharts.chart('container', {
+	    chart: {
+	        type: 'scatter'
+	    },
+	    title: {
+	        text: 'Project Details'
+	    },
+	    xAxis: {categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']},
+	    yAxis: {categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']},
+	    series: [{data: [3, 5, 2, 4, 0, 5, 0, 3, 2, 1, 4, 6]}]
+	});
+	</script>
+	</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>Document</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-4 col-lg-10 col-md-6 col-sm-12">
+<canvas id="myChart"></canvas>
+</div>
+
+<script type="text/javascript">
+var myChart = document.getElementById('myChart').getContext("2d")
+
+var myGraph = new Chart(myChart, {
+type: "bubble",
+data: {
+labels: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+datasets: [{
+label: 'Projects',
+data: [4, 3, 1, 5, 2, 5, 4, 5, 4, 6, 4, 5],
+backgroundColor: 'lightgreen',
+borderWidth: 2,
+borderColor: '#000',
+}],
+},
+options: {
+scales: {
+xAxes: [{
+gridLines: {
+display: false,
+}
+}],
+yAxes: [
+    {
+        ticks: 
+        {
+        beginAtZero: true,
+    }
+    }]
+}
+}
+})
+</script> -->
+
+<!-- </body>
+</html> -->
+
+
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -126,4 +205,4 @@ tooltip: {
             series: data,
 
 });
-</script>
+</script> -->

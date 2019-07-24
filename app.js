@@ -44,30 +44,12 @@ const title ="Evento ";
 const baseUrl = "http://localhost:4000/";
 
 
-// app.get('/', (req, res, next)=>
-// {
-//     const user_id = req.session.user_id;
-//     res.render('testingpurpose',{title:'testingpurpose'});
+app.get('/', (req, res, next)=>
+{
+    const user_id = req.session.user_id;
+    res.render('graphsample',{title:'graphsample'});
     
-
-    // Posts.findAll()
-    // .then((postsdata)=>
-    // {
-    //     console.log(postsdata)
-    //         res.render('profileimage',{title:'profileimage',items:postsdata});
-        
-    // })
-    // .catch((err)=>
-    // {
-    //     console.error(err)
-    //     res.status(501).send({
-    //         error : "error..... check console log"
-    //     })
-    // })
-
-   //res.render('profileimage', { title: 'profileimage' });
-    
-//})
+})
 
 // _users = [];
 // _connections = [];
