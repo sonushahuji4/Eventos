@@ -150,6 +150,17 @@ router.put('/profile/updatauserdata/:id',function (req,res)
     // res.send('success');      
 });
 
+router.get('/profile/heap_map_data', function(req,res)
+{
+    var data = [[11, 4, 91][0, 0, 1],[2, 1, 15], [2, 2, 123],[2, 3, 64], [2, 4, 52],[3, 0, 72],[3, 1, 132],[3, 2, 114],[3, 3, 19],[4, 1, 5],[4, 2, 8],[4, 3, 117],[4, 4, 115],[5, 0, 88],[5, 1, 32],[5, 2, 12],[5, 3, 6]];
+    res.send(data);
+})
 
 
 module.exports = router;
+
+
+
+
+
+
