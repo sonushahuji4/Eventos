@@ -3,6 +3,135 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Column chart</title>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/boost-canvas.js"></script>
+        <script src="https://code.highcharts.com/modules/boost.js"></script>
+	</head>
+	<body>
+
+
+<div id="container" style="height: 300px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
+
+<!-- Source: http://vikjavev.no/ver/highcharts-demos/heatmap.csv.php?year=2013 -->
+<pre id="csv" style="display: none">Project_Name,Date,Time
+AI,2017-01-01,0,2.7
+ML,2017-01-01,1,2.5
+BIG DATA,2017-12-31,16,-0.7
+MOBILE,2017-12-31,17,-0.2
+WEB,2017-12-31,18,-0.3
+GITHUB,2017-12-31,19,-0.3</pre>
+    
+	<script>
+       
+       Highcharts.chart('container', 
+       {
+
+data: {
+    csv: document.getElementById('csv').innerHTML
+},
+
+chart: {
+    type: 'heatmap',
+    margin: [60, 10, 80, 50]
+},
+
+boost: {
+    useGPUTranslations: true
+},
+
+title: {
+    text: 'Highcharts heat map',
+    align: 'left',
+    x: 40
+},
+
+subtitle: {
+    text: 'Temperature variation by day and hour through 2017',
+    align: 'left',
+    x: 40
+},
+
+xAxis: {
+    type: 'datetime',
+    min: Date.UTC(2017, 0, 1),
+    max: Date.UTC(2017, 11, 31, 23, 59, 59),
+    labels: {
+        align: 'left',
+        x: 5,
+        y: 14,
+        format: '{value:%B}' // long month
+    },
+    showLastLabel: false,
+    tickLength: 16
+},
+
+
+yAxis: {
+                categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
+                title: null
+            },
+            
+colorAxis: {
+    stops: [
+        [0, '#3060cf'],
+        [0.5, '#fffbbc'],
+        [0.9, '#c4463a'],
+        [1, '#c4463a']
+    ],
+    min: -15,
+    max: 25,
+    startOnTick: false,
+    endOnTick: false,
+    labels: {
+        format: '{value}℃'
+    }
+},
+
+series: [{
+    boostThreshold: 100,
+    borderWidth: 0,
+    nullColor: '#EFEFEF',
+    colsize: 24 * 36e5, // one day
+    tooltip: {
+        headerFormat: 'Temperature<br/>',
+        pointFormat: '{point.x:%e %b, %Y} {point.y}:00: <b>{point.value} ℃</b>'
+    },
+    turboThreshold: Number.MAX_VALUE // #3404, remove after 4.0.5 release
+}]
+
+});
+
+	</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Column chart</title>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -103,7 +232,7 @@
 
 	</script>
 	</body>
-</html>
+</html> -->
 
 
 

@@ -44,10 +44,17 @@ const title ="Evento ";
 const baseUrl = "http://localhost:4000/";
 
 
-app.get('/', (req, res, next)=>
+app.get('/heat_map', (req, res, next)=>
 {
     const user_id = req.session.user_id;
-    res.render('graphsample',{title:'graphsample'});
+    res.render('heat_map',{title:'heat Map'});
+    
+})
+
+app.get('/graphsample', (req, res, next)=>
+{
+    const user_id = req.session.user_id;
+    res.render('graphsample',{title:'graph sample'});
     
 })
 
