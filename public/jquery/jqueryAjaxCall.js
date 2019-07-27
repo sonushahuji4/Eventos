@@ -253,5 +253,91 @@ $(document).ready(function()
                 );
         })// like post ends 
 
+        // when on comment button clicked then it list outs all the comments related to that posts      
+        $(document).on('click', '.post_comment', function()
+        {
+                var post_id = $(this).attr('id')
+                var action = 'fetch_all_comment';
+                $.ajax(
+                {
+                        url:"/posts/fetch_add_comment",
+                        method:"POST",
+                        data:{post_id:post_id,action:action},
+                        success:function(response)
+                        {
+                                let old_comment = document.getElementById("old_comment"+post_id)
+                                old_comment.innerHTML = ""; // make it null first then populate data again
+                                for (var i = 0, len = response.length; i < len; i++)
+                                {    // alert(response.length);
+                                        var comment_data = response[i].comment;
+                                        var comment_time = response[i].createdAt;
+                                       // alert(comment_data);
+                                        //alert(comment_time);  
+                                       // alert(response[i].User.length);
+                                        //alert(response[i].User.user_profile_pic);
+                                        var user_image = response[i].User.user_profile_pic;
+                                        
+                                        
+                                        old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-1"><a href=""><img class="rounded-circle" src="../public/profile_image/'+user_image+'" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a></div><div class="col-11"><p>'+comment_data+' <br/><small>'+comment_time+'</small></p></div></div><hr>';
+
+                                       
+                                        
+                                }
+                                // response.forEach(function(item, index)
+                                // { 
+                                        // var comment_data = item.comment
+                                       
+                                        // old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-2"><a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="error" class="rounded-circle border border-danger" style="width:30px; height:30px"></a></div><div class="col-10"><p>'+comment_data+' <br/><small>5hr</small></p></div></div><hr>';
+                                       
+                                // })
+                                        // document.getElementById("demo").innerHTML += '<br>' + employee.name;
+                                $("#old_comment"+post_id).slideToggle('slow'); 
+                                              
+                        }
+
+                
+                });
+        });
+
+        // on submit comment, comments gets submited and stores in database
+        $(document).on('click', '.submit_comment', function()
+            {
+                    var post_id = $(this).attr('data-po')
+                    var comment = $('#comment'+post_id).val();
+                    var action = 'submit_comment';
+                            
+                    if(comment !='')
+                    {
+                            $.ajax({
+                                    url:"/posts/add_comment",
+                                    method:"POST",
+                                    data:{post_id:post_id,comment:comment,action:action},
+                                    success:function(data)
+                                    {
+                                            if(data == "success")
+                                            {
+                                                    document.getElementById("comment"+post_id).value=""
+                                                    //$('#comment_form'+post_id).slideUp('slow');
+                                            }
+                                            
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                   } 
+                            })
+                    }
+                    else{
+                            alert("comment connot be empty");
+                    }
+    
+                   
+        });
         
 })
