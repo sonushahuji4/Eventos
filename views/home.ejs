@@ -591,60 +591,8 @@ $(document).ready(function() // main script starts
         //         $btn_show.slideToggle('slow');
         });
 
-        
-                
-        
-        
-        
-        
 
-
-        // follow a  user
-        
-
-
-        
-        // like post section
-        //$('.like').on('click', function(events)
-        $(document).on('click', '.like', function(events)
-        {
-                
-                events.preventDefault();
-                events.stopPropagation();
-        
-                var postId = $(this).attr('data-post');
-                var postId = parseInt(postId,10)
-        
-                //var parent  = $(this)
-                //parent.html(response.count)
-                $.ajax(
-                        {
-                                type: 'POST',
-                                url:  '/posts/like/' + $(this).attr('data-post'),
-                                contentType: "application/json", 
-                                //data: JSON.stringify(data),
-                                success : function(response)
-                                {
-                                        
-                                        if(response == false)
-                                        {
-                                                alert("You have already liked this post")
-                                        }
-                                        else 
-                                        {
-                                                //parent.html(response.count)
-                                                $('#countLikes'+postId).html(response.count);
-                                        }
-                                                
-                                
-                                },
-                                error : function()
-                                {
-                                        alert('error from server');
-                                }
-                        }
-                );
-        })// like post ends 
+       
 
         // on comment button clicked view all comments for particular post
         $(document).on('click', '.post_comment', function()
