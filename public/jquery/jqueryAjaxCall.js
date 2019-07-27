@@ -2,7 +2,11 @@
 
 $(document).ready(function()
 {
+        /******************************************************* ALL Home.ejs Ajax Query Call *************************************************************/
 
+
+        /****************************************************** It includes all Home.ejs files ************************************************************/
+        
         // set interval ...it will continouly update the latitude and longitude of user
         // setInterval(function()
         // {
