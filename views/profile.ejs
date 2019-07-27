@@ -9,39 +9,10 @@
 
        
                 <!-- row 1 sub-row I-->
-        <div class="row">
-
-
-                                <div  id="heap_map_chart" style="height: 400px; max-width: 100%; margin: 0 auto"></div>
-                                
-                                    
-                        
         
-        </div><!-- row 1 sub-row I ends-->
-        <button type="button" class="btn btn-primary click_once">Primary</button>
+
         
-        <div class="container">
-                        <div class="row">
-                                <div class="card rounded-circle">
-                                        <div class="card-img">
-                                                <a href=""><img src="../public/image/1.jpg" alt="" class="img-fluid rounded-circle border border-danger"style="width:100px; height:100px"></a></li>                
-                                                <div class="card-img-overlay">Gallery</div>
-                                        </div>
-                                </div>
-                                <div class="card rounded-circle">
-                                                <div class="card-img">
-                                                        <a href=""><img src="../public/image/5.jpg" alt="" class="img-fluid rounded-circle border border-danger"style="width:100px; height:100px"></a></li>                
-                                                        <div class="card-img-overlay">Gallery</div>
-                                                </div>
-                                </div>
-                                <div class="card rounded-circle">
-                                                <div class="card-img">
-                                                        <a href=""><img src="../public/image/7.jpg" alt="" class="img-fluid rounded-circle border border-danger"style="width:100px; height:100px"></a></li>                
-                                                        <div class="card-img-overlay">Gallery</div>
-                                                </div>
-                                        </div>
-                        </div>               
-        </div>
+        
                 
 
 
@@ -242,6 +213,15 @@
 <!-- row 2-->
 <div class="col-6">
 
+        
+                                
+                
+                                <div class="card" id="heap_map_chart" style="margin-top:30px;margin-left: -15px; width:570px"></div>
+                                                
+                                    
+                                            
+                                        
+                        
         <div class="card" style="margin-top:30px;margin-left: -15px; width:570px">
                 <div class="card-body">
                                 <% if(items.length > 0){%>
@@ -266,7 +246,7 @@
     
                                            
                 </div>
-        </div>
+</div>
 
     <!-- for heading display-->
         
@@ -359,7 +339,16 @@
 </div><!-- row 2ends-->
 
 <div class="col-3">
-                <div class="card-body" style="background:#ffffff;margin-top:30px">
+
+                <div class="card border-success mb-3" style="margin-top:30px">
+                        
+                                    <div class="card-body text-success" id="moreInfo">
+                                        
+                                    </div>
+                               
+                </div> 
+
+                <div class="card" style="background:#ffffff;margin-top:30px">
                                 <div class="card about-user">
                                          <div class="card-body">
                                           <div class="card-block">
@@ -388,102 +377,147 @@
 $(document).ready(function() 
 {
 
-        $(document).on('click', '.click_once', function()
-       {
-
-            $.ajax(
+        requestData();
+        function requestData()
+        {
+                $.ajax(
                 {
                 url: '/profile/heap_map_data',
                 type: 'GET',
                 success: function(response) 
                 {
+                        
+                        console.log(response);
                         var chart_data = [];
-                        var skip_1st_data = 1;
-                        var take_Data_upto = 0;
-                        for (var i = 0, len = response.length; i < len; i++)
-                        {   if(skip_1st_data == 1)
+                        var count = 0;
+                        for(var i = 0, len = response.length; i < len; i++)
                         {
-                                skip_1st_data = 2;
+                        date_value = response[i].event_start_date;
+                        var d = new Date(date_value);   
+                        var year = d.getFullYear();
+                        var month = d.getMonth();
+                        var day = d.getDay();
+                        var actualDay = day -1;
+
+                        chart_data.push([month,actualDay,response[i].user_id]);
+
                         }
-                        else{
-                                take_Data_upto = take_Data_upto + 1;
-                                chart_data.push(response[i]);
-                                
-                                if(take_Data_upto == 31)
-                                {
-                                        break;
-                                }
-                        }
-                                        
-                        }
-                        console.log(chart_data)
+                        console.log("chart_data ==",chart_data);
+                        
+
                         Highcharts.chart('heap_map_chart', 
                         {
 
-                                chart: 
-                                {
-                                        type: 'heatmap',
-                                        marginTop: 40,
-                                        marginBottom: 80,
-                                        plotBorderWidth: 1,
-                                        
+                                chart: {
+                                type: 'heatmap',
+                                marginTop: 40,
+                                marginBottom: 80,
+                                plotBorderWidth: 1,
+                                
                                 },
 
 
-                                title: 
-                                {
-                                        text: 'Project Details'
+                                title: {
+                                text: 'Project Details'
                                 },
 
-                                xAxis: 
-                                {
-                                        categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                                xAxis: {
+                                categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
                                 },
 
-                                yAxis: 
-                                {
-                                        categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
-                                        title: null
+                                yAxis: {
+                                categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
+                                title: null
                                 },
 
                                 
 
-                                colorAxis: 
-                                {
-                                        min: 0,
-                                        minColor: '#FFFFFF',
-                                        maxColor: Highcharts.getOptions().colors[0]
+                                colorAxis: {
+                                min: 0,
+                                minColor: '#FFFFFF',
+                                maxColor: Highcharts.getOptions().colors[0]
                                 },
 
-                                legend: 
-                                {
-                                        align: 'right',
-                                        layout: 'vertical',
-                                        margin: 0,
-                                        verticalAlign: 'top',
-                                        y: 25,
-                                        symbolHeight: 280
+                                legend: {
+                                align: 'right',
+                                layout: 'vertical',
+                                margin: 0,
+                                verticalAlign: 'top',
+                                y: 25,
+                                symbolHeight: 280
                                 },
 
-                                tooltip: 
+                                tooltip: {
+                                formatter: function () 
                                 {
-                                        formatter: function () 
+                                        return  + this.point.value + ' <b> project was uploaded on ' + this.series.xAxis.categories[this.point.x] + ' date, 2019' + '<br /> click to view more' ;
+                                }
+                                },
+
+                                plotOptions: 
+                                {
+                                        series: 
                                         {
-                                                return  + this.point.value + ' <b> project was uploaded on ' + this.series.xAxis.categories[this.point.x] + ' date, 2019' + '<br /> click to view more' ;
+                                        cursor: 'pointer',
+                                        point: 
+                                        {
+                                                events: 
+                                                {
+                                                click: function () 
+                                                {
+                                                        // document.getElementById('moreInfo').innerText = 'value: ' + this.value;
+                                                        // alert('Category: ' + this.x + ', value: ' + this.y);
+                                                
+
+                                                        var year = 2019;
+                                                        var month = this.x;
+                                                        var day = this.y;
+
+
+                                                        $.ajax(
+                                                        {
+                                                                url: '/profile/heap_map_event_details',
+                                                                type: "POST",
+                                                                data: {year:year,month:month},
+                                                                success: function (response) 
+                                                                {
+                                                                        //alert(response);
+                                                                        var $message_list= document.getElementById("moreInfo");
+                                                                        $message_list.innerHTML = '';
+                                                                        for(var i = 0, len = response.length; i < len; i++)
+                                                                        {
+                                                                        // alert(response[i].e_imagepath)
+                                                                        $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user" ><li class="list-group-item link-class" style="cursor: pointer;"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].event_name}}<br/><small style="color:#F44336"><strong>${response[i].event_start_date} message</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
+                                                                        }
+                                                                },
+                                                                error : function(jqXHR, textStatus, errorThrown)
+                                                                {
+                                                                console.log('jqXHR:');
+                                                                console.log(jqXHR);
+                                                                console.log('textStatus:');
+                                                                console.log(textStatus);
+                                                                console.log('errorThrown:');
+                                                                console.log(errorThrown);
+                                                                alert(errorThrown);                            
+                                                                } 
+                                                        });
+
+                                                }
+                                                }
+                                        }
                                         }
                                 },
 
                                 series: [
                                 {
+
+                                data: chart_data,
+                                borderWidth: 1,
                                 
-                                        borderWidth: 1,
-                                        data: chart_data,
-                                
-                                        dataLabels: 
-                                        {
-                                                enabled: true,
-                                                color: '#000000'
-                                        }
+                                dataLabels: {
+                                        enabled: true,
+                                        color: '#000000'
+                                }
                                 }]
 
                         }); 
@@ -502,8 +536,7 @@ $(document).ready(function()
                 } 
                 
                 });
-        });
-
+        }
     
 
 

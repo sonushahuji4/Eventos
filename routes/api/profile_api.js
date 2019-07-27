@@ -169,8 +169,14 @@ router.get('/profile/heap_map_data', function(req,res)
 router.post('/profile/heap_map_event_details', function(req,res)
 {
     const year = Number(req.body.year);
-    const month = Number(req.body.month);
-    Posts.findAll({where:{event_start_date:{[Op.like]:  '%' + '2019-07-29' + '%'}}})
+    var month = Number(req.body.month);
+    month = month + 1;
+    if(month < 10)
+    {
+        month = "0"+month;
+    }
+    
+    Posts.findAll({where:{event_start_date:{[Op.endsWith]:  '%' + "2019-"+month+"-" +'%'}}})
     .then((data)=>
     {
         console.log(data);
