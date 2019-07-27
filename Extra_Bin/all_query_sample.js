@@ -448,3 +448,217 @@ $view_feeds_by.innerHTML = $view_feeds_by.innerHTML +   ` </div> `
 Executing (default): SELECT `event_id`, `user_id`, `e_imagepath`, `event_message`, `event_name`, `event_description`, `event_read_more_option`, `event_type`, `event_organization`, `event_country_name`, `event_state_name`, `event_sub_city_name`, `event_main_city_name`, `event_area_1_name`, `event_area_2_name`, `event_postal_code`, `event_full_address`, `event_latitude`, `event_logitude`, `event_start_date`, `event_start_time`, `event_start_am_or_pm`, `event_end_date`, `event_end_time`, `event_end_am_or_pm`, `event_registeration_date_close`, `event_registeration_time_close`, `event_registeration_am_or_pm_close`, `createdAt`, `updatedAt`, 
 ( 6371 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) 
 AS `distance` FROM `Posts` AS `Posts` WHERE ( 6371 * acos( cos( radians(19.1250432) ) * cos( radians( event_latitude ) ) * cos( radians( event_logitude ) - radians(72.93173759999999) ) + sin( radians(19.1250432) ) * sin( radians( event_latitude ) ) ) ) <= 25 ORDER BY `distance` LIMIT 0, 15;
+
+
+<!-- <%- include('partials/includes/header') %>
+
+<br /> <br /> <br /> <br />
+
+<div class="container" id="heap_map_chart" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto">
+
+                
+        
+    
+</div>
+<div class="card border-success mb-3" style="max-width: 18rem;" id="moreInfo">
+            
+</div>
+<%- include('partials/includes/footer') %> -->
+
+<!-- <script>
+
+$(document).ready(function() 
+{
+    /*
+    This is highchart
+    */
+    requestData(); // calling function on page load
+    function requestData()
+    {
+        $.ajax(
+        {
+            url: '/profile/heap_map_data',
+            type: 'GET',
+            success: function(response) 
+            {
+    
+                var chart_data = [];
+                var data = 1;
+                var dataExists;
+                
+                var k = 0;
+                for(var i = 0, len = response.length; i < len; i++)
+                {
+                    date_value = response[i].event_start_date;
+                    var d = new Date(date_value);   
+                    var year = d.getFullYear();
+                    var month = d.getMonth();
+                    var day = d.getDay();
+                    var actualDay = day -1;
+                   // check 1st in chart data, weather data exists or not
+                   // if exits then increatment by 1
+                   // not then put 1
+                    
+                    chart_data.push([month,actualDay,data]);
+                }
+                //alert(chart_data[1]);
+                console.log(chart_data[1]);
+                console.log("chart_data ==",chart_data);
+                
+
+                Highcharts.chart('heap_map_chart', 
+                {
+
+                        chart: {
+                            type: 'heatmap',
+                            marginTop: 40,
+                            marginBottom: 80,
+                            plotBorderWidth: 1,
+                            
+                        },
+
+
+                        title: {
+                            text: 'Project Details'
+                        },
+
+                        xAxis: {
+                            categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                        },
+
+                        yAxis: {
+                            categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
+                            title: null
+                        },
+
+                        
+
+                        colorAxis: {
+                            min: 0,
+                            minColor: '#FFFFFF',
+                            maxColor: Highcharts.getOptions().colors[0]
+                        },
+
+                        legend: {
+                            align: 'right',
+                            layout: 'vertical',
+                            margin: 0,
+                            verticalAlign: 'top',
+                            y: 25,
+                            symbolHeight: 280
+                        },
+
+                        tooltip: {
+                            formatter: function () 
+                            {
+                                return  + this.point.value + ' <b> project was uploaded on ' + this.series.xAxis.categories[this.point.x] + ' date, 2019' + '<br /> click to view more' ;
+                            }
+                        },
+
+                        plotOptions: 
+                        {
+                                series: 
+                                {
+                                    cursor: 'pointer',
+                                    point: 
+                                    {
+                                        events: 
+                                        {
+                                            click: function () 
+                                            {
+
+                                                var year = 2019;
+                                                var month = this.x;
+                                                var y_axis_day = this.y;
+
+                                                $.ajax(
+                                                    {
+                                                        url: '/profile/heap_map_event_details',
+                                                        type: "POST",
+                                                        data: {year:year,month:month},
+                                                        success: function (response) 
+                                                        {
+                                                                
+                                                                var $message_list= document.getElementById("moreInfo");
+                                                                $message_list.innerHTML = '';
+                                                                for(var i = 0, len = response.length; i < len; i++)
+                                                                {
+
+                                                                    var date = new Date(response[i].event_start_date);   
+                                                                    var day = date.getDay();
+                                                                    var actualDay = day -1;
+                                                                    actualDay = Number(actualDay)
+                                                                    
+                                                                    if(y_axis_day == actualDay)
+                                                                    {
+                                                                        $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user" ><li class="list-group-item link-class" style="cursor: pointer;"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].event_name}}<br/><small style="color:#F44336"><strong>${response[i].event_start_date} message</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
+                                                                    }
+                                                                    
+                                                                    
+                                                                   
+                                                                    
+                                                                }
+                                                        },
+                                                        error : function(jqXHR, textStatus, errorThrown)
+                                                        {
+                                                            console.log('jqXHR:');
+                                                            console.log(jqXHR);
+                                                            console.log('textStatus:');
+                                                            console.log(textStatus);
+                                                            console.log('errorThrown:');
+                                                            console.log(errorThrown);
+                                                            alert(errorThrown);                            
+                                                        } 
+                                                    });
+
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+
+                        series: [
+                            {
+
+                            data: chart_data,
+                            borderWidth: 1,
+                           
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000'
+                            }
+                        }]
+
+                }); 
+                
+
+            },
+            error : function(jqXHR, textStatus, errorThrown)
+            {
+                console.log('jqXHR:');
+                console.log(jqXHR);
+                console.log('textStatus:');
+                console.log(textStatus);
+                console.log('errorThrown:');
+                console.log(errorThrown);
+                alert(errorThrown);
+            } 
+        
+        });
+    }
+
+    // All home.ejs javascript Ajax code
+
+    // set interval ...it will continouly update the latitude and longitude of user
+        // setInterval(function()
+        // {
+        //         get_lat_and_lon();
+        // }, 5000);
+
+
+        
+
+})
+</script> -->
+-->
+<!--  --></div>
