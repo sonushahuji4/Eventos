@@ -2,6 +2,34 @@
 
 $(document).ready(function()
 {
+
+        // var xhr = null;
+
+        // if (window.XMLHttpRequest) {
+        //     xhr = window.XMLHttpRequest;
+        // }
+        // else if(window.ActiveXObject('Microsoft.XMLHTTP')){
+        //     // I do not know if this works
+        //     xhr = window.ActiveXObject('Microsoft.XMLHTTP');
+        // }
+    
+        // var send = xhr.prototype.send;
+        // xhr.prototype.send = function(data) 
+        // {
+        //     try{
+        //         //TODO: comment the next line
+        //         //console.log('pre send', data);
+        //         //alert(JSON.stringify(data));
+        //         send.call(this, data);
+        //         //TODO: comment the next line
+        //         //console.log('pos send');
+        //     }
+        //     catch(e) {
+        //         //TODO: comment the next line
+        //         console.log('err send', e);
+        //     }
+        // }
+
         /******************************************************* ALL Home.ejs Ajax Query Call *************************************************************/
 
 
@@ -1192,7 +1220,7 @@ $(document).ready(function()
           count_unseen_message();
         }, 1000);
 
-        //
+        // no use of user_id_from_db
         function count_unseen_message()
         {
                 var $get_notified_when_message_comes = $('.get_notified_when_message_comes');
@@ -1201,14 +1229,24 @@ $(document).ready(function()
                 method: "GET",
                 success:function(response)
                 {
-
-                        $get_notified_when_message_comes.html('<small>'+response.length+'</small>')
+                        if(response !="")
+                        {
+                                $get_notified_when_message_comes.html('<small>'+response.length+'</small>');
+                        }
+                        else{
+                                // if no message in notification then do not alert user
+                                // do nothing
+                                // alert(JSON.stringify(response))
+                                // alert("some error in count_unseen_message");
+                        }
+                        
                         
                 },
 
                 }) 
         }
 
+        // no use of user_id_from_db
         // dialog box (this is the chat box UI, through which user can interact with other users)
         function make_chat_dialog_box(to_user_id, to_user_name,user_profile_pic)
         {
@@ -1234,25 +1272,38 @@ $(document).ready(function()
                 data: {to_user_id:to_user_id},
                 success:function(response)
                 {
-
                         var $chat_history= document.getElementById("chat_history_"+to_user_id);
                         $chat_history.innerHTML = "";
-                        response.forEach(function(item, index)
-                        { 
-                        
-                        var time = new Date(item.createdAt);
-                        var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
-                        
-                        if(user_id_from_db == item.user_id) // if you
+
+                        if(response !="")
                         {
-                        
-                                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-left:80px; background:#D5F5E3;height:60px;border-radius: 5px 20px 0px 15px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
+                                
+                                response.forEach(function(item, index)
+                                { 
+                                
+                                var time = new Date(item.createdAt);
+                                var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) 
+                                
+                                // note :  var user_id_from_db = user_id; changed from user_id_from_db to user_id
+                                if(user_id == item.user_id) // if you
+                                {
+                                
+                                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-left:80px; background:#D5F5E3;height:60px;border-radius: 5px 20px 0px 15px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
+                                }
+                                else{ // else other
+                                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-right:80px; background:#FBEEE6;height:60px;border-radius: 5px 5px 10px 0px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
+                                
+                                }
+                                })
                         }
-                        else{ // else other
-                                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin:10px;margin-right:80px; background:#FBEEE6;height:60px;border-radius: 5px 5px 10px 0px;"><small>${item.message_content}</small><div align="right"><small><em>${showtime}</em></small></div></div>`;
-                        
+                        else{
+                                // if you are chatting for the 1st time with the other user then there is no history data to be shwon in chat box UI
+                                $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card-body" style="margin-top:10px; margin-left:50px; margin-right:50px; background:#EAECEE;height:30px;"><small>start converzation</small></div>`;
+                                //alert("get_user_chat_history");
+                                //alert(JSON.stringify(response));
                         }
-                        })
+
+                        
 
                         
                 },
@@ -1285,26 +1336,32 @@ $(document).ready(function()
                 data:{to_user_id:to_user_id, chat_message:chat_message},
                 success:function(response)
                 {
-
-                        $('#chat_message_'+to_user_id).val('');// clear chat box
-                        var $chat_history= document.getElementById("chat_history_"+to_user_id);
-                        $chat_history.innerHTML = "";
-                        response.forEach(function(item, index)
-                        { 
-                        var time = new Date(item.createdAt);
-                        var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-                        //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
-                        // $('#chat_history_'+to_user_id).append('<div class="card" style="margin-bottom:2px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>' +item.message_content+ '</small><div align="right">- <small><em>'+showtime+'</em></small></div></div></div>');         
-                        if(user_id_from_db == item.user_id) // if you
+                        if(response !="")
                         {
-                        //$chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px">You..</div></div></div>`;
-                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+                                $('#chat_message_'+to_user_id).val('');// clear chat box
+                                var $chat_history= document.getElementById("chat_history_"+to_user_id);
+                                $chat_history.innerHTML = "";
+                                response.forEach(function(item, index)
+                                { 
+                                        var time = new Date(item.createdAt);
+                                        var showtime = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+                                        
+                                        // note :  var user_id_from_db = user_id; changed from user_id_from_db to user_id
+                                        if(user_id == item.user_id) // if you
+                                        {
+                                        
+                                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-left:80px">  <div class="card-body" style="background:#D5F5E3;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+                                        }
+                                        else{ // else other
+                                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
+                                        
+                                        }
+                                })
                         }
-                        else{ // else other
-                        $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px;margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px"><small>${item.message_content}</small><div align="right">- <small><em>${showtime}</em></small></div></div></div>`;
-                        // $chat_history.innerHTML =  $chat_history.innerHTML + `<div class="card" style="margin-bottom:2px; margin-right:80px">  <div class="card-body" style="background:#FBEEE6;height:60px">others..</div></div></div>`;
+                        else{
+                                alert("get_chat_message")
                         }
-                        })
+                        
 
                 }
                 })
@@ -1323,18 +1380,20 @@ $(document).ready(function()
                 {
                         url:"/posts/online_user_list",
                         method:"GET",
+                        beforeSend: function(jqXHR) 
+                        {
+                               // alert("befor send");
+                                //alert(JSON.stringify(jqXHR));  
+                        },
                         success:function(response)
-                        {       
+                        {     
+                               
                                 if(response !='')
                                 {
                                   var $online_user_list= document.getElementById("online_user_list");
                                   $online_user_list.innerHTML = "";
-                                        
-                              
                                   for (var i = 0, len = response.length; i < len; i++)
                                   {       
-
-
                                         for(var j = 0, len_Login_Details = response[i].Login_Details.length; j < len_Login_Details; j++)
                                         {
                                           var time = new Date(response[i].Login_Details[j].last_activity);
@@ -1351,6 +1410,11 @@ $(document).ready(function()
                                         }
                                   }
                                   
+                                }
+                                else{
+                                        alert("online_user_list");
+                                        alert(JSON.stringify(response));
+                                        // do nothing
                                 }
                                 
                         },

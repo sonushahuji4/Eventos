@@ -535,7 +535,8 @@ router.post('/posts/get_user_chat_history',function (req,res)
   
 });
 
-router.get('/posts/count_unseen_message', function(req,res){
+router.get('/posts/count_unseen_message', function(req,res)
+{
 
     const user_id = req.session.user_id;
     const status_seen_unseen = "unseen";
