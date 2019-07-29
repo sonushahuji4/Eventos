@@ -297,6 +297,29 @@ top:0;
   line-height: 30px;
   display: block;
  }
+
+ #slider_out
+ {
+    width: 1200px;
+    height: 400px;
+    overflow: hidden;
+ }
+ #slider_out .slides_in
+ {
+  display: block;
+  width: 6000px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+ }
+
+ #slider_out .slide_data
+ {
+  float: left;
+  list-style-type: none;
+  width: 400px;
+  height: 400px;
+ }
  
 /* create event side bar */
 /* .creaet_event_side_bar {

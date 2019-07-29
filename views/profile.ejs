@@ -117,58 +117,14 @@
                                                                 </div>
                                                         </div>
                                
-
-                                                
-                                        <div class="card" style="margin-top:30px">
-                                                <% if(items.length > 0){ %>   
-                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <% var post_data = items[i].Posts; %> 
-                                                        <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
-                                                        <div class="card-group" style="margin: 15px">               
-                                                                        
-                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
                                                         
-                                                        <% if(post_data[j].event_start_date > onlyDate){%>
-                                                                <div class="col-4">
-                                                                        <div class="card">
-                                                                                
-                                                       
-                                                                                <img class="card-img-top" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image cap" style="height: 300px">                                        
-                                                                                <div class="card-footer bg-transparent border-success">
-                                                                                <ul class="nav">
-                                                                                        <li class="nav-item">
-                                                                                                <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
-                                                                                        </li>
+                                                        <!-- <span id="slide"></span> -->
+                                                        <div class="card" style="margin-top:30px" id="slide">
+                                                                
                                                                         
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-share" style="cursor: pointer;"></i>
-                                                                                        </li>
-                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <span style="cursor: pointer;">Read More</span>
-                                                                                        </li>
-        
-                                                                                        <li class="nav-item" style="padding-left:20px">
-                                                                                                <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
-                                                                                        </li>
-                                                                                </ul>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>  
-                                                               
-                                                        <%}%> 
-                                                        <%}%> 
-                        
+                                                                       
+                                                                           
                                                         </div>
-                                                        <%}%> 
-                                                        <%} else {%>
-                                                                <span>No Upcoming events yet</span>
-                                                        <%}%>    
-                                               </div>
                                               
                               
 
@@ -212,9 +168,8 @@
                                                                         </div>
                                                                 </div>  
                                                                
-                                                        <%}else{%>
-                                                        <span>No active events</span>        
-                                                        <%}%> 
+                                                        <%}%>
+                                                         
                                                         
                                                         <%}%> 
                         
@@ -293,6 +248,74 @@
 
 $(document).ready(function() 
 {
+slideshow();
+function slideshow()
+{
+
+                $.ajax({
+                url: '/profile/slideshow',
+                type: "GET",
+                success: function (response) 
+                {
+                        if( response != "")
+                        {
+                                var $slideshow= document.getElementById("slide");
+                                  $slideshow.innerHTML = "";
+                                
+                                var currentImage = 0,
+                                images = [];
+                                for(var i = 0, len = response.length; i < len; i++)
+                                {
+                                       var post_data = response[i].Posts;
+                                       for(var j = 0, len_post = post_data.length; j < len_post; j++)
+                                       {
+                                        images.push(post_data[j].e_imagepath)
+                                       }
+                                }
+
+                                function initSlideshow() {	
+                                                setImage(0);
+                                setInterval(function(){
+                                                nextImage();
+                                },1000);
+                                }
+
+                                function nextImage() {
+                                                if(images.length === currentImage + 1){
+                                                currentImage = 0;
+                                } else {
+                                                        currentImage++;
+                                }
+                                setImage(currentImage);
+                                }
+
+                                function setImage(image) {
+                                       
+                                       $('#slide').html('<div class="card-group" style="margin: 15px"><div class="col-4><div class="card"><ul class="nav"><li class="nav-item"><img class="card-img-top" src="../public/image/'+images[image]+'" alt="Card image cap" style="height:300px;width:300px"></ul></li><div class="card-footer bg-transparent border-success"><ul class="nav"><li class="nav-item"><i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px">10</span></i> </li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px">20</span></i></li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-share" style="cursor: pointer;"></i></li><li class="nav-item" style="padding-left: 10px"><span style="cursor: pointer;">Read More</span></li><li class="nav-item" style="padding-left:20px"><i class="fas fa-ellipsis-v" style="cursor: pointer;"></i></li></ul></div></div> <div class="col-4><div class="card"><ul class="nav"><li class="nav-item"><img class="card-img-top" src="../public/image/'+images[image+1]+'" alt="Card image cap" style="height:300px;width:300px"></ul></li><div class="card-footer bg-transparent border-success"><ul class="nav"><li class="nav-item"><i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px">10</span></i> </li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px">20</span></i></li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-share" style="cursor: pointer;"></i></li><li class="nav-item" style="padding-left: 10px"><span style="cursor: pointer;">Read More</span></li><li class="nav-item" style="padding-left:20px"><i class="fas fa-ellipsis-v" style="cursor: pointer;"></i></li></ul></div></div></div>');
+                                                                                      
+                                }
+
+                                window.onload = initSlideshow();
+
+
+                        }
+                        else{
+                                alert("data null");
+                        }
+
+                },
+                error : function(jqXHR, textStatus, errorThrown)
+                {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                } 
+                });
+}
 
     requestData(); // calling function on page load
     function requestData()

@@ -192,6 +192,29 @@ router.post('/profile/heap_map_event_details', function(req,res)
     
 })
 
+router.get('/profile/slideshow', function(req,res)
+{
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    const user_id = req.session.user_id;
+
+                    Users.findAll({where:{user_id:user_id},include:[{model:Posts,include:[{model:Likes},{model:Comments}]}]})
+                    .then((user)=>
+                    {
+                        res.send(user)
+                        
+                        
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501).send({
+                            error : "error..... check console log"
+                        })
+                    })
+    
+})
+
 
 module.exports = router;
 
