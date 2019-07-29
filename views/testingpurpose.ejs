@@ -1,29 +1,5 @@
 <%- include('partials/includes/header') %>
-<!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API -->
+<%- include('partials/includes/navbar') %>
 
 
-
-
-<script>
-
-  $(document).ready(function()
-  {
-    if (!navigator.geolocation) 
-    {
-      status.textContent = 'Geolocation is not supported by your browser';
-    } 
-    else 
-    {
-      status.textContent = 'Locating…';
-      navigator.geolocation.getCurrentPosition(function(position)
-      {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        console.log("latitude",latitude)
-        console.log("longitude",longitude)
-      });
-    }
-  })
-
-
-</script>
+<br /> <br /> <br /> <br /><br /> <br /> <br /> <br />

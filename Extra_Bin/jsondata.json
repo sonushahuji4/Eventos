@@ -654,3 +654,168 @@ $(document).ready(function()
        })
                        
 </script> 
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+<!-- <%- include('partials/includes/header') %>
+<%- include('partials/includes/navbar') %>
+
+
+<br /> <br /> <br /> <br /><br /> <br /> <br /> <br />
+<div class="container">
+  <div class="row">
+      
+    <div class="col-3">
+
+        <div class="row">
+            <div class="card" style="background:#ffffff;margin-top:30px">
+                            <div class="card about-user">
+                                     <div class="card-body">
+                                      <div class="card-block">
+                                           <h4 class="card-title info">About</h4>
+                                           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                               <div class="text-left">
+                                <p class="card-text"><strong>Full Name :</strong> <span class="m-l-15">Amanda Taylor</span></p>
+                                <p class="card-text"><strong>Mobile :</strong><span class="m-l-15">(+12) 334 5555 723</span></p>
+                                <p class="card-text"><strong>Website :</strong> <span class="m-l-15">www.themashabrand.com</span></p>
+                                <p class="card-text"><strong>Location :</strong> <span class="m-l-15">USA</span></p>
+                               </div>			
+                                      </div>
+                                     </div>
+                            </div>	                        
+            </div>
+  </div>
+
+    </div>
+
+    <div class="col-9">
+                      <div class="card">
+                          <div class="card" id="heap_map_chart"></div>
+                          
+                                    <div class="card">
+                                            <div class="card-body">
+                                                    <ul class="nav justify-content-center">
+                                                                    <li class="nav-item">
+                                                                    <a class="nav-link" href="#">Upcoming</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                      <a class="nav-link" href="#">Activ</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                      <a class="nav-link" href="#">Previous</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                                    <a class="nav-link" href="#">Total Events</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                    <a class="nav-link" href="#">Followers</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                      <a class="nav-link" href="#">Following</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                      <a class="nav-link" href="#">Profile View</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                      <a class="nav-link disabled" href="#">Disabled</a>
+                                                                    </li>
+                                                                  </ul>
+                                            </div>
+                                    </div>
+                          
+              </div>
+
+              <div class="card" style="margin-top:30px">
+                  <div class="card-body">
+
+                  <a href="#"><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+
+                  <a href="#"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                  <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>
+                  
+
+
+                  </div>
+              </div>
+
+              <div class="row" style="margin-top:30px">
+                <div class="col-4">
+                    <div id="slider_out" class="card"></span>
+                      <ul class="slides_in">
+                          <li class="slide_data"><img src="../public/image/1556886850648.JPG" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1556888775292.JPG" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1556891734090.JPG" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/7.jpg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/11.jpg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1200x630wa.png" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/13.jpeg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/14.jpg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1556896430749.jpg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1558027346070.jpg" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1559198973768.png" style="height: 300px; width: 400px"></li>
+                          <li class="slide_data"><img src="../public/image/1563195697317.jpg" style="height: 300px; width: 400px"></li>
+                  
+                        
+                      </ul>
+                  </div>
+
+                </div>
+              </div>
+    </div>
+    
+
+
+  </div>
+  
+
+
+<script>
+$(document).ready(function()
+{
+
+  
+  var $slider = $('#slider_out'); //div
+  var $slidesContainer = $slider.find('.slides_in'); //ul
+  var $slide = $slidesContainer.find('.slide_data'); // li
+
+  var animationSpeed = 4000;
+  var pause = 4000;
+  var width = 1200;
+  var currentSlide = 3;
+
+  //images = ["1558027346070.jpg","3.jpg","1.jpg","1557078704640.jpg","1563639100367.jpg","1556899377959.jpg","1556968308766.jpg","1556889462194.jpg","1558169613861.jpg"];
+
+  var interval; 
+  function startSlider()
+  {
+  interval = setInterval(function()
+          {
+
+            $slidesContainer.animate({'margin-left':'-='+width},animationSpeed,function()
+            {
+
+              currentSlide = currentSlide + 3;
+              if(currentSlide === $slide.length)
+              {
+
+                currentSlide=0;
+                $slidesContainer.css('margin-left',0);
+
+              } 
+            });
+          },pause);
+  }
+
+  function stopSlider()
+  {
+    clearInterval(interval);
+  }
+
+  $slide.on('mouseenter',stopSlider).on('mouseleave',startSlider);
+startSlider();
+})
+</script> -->
