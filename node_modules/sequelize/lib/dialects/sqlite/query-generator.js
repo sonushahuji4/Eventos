@@ -28,7 +28,7 @@ class SQLiteQueryGenerator extends MySqlQueryGenerator {
     const attrArray = [];
 
     for (const attr in attributes) {
-      if (attributes.hasOwnProperty(attr)) {
+      if (Object.prototype.hasOwnProperty.call(attributes, attr)) {
         const dataType = attributes[attr];
         const containsAutoIncrement = dataType.includes('AUTOINCREMENT');
 
@@ -290,7 +290,7 @@ class SQLiteQueryGenerator extends MySqlQueryGenerator {
       if (_.isObject(dataType)) {
         let sql = dataType.type.toString();
 
-        if (dataType.hasOwnProperty('allowNull') && !dataType.allowNull) {
+        if (Object.prototype.hasOwnProperty.call(dataType, 'allowNull') && !dataType.allowNull) {
           sql += ' NOT NULL';
         }
 
@@ -425,7 +425,9 @@ class SQLiteQueryGenerator extends MySqlQueryGenerator {
     const quotedBackupTableName = this.quoteTable(backupTableName);
     const attributeNames = Object.keys(attributes).map(attr => this.quoteIdentifier(attr)).join(', ');
 
-    return `${createTableSql.replace(`CREATE TABLE ${quotedTableName}`, `CREATE TABLE ${quotedBackupTableName}`)
+    return `${createTableSql
+      .replace(`CREATE TABLE ${quotedTableName}`, `CREATE TABLE ${quotedBackupTableName}`)
+      .replace(`CREATE TABLE ${quotedTableName.replace(/`/g, '"')}`, `CREATE TABLE ${quotedBackupTableName}`)
     }INSERT INTO ${quotedBackupTableName} SELECT ${attributeNames} FROM ${quotedTableName};`
       + `DROP TABLE ${quotedTableName};`
       + `ALTER TABLE ${quotedBackupTableName} RENAME TO ${quotedTableName};`;

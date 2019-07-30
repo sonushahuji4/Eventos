@@ -173,7 +173,7 @@ class Query extends AbstractQuery {
         };
 
         if (
-          result[_result.Name].type.includes('VARCHAR')
+          result[_result.Name].type.includes('CHAR')
           && _result.Length
         ) {
           if (_result.Length === -1) {
@@ -365,7 +365,7 @@ class Query extends AbstractQuery {
       let id = null;
       let autoIncrementAttributeAlias = null;
 
-      if (this.model.rawAttributes.hasOwnProperty(autoIncrementAttribute) &&
+      if (Object.prototype.hasOwnProperty.call(this.model.rawAttributes, autoIncrementAttribute) &&
         this.model.rawAttributes[autoIncrementAttribute].field !== undefined)
         autoIncrementAttributeAlias = this.model.rawAttributes[autoIncrementAttribute].field;
 

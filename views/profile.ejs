@@ -118,6 +118,39 @@
                                                         </div>
                                
                                                         
+
+                                                        <div class="card" style="margin-top:30px">
+                                                                        <% if(items.length > 0){ %>   
+                                                                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                                <% var post_data = items[i].Posts; %> 
+                                                                                
+                                                                                <div class="card-group" style="margin: 15px" id="owl-demo">  
+                                                                                               
+                        
+                        
+                                                                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                                
+                                                                                <% if(post_data[j].event_start_date > onlyDate){%>
+                                                                                       
+                                                                                <%}%>
+                                                                                
+                                                                                            
+                                                                                <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image"></div> 
+                                                                                
+                                                                                <%}%> 
+                                                                      
+                                                         
+                                                
+                                                                                </div>
+                                                                                <%}%> 
+                                                                                <%} else {%>
+                                                                                        <span>No Upcoming events yet</span>
+                                                                                <%}%>    
+                                                                       </div>
+
+
+
+
                                                         <!-- <span id="slide"></span> -->
                                                         <div class="card" style="margin-top:30px" id="slide">
                                                                 
@@ -133,12 +166,14 @@
                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                         <% var post_data = items[i].Posts; %> 
                                                         <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
+                                                        <span><a id="?" href="#">Left Button Image</a></span>
                                                         <div class="card-group" style="margin: 15px">  
                                                                        
-                                                                       
-                                                                                        <div id="slider_out"></span>
+
+                                                                                        <div id="slider_out">
+
                                                                                             <ul class="slides_in">
-                                                                        
+
                                                         <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
                                                         
                                                         <% if(post_data[j].event_start_date > onlyDate){%>
@@ -255,12 +290,21 @@
 
 $(document).ready(function() 
 {
+        $("#owl-demo").owlCarousel({
+
+autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+items : 4,
+itemsDesktop : [1199,3],
+itemsDesktopSmall : [979,3]
+
+});
         var $slider = $('#slider_out'); //div
   var $slidesContainer = $slider.find('.slides_in'); //ul
   var $slide = $slidesContainer.find('.slide_data'); // li
 
-  var animationSpeed = 10000;
-  var pause = 3000;
+  var animationSpeed = 1000;
+  var pause = 1000;
   var width = 800;
   var currentSlide = 0;
 
