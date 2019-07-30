@@ -65,6 +65,35 @@
                             
                                        <!-- chart section -->
 
+                                       <!-- Button trigger modal-->
+                                       
+                                        <!-- Modal Heat map on popup right view -->
+                                       <!-- Central Modal Small -->
+                                        <div class="modal fade" id="centralModalSm" style="width:400px; position:center" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                        aria-hidden="true">
+
+                                        <!-- Change class .modal-sm to change the size of the modal -->
+                                        <div class="modal-dialog modal-sm" role="document">
+
+
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                       
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body" id="event_heatmap_info">
+                                       
+                                        </div>
+                                      
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <!-- Central Modal Small -->
+                                        
+                                        <!-- Modal: modalCart -->
+
                                                 <div class="card">
                                                                 <div class="card" id="heap_map_chart"></div>
                                                                 
@@ -106,11 +135,24 @@
                                                    <!-- create posts -->
                                                 <div class="card" style="margin-top:30px">
                                                                 <div class="card-body">
-                                        
-                                                                <a href="#"><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                
+                                                                <% if(items.length > 0){%>
+                                                                   <% for( var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% if (items[i].user_profile_pic)
+                                                                        { %>
+                                                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                                
+                                                                        <%} else 
+                                                                        {%>
+                                                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                        <%}%>  
+                                                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                                                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
+                                                                   <%}%>     
+                                                                <%}%>
+
                                                    
-                                                                <a href="#"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
-                                                                <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>
+                                                                
                                                                 
                             
                                   
@@ -128,6 +170,8 @@
                                                                 <div class="modal-dialog modal-lg" role="document">
                                                                   <div class="modal-content">
                                                                     <div class="modal-body">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                                                        aria-hidden="true">&times;</span></button>
                                                                       <div class="row" id="show_data">
 
                                                                       </div>
@@ -137,11 +181,14 @@
                                                               </div>
                                                 <!--------------------------->
 
+
+
+
                                                 <div class="card" style="margin-top:30px">
                                                                 <% if(items.length > 0){ %>   
                                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                                         <% var post_data = items[i].Posts; %> 
-                                                                        <h5 class="card-header">Up Coming Events</h5>
+                                                                        <h5 class="card-header">Upcoming Events</h5>
                                                                 <div class="card-group" style="margin-right: 15px" id="owl-demo">  
                                                                                        
                 
@@ -149,8 +196,7 @@
                                                                         <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
                                                                         
                                                                         <% if(post_data[j].event_start_date > onlyDate){%>
-                                                                               
-                                                                        <%}%>
+
                                                                         <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>">
                                                                                     
                                                                         <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
@@ -181,6 +227,8 @@
                                                                                         </ul>
                                                                                         </div>
                                                                         </div>
+                                                                        <%}%>
+
                                                                         <%}%> 
                                                               
                                                  
@@ -192,6 +240,138 @@
                                                                         <%}%>    
                                                                 </div>
                                                 </div>
+
+                                                <!-- active events -->
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                        <h5 class="card-header">Active Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo_3">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date === onlyDate){%>
+
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+
+                                                                        <%}%> 
+                                                              
+                                                 
+                                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+
+
+
+                                                <!-- Past Events -->
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                        <h5 class="card-header">Past Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo_2">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date < onlyDate){%>
+
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>" style="width: 400px;">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+
+                                                                        <%}%> 
+                                                              
+                                                 
+                                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+
+
+
+                                                
+
+
+
+                                                
+
+                                                
+
+
                                      
                         
                 </div>
@@ -218,12 +398,40 @@ $(document).ready(function()
                 itemsDesktopSmall : [979,3]
 
         });
+
+        $("#owl-demo_2").owlCarousel(
+        {
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                touchDrag:true,
+                items : 3,
+                dots:true,
+                autoplayHoverPause:true,
+                animateOut:true,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
+
+        });
+
+        $("#owl-demo_3").owlCarousel(
+        {
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                touchDrag:true,
+                items : 3,
+                dots:true,
+                autoplayHoverPause:true,
+                animateOut:true,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
+
+        });
   
 
                 // when user likes the post then it increaments by one and update the database and reflects the likes on posts
                 $(document).on('click', '.like', function(events)
                 {
-                        alert("clicked")
+                
                         events.preventDefault();
                         events.stopPropagation();
                         var postId = $(this).attr('data-post');
@@ -256,23 +464,12 @@ $(document).ready(function()
                                 }
                         );
                 })// like post ends 
-                
-                $(document).on('click','.postfullview',function(events)
+
+                function modal_view_event_details(event_id)
                 {
-                        alert("full view")
-                        events.preventDefault();
-                        events.stopPropagation();
-                        var event_id =$(this).data('onclickview'); 
                         var $chat_history= document.getElementById("show_data");
                         $chat_history.innerHTML = "";
                         var innerHTML = ''
-
-
-                        // $('.modal').load('/render/62805',function(result) show_data
-                        // {
-                        //         $('#basicExampleModal').modal({show:true});
-                        // });
-
                         $.ajax(
                                 {
                                         url:  '/profile/modeldata', 
@@ -284,13 +481,11 @@ $(document).ready(function()
                                         {
                                                 if(response !="")
                                                 {
-                                                        alert(JSON.stringify(response.user[0].user_firstname));
+
                                                         for(var i=0, len = response.event_details.length; i < len; i++)
                                                         {
 
-                                                        //alert(response.event_details[i].event_id);
-                                                                
-                                                        //alert(response.event_details[i].Likes.length);
+
                                                         innerHTML = `<div class="col-7" style="padding-left:50px;padding-top:20px"><div class="row">
                                                                         <div class="d-flex bd-highlight">`;
                                                                                 if (response.user[i].user_profile_pic) 
@@ -311,6 +506,9 @@ $(document).ready(function()
                                                                         </div></div>
 
                                                                         <div class="row">
+                                                                                        <div class="title">
+                                                                                      <h5><span style="padding-left:20px" id="show_title">${response.event_details[i].event_message}</span></h5>
+                                                                                </div>
                                                                                         <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
                                
                                                                                                 <p>${response.event_details[i].event_description}<span id="dots">...</span><span id="more" style="display: none;">${response.event_details[i].event_read_more_option}</span>
@@ -437,6 +635,16 @@ $(document).ready(function()
                         }
                                 }
                         );
+                }
+                
+                $(document).on('click','.postfullview',function(events)
+                {
+        
+                        events.preventDefault();
+                        events.stopPropagation();
+                        var event_id =$(this).data('onclickview'); 
+                        modal_view_event_details(event_id);
+
 
                 })
     requestData(); // calling function on page load
@@ -546,7 +754,7 @@ $(document).ready(function()
                                                         success: function (response) 
                                                         {
                                                                 
-                                                                var $message_list= document.getElementById("moreInfo");
+                                                                var $message_list= document.getElementById("event_heatmap_info");
                                                                 $message_list.innerHTML = '';
                                                                 for(var i = 0, len = response.length; i < len; i++)
                                                                 {
@@ -558,13 +766,15 @@ $(document).ready(function()
                                                                     
                                                                     if(y_axis_day == actualDay)
                                                                     {
-                                                                        $message_list.innerHTML = $message_list.innerHTML + `<div class="card online_user" ><li class="list-group-item link-class" style="cursor: pointer;"> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"><span class="online_icon offline"></span> </div><div class="user_info">${response[i].event_name}}<br/><small style="color:#F44336"><strong>${response[i].event_start_date} message</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
-                                                                    }
+                                                                       $message_list.innerHTML = $message_list.innerHTML + `<div class="card" ><li class="list-group-item link-class" style="cursor: pointer;"><span class="postfullview" data-onclickview="${response[i].event_id}"</span> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"></div><div class="user_info">${response[i].event_message}<br/><small style="color:#F44336"><strong>${response[i].event_start_date}</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
+                                                                        $('#centralModalSm').modal('show')
+                                                                        }
                                                                     
                                                                     
                                                                    
                                                                     
                                                                 }
+                                                                
                                                         },
                                                         error : function(jqXHR, textStatus, errorThrown)
                                                         {

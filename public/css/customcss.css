@@ -311,6 +311,28 @@ top:0;
    height: auto;
  }
  
+ #owl-demo_2 .item
+ {
+   margin: 3px;
+ }
+ #owl-demo_2 .item img{
+   
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+ 
+ #owl-demo_3 .item
+ {
+   margin: 3px;
+ }
+ #owl-demo_3 .item img{
+   
+   display: block;
+   width: 100%;
+   height: auto;
+ }
+ 
  .modal .modal-dialog {
   max-width: 80% !important;
 }
