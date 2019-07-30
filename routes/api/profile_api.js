@@ -57,9 +57,6 @@ router.get('/profile', function(req, res)
                             error : "error..... check console log"
                         })
                     })
-
-    // console.log("home id => ", req.params.id)
-	// res.render('home',{title:'home'});
     
 	
 });
@@ -246,6 +243,94 @@ router.post('/profile/modeldata', function(req,res)
     
 })
 
+
+router.get('/profile/totalUpcomingEvents', function(req,res)
+{
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    const user_id = req.session.user_id;
+
+    Posts.findAndCountAll({where:{user_id:user_id,event_start_date:{[Op.gte]:onlyDate}}})
+    .then((user)=>
+    {
+        res.send(user)
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send(
+        {
+            error : "error..... check console log"
+        })
+    })
+    
+})
+
+router.get('/profile/totalActiveEvents', function(req,res)
+{
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    const user_id = req.session.user_id;
+
+    Posts.findAndCountAll({where:{user_id:user_id,event_start_date:{[Op.eq]:onlyDate}}})
+    .then((user)=>
+    {
+        res.send(user)
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send(
+        {
+            error : "error..... check console log"
+        })
+    })
+    
+})
+
+router.get('/profile/totalPastEvents', function(req,res)
+{
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    const user_id = req.session.user_id;
+
+    Posts.findAndCountAll({where:{user_id:user_id,event_start_date:{[Op.lt]:onlyDate}}})
+    .then((user)=>
+    {
+        res.send(user)
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send(
+        {
+            error : "error..... check console log"
+        })
+    })
+    
+})
+
+router.get('/profile/totaltotalEvents', function(req,res)
+{
+    var onlyDate = new Date();
+    onlyDate = onlyDate.toISOString().slice(0,10)
+    const user_id = req.session.user_id;
+
+    Posts.findAndCountAll({where:{user_id:user_id}})
+    .then((user)=>
+    {
+        res.send(user)
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send(
+        {
+            error : "error..... check console log"
+        })
+    })
+    
+})
 
 module.exports = router;
 

@@ -40,11 +40,7 @@ var upload = multer({
     }
 });
 
-// find user_id
-// whoever I follow, I must see their posts
-// go to follow table
-// get that particular user_id(reciever_id) and status should be "accept"
-// then go to post table and find that particular user_id ka post
+
 
 router.get('/posts', function(req, res)
 {
