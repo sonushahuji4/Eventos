@@ -137,15 +137,7 @@ $(document).ready(function()
                                                        if((user_id == follow_receiver_id) && (status !=""))
                                                                                                             {
                                                                flag = true
-                                                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
-                        `<div class="card col-lg-4" data-user_id="${user_id}">
-                                
-                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
-                                <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
-                                <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
-                                <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
-                        </div>`;
+                                                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML +`<div class="card col-lg-4" data-user_id="${user_id}"><img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/><p style="font-size:10px;"><strong>${fullname}</strong></p><button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a></div>`;
 
                                                        }
                                         
@@ -159,16 +151,8 @@ $(document).ready(function()
 
                                                         
                                                                 status = "Follow";
-                                                                suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
-                        `<div class="card col-lg-4" data-user_id="${user_id}">
-                                
-                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
-                                <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
-                                <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
-                                <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
-                        </div>`;
-                }
+                                                                suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML +`<div class="card col-lg-4" data-user_id="${user_id}"><img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/><p style="font-size:10px;"><strong>${fullname}</strong></p><button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a></div>`;
+                                                        }
                                                 }
                                                 else{
                                                         if(flag != true)
@@ -176,9 +160,7 @@ $(document).ready(function()
                                                                 
                                                         
                                                 
-                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + 
-                        `<div class="card col-lg-4" data-user_id="${user_id}">
-                                
+                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + `<div class="card col-lg-4" data-user_id="${user_id}">
                                 <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
                                 <p style="font-size:10px;"><strong>${fullname}</strong></p>
                                 <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
@@ -210,7 +192,7 @@ $(document).ready(function()
         } // fetch_user() function ends
 
         // not working yet, need to fix the bug
-        myFunction()//
+        //myFunction()//
         function myFunction() 
         {
         var dots = document.getElementById("dots");
@@ -1659,5 +1641,758 @@ $(document).ready(function()
         /****************************************************** It includes all profile.ejs files ********************************************************/
 
 
+        // count number of people I am following i.e (Following)
+        countFollowing()
+        function countFollowing()
+        {
 
+                $.ajax(
+                                {
+                                        url:  '/profile/countFollowing',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+
+                                                        $('.countFollowing').html(response.length)
+                                                        
+                                                }else{
+                                                        alert("countFollowing Null")
+                                                }
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown)
+                                        {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                                        } 
+                                }
+                        );
+        }
+
+        //count number of people are following me i.e (my followers)
+        countFollowers()
+        function countFollowers()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/countFollowers',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        alert(JSON.stringify(response.length));
+                                                        $('.countFollowers').html(response.length)
+                                                        
+                                                }else{
+                                                        alert("countFollowers Null")
+                                                }
+                                        },
+                                        error : function()
+                                        {
+                                                alert('error from server');
+                                        }
+                                }
+                        );
+        }
+
+        // count total number of upcoming events
+        totalUpcomingEvents()
+        function totalUpcomingEvents()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/totalUpcomingEvents',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        $('.total_upcoming_event_count').html(response.count)
+                                                        
+                                                }else{
+                                                        alert("upcomingtotal events count null")
+                                                }
+                                        },
+                                        error : function()
+                                        {
+                                                alert('error from server');
+                                        }
+                                }
+                        );
+        }
+
+        // count total number of active events 
+        totalActiveEvents()
+        function totalActiveEvents()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/totalActiveEvents',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        alert(JSON.stringify(response.count))
+                                                        $('.total_active_event_count').html(response.count)
+                                                        
+                                                }else{
+                                                        alert("totalActiveEvents Null")
+                                                }
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown)
+                                        {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                                        } 
+                                }
+                        );
+        }
+
+        // count total number of past events
+        totalPastEvents()
+        function totalPastEvents()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/totalPastEvents',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        $('.total_past_event_count').html(response.count)
+                                                        
+                                                }else{
+                                                        alert("totalPastEvents null")
+                                                }
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown)
+                                        {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                                       } 
+                                }
+                        );
+        }
+
+        // count total number of events
+        totaltotalEvents()
+        function totaltotalEvents()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/totaltotalEvents',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        $('.total_total_event_count').html(response.count)
+                                                        
+                                                }else{
+                                                        alert("totaltotalEvents")
+                                                }
+                                        },
+                                        error: function(jqXHR, textStatus, errorThrown)
+                                        {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                                        } 
+                                }
+                        );
+        }
+
+        // slider for upcoming, active and past events
+
+        // This is for upcoming events
+        $("#owl-demo").owlCarousel(
+                {
+        
+                        autoPlay: 3000, //Set AutoPlay to 3 seconds
+                        touchDrag:true,
+                        items : 3,
+                        dots:true,
+                        autoplayHoverPause:true,
+                        animateOut:true,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3]
+        
+                });
+        
+        // This is for active events
+                $("#owl-demo_2").owlCarousel(
+                {
+        
+                        autoPlay: 3000, //Set AutoPlay to 3 seconds
+                        touchDrag:true,
+                        items : 3,
+                        dots:true,
+                        autoplayHoverPause:true,
+                        animateOut:true,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3]
+        
+                });
+        // This is for past events
+                $("#owl-demo_3").owlCarousel(
+                {
+        
+                        autoPlay: 3000, //Set AutoPlay to 3 seconds
+                        touchDrag:true,
+                        items : 3,
+                        dots:true,
+                        autoplayHoverPause:true,
+                        animateOut:true,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3]
+        
+                });
+        // on click view events details using bootsrap models
+
+        // This model is for post event view like when user clicks on upcoming or active or past events on slider
+        // This click calls a function and pass a event_id to it to display event UI
+        $(document).on('click','.postfullview',function(events)
+        {
+        
+                events.preventDefault();
+                events.stopPropagation();
+                var event_id =$(this).data('onclickview'); 
+                modal_view_event_details(event_id);
+
+
+        })
+
+        // This is the UI on which events data will be displayed when user cliks any of upcoming,active or past events and 
+        //also when user clicks on heatMap and then list a specific event then this function will be called which takes one parameters i.e event_di
+        function modal_view_event_details(event_id)
+                {
+                        var $chat_history= document.getElementById("show_data");
+                        $chat_history.innerHTML = "";
+                        var innerHTML = ''
+                        $.ajax(
+                                {
+                                        url:  '/profile/modeldata', 
+                                        type: 'POST',
+                                        data:{event_id:event_id},
+
+                
+                                        success : function(response)
+                                        {
+                                                if(response !="")
+                                                {
+
+                                                        for(var i=0, len = response.event_details.length; i < len; i++)
+                                                        {
+
+
+                                                        innerHTML = `<div class="col-7" style="padding-left:50px;padding-top:20px"><div class="row">
+                                                                        <div class="d-flex bd-highlight">`;
+                                                                                if (response.user[i].user_profile_pic) 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"> 
+                                                                                        <img src="../public/profile_image/${response.user[i].user_profile_pic}" class="rounded-circle user_img"> 
+                                                                                        </div> `
+                                                                                } 
+                                                                                else 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+                                                                                }
+                                                                innerHTML += ` <div class="user_info viewclick" data-view="${response.user[i].user_id}">${response.user[i].user_firstname} ${response.user[i].user_lastname}<br/>
+                                                                                        <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+                                                                                        <small><a href="http://maps.google.com/?q=${response.event_details[i].event_latitude},${response.event_details[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                        <small style="padding-left:10px" id="show_location"></small>
+                                                                                </div> 
+                                                                        </div></div>
+
+                                                                        <div class="row">
+                                                                                        <div class="title">
+                                                                                      <h5><span style="padding-left:20px" id="show_title">${response.event_details[i].event_message}</span></h5>
+                                                                                </div>
+                                                                                        <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                               
+                                                                                                <p>${response.event_details[i].event_description}<span id="dots">...</span><span id="more" style="display: none;">${response.event_details[i].event_read_more_option}</span>
+                                                                                                <span data-btn_hide_show="${response.event_details[i].event_id}" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                                                                                                </p>
+                                                                                        </div>
+                                                                        </div>
+
+                                                                        <ul class="nav">
+                                                                                <li>
+                                                                                        <a href="/post/${response.event_details[i].event_id}">
+                                                                                        <img src="../public/image/${response.event_details[i].e_imagepath}" alt="error check >" class="img-fluid">
+                                                                                        </a>
+                                                                                
+                                                                                </li>
+                                                                        </ul>`;
+
+                                          innerHTML += `<div class="container">
+                                                                <div class="row">
+                                                                        <div class="col-md-6 like" style="padding-top:10px" data-post="${response.event_details[i].event_id}">
+                                                                                <a href=""><i class="fas fa-thumbs-up"></i></a>
+                                       
+                                                                                <span class="countLikes" id="countLikes${response.event_details[i].event_id}" style="cursor: pointer;"> ${response.event_details[i].Likes.length} Like</span>
+                                
+                                                                        </div>`;
+
+                                                  innerHTML += `        <div class="col-md-4 post_comment" id="${response.event_details[i].event_id}" style="padding-top:10px">
+                                                                                <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                                                                <span class="countComments" style="cursor: pointer;"> ${response.event_details[i].Comments.length} comments</span>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-md-2" style="padding-top:10px">
+                                                                                        <i class="fas fa-share"></i>
+                                                                                        <span>share</span>
+                                                                        
+                                                                        </div>
+
+                                                                </div>
+                                                        </div>
+
+                                                                </div>`;
+                                                                var comments_data = response.event_details[i].Comments.length;
+                                                        
+                                                                innerHTML += `<div class="col-5">`;
+                                                                        
+                                                                        
+                                                                for(var j=0, len_comment = comments_data; j < len_comment; j++)
+                                                                {
+                                                                        innerHTML += `<div class="row"><div class="col-1"><a href=""><img class="rounded-circle" src="../public/profile_image/${response.event_details[i].Comments[j].User.user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a></div><div class="col-11"><p>${response.event_details[i].Comments[j].comment} <br/><small>${response.event_details[i].Comments[j].createdAt}</small></p></div></div><hr>`;
+
+                                                                }
+
+                                                                innerHTML += ` 
+                                                                
+                                                                <div class="container">
+                                                                                        <div class="row">`;
+                                                                                                
+                                                                                                if(response.user[i].user_profile_pic)
+                                                                                                {
+                                                                                                        innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                        <a href=""><img class="rounded-circle" src="../public/profile_image/${response.user[i].user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                                </div>`
+                                                                                                }
+                                                                                                else 
+                                                                                                { 
+                                                                                                        innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                        <a href=""><img class="rounded-circle" src="../public/profile_image/icon.jpg" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                                </div>`
+                                                                                                }
+                                                                                                
+                                                                                                innerHTML += `  <div class="col-md-7">
+                                                                                                                        <div class="form-group" id="comment_form${response.event_details[i].event_id}">
+                                                                                                                                <input class="form-control" name="comment" type="text" placeholder="Your comments" id="comment${response.event_details[i].event_id}"/>
+                                                                                                                        </div>
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3" style="padding-top:10px">
+                                                                                                                        <button type="button" data-po="${response.event_details[i].event_id}" name="submit_comment" class="btn btn-default submit_comment">comment</button>
+                                                                                                                </div>
+                                                                                        </div>
+                                                                                        
+
+                                                                                        <div class="container" id="old_comment${response.event_details[i].event_id}">
+                                                                                                
+
+                                                                                        </div>
+                                                                                                
+                                                                                                
+                                                                                        
+
+                                                                                </div>
+                                                                </div>`;
+                                                                $chat_history.innerHTML = innerHTML;    
+                                                                $('#modalQuickView').modal('show');
+
+                                                        }
+                                                }
+                                                else{
+                                                        alert("data null from modeldata")
+                                                }
+
+                                        
+                                        },
+                                        error:function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        }
+                                }
+                        );
+        }
+
+        // Now this is the heatMap which includes all the details about the user events 
+        // needs to be completed 
+        requestData();
+        function requestData()
+        {
+            $.ajax(
+            {
+                url: '/profile/heap_map_data',
+                type: 'GET',
+                success: function(response) 
+                {
+        
+                    var chart_data = [];
+                    var data = 1;
+                    var dataExists;
+                    
+                    var k = 0;
+                    for(var i = 0, len = response.length; i < len; i++)
+                    {
+                        date_value = response[i].event_start_date;
+                        var d = new Date(date_value);   
+                        var year = d.getFullYear();
+                        var month = d.getMonth();
+                        var day = d.getDay();
+                        var actualDay = day -1;
+                        
+                        chart_data.push([month,actualDay,data]);
+                    }
+                    //alert(chart_data[1]);
+                    console.log(chart_data[1]);
+                    console.log("chart_data ==",chart_data);
+                    
+    
+                    Highcharts.chart('heap_map_chart', 
+                    {colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+    
+                            chart: {
+                                type: 'heatmap',
+                                marginTop: 40,
+                                marginBottom: 80,
+                            
+                                backgroundColor: 
+                                {
+                                            linearGradient: [400, 0, 400, 400],
+                                            stops: [
+                                                    [0, 'rgb(96, 96, 96)'],
+                                                    [1, 'rgb(16, 16, 16)']
+                                            ]
+                               },
+                            borderWidth: 0,
+                            
+                            plotBackgroundColor: null,
+                            plotShadow: false,
+                            plotBorderWidth: 0
+                                
+                            },
+    
+    
+                            title: {
+                                    style: { 
+                            color: '#FFF',
+                            font: '16px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                    },
+                                text: 'Project Details'
+                            },
+    
+                            xAxis: {
+    
+                                    lineColor: '#999',
+                                    tickColor: '#999',
+                                    labels: 
+                                    {
+                                            style: 
+                                            {
+                                                    color: '#999',
+                                                    fontWeight: 'bold'
+                                            }
+                                    },
+                                    title: 
+                                    {
+                                            style: 
+                                            {
+                                                    color: '#AAA',
+                                                    font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                                            }				
+                                    },
+                                categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                            },
+    
+                            yAxis: {
+    
+                                    lineColor: '#999',
+                                    tickColor: '#999',
+                                    labels: 
+                                    {
+                                            style: 
+                                            {
+                                                    color: '#999',
+                                                    fontWeight: 'bold'
+                                            }
+                                    },
+                                    title: 
+                                    {
+                                            style: 
+                                            {
+                                                    color: '#AAA',
+                                                    font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                                            }				
+                                    },
+                                    
+                                categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
+                                title: null
+                            },
+    
+                            
+    
+                            colorAxis: {
+                                min: 2,
+                                minColor: '#ECF0F1',
+                                maxColor: Highcharts.getOptions().colors[0]
+                            },
+    
+                            legend: {
+                                align: 'right',
+                                layout: 'vertical',
+                                margin: 0,
+                                verticalAlign: 'top',
+                                y: 25,
+                                symbolHeight: 280
+                            },
+    
+                            tooltip: {
+                                    backgroundColor: {
+                            linearGradient: [0, 0, 0, 50],
+                            stops: [
+                                    [0, 'rgba(96, 96, 96, .8)'],
+                                    [1, 'rgba(16, 16, 16, .8)']
+                            ]
+                    },
+                    borderWidth: 0,
+                    style: {
+                            color: '#FFF'
+                    },
+                                formatter: function () 
+                                {
+                                    return  + this.point.value + ' <b> project was uploaded on ' + this.series.xAxis.categories[this.point.x] + ' date, 2019' + '<br /> click to view more' ;
+                                }
+                            },
+    
+                            plotOptions: 
+                            {
+                                    series: 
+                                    {
+                                            color: '#212F3D',
+                                        cursor: 'pointer',
+                                        point: 
+                                        {
+                                            events: 
+                                            {
+                                                click: function () 
+                                                {
+    
+                                                    var year = 2019;
+                                                    var month = this.x;
+                                                    var y_axis_day = this.y;
+    
+                                                    $.ajax(
+                                                        {
+                                                            url: '/profile/heap_map_event_details',
+                                                            type: "POST",
+                                                            data: {year:year,month:month},
+                                                            success: function (response) 
+                                                            {
+                                                                    
+                                                                    var $message_list= document.getElementById("event_heatmap_info");
+                                                                    $message_list.innerHTML = '';
+                                                                    for(var i = 0, len = response.length; i < len; i++)
+                                                                    {
+    
+                                                                        var date = new Date(response[i].event_start_date);   
+                                                                        var day = date.getDay();
+                                                                        var actualDay = day -1;
+                                                                        actualDay = Number(actualDay)
+                                                                        
+                                                                        if(y_axis_day == actualDay)
+                                                                        {
+                                                                           $message_list.innerHTML = $message_list.innerHTML + `<div class="card" ><li class="list-group-item link-class" style="cursor: pointer;"><span class="postfullview" data-onclickview="${response[i].event_id}"</span> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"></div><div class="user_info">${response[i].event_message}<br/><small style="color:#F44336"><strong>${response[i].event_start_date}</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
+                                                                            $('#centralModalSm').modal('show')
+                                                                            }
+                                                                        
+                                                                        
+                                                                       
+                                                                        
+                                                                    }
+                                                                    
+                                                            },
+                                                            error : function(jqXHR, textStatus, errorThrown)
+                                                            {
+                                                                console.log('jqXHR:');
+                                                                console.log(jqXHR);
+                                                                console.log('textStatus:');
+                                                                console.log(textStatus);
+                                                                console.log('errorThrown:');
+                                                                console.log(errorThrown);
+                                                                alert(errorThrown);                            
+                                                            } 
+                                                        });
+    
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+    
+                            series: [
+                                {
+    
+                                data: chart_data,
+                                
+                                lineColor: '#999',
+                                    tickColor: '#999',
+                                dataLabels: {
+                                    enabled: true,
+                                    color: '#999'
+                                }
+                            }]
+    
+                    }); 
+                    
+    
+                },
+                error : function(jqXHR, textStatus, errorThrown)
+                {
+                    console.log('jqXHR:');
+                    console.log(jqXHR);
+                    console.log('textStatus:');
+                    console.log(textStatus);
+                    console.log('errorThrown:');
+                    console.log(errorThrown);
+                    alert(errorThrown);
+                } 
+            
+            });
+        }
+
+        // This is for updating or changing user profile image
+        // currently it is not in use as this is not implemented still but code is fully working
+        $("#form_data").submit(function(e)
+        {	 
+                e.preventDefault();
+                var formData = new FormData($(this)[0]);
+                alert(formData);
+                $.ajax({
+                url: '/profile/image/' + $(this).attr('data-user_id'),
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) 
+                {
+                        if(response.length > 0)
+                        {
+                                for(var i= 0; i< response.length; i++)
+                                {
+                                        var imagepath = response[i].user_profile_pic
+                                        $('#profile_image').attr('src', "../public/profile_image/"+imagepath);
+                                }
+                        }
+                },
+                error : function(jqXHR, textStatus, errorThrown)
+                {
+                                                console.log('jqXHR:');
+                                                console.log(jqXHR);
+                                                console.log('textStatus:');
+                                                console.log(textStatus);
+                                                console.log('errorThrown:');
+                                                console.log(errorThrown);
+                                                alert(errorThrown);
+                } 
+                });
+                return false;
+        });
+
+        // This is for updaing or editing the user details like personal or private information
+        // This is not working still but for reference it is good.
+                var $hide_about_me = $('.hide-about-me') 
+                var $save_user_data_btn = $('.save-user-data-btn'); 
+                var $show_data = $('.collapse');              
+                $('.about-me').on('click', function(events)
+                {
+                        $hide_about_me.hide(400);
+                        //alert($("#user_full_name").html())
+                        $('input.fullname').val($("#user_full_name").html());
+                        $('input.profession').val($("#user_profession").html());
+                        $('.cancel-edit-btn').on('click', function(events)
+                        {
+                                $hide_about_me.show(400);
+                        })
+                        $save_user_data_btn.on('click',function(events)
+                        {
+                                var user_id = $(this).attr('data-user_id')
+                                //alert(user_id);
+                                var fullname = $('input.fullname').val()
+                                var data = {
+                                                name: fullname
+                                }
+                                //alert(fullname)
+                                $.ajax(
+                                        {
+                                               type: 'PUT',
+                                               url: '/profile/updatauserdata/' + $(this).attr('data-user_id'),
+                                               contentType: "application/json",
+                                               data: JSON.stringify(data),
+                                               success: function(user)
+                                               {
+                                               
+                                                 user.forEach(function(item, index)
+                                                {
+                                                        //alert(item.user_lastname)
+                                                        $show_data.html(item.user_lastname)
+                                                })
+                                                    
+                                                       
+                                                       
+                                               },
+                                               error: function(jqXHR, textStatus, errorThrown)
+                                               {
+                                                        console.log('jqXHR:');
+                                                        console.log(jqXHR);
+                                                        console.log('textStatus:');
+                                                        console.log(textStatus);
+                                                        console.log('errorThrown:');
+                                                        console.log(errorThrown);
+                                                        alert(errorThrown);
+                                               } 
+                                        }
+                                )
+                        }) 
+                        
+        
+               })
 })
