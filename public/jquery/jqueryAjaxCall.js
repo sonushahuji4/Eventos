@@ -1025,7 +1025,7 @@ $(document).ready(function()
                         url:"/posts/events_options",
                         method: "POST",
                         data:{latitude:latitude,longitude:longitude,common_name:common_name,selected_option:selected_option,action_option:action_option},
-
+                                        
                         success:function(response)
                         {
                                 if(response.feeds_data !='')

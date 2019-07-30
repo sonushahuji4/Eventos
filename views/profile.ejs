@@ -1,6 +1,6 @@
+<br /> <br /> <br /> <br /> <br />
 <%- include('partials/includes/header') %>
 <%- include('partials/includes/navbar') %>
-<br /> <br /> <br /> <br /> <br />
 <div class="container">
         
        
@@ -104,7 +104,7 @@
                                                 
 
                                                    <!-- create posts -->
-                                                   <div class="card" style="margin-top:30px">
+                                                <div class="card" style="margin-top:30px">
                                                                 <div class="card-body">
                                         
                                                                 <a href="#"><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
@@ -115,169 +115,84 @@
                             
                                   
                                                                 </div>
-                                                        </div>
-                               
-                                                        
-
-                                                        <div class="card" style="margin-top:30px">
-                                                                        <% if(items.length > 0){ %>   
-                                                                                <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                                                <% var post_data = items[i].Posts; %> 
-                                                                                
-                                                                                <div class="card-group" style="margin: 15px" id="owl-demo">  
-                                                                                               
-                        
-                        
-                                                                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                                                                
-                                                                                <% if(post_data[j].event_start_date > onlyDate){%>
-                                                                                       
-                                                                                <%}%>
-                                                                                
-                                                                                            
-                                                                                <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image"></div> 
-                                                                                
-                                                                                <%}%> 
-                                                                      
-                                                         
-                                                
-                                                                                </div>
-                                                                                <%}%> 
-                                                                                <%} else {%>
-                                                                                        <span>No Upcoming events yet</span>
-                                                                                <%}%>    
-                                                                       </div>
-
-
-
-
-                                                        <!-- <span id="slide"></span> -->
-                                                        <div class="card" style="margin-top:30px" id="slide">
-                                                                
-                                                                        
-                                                                       
-                                                                           
-                                                        </div>
-                                              
-                              
-
-                                               <div class="card" style="margin-top:30px">
-                                                <% if(items.length > 0){ %>   
-                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <% var post_data = items[i].Posts; %> 
-                                                        <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
-                                                        <span><a id="?" href="#">Left Button Image</a></span>
-                                                        <div class="card-group" style="margin: 15px">  
-                                                                       
-
-                                                                                        <div id="slider_out">
-
-                                                                                            <ul class="slides_in">
-
-                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                                        
-                                                        <% if(post_data[j].event_start_date > onlyDate){%>
-                                                               
-                                                        <%}%>
-                                                        
-                                                                                
-                                                                                
-                                                                        
-                                                        <li class=" card slide_data">
-                                                                <img src="../public/image/<%=post_data[j].e_imagepath %>" style="height: 200px; width:390px" class="card-img-top">
-                                                                <div class="card-body">
-                                                                        <p>Post 1</p>
-                                                                </div>
-                                                                <div class="card-footer bg-transparent border-success" style="width: 390px">
-                                                                                <ul class="nav">
-                                                                                        <li class="nav-item">
-                                                                                                <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                       
-                                                                                       
-        
-                                                                                        <li class="nav-item" style="padding-left:20px">
-                                                                                                <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
-                                                                                        </li>
-                                                                                </ul>
-                                                                                </div>
-
-                                                        </li>       
-                                                                       
-                                                        
-                                                        <%}%> 
-                                                </ul>
-                                        </div>
-                                 
-                        
-                                                        </div>
-                                                        <%}%> 
-                                                        <%} else {%>
-                                                                <span>No Upcoming events yet</span>
-                                                        <%}%>    
-                                               </div>
-
-                                               <div class="card" style="margin-top:30px">
-                                                <% if(items.length > 0){ %>   
-                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <% var post_data = items[i].Posts; %> 
-                                                        <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
-                                                        <div class="card-group" style="margin: 15px">               
-                                                                        
-                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                                        
-                                                        <% if(post_data[j].event_start_date < onlyDate){%>
-                                                                <div class="col-4">
-                                                                        <div class="card">
-                                                       
-                                                                                <img class="card-img-top" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image cap" style="height: 300px">                                        
-                                                                                <div class="card-footer bg-transparent border-success">
-                                                                                <ul class="nav">
-                                                                                        <li class="nav-item">
-                                                                                                <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-share" style="cursor: pointer;"></i>
-                                                                                        </li>
-                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <span style="cursor: pointer;">Read More</span>
-                                                                                        </li>
-        
-                                                                                        <li class="nav-item" style="padding-left:20px">
-                                                                                                <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
-                                                                                        </li>
-                                                                                </ul>
-                                                                                </div>
-                                                                        </div>
-                                                                </div>  
-                                                               
-                                                        <%}%> 
-                                                        <%}%> 
-                        
-                                                        </div>
-                                                        <%}%> 
-                                                        <%} else {%>
-                                                                <span>No Upcoming events yet</span>
-                                                        <%}%>    
-                                               </div>
-
+                                                </div>
                                                
-                        
 
-                        
+                                                <!--------------------->
+
+                                                <!-- Modal -->
+
+                                                              <!-- Modal: modalQuickView -->
+                                                              <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                  <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                      <div class="row" id="show_data">
+
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                <!--------------------------->
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                        <h5 class="card-header">Up Coming Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date > onlyDate){%>
+                                                                               
+                                                                        <%}%>
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%> 
+                                                              
+                                                 
                                         
-                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+                                     
                         
                 </div>
                 
@@ -290,133 +205,240 @@
 
 $(document).ready(function() 
 {
-        $("#owl-demo").owlCarousel({
+        $("#owl-demo").owlCarousel(
+        {
 
-autoPlay: 3000, //Set AutoPlay to 3 seconds
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+                touchDrag:true,
+                items : 3,
+                dots:true,
+                autoplayHoverPause:true,
+                animateOut:true,
+                itemsDesktop : [1199,3],
+                itemsDesktopSmall : [979,3]
 
-items : 4,
-itemsDesktop : [1199,3],
-itemsDesktopSmall : [979,3]
+        });
+  
 
-});
-        var $slider = $('#slider_out'); //div
-  var $slidesContainer = $slider.find('.slides_in'); //ul
-  var $slide = $slidesContainer.find('.slide_data'); // li
-
-  var animationSpeed = 1000;
-  var pause = 1000;
-  var width = 800;
-  var currentSlide = 0;
-
-  var interval; 
-  function startSlider()
-  {
-  interval = setInterval(function()
-          {
-
-            $slidesContainer.animate({'margin-left':'-='+width},animationSpeed,function()
-            {
-                //alert("slide length")
-                //alert($slide.length)
-                //alert("currentSlide")
-                //alert(currentSlide)
-              currentSlide = currentSlide + 2;
-              //alert("currentSlide")
-
-              //alert(currentSlide)
-              if((currentSlide === $slide.length) || currentSlide > $slide.length)
-              {
-                //alert("currentSlide in")
-                //alert(currentSlide)
-                currentSlide=0;
-                $slidesContainer.css('margin-left',0);
-
-              } 
-            });
-          },pause);
-  }
-
-  function stopSlider()
-  {
-    clearInterval(interval);
-  }
-
-  $slide.on('mouseenter',stopSlider).on('mouseleave',startSlider);
-startSlider();   
-        
-slideshow();
-function slideshow()
-{
-
-                $.ajax({
-                url: '/profile/slideshow',
-                type: "GET",
-                success: function (response) 
+                // when user likes the post then it increaments by one and update the database and reflects the likes on posts
+                $(document).on('click', '.like', function(events)
                 {
-                        if( response != "")
-                        {
-                                var $slideshow= document.getElementById("slide");
-                                  $slideshow.innerHTML = "";
-                                
-                                var currentImage = 0,
-                                images = [];
-                                for(var i = 0, len = response.length; i < len; i++)
-                                {
-                                       var post_data = response[i].Posts;
-                                       for(var j = 0, len_post = post_data.length; j < len_post; j++)
-                                       {
-                                        images.push(post_data[j].e_imagepath)
-                                       }
-                                }
+                        alert("clicked")
+                        events.preventDefault();
+                        events.stopPropagation();
+                        var postId = $(this).attr('data-post');
+                        var postId = parseInt(postId,10)
 
-                                function initSlideshow() 
-                                {	
-                                                        setImage(0);
-                                        setInterval(function()
-                                        {
-                                                        nextImage();
-                                        },3000);
-                                }
-
-                                function nextImage() 
+                        $.ajax(
                                 {
-                                        if(images.length === currentImage + 1)
+                                        type: 'POST',
+                                        url:  '/posts/like/' + $(this).attr('data-post'),
+                                        contentType: "application/json", 
+                
+                                        success : function(response)
                                         {
-                                                currentImage = 0;
-                                        } else {
-                                                        currentImage++;
+                                                
+                                                if(response == false)
+                                                {
+                                                        alert("You have already liked this post")
+                                                }
+                                                else 
+                                                {
+                                                        $('#countLikes'+postId).html(response.count);
+                                                }
+                                                        
+                                        
+                                        },
+                                        error : function()
+                                        {
+                                                alert('error from server');
                                         }
-                                setImage(currentImage);
                                 }
-
-                                function setImage(image) {
-                                       
-                                       $('#slide').html('<div class="card-group" style="margin: 15px"> <div class="col-4><div class="card"><ul class="nav"><li class="nav-item"><img class="card-img-top" src="../public/image/'+images[image]+'" alt="Card image cap" style="height:300px;width:300px"></ul></li><div class="card-footer bg-transparent border-success"><ul class="nav"><li class="nav-item"><i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px">10</span></i> </li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px">20</span></i></li><li class="nav-item" style="padding-left: 10px"><i class="fas fa-share" style="cursor: pointer;"></i></li><li class="nav-item" style="padding-left: 10px"><span style="cursor: pointer;">Read More</span></li><li class="nav-item" style="padding-left:20px"><i class="fas fa-ellipsis-v" style="cursor: pointer;"></i></li></ul></div></div></div>');
-                                                                                      
-                                }
-
-                                window.onload = initSlideshow();
-
-
-                        }
-                        else{
-                                alert("data null");
-                        }
-
-                },
-                error : function(jqXHR, textStatus, errorThrown)
+                        );
+                })// like post ends 
+                
+                $(document).on('click','.postfullview',function(events)
                 {
-                                                console.log('jqXHR:');
-                                                console.log(jqXHR);
-                                                console.log('textStatus:');
-                                                console.log(textStatus);
-                                                console.log('errorThrown:');
-                                                console.log(errorThrown);
-                                                alert(errorThrown);
-                } 
-                });
-}
+                        alert("full view")
+                        events.preventDefault();
+                        events.stopPropagation();
+                        var event_id =$(this).data('onclickview'); 
+                        var $chat_history= document.getElementById("show_data");
+                        $chat_history.innerHTML = "";
+                        var innerHTML = ''
 
+
+                        // $('.modal').load('/render/62805',function(result) show_data
+                        // {
+                        //         $('#basicExampleModal').modal({show:true});
+                        // });
+
+                        $.ajax(
+                                {
+                                        url:  '/profile/modeldata', 
+                                        type: 'POST',
+                                        data:{event_id:event_id},
+
+                
+                                        success : function(response)
+                                        {
+                                                if(response !="")
+                                                {
+                                                        alert(JSON.stringify(response.user[0].user_firstname));
+                                                        for(var i=0, len = response.event_details.length; i < len; i++)
+                                                        {
+
+                                                        //alert(response.event_details[i].event_id);
+                                                                
+                                                        //alert(response.event_details[i].Likes.length);
+                                                        innerHTML = `<div class="col-7" style="padding-left:50px;padding-top:20px"><div class="row">
+                                                                        <div class="d-flex bd-highlight">`;
+                                                                                if (response.user[i].user_profile_pic) 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"> 
+                                                                                        <img src="../public/profile_image/${response.user[i].user_profile_pic}" class="rounded-circle user_img"> 
+                                                                                        </div> `
+                                                                                } 
+                                                                                else 
+                                                                                {
+                                                                                        innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+                                                                                }
+                                                                innerHTML += ` <div class="user_info viewclick" data-view="${response.user[i].user_id}">${response.user[i].user_firstname} ${response.user[i].user_lastname}<br/>
+                                                                                        <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+                                                                                        <small><a href="http://maps.google.com/?q=${response.event_details[i].event_latitude},${response.event_details[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                        <small style="padding-left:10px" id="show_location"></small>
+                                                                                </div> 
+                                                                        </div></div>
+
+                                                                        <div class="row">
+                                                                                        <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                               
+                                                                                                <p>${response.event_details[i].event_description}<span id="dots">...</span><span id="more" style="display: none;">${response.event_details[i].event_read_more_option}</span>
+                                                                                                <span data-btn_hide_show="${response.event_details[i].event_id}" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                                                                                                </p>
+                                                                                        </div>
+                                                                        </div>
+
+                                                                        <ul class="nav">
+                                                                                <li>
+                                                                                        <a href="/post/${response.event_details[i].event_id}">
+                                                                                        <img src="../public/image/${response.event_details[i].e_imagepath}" alt="error check >" class="img-fluid">
+                                                                                        </a>
+                                                                                
+                                                                                </li>
+                                                                        </ul>`;
+
+                                          innerHTML += `<div class="container">
+                                                                <div class="row">
+                                                                        <div class="col-md-6 like" style="padding-top:10px" data-post="${response.event_details[i].event_id}">
+                                                                                <a href=""><i class="fas fa-thumbs-up"></i></a>
+                                       
+                                                                                <span class="countLikes" id="countLikes${response.event_details[i].event_id}" style="cursor: pointer;"> ${response.event_details[i].Likes.length} Like</span>
+                                
+                                                                        </div>`;
+
+                                                  innerHTML += `        <div class="col-md-4 post_comment" id="${response.event_details[i].event_id}" style="padding-top:10px">
+                                                                                <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                                                                <span class="countComments" style="cursor: pointer;"> ${response.event_details[i].Comments.length} comments</span>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-md-2" style="padding-top:10px">
+                                                                                        <i class="fas fa-share"></i>
+                                                                                        <span>share</span>
+                                                                        
+                                                                        </div>
+
+                                                                </div>
+                                                        </div>
+
+                                                                </div>`;
+                                                                var comments_data = response.event_details[i].Comments.length;
+                                                                //alert(comments_data)
+                                                                innerHTML += `<div class="col-5">`;
+                                                                        
+                                                                        
+                                                                for(var j=0, len_comment = comments_data; j < len_comment; j++)
+                                                                {
+                                                                        innerHTML += `<div class="row"><div class="col-1"><a href=""><img class="rounded-circle" src="../public/profile_image/${response.event_details[i].Comments[j].User.user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a></div><div class="col-11"><p>${response.event_details[i].Comments[j].comment} <br/><small>${response.event_details[i].Comments[j].createdAt}</small></p></div></div><hr>`;
+
+                                               
+
+                                                                //alert(response.event_details[i].Comments[j].comment_id);
+                                                                
+                                                                //alert(response.event_details[i].Comments[j].User.user_firstname);
+                                                                }
+
+                                                                innerHTML += ` 
+                                                                
+                                                                <div class="container">
+                                                                                        <div class="row">`;
+                                                                                                
+                                                                                                if(response.user[i].user_profile_pic)
+                                                                                                {
+                                                                                                        innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                        <a href=""><img class="rounded-circle" src="../public/profile_image/${response.user[i].user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                                </div>`
+                                                                                                }
+                                                                                                else 
+                                                                                                { 
+                                                                                                        innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                        <a href=""><img class="rounded-circle" src="../public/profile_image/icon.jpg" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                                </div>`
+                                                                                                }
+                                                                                                
+                                                                                                innerHTML += `  <div class="col-md-7">
+                                                                                                                        <div class="form-group" id="comment_form${response.event_details[i].event_id}">
+                                                                                                                                <input class="form-control" name="comment" type="text" placeholder="Your comments" id="comment${response.event_details[i].event_id}"/>
+                                                                                                                        </div>
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3" style="padding-top:10px">
+                                                                                                                        <button type="button" data-po="${response.event_details[i].event_id}" name="submit_comment" class="btn btn-default submit_comment">comment</button>
+                                                                                                                </div>
+                                                                                        </div>
+                                                                                        
+
+                                                                                        <div class="container" id="old_comment${response.event_details[i].event_id}">
+                                                                                                
+
+                                                                                        </div>
+                                                                                                
+                                                                                                
+                                                                                        
+
+                                                                                </div>
+                                                                </div>`;
+                                                                $chat_history.innerHTML = innerHTML;    
+                                                                $('#modalQuickView').modal('show');
+
+                                                        }
+                                                }
+                                                else{
+                                                        alert("data null from modeldata")
+                                                }
+
+                                                
+                                                
+                                                // innerHTML = `<div class="col-8><div class="card"><img src="../public/image/1.jpg" class="rounded-circle user_img"> </div></div>`;
+                                                // innerHTML += `<div class="col-4"> <img src="../public/image/9.jpg"></div>`;
+                                                // $chat_history.innerHTML = innerHTML;
+                                                // $('#modalQuickView').modal('show');
+                                        },
+                                        error:function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        }
+                                }
+                        );
+
+                })
     requestData(); // calling function on page load
     function requestData()
     {

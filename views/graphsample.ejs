@@ -71,3 +71,66 @@ $(document).ready(function()
 startSlider();
 })
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="card" style="margin-top:30px">
+    <% if(items.length > 0){ %>   
+            <% for(var i = 0, len = items.length; i < len; i++){%>
+            <% var post_data = items[i].Posts; %> 
+            <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
+            <div class="card-group" style="margin: 15px">               
+                            
+            <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+            
+            <% if(post_data[j].event_start_date < onlyDate){%>
+                    <div class="col-4">
+                            <div class="card">
+           
+                                    <img class="card-img-top" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image cap" style="height: 300px">                                        
+                                    <div class="card-footer bg-transparent border-success">
+                                    <ul class="nav">
+                                            <li class="nav-item">
+                                                    <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
+                                            </li>
+                            
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                            </li>
+                            
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <i class="fas fa-share" style="cursor: pointer;"></i>
+                                            </li>
+
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <span style="cursor: pointer;">Read More</span>
+                                            </li>
+
+                                            <li class="nav-item" style="padding-left:20px">
+                                                    <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                            </li>
+                                    </ul>
+                                    </div>
+                            </div>
+                    </div>  
+                   
+            <%}%> 
+            <%}%> 
+
+            </div>
+            <%}%> 
+            <%} else {%>
+                    <span>No Upcoming events yet</span>
+            <%}%>    
+   </div> -->

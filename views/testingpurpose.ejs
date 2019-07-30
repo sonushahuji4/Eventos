@@ -1,38 +1,53 @@
-<%- include('partials/includes/header') %>
-<%- include('partials/includes/navbar') %>
+// //alert(JSON.stringify(response));
+//        // alert(response.event_details.length)
+//        for(var i=0, len = response.event_details.length; i < len; i++)
+//         {
+
+//                //alert(response.event_details[i].event_id);
+                
+//                //alert(response.event_details[i].Likes.length);
+//                innerHTML += `<div class="col-8" style="padding-left:50px;padding-top:20px">
+//                         <div class="d-flex bd-highlight">`;
+//                                 if (response[i].data.user_profile_pic) 
+//                                 {
+//                                         innerHTML += ` <div class="img_cont"> 
+//                                         <img src="../public/profile_image/${response[i].data.user_profile_pic}" class="rounded-circle user_img"> 
+//                                         </div> `
+//                                 } 
+//                                 else 
+//                                 {
+//                                         innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+//                                 }
+//                  innerHTML += ` <div class="user_info viewclick" data-view="${response[i].data.user_id}">${response[i].data.user_firstname} ${response[i].data.user_lastname}<br/>
+//                                         <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+//                                         <small><a href="http://maps.google.com/?q=${response.event_details[i].event_latitude},${response.event_details[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+//                                         <small style="padding-left:10px" id="show_location"></small>
+//                                 </div> 
+//                         </div>
+//                 </div>`;
+//                 var comments_data = response.event_details[i].Comments.length;
+//                 //alert(comments_data)
+//                 for(var j=0, len_comment = comments_data; j < len_comment; j++)
+//                 {
+
+//                        // innerHTML += `<div class="col-4"></div>`;
+//                        //alert(response.event_details[i].Comments[j].comment_id);
+                
+//                        //alert(response.event_details[i].Comments[j].User.user_firstname);
+//                 }
+//                 $chat_history.innerHTML = innerHTML;
+
+//         }
+// $('.modal').load('/render/62805',function(result)
+// {
+//         //$('.modal-body').html(response);
+//         innerHTML += `<div class="col-8">
+                
+//                       </div>`;
+//         innerHTML += `<div class="col-4"></div>`;
 
 
-<br /> <br /> <br /> <br /><br /> <br /> <br /> <br />
 
-<div class="container">
-
-        <div id="owl-demo">
-          
-                <div class="item"><img src="../public/image/1556899294785.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/1.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/1557078743444.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/1556896953189.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/9.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/5.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/6.jpg" alt="Owl Image"></div>
-                <div class="item"><img src="../public/image/7.jpg" alt="Owl Image"></div>
-               
-              </div>
-
-</div>
-
-<script>
-$(document).ready(function() {
- 
- $("#owl-demo").owlCarousel({
-
-     autoPlay: 3000, //Set AutoPlay to 3 seconds
-
-     items : 4,
-     itemsDesktop : [1199,3],
-     itemsDesktopSmall : [979,3]
-
- });
-
-});
-</script>
+//         $chat_history.innerHTML = innerHTML;
+//         $('#modalQuickView').modal({show:true});
+// });    

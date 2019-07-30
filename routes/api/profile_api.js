@@ -43,11 +43,11 @@ router.get('/profile', function(req, res)
     onlyDate = onlyDate.toISOString().slice(0,10)
     const user_id = req.session.user_id;
 
-                    Users.findAll({where:{user_id:user_id},include:[{model:Posts,include:[{model:Likes},{model:Comments}]}]})
+                    Users.findAll({where:{user_id:user_id},include:[{model:Posts,include:[{model:Likes,include:[{model:Users}]},{model:Comments,include:[{model:Users}]}]}]})
                     .then((user)=>
                     {
-                        //res.send(user)
-                        res.render('profile',{title:'profile',items:user,onlyDate:onlyDate});
+                       // res.send(user)
+                       res.render('profile',{title:'profile',items:user,onlyDate:onlyDate});
                         
                     })
                     .catch((err)=>
@@ -212,6 +212,37 @@ router.get('/profile/slideshow', function(req,res)
                             error : "error..... check console log"
                         })
                     })
+    
+})
+
+router.post('/profile/modeldata', function(req,res)
+{
+    const user_id = req.session.user_id;
+    const event_id = req.body.event_id;
+
+    //res.send("sss")
+    Posts.findAll({where:{event_id:event_id},include:[{model:Likes},{model:Comments,include:[{model:Users}]}]})
+    .then((event_details)=>
+    {
+        Users.findAll({where:{user_id:user_id}})
+        .then((user)=>
+        {
+            res.send({event_details:event_details,user:user})
+        })
+        .catch((err)=>
+        {
+
+        })
+      // res.render('profile',{title:'profile',items:user,onlyDate:onlyDate});
+        
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({
+            error : "error..... check console log"
+        })
+    })
     
 })
 
