@@ -3,7 +3,8 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
-const {Users,Posts,Likes,Comments} = require('../../model/model_index');
+const sequelize = require('../../config/db');
+const {Users,Posts,Likes,Comments,Follows} = require('../../model/model_index');
 
 const multer = require('multer');
 const path = require('path');
@@ -60,6 +61,8 @@ router.get('/profile', function(req, res)
     
 	
 });
+
+
 
 
 
@@ -331,6 +334,49 @@ router.get('/profile/totaltotalEvents', function(req,res)
     })
     
 })
+// I am following other user
+router.get('/profile/countFollowing', function(req, res)
+{
+    const user_id = req.session.user_id;
+    const status = "accept";
+    Users.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}}})
+    .then((followingData)=>
+    {
+        res.send(followingData)
+
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({
+            error : "error..... check console log"
+        })
+    })
+    
+	
+});
+
+// other user are following me
+router.get('/profile/countFollowers', function(req, res)
+{
+    const user_id = req.session.user_id;
+    const status = "accept";
+    Users.findAll({where:{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.user_id FROM `follows` AS `Follows` WHERE `Follows`.receiver_id='+user_id+' and `Follows`.status="accept")')]}}})
+    .then((FollowersData)=>
+    {
+        res.send(FollowersData)
+
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({
+            error : "error..... check console log"
+        })
+    })
+    
+	
+});
 
 module.exports = router;
 

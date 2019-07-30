@@ -8,6 +8,8 @@
         <div class="row">
                 <div class="col-3">
                                 <div class="row">
+                                        <% if(items.length > 0){%>
+                                                <% for(var i = 0, len = items.length; i < len; i++){%>
                                                 <div class="card">
                                                                 <ul class="nav">
                                                                         <li class="text-center"> 
@@ -15,26 +17,29 @@
                                                                                 <img class="card-img" src="https://qpr2l7.pixelcrush.io/large/static1.chamonet.com%2Fimage_uploader%2Fphotos%2Fe5%2Flarge%2Falmost-time-to-put-away-the-skis-in-chamonix-chamonix-mont-blanc-valley.jpg?auth=41e199f01371394397152a3446ee7ae48879da30" alt="Card image">  
                                                                                 <div class="card-img-overlay">
                                                                                 <div class="text-center" style="margin-top:10%">
-                                                                                        <img class="card-img border border-light" src="https://www.menshairstylesblog.com/wp-content/uploads/2018/09/6-Hot-Guys-with-Long-Beards-377.jpg" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
                                                                                 </div>
 
                                                                                 </div>
                                                                                 </div>
                                                                         
                                                                         <div class="card-body">
-                                                                        <h5>Sonu Shahuji</h5>
+                                                                        <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
                                                                         <hr>
                                                                         <div class="socail_media">
                                                                                 <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
                                                                         </div>
                                                                         <hr>
                                                                         <div class="row">
-                                                                                        <div class="col-6">
-                                                                                                        <small>100k</small><br />Followers
+                                                                                        <div class="col-4">
+                                                                                                        <small><span class="countFollowers"></span></small><br />Followers
                                                                                                         
                                                                                         </div>
-                                                                                        <div class="col-6">
-                                                                                                        <small>100k</small><br />Following
+                                                                                        <div class="col-4">
+                                                                                                        <small><span class="countFollowing"></span></small><br />Following
+                                                                                        </div>
+                                                                                        <div class="col-4">
+                                                                                                        <small>100k</small><br /><i class="far fa-eye"></i>
                                                                                         </div>
                                                                                 </div>
                                                                         </div>
@@ -52,27 +57,37 @@
                                                                    
                                                         
                                                             
-                                                        </div>   
+                                                        </div> 
+                                                        <%}%>
+                                                        <%}else{%>
+                                                                <span>Need To Fix This</span>
+                                                        <%}%>  
                                                  
 
                                 </div>
                                 <div class="row">
+                                        <%if(items.length > 0){%>
+                                                <%for(var i = 0, len = items.length; i < len; i++){%>
                                                 <div class="card" style="background:#ffffff;margin-top:30px">
                                                                 <div class="card about-user">
-                                                                         <div class="card-body">
-                                                                          
-                                                                               
-                                                                               
-                                                                   <div class="text-justify">
-                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15">sonushahuji4@gmail.com</span></p>
+                                                                
+                                                                
+                                                        <div class="card-body">  
+                                                                        <h4 class="card-title">Contact Me</h4>       
+                                                                <div class="text-justify">
+                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
                                                                     <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
                                                                     <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
                                                                     <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
-                                                                   </div>			
+                                                                </div>			
                                                                           
-                                                                         </div>
-                                                                </div>	                        
+                                                        </div>
+                                                </div>	                        
                                                 </div>
+                                                <%}%>
+                                        <%}else{%>
+                                                
+                                        <%}%>
                                 </div>
 
                                 <div class="row">
@@ -81,8 +96,8 @@
                                                                          <div class="card-body">
                                                                           <div class="card-block">
                                                                                <h4 class="card-title info">About Me</h4>
-                                                                               <span>Bio:</span>
-                                                                               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                                                               
+                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me.</p>
                                                                    			
                                                                           </div>
                                                                          </div>
@@ -234,7 +249,8 @@
                                                                 <% if(items.length > 0){ %>   
                                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                                         <% var post_data = items[i].Posts; %> 
-                                                                <h5 class="card-header">Upcoming Events</h5>
+                                                                
+                                                                <h5 class="card-header"><span class="total_upcoming_event_count" style="margin-right:10px"></span>Upcoming Events</h5>
                                                                 <div class="card-group" style="margin-right: 15px" id="owl-demo">  
                                                                                        
                 
@@ -293,7 +309,7 @@
                                                                 <% if(items.length > 0){ %>   
                                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                                         <% var post_data = items[i].Posts; %> 
-                                                                        <h5 class="card-header">Active Events</h5>
+                                                                        <h5 class="card-header"><span class="total_active_event_count" style="margin-right:10px"></span>Active Events</h5>
                                                                 <div class="card-group" style="margin-right: 15px" id="owl-demo_3">  
                                                                                        
                 
@@ -354,7 +370,7 @@
                                                                 <% if(items.length > 0){ %>   
                                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                                         <% var post_data = items[i].Posts; %> 
-                                                                        <h5 class="card-header">Past Events</h5>
+                                                                        <h5 class="card-header"> <span class="total_past_event_count" style="margin-right:10px"></span>Past Events</h5>
                                                                 <div class="card-group" style="margin-right: 15px" id="owl-demo_2">  
                                                                                        
                 
@@ -420,6 +436,63 @@
 
 $(document).ready(function() 
 {
+        // I am following
+        countFollowing()
+        function countFollowing()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/countFollowing',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        //alert(JSON.stringify(response.length))
+                                                        $('.countFollowing').html(response.length)
+                                                        
+                                                }else{
+                                                        alert("upcomingtotal events count null")
+                                                }
+                                        },
+                                        error : function()
+                                        {
+                                                alert('error from server');
+                                        }
+                                }
+                        );
+        }
+
+        // my followers
+        countFollowers()
+        function countFollowers()
+        {
+
+                $.ajax(
+                                {
+                                        url:  '/profile/countFollowers',
+                                        type: 'get',
+                                        success : function(response)
+                                        {    
+                                                if(response !="")
+                                                {
+                                                        //alert(JSON.stringify(response.length))
+                                                        $('.countFollowers').html(response.length)
+                                                        
+                                                }else{
+                                                        alert("upcomingtotal events count null")
+                                                }
+                                        },
+                                        error : function()
+                                        {
+                                                alert('error from server');
+                                        }
+                                }
+                        );
+        }
+
+
         // upcoming events counts
         totalUpcomingEvents()
         function totalUpcomingEvents()
