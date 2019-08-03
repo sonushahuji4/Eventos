@@ -3,33 +3,7 @@
 $(document).ready(function()
 {
 
-        // var xhr = null;
-
-        // if (window.XMLHttpRequest) {
-        //     xhr = window.XMLHttpRequest;
-        // }
-        // else if(window.ActiveXObject('Microsoft.XMLHTTP')){
-        //     // I do not know if this works
-        //     xhr = window.ActiveXObject('Microsoft.XMLHTTP');
-        // }
-    
-        // var send = xhr.prototype.send;
-        // xhr.prototype.send = function(data) 
-        // {
-        //     try{
-        //         //TODO: comment the next line
-        //         //console.log('pre send', data);
-        //         //alert(JSON.stringify(data));
-        //         send.call(this, data);
-        //         //TODO: comment the next line
-        //         //console.log('pos send');
-        //     }
-        //     catch(e) {
-        //         //TODO: comment the next line
-        //         console.log('err send', e);
-        //     }
-        // }
-
+       
         //*********************************** CALLING ALL FUNCTIONS ******************************************/
         
 
@@ -68,8 +42,11 @@ $(document).ready(function()
                                 if(response !='')
                                 {
                                         user_id = Number(response)
-                                        //alert(user_id)
-                                        //return response;
+
+                                }
+                                else
+                                {
+                                        // do nothing
                                 }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
@@ -80,7 +57,7 @@ $(document).ready(function()
                                         console.log(textStatus);
                                         console.log('errorThrown:');
                                         console.log(errorThrown);
-                                        alert(errorThrown);
+                                
                         }
                 });
         } // get_user_id() function ends
@@ -90,9 +67,6 @@ $(document).ready(function()
         fetch_user(); // calling fetch_user() function
         function fetch_user()
         {
-                const action = "fetch_user";
-                //const user_id = $(this).attr("user_id");
-                //alert(d)
                 $.ajax(
                 {
                         url:"/posts/get_user",
@@ -111,14 +85,14 @@ $(document).ready(function()
                                                 var status =""
                                                 let fullname = response[i].user_firstname + ' ' + response[i].user_lastname;
                                                 let image = response[i].user_profile_pic 
-                                                //alert(image)
+                                        
                                                 let userid = response[i].user_id;
                                                 for(var j = 0, len_follow = response[i].Follows.length; j < len_follow; j++)
                                                 {
-                                                        //alert(len_follow)
+                                                        
                                                        
                                                        status =  response[i].Follows[j].status
-                                                      // alert(status)
+                                                      
                                                        var receiver_id =  response[i].Follows[j].receiver_id
                                                        var follow_user_id = response[i].Follows[j].user_id
                                                        var follow_receiver_id = response[i].Follows[j].receiver_id
@@ -188,6 +162,9 @@ $(document).ready(function()
                                                 
                                         }
                          
+                                }
+                                else{
+                                        //do nothing
                                 }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
@@ -344,13 +321,9 @@ $(document).ready(function()
                                 let old_comment = document.getElementById("old_comment"+post_id)
                                 old_comment.innerHTML = ""; // make it null first then populate data again
                                 for (var i = 0, len = response.length; i < len; i++)
-                                {    // alert(response.length);
+                                {    
                                         var comment_data = response[i].comment;
                                         var comment_time = response[i].createdAt;
-                                       // alert(comment_data);
-                                        //alert(comment_time);  
-                                       // alert(response[i].User.length);
-                                        //alert(response[i].User.user_profile_pic);
                                         var user_image = response[i].User.user_profile_pic;
                                         
                                         
@@ -359,14 +332,6 @@ $(document).ready(function()
                                        
                                         
                                 }
-                                // response.forEach(function(item, index)
-                                // { 
-                                        // var comment_data = item.comment
-                                       
-                                        // old_comment.innerHTML =  old_comment.innerHTML + '<div class="row"><div class="col-2"><a href=""><img class="rounded-circle" src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/6.jpg" alt="error" class="rounded-circle border border-danger" style="width:30px; height:30px"></a></div><div class="col-10"><p>'+comment_data+' <br/><small>5hr</small></p></div></div><hr>';
-                                       
-                                // })
-                                        // document.getElementById("demo").innerHTML += '<br>' + employee.name;
                                 $("#old_comment"+post_id).slideToggle('slow'); 
                                               
                         }
@@ -476,13 +441,13 @@ $(document).ready(function()
 
                                                         for(key in arraydata)
                                                         {     
-                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                              
                                                                 if( (arraydata[key] == "sublocality_level_2") || (arraydata[key] == "sublocality_level_1") ) // area
                                                                 {
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -518,7 +483,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -554,7 +519,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                        
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -584,13 +549,13 @@ $(document).ready(function()
 
                                                         for(key in arraydata)
                                                         {     
-                                                              //  alert(JSON.stringify(arraydata[key]));
+                                                              
                                                                 if(arraydata[key] == "country") // country
                                                                 {
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -616,7 +581,7 @@ $(document).ready(function()
                                         }
                                         else
                                         { // selected_option == "current_location"
-                                                alert("current location")
+                                                
                                                 view_feed_by_sort(latitude,longitude,common_name,selected_option);  // call function ajax for backend here;
                                         }
 
@@ -848,7 +813,7 @@ $(document).ready(function()
                                 {
                                        
                                         const address = results[1].address_components;
-                                        console.log(address)
+                                        
                                         if( selected_option == "area")
                                         {
                                                 for( i = 0; i < address.length; i++)
@@ -863,7 +828,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                        
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -899,7 +864,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                        
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -935,7 +900,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                                        
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -971,7 +936,7 @@ $(document).ready(function()
                                                                         
                                                                        common_name = address[i].long_name; 
                                                                        flag_status_in = true;
-                                                                        alert(common_name);
+                                                        
                                                                 }
                                                                 if(flag_status_in == true)
                                                                 {
@@ -997,7 +962,7 @@ $(document).ready(function()
                                         }
                                         else
                                         { // selected_option == "current_location"
-                                                alert("current location")
+                                                
                                                 events_options(latitude,longitude,common_name,selected_option,action_option)  // call function ajax for backend here;
                                         }
 
@@ -1035,12 +1000,7 @@ $(document).ready(function()
                                         const  post_data = response.feeds_data;
                                         for(var i=0, len = post_data.length; i < len; i++)
                                         {
-                                                // alert(post_data[i].event_message);
-                                                // alert(post_data[i].Likes.length);
-                                                // alert(post_data[i].Comments.length);
-                                                // alert(post_data[i].User.user_firstname);
-                                                // alert("user data")
-                                                // alert(response.user_data.user_email);
+
                                                 
                                    innerHTML += `<div class="card mb-3">
                                                         <div class="row">
@@ -1185,8 +1145,7 @@ $(document).ready(function()
                                 {
                                         alert("no events available");
                                 }
-                                console.log(response);
-                               //alert(JSON.stringify(response));
+                               
                         },
                         error:function(jqXHR, textStatus, errorThrown)
                         {
@@ -1208,32 +1167,6 @@ $(document).ready(function()
         $(document).ready(function()
         {
 
-                var xhr = null;
-
-                if (window.XMLHttpRequest) {
-                    xhr = window.XMLHttpRequest;
-                }
-                else if(window.ActiveXObject('Microsoft.XMLHTTP')){
-                    // I do not know if this works
-                    xhr = window.ActiveXObject('Microsoft.XMLHTTP');
-                }
-            
-                var send = xhr.prototype.send;
-                xhr.prototype.send = function(data) 
-                {
-                    try{
-                        //TODO: comment the next line
-                        //console.log('pre send', data);
-                        //alert(JSON.stringify(data));
-                        send.call(this, data);
-                        //TODO: comment the next line
-                        //console.log('pos send');
-                    }
-                    catch(e) {
-                        //TODO: comment the next line
-                        console.log('err send', e);
-                    }
-                }
         /****************************************************** Navbar.ejs Ajax, Jquery Call ********************************************************/
 
         /****************************************************** It includes all navbar files ********************************************************/
@@ -1268,6 +1201,9 @@ $(document).ready(function()
                                         //alert(user_id)
                                         //return response;
                                 }
+                                else{
+                                        // dp nothing
+                                }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
                                 {
@@ -1293,9 +1229,12 @@ $(document).ready(function()
                 {
                         if(response !="")
                         {
+                                alert("if")
+                                alert(JSON.stringify(response))
                                 $get_notified_when_message_comes.html('<small>'+response.length+'</small>');
                         }
                         else{
+
                                 // if no message in notification then do not alert user
                                 // do nothing
                                 // alert(JSON.stringify(response))
@@ -1390,7 +1329,7 @@ $(document).ready(function()
         {
                 var to_user_id = $(this).attr('id');
                 var chat_message = $('#chat_message_'+to_user_id).val();
-                //alert(chat_message);
+                
                 $.ajax(
                 {
                 url:"/posts/get_chat_message",
@@ -1510,7 +1449,9 @@ $(document).ready(function()
                         data :{to_user_id:to_user_id},
                         success:function(response)
                         {   
-                          make_chat_dialog_box(to_user_id, to_user_name,user_profile_pic);
+                          if( response !="")
+                          {
+                                make_chat_dialog_box(to_user_id, to_user_name,user_profile_pic);
                           $("#user_dialog_"+to_user_id).dialog(
                               {
                                 autoOpen:false,
@@ -1527,6 +1468,10 @@ $(document).ready(function()
                               "font-family": "sans-serif"
                             });  
                             flag = true;  
+                          }
+                          else{
+                                  // do nothing
+                          }
                         },
                         error: function(jqXHR, textStatus, errorThrown)
                                 {
@@ -1570,9 +1515,6 @@ $(document).ready(function()
         $(document).on('click','.message_notification',function()
         {
 
-                var $message_notification = $('.message_notification');
-                
-                
 
                 $.ajax(
                         {
