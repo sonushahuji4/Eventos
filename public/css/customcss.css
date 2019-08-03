@@ -150,7 +150,7 @@ color: rgba(255,255,255,0.6);
 
 .form_side_bar{
   padding-top:60px;
-top:0; 
+  top:0; 
   height: 100%;
   width: 600px;
   left:100px;
@@ -358,6 +358,29 @@ top:0;
   font-family: 'Unica One', sans-serif;
   font-size: 12px;
 }
+
+#leftCol 
+{
+  position: fixed;
+  transition: all .3s ease-out;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  background-color:#FDFEFE;
+  left: 0;
+  bottom: 0;
+}
+
+/* height: 500px;
+width: 200px;
+border-radius: 15px !important;
+right: 0;
+transition: all .3s ease-out;
+overflow: scroll;
+-webkit-overflow-scrolling: touch;
+position: fixed;
+background-color:#FDFEFE;
+bottom: 0; */
+
  /* @media (min-width: 1200px) {
   .modal-xlg {
      width: 90%; 

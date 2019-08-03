@@ -1,83 +1,444 @@
-// //alert(JSON.stringify(response));
-//        // alert(response.event_details.length)
-//        for(var i=0, len = response.event_details.length; i < len; i++)
-//         {
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<%- include('partials/includes/header') %>
+<%- include('partials/includes/navbar') %>
+<div class="container">
+        
+       
+                <%- include('components/chat_side_bar') %>
+        <div class="row">
+                <div class="col-3">
+                                <div class="row">
+                                        <% if(items.length > 0){%>
+                                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                <div class="card">
+                                                                <ul class="nav">
+                                                                        <li class="text-center"> 
+                                                                                <div class="card-body"> 
+                                                                                <img class="card-img" src="https://qpr2l7.pixelcrush.io/large/static1.chamonet.com%2Fimage_uploader%2Fphotos%2Fe5%2Flarge%2Falmost-time-to-put-away-the-skis-in-chamonix-chamonix-mont-blanc-valley.jpg?auth=41e199f01371394397152a3446ee7ae48879da30" alt="Card image">  
+                                                                                <div class="card-img-overlay">
+                                                                                <div class="text-center" style="margin-top:10%">
+                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                                </div>
 
-//                //alert(response.event_details[i].event_id);
-                
-//                //alert(response.event_details[i].Likes.length);
-//                innerHTML += `<div class="col-8" style="padding-left:50px;padding-top:20px">
-//                         <div class="d-flex bd-highlight">`;
-//                                 if (response[i].data.user_profile_pic) 
-//                                 {
-//                                         innerHTML += ` <div class="img_cont"> 
-//                                         <img src="../public/profile_image/${response[i].data.user_profile_pic}" class="rounded-circle user_img"> 
-//                                         </div> `
-//                                 } 
-//                                 else 
-//                                 {
-//                                         innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
-//                                 }
-//                  innerHTML += ` <div class="user_info viewclick" data-view="${response[i].data.user_id}">${response[i].data.user_firstname} ${response[i].data.user_lastname}<br/>
-//                                         <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
-//                                         <small><a href="http://maps.google.com/?q=${response.event_details[i].event_latitude},${response.event_details[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
-//                                         <small style="padding-left:10px" id="show_location"></small>
-//                                 </div> 
-//                         </div>
-//                 </div>`;
-//                 var comments_data = response.event_details[i].Comments.length;
-//                 //alert(comments_data)
-//                 for(var j=0, len_comment = comments_data; j < len_comment; j++)
-//                 {
+                                                                                </div>
+                                                                                </div>
+                                                                        
+                                                                        <div class="card-body">
+                                                                        <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                        <hr>
+                                                                        <div class="socail_media">
+                                                                                <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
+                                                                        </div>
+                                                                        <hr>
+                                                                        <div class="row">
+                                                                                        <div class="col-4">
+                                                                                                        <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
+                                                                                                        
+                                                                                        </div>
+                                                                                        <div class="col-4">
+                                                                                                        <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
+                                                                                        </div>
+                                                                                        <div class="col-4">
+                                                                                                        <small>100k</small><br /><i class="far fa-eye"></i>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        </li>
+                                                                                
+                                                                                
+                                                                                
+                                                                       
+                                                                                
+                                                                        
+                                                                </ul>
+                                                                
+                                                                   
+                                                        
+                                                            
+                                                        </div> 
+                                                        <%}%>
+                                                        <%}else{%>
+                                                                <span>Need To Fix This</span>
+                                                        <%}%>  
+                                                 
 
-//                        // innerHTML += `<div class="col-4"></div>`;
-//                        //alert(response.event_details[i].Comments[j].comment_id);
-                
-//                        //alert(response.event_details[i].Comments[j].User.user_firstname);
-//                 }
-//                 $chat_history.innerHTML = innerHTML;
+                                </div>
+                                <!-- following model -->
+                                <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="following_list">
+                                        <div class="modal-dialog modal-sm">
+                                          <div class="modal-content" id="following_data_show">
+                                            ...
+                                          </div>
+                                        </div>
+                                </div>
 
-//         }
-// $('.modal').load('/render/62805',function(result)
-// {
-//         //$('.modal-body').html(response);
-//         innerHTML += `<div class="col-8">
-                
-//                       </div>`;
-//         innerHTML += `<div class="col-4"></div>`;
+                                <div class="row">
+                                        <%if(items.length > 0){%>
+                                                <%for(var i = 0, len = items.length; i < len; i++){%>
+                                                <div class="card" style="background:#ffffff;margin-top:30px">
+                                                                <div class="card about-user">
+                                                                
+                                                                
+                                                        <div class="card-body">  
+                                                                        <h4 class="card-title">Contact Me</h4>       
+                                                                <div class="text-justify">
+                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
+                                                                    <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
+                                                                    <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
+                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
+                                                                </div>			
+                                                                          
+                                                        </div>
+                                                </div>	                        
+                                                </div>
+                                                <%}%>
+                                        <%}else{%>
+                                                
+                                        <%}%>
+                                </div>
 
-
-
-//         $chat_history.innerHTML = innerHTML;
-//         $('#modalQuickView').modal({show:true});
-// });    
-
-
-
-
-
-
-
-
-
-
-
-
- 
-<% if (user.length > 0){ %>
-  <% user.forEach(function(item,  index){%>
-  <div class="card mb-4" id="suggestionBox" data-userid="<%=item.user_id%>">
-          <div class="card-header">Suggestions</div>
-          <div class="card-body">
-              <ul class="nav">
-                      <li class="card-body text-center item">
-                          <div class="row" id="slides" data-userid="<%=item.user_id%>">
-                                  <!-- users displayed from server side using ajax-->
-                          </div>
+                                <div class="row">
+                                                <div class="card" style="background:#ffffff;margin-top:30px">
+                                                                <div class="card about-user">
+                                                                         <div class="card-body">
+                                                                          <div class="card-block">
+                                                                               <h4 class="card-title info">About Me</h4>
+                                                                               
+                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me.</p>
+                                                                   			
+                                                                          </div>
+                                                                         </div>
+                                                                </div>	                        
+                                                </div>
+                                </div>
                         
-                      </li>
-              </ul>          
-          </div>
-  </div>
-  <%}); %>
-  <%}%>
+
+                </div>
+
+                <div class="col-9" >
+                                
+                            
+                                       <!-- chart section -->
+
+                                       <!-- Button trigger modal-->
+                                       
+                                        <!-- Modal Heat map on popup right view -->
+                                       <!-- Central Modal Small -->
+                                        <div class="modal fade" id="centralModalSm" style="width:400px; position:center" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                        aria-hidden="true">
+
+                                        <!-- Change class .modal-sm to change the size of the modal -->
+                                        <div class="modal-dialog modal-sm" role="document">
+
+
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                       
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body" id="event_heatmap_info">
+                                       
+                                        </div>
+                                      
+                                        </div>
+                                        </div>
+                                        </div>
+                                        <!-- Central Modal Small -->
+                                        
+                                        <!-- Modal: modalCart -->
+
+                                                <div class="card">
+                                                                <div class="card" id="heap_map_chart"></div>
+                                                                
+                                                                <div class="card">
+                                                                        
+                                                                                <ul class="nav justify-content-center">
+                                                                                                <li class="nav-item" style="margin: 5px">
+                                                                                                        <div class="card">
+                                                                                                                <div class="card-body">
+                                                                                                                                <span class="total_upcoming_event_count"></span>
+                                                                                                                                <small class="padding:10px">Upcoming</small>            
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                               
+                                                                                                </li>
+                                                                                                <li class="nav-item" style="margin: 5px">
+                                                                                                                <div class="card">
+                                                                                                                                <div class="card-body">
+                                                                                                                                                <span class="total_active_event_count"></span>
+                                                                                                                                                <small class="padding:10px">Active</small>            
+                                                                                                                                </div>
+                                                                                                                        </div> 
+                                                                                                </li>
+                                                                                                <li class="nav-item" style="margin: 5px">
+                                                                                                                <div class="card">
+                                                                                                                                <div class="card-body">
+                                                                                                                                                <span class="total_past_event_count"></span>
+                                                                                                                                                <small class="padding:10px">Previous</small>            
+                                                                                                                                </div>
+                                                                                                                        </div>     
+                                                                                                </li>
+                                                                                                <li class="nav-item" style="margin: 5px">
+                                                                                                                <div class="card">
+                                                                                                                                <div class="card-body">
+                                                                                                                                                <span class="total_total_event_count"></span>
+                                                                                                                                                <small class="padding:10px">Total Events</small>            
+                                                                                                                                </div>
+                                                                                                                </div>
+                                                                                                </li>
+                                                                                               
+                                                                                               
+                                                                                              
+                                                                                              </ul>
+                                                                        
+                                                                </div>
+                                                                 
+                                                </div>
+
+                                                
+
+                                                   <!-- create posts -->
+                                                <div class="card" style="margin-top:30px">
+                                                                <div class="card-body">
+                                                                
+                                                                <% if(items.length > 0){%>
+                                                                   <% for( var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% if (items[i].user_profile_pic)
+                                                                        { %>
+                                                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                                
+                                                                        <%} else 
+                                                                        {%>
+                                                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                        <%}%>  
+                                                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                                                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
+                                                                   <%}%>     
+                                                                <%}%>
+
+                                                   
+                                                                
+                                                                
+                            
+                                  
+                                                                </div>
+                                                </div>
+                                               
+
+                                                <!--------------------->
+
+                                                <!-- Modal -->
+
+                                                              <!-- Modal: modalQuickView -->
+                                                              <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                  <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                                                        aria-hidden="true">&times;</span></button>
+                                                                      <div class="row" id="show_data">
+
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                <!--------------------------->
+
+
+
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                
+                                                                <h5 class="card-header"><span class="total_upcoming_event_count" style="margin-right:10px"></span>Upcoming Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date > onlyDate){%>
+
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+
+                                                                        <%}%> 
+                                                              
+                                                 
+                                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+
+                                                <!-- active events -->
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                        <h5 class="card-header"><span class="total_active_event_count" style="margin-right:10px"></span>Active Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo_3">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date === onlyDate){%>
+
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+
+                                                                        <%}%> 
+                                                              
+                                                 
+                                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+
+
+
+                                                <!-- Past Events -->
+
+                                                <div class="card" style="margin-top:30px">
+                                                                <% if(items.length > 0){ %>   
+                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <% var post_data = items[i].Posts; %> 
+                                                                        <h5 class="card-header"> <span class="total_past_event_count" style="margin-right:10px"></span>Past Events</h5>
+                                                                <div class="card-group" style="margin-right: 15px" id="owl-demo_2">  
+                                                                                       
+                
+                                                                        
+                                                                        <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                                                        
+                                                                        <% if(post_data[j].event_start_date < onlyDate){%>
+
+                                                                        <div class="card postfullview" data-onclickview="<%= post_data[j].event_id %>" style="width: 400px;">
+                                                                                    
+                                                                        <div class="item"><img src="../public/image/<%=post_data[j].e_imagepath %>" alt="Owl Image" style="width: 400px; height:200px"></div> 
+                                                                        <div class="card-footer bg-transparent border-success">
+                                                                                        <ul class="nav">
+                                                                                                <li class="nav-item">
+                                                                                                        <span class="like" data-post="<%= post_data[j].event_id %>"><i class="fas fa-thumbs-up" style="cursor: pointer;">
+                                                                                                                <span class="countLikes" id="countLikes<%= post_data[j].event_id %>" style="padding:2px"><%= post_data[j].Likes.length %></span></i></span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span class="post_comment" id="<%= post_data[j].event_id %>"><i class="fas fa-comments" style="cursor: pointer;">
+                                                                                                                <span class="countComments" style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                        </span>
+                                                                                                </li>
+                                                                                
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <i class="fas fa-share" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left: 10px">
+                                                                                                        <span style="cursor: pointer;">Read More</span>
+                                                                                                </li>
+                                                    
+                                                                                                <li class="nav-item" style="padding-left:20px">
+                                                                                                        <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                                                                                </li>
+                                                                                        </ul>
+                                                                                        </div>
+                                                                        </div>
+                                                                        <%}%>
+
+                                                                        <%}%> 
+                                                              
+                                                 
+                                        
+                                                                       
+                                                                        <%}%> 
+                                                                        <%} else {%>
+                                                                                <span>No Upcoming events yet</span>
+                                                                        <%}%>    
+                                                                </div>
+                                                </div>
+
+                                     
+                        
+                </div>
+                
+        </div>
+
+</div>
+
+
+<%- include('partials/includes/footer') %>
