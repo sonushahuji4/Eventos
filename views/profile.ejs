@@ -3,384 +3,347 @@
 <%- include('partials/includes/navbar') %>
 
 <%- include('components/chat_side_bar') %>
-<div class="container-fluid">
+
+
+<div class="container">
         <div class="row">
-                <div class="col-1" style="margin-right:55px">
-                                <div class="drawer drawer-left slide" style="margin-top:97px">
-                                                <div class="drawer-content drawer-content-scrollable">
-                                                   
-                                                    <div class="drawer-body">
-                                                        <div class="row">
-                                                                <% if(items.length > 0){%>
-                                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                                        <div class="card" style="width: 18rem">
-                                                                                        <ul class="nav">
+                <div class="col-3">
+                                <div class="row">
+                                                <% if(items.length > 0){%>
+                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                        <div class="card">
+                                                                        <ul class="nav">
+                                                                                <div class="card-body" style="background:#222831">
                                                                                                 <li class="text-center"> 
-                                                                                                        <div class="card-body"> 
-                                                                                                        <img class="card-img" src="https://qpr2l7.pixelcrush.io/large/static1.chamonet.com%2Fimage_uploader%2Fphotos%2Fe5%2Flarge%2Falmost-time-to-put-away-the-skis-in-chamonix-chamonix-mont-blanc-valley.jpg?auth=41e199f01371394397152a3446ee7ae48879da30" alt="Card image" style="width: 200px; height:200px">  
-                                                                                                        <div class="card-img-overlay">
-                                                                                                        <div class="text-center" style="margin-top:10%">
+                                                                                                                <div class="card-body text-center"> 
+                                                                                                                
                                                                                                                 <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
-                                                                                                        </div>
-                                                
-                                                                                                        </div>
-                                                                                                        </div>
-                                                                                                
-                                                                                                
+                                                                                                               
+                                                                                                                </div>
+                                                                                                        
+                                                                                                        
                                                                                                 </li>
-                                                                                                <li class="text-center">
+                                                                                </div>
+                                                                               <div class="card-body">
+                                                                                        <li>
                                                                                                         <div class="card-body">
-                                                                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                                                                <h5 class="text-center"><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
                                                                                                                 <hr>
-                                                                                                                <div class="socail_media">
+                                                                                                                <div class="socail_media text-center">
                                                                                                                         <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
                                                                                                                 </div>
                                                                                                                 <hr>
-                                                                                                                <div class="row">
-                                                                                                                                <div class="col-4">
-                                                                                                                                                <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
-                                                                                                                                                
-                                                                                                                                </div>
-                                                                                                                                <div class="col-4">
-                                                                                                                                                <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
-                                                                                                                                </div>
-                                                                                                                                <div class="col-4">
-                                                                                                                                                <small>100k</small><br /><i class="far fa-eye"></i>
-                                                                                                                                </div>
-                                                                                                                                
-                                                                                                                        </div>
-                                                                                                                </div>
+                                                                                                                
+                                                                                                        </div>
                                                                                                                 
                                                                                                 </li>
-                                                                                                        
-                                                                                                        
-                                                                                               
-                                                                                                        
-                                                                                                
-                                                                                        </ul>
+                                                                               </div>
                                                                                         
-                                                                                           
-                                                                                
-                                                                                    
-                                                                                </div> 
-                                                                                <%}%>
-                                                                                <%}else{%>
-                                                                                        <span>Need To Fix This</span>
-                                                                                <%}%>  
-                                                                         
-                                                
-                                                        </div>
-                                                        <div class="row">
-                                                                        <%if(items.length > 0){%>
-                                                                                <%for(var i = 0, len = items.length; i < len; i++){%>
-                                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
-                                                                                                <div class="card about-user">
-                                                                                                
-                                                                                                
-                                                                                        <div class="card-body">  
-                                                                                                        <h4 class="card-title">Contact Me</h4>       
-                                                                                                <div class="text-justify">
-                                                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
-                                                                                                    <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
-                                                                                                    <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
-                                                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
-                                                                                                </div>			
-                                                                                                          
-                                                                                        </div>
-                                                                                </div>	                        
-                                                                                </div>
-                                                                                <%}%>
-                                                                        <%}else{%>
-                                                                                
-                                                                        <%}%>
-                                                                </div>
-                                                                <div class="row">
-                                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
-                                                                                                <div class="card about-user">
-                                                                                                         <div class="card-body">
-                                                                                                          <div class="card-block">
-                                                                                                               <h4 class="card-title info">About Me</h4>
-                                                                                                               
-                                                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me
-                                                                                                                dsahfh disahfo dsa hdosaf dhfayew wry98f kdhsaywer hdshfewr bklmzxbe hd98fwmk dhofg knoas fhw
-                                                                                                                asfoh awFKO SDFHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                                                                                                DAFOEH       
-                                                                                                                .</p>
-                                                                                                                           
-                                                                                                          </div>
-                                                                                                         </div>
-                                                                                                </div>	                        
-                                                                                </div>
-                                                                </div>
-                                                                <div class="drawer-footer">Drawer footer</div>
-
-                                                      
-                                                    </div>
-                                                    
-                                                    
-                                                </div>
-                                              </div>  
-                                        
-                </div>
-<div class="container">
-                        <div class="col-11">
-                        
-                                <div class="card">
-                                                <div class="row">
-
-                                                        <div class="col-1 text-center" style="margin-top:50px">
-                                                                        <ul class="nav">
-                                                                                        <li class="nav-item" style="margin-left:25px">
-                                                                                                
-                                                                                        <span class="total_active_event_count"></span><br />
-                                                                                        <small>LIVE</small>            
-                                                                                               
-                                                                                        <hr>
-                                                                                       
-                                                                                        </li>
-                                                                                        <li class="nav-item" style="margin-left:10px">
-                                                                                                       
-                                                                                        <span class="total_upcoming_event_count"></span><br />
-                                                                                        <small >UPCOMING</small>            
-                                                                                        <hr>                  
-                                                                                        </li>
-                                                                                        <li class="nav-item" style="margin-left:10px">
-                                                                                                       
-                                                                                        <span class="total_past_event_count"></span><br />
-                                                                                        <small >PREVIOUS</small>            
-                                                                                        <hr>                              
-                                                                                        </li>
-                                                                                        <li class="nav-item" style="margin-left:10px">
-                                                                                                       
-                                                                                        <span class="total_total_event_count"></span><br />
-                                                                                        <small >Total Events</small>            
-                                                                                        <hr>                        
-                                                                                        </li>
-                                                                                       
-                                                                                       
-                                                                                      
-                                                                                      </ul>
-                                                        </div>
-                                                        <div class="col-11">
-                                                                        <div class="card" id="heap_map_chart" name="heap_map_chart">
-
-                                                                        </div>
-                                                        </div>
-                                                </div>
-                                                
-                                                
-                                                
-                                                <div class="card-body">
-                                                        
-                                                                <ul class="nav" style="margin-left:60px;padding-left: 30px">
-                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
                                                                                         
-                                                                                <span class="total_upcoming_event_count" style="margin: 10px"></span><br />
-                                                                                <small >LIKES</small>            
-                                                                                       
-                                                                                
                                                                                
-                                                                                </li>
-                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                        
+                                                                                
+                                                                        </ul>
+                                                                        
+                                                                      <div class="card-body">
+                                                                                <div class="row">
+                                                                                                <div class="col-4">
+                                                                                                                <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
+                                                                                                                
+                                                                                                </div>
+                                                                                                <div class="col-4">
+                                                                                                                <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
+                                                                                                </div>
+                                                                                                <div class="col-4">
+                                                                                                                <small>100k</small><br /><i class="far fa-eye"></i>
+                                                                                                </div>
+                                                                                                
+                                                                                        </div>
+                                                                      </div>     
+                                                                
+                                                                    
+                                                                </div> 
+                                                                <%}%>
+                                                                <%}else{%>
+                                                                        <span>Need To Fix This</span>
+                                                                <%}%>  
+                                                         
+                                
+                                        </div>
+                                        <div class="row">
+                                                        <%if(items.length > 0){%>
+                                                                <%for(var i = 0, len = items.length; i < len; i++){%>
+                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                <div class="card about-user">
+                                                                                
+                                                                                
+                                                                        <div class="card-body">  
+                                                                                        <h4 class="card-title">Contact Me</h4>       
+                                                                                <div class="text-justify">
+                                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
+                                                                                </div>			
+                                                                                          
+                                                                        </div>
+                                                                </div>	                        
+                                                                </div>
+                                                                <%}%>
+                                                        <%}else{%>
+                                                                
+                                                        <%}%>
+                                                </div>
+                                                <div class="row">
+                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                <div class="card about-user">
+                                                                                         <div class="card-body">
+                                                                                          <div class="card-block">
+                                                                                               <h4 class="card-title info">About Me</h4>
+                                                                                               
+                                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me
+                                                                                                dsahfh disahfo dsa hdosaf dhfayew wry98f kdhsaywer hdshfewr bklmzxbe hd98fwmk dhofg knoas fhw
+                                                                                                asfoh awFKO SDFHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                                DAFOEH       
+                                                                                                .</p>
+                                                                                                           
+                                                                                          </div>
+                                                                                         </div>
+                                                                                </div>	                        
+                                                                </div>
+                                                </div>
+                                                
+                </div>
+                <div class="col-9">
+                        <div class="card" style="background:#222831;color:#99A3A4">
+                                <div class="row">
+                                                
+
+                                                <div class="col-12">
+                                                                <div class="card" id="heap_map_chart" name="heap_map_chart">
+
+                                                                </div>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                        
+                                                                <ul class="nav">
+                                                                          
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
                                                                                                
                                                                                 <span class="total_active_event_count" style="margin: 10px"></span><br />
-                                                                                <small >COMMENTS</small>            
-                                                                                                                
-                                                                                </li>
-                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                <small >LIVE</small>            
+                                                                                                                                
+                                                                        </li>
+                                                                        
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px;">
+                                                                                        
+                                                                                <span class="total_upcoming_event_count" style="margin: 10px"></span><br />
+                                                                                <small >UPCOMING</small>            
+                                                                               
+                                                                        </li>
+                                                                                
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
                                                                                                
                                                                                 <span class="total_past_event_count" style="margin: 10px"></span><br />
-                                                                                <small >PROFILE VIEWS</small>            
+                                                                                <small >PRIVIOUS</small>            
                                                                                                                     
-                                                                                </li>
-                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                        </li>
+                                                                
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
                                                                                                
                                                                                 <span class="total_total_event_count" style="margin: 10px"></span><br />
-                                                                                <small >INTERESTED</small>            
+                                                                                <small >TOTAL EVENTS</small>            
                                                                                                               
-                                                                                </li>
-                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
-                                                                                               
-                                                                                                <span class="total_total_event_count" style="margin: 10px"></span><br />
-                                                                                                <small >GOING</small>            
-                                                                                                                              
-                                                                                                </li>
+                                                                        </li>
+                                                                                
                                                                                
                                                                                
                                                                               
-                                                                              </ul>
+                                                                </ul>
                                                         
                                                 </div>
-                                                 
-                                </div>
-                                
-
-                                        <div class="card" style="margin-top:30px">
-                                                        <div class="card-group" id="owl-demo">
-                                                                
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                                <div class="item" ><img src="../public/image/1.jpg" alt="Owl Image" style="width:50px; height:50px" class="rounded-circle border border-danger"></div> 
-                                                        
-                                                        </div>
                                         </div>
-                               
+                        </div>
+                <!-- slides for page -->
+                <div class="card" style="margin-top:30px">
+                                                
+                                <div class="card-group owl-carousel text-center" id="owl-demo" style="width: 800px;">
+                                       
+                                                <div class="item">
+                                                        <img src="../public/image/Instagram-512.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Gallery</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/musiclogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Music</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/play-button-3364880_960_720.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Videos</h5>
+                                                </div>
+                                                
+                                                <div class="item">
+                                                        <img src="../public/image/activitylogo.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Activity</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Page</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/eventlogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Events</h5>
+                                                </div>
+                                                <div class="item">
+                                                                <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                <h5 class="card-title" style="color:black">Page</h5>
+                                                        </div>
+                                                        <div class="item">
+                                                                <img src="../public/image/eventlogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                <h5 class="card-title" style="color:black">Events</h5>
+                                                        </div>
+                                                
                                         
-                                              
-
-                                <div class="card" style="margin-top:30px">
-                                                <div class="card-body">
-                                                
-                                                <% if(items.length > 0){%>
-                                                   <% for( var i = 0, len = items.length; i < len; i++){%>
-                                                        <% if (items[i].user_profile_pic)
-                                                        { %>
-                                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
-                                                                
-                                                        <%} else 
-                                                        {%>
-                                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
-                                                        <%}%>  
-                                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
-                                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
-                                                   <%}%>     
-                                                <%}%>
-
-                                   
-                                                
-                                                
-            
-                  
-                                                </div>
+                                       
                                 </div>
-
-                               
-                                 <!-- Modal: show events data -->
-                                 <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                 <div class="modal-dialog modal-lg" role="document">
-                                   <div class="modal-content">
-                                     <div class="modal-body">
-                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                                         aria-hidden="true">&times;</span></button>
-                                       <div class="row" id="show_data">
-
-                                       </div>
-                                     </div>
-                                   </div>
-                                 </div>
-                               </div>
-
-                                <!-- Live Events -->
-                                <hr>
-                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_active_event_count" style="padding:10px"></span>LIVE EVENTS</h5>
-                                <hr>
-                                <div class="row">
-                                <% if(items.length > 0){ %> 
-                                <% for(var i = 0, len = items.length; i < len; i++){%>
-                                <% var post_data = items[i].Posts; %> 
-                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                <% if(post_data[j].event_start_date == onlyDate){%>
-                                <div class="col-4 postfullview zoom" style="margin-bottom:30px" data-onclickview="<%= post_data[j].event_id %>">
-                                        <div class="card text-white">
-                                                <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:300px;height:200px">
-                                                        <div class="card-img-overlay">
-                                                                <h5 class="card-title"><%= post_data[j].event_message %></h5>
-                                                        </div>
-                                        </div>
-                                </div>
-                                <%}%>
-                                <%}%> 
-                                <%}%> 
-                                <%}else{%>
-                                <%}%>
-                                </div>
-
-                                <!-- upcoming Events-->
-                                <hr>
-                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_upcoming_event_count" style="padding: 10px"></span>UPCOMING EVENTS</h5>
-                                <hr>
-                                <div class="row">
-                                <% if(items.length > 0){ %> 
-                                <% for(var i = 0, len = items.length; i < len; i++){%>
-                                <% var post_data = items[i].Posts; %> 
-                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                <% if(post_data[j].event_start_date > onlyDate){%>
-                                <div class="col-4 postfullview zoom" style="margin-bottom:30px"  data-onclickview="<%= post_data[j].event_id %>">
-                                        <div class="card text-white" style="cursor: pointer">
-                                                <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:320px;height:200px">
-                                                        <div class="card-img-overlay">
-                                                                <h5 class="card-title"><%= post_data[j].event_message %></h5>
-                                                        </div>
-                                        </div>
-                                </div>
-                                <%}%>
-                                <%}%> 
-                                <%}%> 
-                                <%}else{%>
-                                <%}%>
-                                </div>
-
-                                <!--Privious Events-->
-
-                                <hr>
-                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_past_event_count" style="padding: 10px"></span>PREVIOUS EVENTS</h5>
-                                <hr>
-                                <div class="row">
-                                <% if(items.length > 0){ %> 
-                                <% for(var i = 0, len = items.length; i < len; i++){%>
-                                <% var post_data = items[i].Posts; %> 
-                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                <% if(post_data[j].event_start_date < onlyDate){%>
-                                <div class="col-6 postfullview" style="margin-bottom:30px; cursor: pointer;" data-onclickview="<%= post_data[j].event_id %>">
-                                        <div class="card zoom">
-                                                <div class="row">
-                                                        <div class="col-4">
-                                                        <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:150px;height:100px">
-                                                        </div>
-                                                        <div class="col-8">
-                                                                
-                                                                        <h5 class="font-weight-bold" style="margin: 10px"><%= post_data[j].event_message %></h5>
-                                                                        
-                                                                        <small style="margin: 10px"><a href="http://maps.google.com/?q=<%= post_data[j].event_latitude %>,<%= post_data[j].event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
-                                                                        <small style="padding-left:10px" id="show_location"></small>
-                                                                        <small style="margin: 10px"><i class="far fa-calendar-alt"></i> <%= post_data[j].event_start_date %> </small>
-                                                                        
-                                                                        <ul class="nav" style="margin: 10px">
-                                                                                        <li class="nav-item">
-                                                                                                <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
-                                                                                        </li>
-                                                                        
-                                                                                        <li class="nav-item" style="padding-left: 10px">
-                                                                                                <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
-                                                                                        </li>
-
-                                                                                        
-                                                                        </ul>
-                                                                
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                                <%}%>
-                                <%}%> 
-                                <%}%> 
-                                <%}else{%>
-                                <%}%>
-                                </div>
-                                
-
-                                
-
-
                 </div>
-</div>
+        
+                <!-- create events or videos -->
+                <div class="card" style="margin-top:30px">
+                                <div class="card-body">
+                                
+                                <% if(items.length > 0){%>
+                                   <% for( var i = 0, len = items.length; i < len; i++){%>
+                                        <% if (items[i].user_profile_pic)
+                                        { %>
+                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                
+                                        <%} else 
+                                        {%>
+                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                        <%}%>  
+                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
+                                   <%}%>     
+                                <%}%>
+
+                                </div>
+                </div>
+
+                <!-- Modal: show events data -->
+                <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                      <div class="row" id="show_data">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Events -->
+              <hr>
+              <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_active_event_count" style="padding:10px"></span>LIVE EVENTS</h5>
+              <hr>
+              <div class="row">
+              <% if(items.length > 0){ %> 
+              <% for(var i = 0, len = items.length; i < len; i++){%>
+              <% var post_data = items[i].Posts; %> 
+              <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+              <% if(post_data[j].event_start_date == onlyDate){%>
+              <div class="col-6 postfullview zoom" style="margin-top:10px" data-onclickview="<%= post_data[j].event_id %>">
+                      <div class="card text-white">
+                              <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:400px;height:200px">
+                                      <div class="card-img-overlay">
+                                              <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                      </div>
+                      </div>
+              </div>
+              <%}%>
+              <%}%> 
+              <%}%> 
+              <%}else{%>
+              <%}%>
+              </div>
+
+               <!-- upcoming Events-->
+               <hr>
+               <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_upcoming_event_count" style="padding: 10px"></span>UPCOMING EVENTS</h5>
+               <hr>
+               <div class="row">
+               <% if(items.length > 0){ %> 
+               <% for(var i = 0, len = items.length; i < len; i++){%>
+               <% var post_data = items[i].Posts; %> 
+               <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+               <% if(post_data[j].event_start_date > onlyDate){%>
+               <div class="col-6 postfullview zoom" style="margin-top:10px;"  data-onclickview="<%= post_data[j].event_id %>">
+                       <div class="card text-white" style="cursor: pointer">
+                               <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:400px;height:200px">
+                                       <div class="card-img-overlay">
+                                               <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                       </div>
+                       </div>
+               </div>
+               <%}%>
+               <%}%> 
+               <%}%> 
+               <%}else{%>
+               <%}%>
+               </div>
+
+                                               <!--Privious Events-->
+
+                                               <hr>
+                                               <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_past_event_count" style="padding: 10px"></span>PREVIOUS EVENTS</h5>
+                                               <hr>
+                                               <div class="row">
+                                               <% if(items.length > 0){ %> 
+                                               <% for(var i = 0, len = items.length; i < len; i++){%>
+                                               <% var post_data = items[i].Posts; %> 
+                                               <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                               <% if(post_data[j].event_start_date < onlyDate){%>
+                                               <div class="col-6 postfullview" style="margin-bottom:30px; cursor: pointer;" data-onclickview="<%= post_data[j].event_id %>">
+                                                       <div class="card zoom">
+                                                               <div class="row">
+                                                                       <div class="col-4">
+                                                                       <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:150px;height:100px">
+                                                                       </div>
+                                                                       <div class="col-8">
+                                                                               
+                                                                                       <h5 class="font-weight-bold" style="margin: 10px"><%= post_data[j].event_message %></h5>
+                                                                                       
+                                                                                       <small style="margin: 10px"><a href="http://maps.google.com/?q=<%= post_data[j].event_latitude %>,<%= post_data[j].event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                       <small style="padding-left:10px" id="show_location"></small>
+                                                                                       <small style="margin: 10px"><i class="far fa-calendar-alt"></i> <%= post_data[j].event_start_date %> </small>
+                                                                                       
+                                                                                       <ul class="nav" style="margin: 10px">
+                                                                                                       <li class="nav-item">
+                                                                                                               <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
+                                                                                                       </li>
+                                                                                       
+                                                                                                       <li class="nav-item" style="padding-left: 10px">
+                                                                                                               <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                       </li>
+               
+                                                                                                       
+                                                                                       </ul>
+                                                                               
+                                                                       </div>
+                                                               </div>
+                                                       </div>
+                                               </div>
+                                               <%}%>
+                                               <%}%> 
+                                               <%}%> 
+                                               <%}else{%>
+                                               <%}%>
+                                               </div>
+        </div>
         </div>
 </div>
 
@@ -640,7 +603,7 @@ $(document).ready(function()
     
                     autoPlay: 3000, //Set AutoPlay to 3 seconds
                     touchDrag:true,
-                    items : 3,
+                    items : 6,
                     dots:true,
                     autoplayHoverPause:true,
                     animateOut:true,
@@ -865,7 +828,7 @@ $(document).ready(function()
                 
 
                 Highcharts.chart('heap_map_chart', 
-                {colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+                {colors: ['#F8F9F9', '#F2F3F4', '#E5E7E9', '#D7DBDD', '#CACFD2', '#BDC3C7', '#A6ACAF', '#909497', '#797D7F'],
 
                         chart: {
                             type: 'heatmap',
@@ -876,8 +839,8 @@ $(document).ready(function()
                             {
                                         linearGradient: [400, 0, 400, 400],
                                         stops: [
-                                                [0, 'rgb(96, 96, 96)'],
-                                                [1, 'rgb(16, 16, 16)']
+                                                [0, 'rgb(0,173,181)'],
+                                                [1, 'rgb(34,40,49)']
                                         ]
                            },
                         borderWidth: 0,
@@ -948,9 +911,13 @@ $(document).ready(function()
                         
 
                         colorAxis: {
-                            min: 2,
-                            minColor: '#ECF0F1',
-                            maxColor: Highcharts.getOptions().colors[0]
+                        dataClassColor : 'category',
+                        stops: [[0, '#D0D3D4'],[1, '#393e46'],[2, '#196F3D'],[3,'#145A32']],
+                        min: 0,
+                        max: 1,
+                        //     min: 1,
+                        //     minColor: '#ffffff',
+                        //     maxColor: Highcharts.getOptions().colors[0]
                         },
 
                         legend: {
@@ -984,7 +951,7 @@ $(document).ready(function()
                         {
                                 series: 
                                 {
-                                        color: '#212F3D',
+                                        
                                     cursor: 'pointer',
                                     point: 
                                     {
@@ -1047,14 +1014,21 @@ $(document).ready(function()
 
                         series: [
                             {
+                                states : {
+						hover : {
+							color : '#00fff5'
+						}
+					},
+					animation : {
+						duration : 1000
+					},
 
                             data: chart_data,
                             
-                            lineColor: '#999',
-                                tickColor: '#999',
+                            
                             dataLabels: {
                                 enabled: true,
-                                color: '#999'
+                                color: '#000000'
                             }
                         }]
 

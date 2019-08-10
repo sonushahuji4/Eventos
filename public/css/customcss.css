@@ -311,11 +311,13 @@ color: rgba(255,255,255,0.6);
 
  #owl-demo .item
  {
-   margin: 3px;
- }
- #owl-demo .item img{
-   
-   display: block;
+  display: block;
+  margin: 5px;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
  }
  
 

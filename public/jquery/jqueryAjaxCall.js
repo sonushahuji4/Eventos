@@ -1229,8 +1229,8 @@ $(document).ready(function()
                 {
                         if(response !="")
                         {
-                                alert("if")
-                                alert(JSON.stringify(response))
+                                //alert("if")
+                                //alert(JSON.stringify(response))
                                 $get_notified_when_message_comes.html('<small>'+response.length+'</small>');
                         }
                         else{
@@ -1413,8 +1413,8 @@ $(document).ready(function()
                                   
                                 }
                                 else{
-                                        alert("online_user_list");
-                                        alert(JSON.stringify(response));
+                                        //alert("online_user_list");
+                                        //alert(JSON.stringify(response));
                                         // do nothing
                                 }
                                 
