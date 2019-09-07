@@ -11,7 +11,7 @@
                                 <div class="row">
                                                 <% if(items.length > 0){%>
                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <div class="card" style="width: 18rem">
+                                                        <div class="card" style="width: 18rem;margin-bottom:20px">
                                                                 
                                                           
                                                         <div class="card-body text-center">
@@ -25,7 +25,7 @@
                                                                         <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
                                                                 </form>
                                                                 
-
+                                                                <p><small>I am a decent and a sweet guy</small></p>
                                                                 <hr>
                                                                 <div class="socail_media text-center">
                                                                         <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
@@ -59,6 +59,30 @@
                                 
                                         </div>
 
+                                        <div class="row">
+                                                        
+                                                        <div class="col-4">
+                                                                <div class="item activityOptions" data-sender="image" style="cursor: pointer">
+                                                                        <img src="../public/image/images.png" alt="Owl Image" style="width:30px; height:30px" class="card-img-top rounded-circle" id="image">
+                                                                        <small class="card-title" style="color:black">Photos</small> 
+                                                                        </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-4">
+                                                                        <div class="item activityOptions" data-sender="Music" style="cursor: pointer">
+                                                                                <img src="../public/image/music.png" alt="Owl Image" style="width:35px; height:35px" class="card-img-top rounded-circle"> 
+                                                                                <small class="card-title" style="color:black">Music</small>
+                                                                        </div> 
+                                                                </div>
+                                                                                         
+                                                                <div class="col-4">
+                                                                        <div class="item activityOptions" data-sender="Video" style="cursor: pointer">
+                                                                                <img src="../public/image/videos.png" alt="Owl Image" style="width:30px; height:30px" class="card-img-top rounded-circle"> 
+                                                                                <small class="card-title" style="color:black">Videos</small>
+                                                                        </div> 
+                                                                </div>
+                                                        
+                                                </div>
 
                                         <div class="row">
                                                         <%if(items.length > 0){%>
@@ -84,58 +108,8 @@
                                                                 
                                                         <%}%>
                                                 </div>
-                                                <div class="row">
-                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
-                                                                                <div class="card about-user">
-                                                                                         <div class="card-body">
-                                                                                          <div class="card-block">
-                                                                                               <h4 class="card-title info">About Me</h4>
-                                                                                               
-                                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me
-                                                                                                dsahfh disahfo dsa hdosaf dhfayew wry98f kdhsaywer hdshfewr bklmzxbe hd98fwmk dhofg knoas fhw
-                                                                                               
-                                                                                                .</p>
-                                                                                                           
-                                                                                          </div>
-                                                                                         </div>
-                                                                                </div>	                        
-                                                                </div>
-                                                </div>
+                                           
 
-                                                <div class="row">
-                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
-                                                                                <div class="card about-user">
-                                                                                         <div class="card-body">
-                                                                                          <div class="card-block">
-                                                                                               <h4 class="card-title info">My Gallery</h4>
-                                                                                               <div class="row">
-                                                                                                       <div class="col-4">
-                                                                                                                <div class="item activityOptions" data-sender="image">
-                                                                                                                                <img src="../public/image/images.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle" id="image">
-                                                                                                                                <h5 class="card-title" style="color:black">Photos</h5> 
-                                                                                                                        </div>
-                                                                                                       </div>
-                                                                                                       <div class="col-4">
-                                                                                                                <div class="item activityOptions" data-sender="Music">
-                                                                                                                                <img src="../public/image/music.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
-                                                                                                                                <h5 class="card-title" style="color:black">Music</h5>
-                                                                                                                        </div> 
-                                                                                                        </div>
-                                                                                                        <div class="col-4">
-                                                                                                                        <div class="item activityOptions" data-sender="Video">
-                                                                                                                                        <img src="../public/image/videos.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
-                                                                                                                                        <h5 class="card-title" style="color:black">Videos</h5>
-                                                                                                                                        
-                                                                                                                                </div> 
-                                                                                                        </div>
-                                                                                               </div>
-                                                                                              
-                                                                                                                                                                                                         
-                                                                                          </div>
-                                                                                         </div>
-                                                                                </div>	                        
-                                                                </div>
-                                                </div>
                                                 
                 </div>
                 <div class="col-9">
