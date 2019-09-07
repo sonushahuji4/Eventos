@@ -21,6 +21,7 @@ router.get('/showActivity/images', function(req, res)
     Posts.findAll({where: [{user_id: user_id }]})
     .then((viewimages)=>
     {
+
         res.render('showActivity',{title:'showActivity',data:viewimages});
         //res.send(viewimages)
 
