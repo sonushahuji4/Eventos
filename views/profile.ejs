@@ -11,58 +11,45 @@
                                 <div class="row">
                                                 <% if(items.length > 0){%>
                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <div class="card">
-                                                                        <ul class="nav text-center">
-                                                                                
-                                                                                <li> 
-                                                                                        <div class="card-body text-center"> 
-                                                                                                                
-                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
-                                                                                                               
-                                                                                        </div>
-                                                                                                        
-                                                                                                        
-                                                                                </li>
-                                                                               
-                                                                              
-                                                                                        <li>
-                                                                                                        <div class="card-body">
-                                                                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
-                                                                                                                <hr>
-                                                                                                                <div class="socail_media text-center">
-                                                                                                                        <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
-                                                                                                                </div>
-                                                                                                                <hr>
-                                                                                                                
-                                                                                                        </div>
-                                                                                                                
-                                                                                                </li>
-                                                                              
-                                                                                        
-                                                                                        
-                                                                               
-                                                                                        
-                                                                                
-                                                                        </ul>
-                                                                        
-                                                                      <div class="card-body">
-                                                                                <div class="row">
-                                                                                                <div class="col-4">
-                                                                                                                <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
-                                                                                                                
-                                                                                                </div>
-                                                                                                <div class="col-5">
-                                                                                                                <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
-                                                                                                </div>
-                                                                                                <div class="col-3">
-                                                                                                                <small>100k</small><br /><i class="far fa-eye"></i>
-                                                                                                </div>
+                                                        <div class="card" style="width: 18rem">
+                                                                
+                                                          
+                                                        <div class="card-body text-center">
+                       
+                                                                <img id="profile_image" class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                <i for="upload" class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image"></i>        
+                                                                <span id = "status"></span>
+                                                                <form class="upload" enctype="multipart/form-data" id="form_data" data-user_id="<%= items[i].user_id %>">
+                                                                        <input type="file" id="datafile" name="userPhoto"/>
+                                                                                 
+                                                                        <input type="submit" value="submit"/> 
+                                                                        </form>
+                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                <hr>
+                                                                <div class="socail_media text-center">
+                                                                        <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                                <div class="col-4">
+                                                                                                <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
                                                                                                 
-                                                                                        </div>
-                                                                      </div>     
+                                                                                </div>
+                                                                                <div class="col-5">
+                                                                                                <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                                <small>100k</small><br />views
+                                                                                </div>
+                                                                                
+                                                                        </div>
+                                                                                        
+                                                        </div>
+                                                                        
+                                                                         
                                                                 
                                                                     
-                                                                </div> 
+                                                        </div> 
                                                                 <%}%>
                                                                 <%}else{%>
                                                                         <span>Need To Fix This</span>
@@ -70,6 +57,8 @@
                                                          
                                 
                                         </div>
+
+
                                         <div class="row">
                                                         <%if(items.length > 0){%>
                                                                 <%for(var i = 0, len = items.length; i < len; i++){%>
@@ -926,13 +915,13 @@ $(document).ready(function()
                         
 
                         colorAxis: {
-                        // dataClassColor : 'category',
-                        // stops: [[0, '#D0D3D4'],[1, '#E5E7E9'],[2, '#196F3D'],[3,'#145A32']],
-                        // min: 0,
-                        // max: 1,
-                            min: 0,
-                            minColor: '#F8F9F9',
-                            maxColor: Highcharts.getOptions().colors[0]
+                        dataClassColor : 'category',
+                        stops: [[0, '#D0D3D4'],[1, '#52BE80'],[2, '#196F3D'],[3,'#145A32']],
+                        min: 0,
+                        max: 1,
+                        //     min: 0,
+                        //     minColor: '#F8F9F9',
+                        //     maxColor: Highcharts.getOptions().colors[0]
                         },
 
                         legend: {
