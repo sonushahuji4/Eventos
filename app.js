@@ -112,6 +112,10 @@ app.use('/',viewprofile);
 const createvent = require('./routes/api/event_page');
 app.use('/',createvent);
 
+// view images/events
+const showActivity = require('./routes/api/showActivity');
+app.use('/',showActivity);
+
 
 // app.put('/updatauserdata/:id',function (req,res)
 // {

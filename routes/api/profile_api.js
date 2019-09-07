@@ -392,7 +392,7 @@ router.post('/profile/viewimages', function(req, res)
         // where: [{user_id: 1 }],
         // attributes: ['event_type', [sequelize.fn('count', sequelize.col('event_type')), 'count']],
         // group: ['event_type']
-        res.send(viewimages)
+        res.send("images")
 
     })
     .catch((err)=>

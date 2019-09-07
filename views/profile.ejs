@@ -359,7 +359,7 @@ $(document).ready(function()
         $(document).on('click','.activityOptions',function()
         {
                 var selectedActivity =$(this).data('sender');
-                alert(selectedActivity)
+               // alert(selectedActivity)
                 $.ajax(
                         {
                              url:"profile/viewimages",
@@ -367,7 +367,14 @@ $(document).ready(function()
                              data:{selectedActivity:selectedActivity},
                              success:function(response)
                              {
-                                alert(JSON.stringify(response))
+                                     
+                                if(JSON.stringify(response) == JSON.stringify("images")) // get all images       
+                                {
+                                        window.location.assign('showActivity/images'); 
+                                       // alert("success")
+
+                                }
+
                              }   
                         }
                 )
