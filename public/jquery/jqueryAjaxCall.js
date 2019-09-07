@@ -1572,29 +1572,24 @@ $(document).ready(function()
         
                 $('#search').keyup(function()
                 {
-                //alert("inside search")
                 $('#search_result').html('');
                 var search_Field = $('#search').val();
-                //alert(search_Field)
                 var expression = new RegExp(search_Field,"i");
-                //alert(expression)
                 $.ajax(
                 {
                 url:"/posts/findUser",
                 method:"GET",
-                //data:{expression:expression},
+
                 success:function(response)
                 {
-                        //alert(response)
                         var $search_result= document.getElementById("search_result");
                         $search_result.innerHTML = '';
                         $.each(response, function(key, value)
                         {
-                                //alert(value.user_firstname)
+
                                 if (value.user_firstname.search(expression) != -1 || value.user_email.search(expression) != -1)
                                 {
-                                $search_result.innerHTML =  $search_result.innerHTML + `<div class="card" ${value.user_id}><li class="list-group-item link-class"><img src="../public/profile_image/${value.user_profile_pic}" height="40" width="40" class="img-thumbnail" /> ${value.user_firstname+ ' ' +value.user_lastname}</li></div>`;
-                                //$('#search_result').append('<div class="card" '+value.user_id+'><li class="list-group-item link-class"><img src="'+value.user_profile_pic+'" height="40" width="40" class="img-thumbnail" /> '+value.user_firstname+ ' ' +value.user_lastname+'</li></div>');
+                                        $search_result.innerHTML =  $search_result.innerHTML + `<div class="card" ${value.user_id}><li class="list-group-item link-class"><img src="../public/profile_image/${value.user_profile_pic}" height="40" width="40" class="img-thumbnail" /> ${value.user_firstname+ ' ' +value.user_lastname}</li></div>`;
                                 }
                         });
                         
@@ -1607,11 +1602,9 @@ $(document).ready(function()
 
                         $('#process_search').on('click',function()
                         {
-                                //alert("in process search")
-                                var get_content = document.getElementById('search').value
-                                // var trimStr = $.trim(myStr);
+                                var get_content = document.getElementById('search').value                      
                                 var content = $.trim(get_content)
-                                //alert(content)
+                              
                                 $.ajax(
                                 {
                                         url:"/posts/processSearch",
@@ -1619,8 +1612,7 @@ $(document).ready(function()
                                         data:{get_content:content},
                                         success:function(response)
                                         {
-                                                //alert(response.user_id)
-                                                window.location.assign('viewprofile/'+response.user_id);
+                                                window.location.assign('viewprofile');                                                
                                         },
                                         error:function(jqXHR, textStatus, errorThrown)
                                         {

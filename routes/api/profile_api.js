@@ -378,6 +378,33 @@ router.get('/profile/countFollowers', function(req, res)
 	
 });
 
+router.post('/profile/viewimages', function(req, res)
+{
+    const user_id = req.session.user_id;
+    const selectedActivity = req.body.selectedActivity;
+    console.log("selectedActivity => 385: ",selectedActivity)
+    Posts.findAll({
+        attributes:['e_imagepath'],
+        where: [{user_id: user_id }]
+    })
+    .then((viewimages)=>
+    {
+        // where: [{user_id: 1 }],
+        // attributes: ['event_type', [sequelize.fn('count', sequelize.col('event_type')), 'count']],
+        // group: ['event_type']
+        res.send(viewimages)
+
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({
+            error : "error..... check console log"
+        })
+    })
+    
+	
+});
 module.exports = router;
 
 

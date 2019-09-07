@@ -1,377 +1,405 @@
+<br /> <br /> <br /> <br /> <br /> <br />
 <%- include('partials/includes/header') %>
 <%- include('partials/includes/navbar') %>
 
+<%- include('components/chat_side_bar') %>
 
-<br /> <br />
 
 <div class="container">
-    
-            
-
-
-<!-- row 2-->
-
-<div class="row">
-
-<!-- row 2 col I-->
-<div class="col-3">
-
-        <!-- user data starts from here basic data-->
-        <%if(items.length>0) {%>     <!-- if condition starts -->
-
-                <div class="card-body rounded text-center" style="background:#ffffff; margin-top:30px;">
-                <% items.forEach(function(item, index) {%>        <!-- for loop starts -->
-                        
-                        <% if(item.user_profile_pic){ %>
-                         
-                        <img id="profile_image" class="card-img rounded-circle " src="../public/profile_image/<%= item.user_profile_pic %>" alt="Card image" style="width:100px; height:100px">
-                               
-                        <span id = "status"></span>
-                                              
-                        <% } else { %>
-                                <img id="profile_image" src="../public/profile_image/icon.jpg" alt="profile image 1" class="img-fluid rounded" style="width:100px; height:100px">
-                        <% } %>
-                        
-                        <h6><%= item.user_firstname %> <%= item.user_lastname %></h6>
-                        <b>Bio : </b><span class="bio" id="user_bio">Love you dear Zindgi</span>
-
-                <%})%>  <!-- for loop ends -->
-                </div>
-                
-        <%} else{%>     <!-- else condition starts-->
-        
-                <span>No records available</span>
-        <%}%>   <!-- ends condition ends-->
-        <div class="row"style="margin-left:1px; margin-top:20px">
-                        <div class="card text-center" style="padding:10px">
-                                        <div class="card-title bg-transparent">Followers 10K</div>
-                        </div>
-                        <div class="card text-center" style="padding:10px;margin-left:3px">
-                                        <div class="card-title bg-transparent">Following 110K</div>   
-                        </div>
-                       
-                </div>      
-        
-                
-                
-<!-- another post about user starts from here-->
-
-<div class="card-body show-data" style="background:#ffffff;margin-top:20px">
-                <div class="row" style="margin-left:170px">     
-                
-                <i class="far fa-address-book" data-toggle="tooltip" data-placement="top" title="Connect With me"></i>
-                </div>
-                
-                <%if(items.length>0) {%>     <!-- if condition starts -->
-                        
-                        <% items.forEach(function(item, index) {%>        <!-- for loop starts -->
-                                <div class="form-inline">
-                                        <i class="fas fa-mobile-alt" style="margin-right:10px"></i>
-                                        <label class="col-form-label font-weight-normal"><%= item.user_mobile_no %></label>
-                                </div>
-
-                                <div class="form-inline">
-                                        <i class="fas fa-envelope" style="margin-right:10px"></i>
-                                        <label class="col-form-label font-weight-normal"><%= item.user_email %></label>
-                                </div>
-
-                                <div class="form-inline">
-                                        <i class="fas fa-link" style="margin-right:10px"></i>
-                                        <label class="col-form-label font-weight-normal" id="use_dob">www.facebook.com</label>
-                                </div>
-
-                                <div class="form-inline">
-                                        <i class="fas fa-map-marker-alt" style="margin-right:10px"></i>
-                                        <label class="col-form-label font-weight-normal" id="user_profession">India,Mumbai</label>
-                                </div>
-                                                      
+        <div class="row">
+                <div class="col-3">
+                                <div class="row">
+                                                <% if(items.length > 0){%>
+                                                        <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                        <div class="card">
+                                                                        <ul class="nav text-center">
+                                                                                
+                                                                                <li> 
+                                                                                        <div class="card-body text-center"> 
+                                                                                                                
+                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                                                               
+                                                                                        </div>
+                                                                                                        
+                                                                                                        
+                                                                                </li>
+                                                                               
+                                                                              
+                                                                                        <li>
+                                                                                                        <div class="card-body">
+                                                                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                                                                <hr>
+                                                                                                                <div class="socail_media text-center">
+                                                                                                                        <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
+                                                                                                                </div>
+                                                                                                                <hr>
+                                                                                                                
+                                                                                                        </div>
+                                                                                                                
+                                                                                                </li>
+                                                                              
+                                                                                        
+                                                                                        
+                                                                               
+                                                                                        
+                                                                                
+                                                                        </ul>
+                                                                        
+                                                                      <div class="card-body">
+                                                                                <div class="row">
+                                                                                                <div class="col-4">
+                                                                                                                <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
+                                                                                                                
+                                                                                                </div>
+                                                                                                <div class="col-5">
+                                                                                                                <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
+                                                                                                </div>
+                                                                                                <div class="col-3">
+                                                                                                                <small>100k</small><br /><i class="far fa-eye"></i>
+                                                                                                </div>
+                                                                                                
+                                                                                        </div>
+                                                                      </div>     
+                                                                
+                                                                    
+                                                                </div> 
+                                                                <%}%>
+                                                                <%}else{%>
+                                                                        <span>Need To Fix This</span>
+                                                                <%}%>  
+                                                         
                                 
+                                        </div>
+                                        <div class="row">
+                                                        <%if(items.length > 0){%>
+                                                                <%for(var i = 0, len = items.length; i < len; i++){%>
+                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                <div class="card about-user">
+                                                                                
+                                                                                
+                                                                        <div class="card-body">  
+                                                                                        <h4 class="card-title">Contact Me</h4>       
+                                                                                <div class="text-justify">
+                                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
+                                                                                </div>			
+                                                                                          
+                                                                        </div>
+                                                                </div>	                        
+                                                                </div>
+                                                                <%}%>
+                                                        <%}else{%>
+                                                                
+                                                        <%}%>
+                                                </div>
+                                                <div class="row">
+                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                <div class="card about-user">
+                                                                                         <div class="card-body">
+                                                                                          <div class="card-block">
+                                                                                               <h4 class="card-title info">About Me</h4>
+                                                                                               
+                                                                                               <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me
+                                                                                                dsahfh disahfo dsa hdosaf dhfayew wry98f kdhsaywer hdshfewr bklmzxbe hd98fwmk dhofg knoas fhw
+                                                                                                asfoh awFKO SDFHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                                DAFOEH       
+                                                                                                .</p>
+                                                                                                           
+                                                                                          </div>
+                                                                                         </div>
+                                                                                </div>	                        
+                                                                </div>
+                                                </div>
+                                                
+                </div>
+                <div class="col-9">
+                        <div class="card">
+                                <div class="row">
+                                                
+
+                                                <div class="col-12">
+                                                                <div class="card" id="heap_map_chart" name="heap_map_chart">
+
+                                                                </div>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                        
+                                                                <ul class="nav">
+                                                                          
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_active_event_count" style="margin: 10px"></span><br />
+                                                                                <small >LIVE</small>            
+                                                                                                                                
+                                                                        </li>
+                                                                        
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px;">
+                                                                                        
+                                                                                <span class="total_upcoming_event_count" style="margin: 10px"></span><br />
+                                                                                <small >UPCOMING</small>            
+                                                                               
+                                                                        </li>
+                                                                                
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_past_event_count" style="margin: 10px"></span><br />
+                                                                                <small >PRIVIOUS</small>            
+                                                                                                                    
+                                                                        </li>
+                                                                
+                                                                        <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_total_event_count" style="margin: 10px"></span><br />
+                                                                                <small >TOTAL EVENTS</small>            
+                                                                                                              
+                                                                        </li>
+                                                                                
+                                                                               
+                                                                               
+                                                                              
+                                                                </ul>
+                                                        
+                                                </div>
+                                        </div>
+                        </div>
+                <!-- slides for page -->
+                <div class="card" style="margin-top:30px">
+                                                
+                                <div class="card-group owl-carousel text-center" id="owl-demo" style="width: 800px;">
+                                       
+                                                <div class="item">
+                                                        <img src="../public/image/Instagram-512.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Gallery</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/musiclogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Music</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/play-button-3364880_960_720.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Videos</h5>
+                                                </div>
+                                                
+                                                <div class="item">
+                                                        <img src="../public/image/activitylogo.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Activity</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Page</h5>
+                                                </div>
+                                                <div class="item">
+                                                        <img src="../public/image/eventlogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                        <h5 class="card-title" style="color:black">Events</h5>
+                                                </div>
+                                                <div class="item">
+                                                                <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                <h5 class="card-title" style="color:black">Page</h5>
+                                                        </div>
+                                                        <div class="item">
+                                                                <img src="../public/image/eventlogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                <h5 class="card-title" style="color:black">Events</h5>
+                                                        </div>
+                                                
+                                        
+                                       
+                                </div>
+                </div>
         
-                        <%})%>  <!-- for loop ends -->
-                        
-                        
-        
-                <%} else{%>     <!-- else condition starts-->
-                
-                        <span>No records available</span>
-                <%}%>   <!-- ends condition ends-->	                        
-</div>
-                
-                <div class="card-body" style="background:#ffffff;margin-top:20px">
+                <!-- create events or videos -->
+                <div class="card" style="margin-top:30px">
+                                <div class="card-body">
                                 
                                 <% if(items.length > 0){%>
-                                       <% items.forEach(function(item,index){%>
-                                        <div class="row" style="margin-left:170px">     
-                                                        <i class="far fa-address-card" data-toggle="tooltip" data-placement="top" title="About Me"></i>
-                                                       
-
-                                        </div> 
-                                        
-                                     
-
-                                        <div class="hide-about-me">
-                                                <div class="form-inline">
-                                                <i class="fas fa-user-tie" style="margin-right:10px"></i>
-                                                <label class="col-form-label font-weight-normal" id="user_full_name"><%= item.user_firstname %> <%= item.user_lastname %></label>
+                                   <% for( var i = 0, len = items.length; i < len; i++){%>
+                                        <% if (items[i].user_profile_pic)
+                                        { %>
+                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
                                                 
-                                                </div>
-
-                                                <div class="form-inline">
-                                                <i class="fas fa-venus-mars" style="margin-right:10px"></i>
-                                                <label class="col-form-label font-weight-normal" id="user_gender"><%= item.user_gender %></label>
-                                                </div>
-
-                                                <div class="form-inline">
-                                                <i class="fas fa-birthday-cake" style="margin-right:10px"></i>
-                                                <label class="col-form-label font-weight-normal" id="use_dob"><%= item.user_dob %></label>
-                                                </div>
-
-                                                <div class="form-inline">
-                                                <i class="fas fa-briefcase" style="margin-right:10px"></i>
-                                                <label class="col-form-label font-weight-normal" id="user_profession">Student</label>
-                                                </div>
-
-                                                
-                                        </div>
-                                        
-
-                                        <%})%>
-
-                                <%}else{%>
-                                        <span>No records are available</span>
-                                <%}%>		
-                                
-                       
-                	                        
-                </div>
-                <!-- about me ends here-->
-
-               
-        
-                
-
-</div><!-- row 2 col I ends-->
-
-<!-- row 2-->
-<div class="col-6">
-
-
-    <!-- for heading display-->
-        
-                <div class="card" style="background:#ffffff;margin-top:15px;margin-left: -15px; width:570px">
-                   <div class="card-body">
-                        <ul class="nav">
-                                <li class="nav-item">
-                                <a class="nav-link active" href="#">Upcoming 100</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Active 16</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Past 45</a>
-                                </li>
-                            </ul>
-                   </div>
-                </div>
-         
-
-    
-                
-        <div class="row"> <!-- for events display-->
-                <% if(items.length > 0){%>
-                       
-                        <% for (var i = 0, len = items.length; i < len; i++) {%>  
-                               <% var post_data = items[i].Posts; %> 
-                        
-                               <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
-                                
-                                <div class="card mb-3">
-                                        <div class="card-header">
-                                                <% if(items[i].user_profile_pic){ %>
-                                                        <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
-                                                    
-                                                <% } else { %>
-                                                    <img src="../public/profile_image/icon.jpg" alt="profile image 1" class="rounded-circle border border-danger" style="width:50px; height:50px">
-                                              <% } %>
-
-                                              <span class="ml-2" style="color:rgba(0,0,0,0.5)"><%= items[i].user_firstname%> <%= items[i].user_lastname%></span>
-                                        </div>
-                                        
-                                        <div class="card-body">
-                                            <ul class="nav">
-                                                    <li>
-                                                            <a href="/post/<%= post_data[j].event_id %>">
-                                                                <img src="../public/image/<%=post_data[j].e_imagepath %>" alt="error check >" class="img-fluid">
-                                                            </a>
-                                                      
-                                                    </li>
-                                            </ul>          
-                                        </div>
-                                        <div class="card-footer">
-                                                <% if(items[i].event_id != -1){ %>
-                                                        <button class="like bg-btn fa fa-thumbs-up" data-post="<%= post_data[j].event_id %>"></button>
-                                                <% }
-                                                else{ %>
-                                                        <button class="like bg-btn fa fa-thumbs-up" style="color:#0275d8;" data-post="<%= post_data[j].event_id %>"></button>
-                                                <% } %>
-                                                       <span class="countLikes"><%= post_data[j].Likes.length %></span>
-                                                
-                                                 |
-                                                <i class="far fa-comments"></i>
-                                        
-                                                <i class="fas fa-stopwatch"></i>
-                                                Remind |
-
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                Interested |
-                                                <i class="far fa-meh"></i>
-                                                Going |
-                                        </div>
-                                </div>
-
-
-                                
+                                        <%} else 
+                                        {%>
+                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                        <%}%>  
+                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
+                                   <%}%>     
                                 <%}%>
-                               
-                                                        
-                                              
-                         <%}%>
-                      
-                    
-                    <%}else{%>
-                         <span>No records are available</span>
-                <%}%>
-        </div>  <!-- for events display ends-->
 
-    
-</div><!-- row 2ends-->
-
-<div class="col-3">
-                <div class="card-body" style="background:#ffffff;margin-top:30px">
-                                <div class="card about-user">
-                                         <div class="card-body">
-                                          <div class="card-block">
-                                               <h4 class="card-title info">About</h4>
-                                               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                   <div class="text-left">
-                                    <p class="card-text"><strong>Full Name :</strong> <span class="m-l-15">Amanda Taylor</span></p>
-                                    <p class="card-text"><strong>Mobile :</strong><span class="m-l-15">(+12) 334 5555 723</span></p>
-                                    <p class="card-text"><strong>Website :</strong> <span class="m-l-15">www.themashabrand.com</span></p>
-                                    <p class="card-text"><strong>Location :</strong> <span class="m-l-15">USA</span></p>
-                                   </div>			
-                                          </div>
-                                         </div>
-                                    </div>	                        
+                                </div>
                 </div>
 
-</div>
+                <!-- Modal: show events data -->
+                <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                      <div class="row" id="show_data">
 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-</div> 
+              <!-- Live Events -->
+              <hr>
+              <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_active_event_count" style="padding:10px"></span>LIVE EVENTS</h5>
+              <hr>
+              <div class="row">
+              <% if(items.length > 0){ %> 
+              <% for(var i = 0, len = items.length; i < len; i++){%>
+              <% var post_data = items[i].Posts; %> 
+              <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+              <% if(post_data[j].event_start_date == onlyDate){%>
+              <div class="col-6 postfullview zoom" style="margin-top:10px" data-onclickview="<%= post_data[j].event_id %>">
+                      <div class="card text-white">
+                              <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:400px;height:200px">
+                                      <div class="card-img-overlay">
+                                              <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                      </div>
+                      </div>
+              </div>
+              <%}%>
+              <%}%> 
+              <%}%> 
+              <%}else{%>
+              <%}%>
+              </div>
 
+               <!-- upcoming Events-->
+               <hr>
+               <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_upcoming_event_count" style="padding: 10px"></span>UPCOMING EVENTS</h5>
+               <hr>
+               <div class="row">
+               <% if(items.length > 0){ %> 
+               <% for(var i = 0, len = items.length; i < len; i++){%>
+               <% var post_data = items[i].Posts; %> 
+               <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+               <% if(post_data[j].event_start_date > onlyDate){%>
+               <div class="col-6 postfullview zoom" style="margin-top:10px;"  data-onclickview="<%= post_data[j].event_id %>">
+                       <div class="card text-white" style="cursor: pointer">
+                               <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:400px;height:200px">
+                                       <div class="card-img-overlay">
+                                               <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                       </div>
+                       </div>
+               </div>
+               <%}%>
+               <%}%> 
+               <%}%> 
+               <%}else{%>
+               <%}%>
+               </div>
+
+                                               <!--Privious Events-->
+
+                                               <hr>
+                                               <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_past_event_count" style="padding: 10px"></span>PREVIOUS EVENTS</h5>
+                                               <hr>
+                                               <div class="row">
+                                               <% if(items.length > 0){ %> 
+                                               <% for(var i = 0, len = items.length; i < len; i++){%>
+                                               <% var post_data = items[i].Posts; %> 
+                                               <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                               <% if(post_data[j].event_start_date < onlyDate){%>
+                                               <div class="col-6 postfullview" style="margin-bottom:30px; cursor: pointer;" data-onclickview="<%= post_data[j].event_id %>">
+                                                       <div class="card zoom">
+                                                               <div class="row">
+                                                                       <div class="col-4">
+                                                                       <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:150px;height:100px">
+                                                                       </div>
+                                                                       <div class="col-8">
+                                                                               
+                                                                                       <h5 class="font-weight-bold" style="margin: 10px"><%= post_data[j].event_message %></h5>
+                                                                                       
+                                                                                       <small style="margin: 10px"><a href="http://maps.google.com/?q=<%= post_data[j].event_latitude %>,<%= post_data[j].event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                       <small style="padding-left:10px" id="show_location"></small>
+                                                                                       <small style="margin: 10px"><i class="far fa-calendar-alt"></i> <%= post_data[j].event_start_date %> </small>
+                                                                                       
+                                                                                       <ul class="nav" style="margin: 10px">
+                                                                                                       <li class="nav-item">
+                                                                                                               <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
+                                                                                                       </li>
+                                                                                       
+                                                                                                       <li class="nav-item" style="padding-left: 10px">
+                                                                                                               <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                                       </li>
+               
+                                                                                                       
+                                                                                       </ul>
+                                                                               
+                                                                       </div>
+                                                               </div>
+                                                       </div>
+                                               </div>
+                                               <%}%>
+                                               <%}%> 
+                                               <%}%> 
+                                               <%}else{%>
+                                               <%}%>
+                                               </div>
+        </div>
+        </div>
 </div>
 
 <script>    
 
 $(document).ready(function() 
 {
-        // change profile image
-        $("#form_data").submit(function(e)
-        {	 
-                e.preventDefault();
-                var formData = new FormData($(this)[0]);
-                
-                $.ajax({
-                url: '/profile/image/' + $(this).attr('data-user_id'),
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function (response) 
-                {
-                        if(response.length > 0)
-                        {
-                                for(var i= 0; i< response.length; i++)
-                                {
-                                        var imagepath = response[i].user_profile_pic
-                                        $('#profile_image').attr('src', "../public/profile_image/"+imagepath);
-                                }
-                        }
-                },
-                error : function(jqXHR, textStatus, errorThrown)
-                {
-                                                console.log('jqXHR:');
-                                                console.log(jqXHR);
-                                                console.log('textStatus:');
-                                                console.log(textStatus);
-                                                console.log('errorThrown:');
-                                                console.log(errorThrown);
-                                                alert(errorThrown);
-                } 
-                });
-                return false;
-        });
+    countFollowing()
+    function countFollowing()
+    {
 
-
-
-});
-
-        //updating user data .....
-        var $hide_about_me = $('.hide-about-me') 
-        var $save_user_data_btn = $('.save-user-data-btn'); 
-        var $show_data = $('.collapse');              
-        $('.about-me').on('click', function(events)
-        {
-                $hide_about_me.hide(400);
-                //alert($("#user_full_name").html())
-                $('input.fullname').val($("#user_full_name").html());
-                $('input.profession').val($("#user_profession").html());
-                $('.cancel-edit-btn').on('click', function(events)
-                {
-                        $hide_about_me.show(400);
-                })
-                $save_user_data_btn.on('click',function(events)
-                {
-                        var user_id = $(this).attr('data-user_id')
-                        //alert(user_id);
-                        var fullname = $('input.fullname').val()
-                        var data = {
-                                        name: fullname
-                        }
-                        //alert(fullname)
-                        $.ajax(
-                                {
-                                       type: 'PUT',
-                                       url: '/profile/updatauserdata/' + $(this).attr('data-user_id'),
-                                       contentType: "application/json",
-                                       data: JSON.stringify(data),
-                                       success: function(user)
-                                       {
-                                       
-                                         user.forEach(function(item, index)
-                                        {
-                                                //alert(item.user_lastname)
-                                                $show_data.html(item.user_lastname)
-                                        })
-                                            
-                                               
-                                               
-                                       },
-                                       error: function(jqXHR, textStatus, errorThrown)
-                                       {
-                                                console.log('jqXHR:');
-                                                console.log(jqXHR);
-                                                console.log('textStatus:');
-                                                console.log(textStatus);
-                                                console.log('errorThrown:');
-                                                console.log(errorThrown);
-                                                alert(errorThrown);
-                                       } 
-                                }
-                        )
-                }) 
-                
-
-       })
+            $.ajax(
+                            {
+                                    url:  '/viewprofile/countFollowing',
+                                    type: 'post',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                
+                                                    $('.countFollowing').html(response.length)
+                                                    
+                                            }else{
+                                                    alert("countFollowing Null")
+                                            }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                    } 
+                            }
+                    );
+    }
+})
                        
 </script> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

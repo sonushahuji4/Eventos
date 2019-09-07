@@ -12,22 +12,22 @@
                                                 <% if(items.length > 0){%>
                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
                                                         <div class="card">
-                                                                        <ul class="nav">
-                                                                                <div class="card-body" style="background:#222831">
-                                                                                                <li class="text-center"> 
-                                                                                                                <div class="card-body text-center"> 
+                                                                        <ul class="nav text-center">
+                                                                                
+                                                                                <li> 
+                                                                                        <div class="card-body text-center"> 
                                                                                                                 
-                                                                                                                <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
                                                                                                                
-                                                                                                                </div>
+                                                                                        </div>
                                                                                                         
                                                                                                         
-                                                                                                </li>
-                                                                                </div>
-                                                                               <div class="card-body">
+                                                                                </li>
+                                                                               
+                                                                              
                                                                                         <li>
                                                                                                         <div class="card-body">
-                                                                                                                <h5 class="text-center"><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
                                                                                                                 <hr>
                                                                                                                 <div class="socail_media text-center">
                                                                                                                         <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
@@ -37,7 +37,7 @@
                                                                                                         </div>
                                                                                                                 
                                                                                                 </li>
-                                                                               </div>
+                                                                              
                                                                                         
                                                                                         
                                                                                
@@ -51,10 +51,10 @@
                                                                                                                 <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
                                                                                                                 
                                                                                                 </div>
-                                                                                                <div class="col-4">
+                                                                                                <div class="col-5">
                                                                                                                 <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
                                                                                                 </div>
-                                                                                                <div class="col-4">
+                                                                                                <div class="col-3">
                                                                                                                 <small>100k</small><br /><i class="far fa-eye"></i>
                                                                                                 </div>
                                                                                                 
@@ -115,7 +115,7 @@
                                                 
                 </div>
                 <div class="col-9">
-                        <div class="card" style="background:#222831;color:#99A3A4">
+                        <div class="card">
                                 <div class="row">
                                                 
 
@@ -169,24 +169,25 @@
                                                 
                                 <div class="card-group owl-carousel text-center" id="owl-demo" style="width: 800px;">
                                        
-                                                <div class="item">
-                                                        <img src="../public/image/Instagram-512.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
-                                                        <h5 class="card-title" style="color:black">Gallery</h5>
+                                                <div class="item activityOptions" data-sender="image">
+                                                        <img src="../public/image/Instagram-512.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle" id="image">
+                                                        <h5 class="card-title" style="color:black">Images</h5> 
                                                 </div>
-                                                <div class="item">
+                                                <div class="item activityOptions" data-sender="Music">
                                                         <img src="../public/image/musiclogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
                                                         <h5 class="card-title" style="color:black">Music</h5>
                                                 </div>
-                                                <div class="item">
+                                                <div class="item activityOptions" data-sender="Video">
                                                         <img src="../public/image/play-button-3364880_960_720.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
                                                         <h5 class="card-title" style="color:black">Videos</h5>
+                                                        
                                                 </div>
                                                 
-                                                <div class="item">
+                                                <div class="item activityOptions" data-sender="Activity">
                                                         <img src="../public/image/activitylogo.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
                                                         <h5 class="card-title" style="color:black">Activity</h5>
                                                 </div>
-                                                <div class="item">
+                                                <div class="item activityOptions" data-sender="Page">
                                                         <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
                                                         <h5 class="card-title" style="color:black">Page</h5>
                                                 </div>
@@ -354,7 +355,24 @@ $(document).ready(function()
 
         /****************************************************** It includes all profile.ejs files ********************************************************/
 
-        // onClikc following show all the followers to user
+        //activityOptions
+        $(document).on('click','.activityOptions',function()
+        {
+                var selectedActivity =$(this).data('sender');
+                alert(selectedActivity)
+                $.ajax(
+                        {
+                             url:"profile/viewimages",
+                             type:"post",
+                             data:{selectedActivity:selectedActivity},
+                             success:function(response)
+                             {
+                                alert(JSON.stringify(response))
+                             }   
+                        }
+                )
+        })
+        // onClick following show all the followers to user
         $(document).on('click','.countFollowing',function(){
             alert("cliekd");
             var $followingList= document.getElementById("following_data_show");
@@ -839,8 +857,8 @@ $(document).ready(function()
                             {
                                         linearGradient: [400, 0, 400, 400],
                                         stops: [
-                                                [0, 'rgb(0,173,181)'],
-                                                [1, 'rgb(34,40,49)']
+                                                [0, 'rgb(253,254,254)'], // 248,249,249 //0,173,181
+                                                [1, 'rgb(253,254,254)'] //34,40,49
                                         ]
                            },
                         borderWidth: 0,
@@ -911,13 +929,13 @@ $(document).ready(function()
                         
 
                         colorAxis: {
-                        dataClassColor : 'category',
-                        stops: [[0, '#D0D3D4'],[1, '#393e46'],[2, '#196F3D'],[3,'#145A32']],
-                        min: 0,
-                        max: 1,
-                        //     min: 1,
-                        //     minColor: '#ffffff',
-                        //     maxColor: Highcharts.getOptions().colors[0]
+                        // dataClassColor : 'category',
+                        // stops: [[0, '#D0D3D4'],[1, '#E5E7E9'],[2, '#196F3D'],[3,'#145A32']],
+                        // min: 0,
+                        // max: 1,
+                            min: 0,
+                            minColor: '#F8F9F9',
+                            maxColor: Highcharts.getOptions().colors[0]
                         },
 
                         legend: {

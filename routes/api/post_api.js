@@ -45,10 +45,11 @@ var upload = multer({
 router.get('/posts', function(req, res)
 {
     const user_id = req.session.user_id;
-    console.log("user_id in GET=>",user_id)
+    //console.log("user_id in GET=>",user_id)
     const status = "accept";
     var onlyDate = new Date();
     onlyDate = onlyDate.toISOString().slice(0,10)
+    //console.log("post api get calling")
     Posts.findAndCountAll({include:[{ model: Likes},{ model: Comments},{ model: Users}],
         where:{[Op.or]:[{user_id:{[Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]}},
         {user_id:user_id}] 
@@ -180,7 +181,7 @@ router.post('/posts/add_comment/:id', function(req, res, next)
     const post_id = req.params.id;
     const user_id = req.session.user_id;
     const comment_content = req.body.comment_content;
-    console.log(comment_content);
+    //console.log(comment_content);
 
     Comments.create({comment:comment_content,user_id:user_id,event_id:post_id})
     .then((comment_response)=>
@@ -272,7 +273,7 @@ router.post('/posts/add_comment', function(req, res, next)
 
 router.get('/posts/user_id',function(req,res,next)
 {
-    console.log("get user id");
+    //console.log("get user id");
     const user_id = req.session.user_id
     res.send(user_id.toString());
 })
@@ -280,8 +281,8 @@ router.get('/posts/user_id',function(req,res,next)
 router.get('/posts/get_user',function(req,res,next)
 {
                                    
-    console.log("get_user data");
-    console.log("user_id",req.session.user_id);
+    //console.log("get_user data");
+    //console.log("user_id",req.session.user_id);
     const user_id = req.session.user_id
     const status = "accept"
     Users.findAll( {
@@ -423,7 +424,7 @@ router.get('/posts/findUser',function(req,res,next)
     Users.findAll()
     .then((find_All_User)=>
     {
-        console.log("find_All_User",find_All_User);
+        //console.log("find_All_User",find_All_User);
         res.send(find_All_User)
     })
     .catch((err)=>
@@ -440,13 +441,14 @@ router.post('/posts/processSearch', function(req,res,next)
     var firstname = user_name.split(" ")
     var name = firstname[0]
     var sur = firstname[1]
-    console.log("firstname",name)
-    //console.log("firstname",sur)
-    //res.send(name,sur)
+
     Users.findOne({where:{user_firstname:name},attributes:['user_id']})
     .then((user_id)=>
     {
-        res.send(user_id)
+        //console.log("dkjgafkdsgfk dhskf ",user_id.user_id)
+        
+        req.session.otheruserid = user_id.user_id;
+        res.send("success")
     })
     .catch((err)=>
     {
@@ -568,6 +570,7 @@ router.get('/posts/online_user_list', function(req,res)
 
     const user_id = req.session.user_id; 
     //{include:[{ model: Login_Details}],
+    console.log("line numbe 572 in post ali /onliner_user_list")
     Users.findAll({where:{user_id:{
         [Op.in]:[sequelize.literal('(SELECT `Follows`.receiver_id FROM `follows` AS `Follows` WHERE `Follows`.user_id='+user_id+' and `Follows`.status="accept")')]
                                 }},include:[{model:Login_Details}]})    
