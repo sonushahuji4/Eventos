@@ -17,14 +17,15 @@
                                                         <div class="card-body text-center">
                        
                                                                 <img id="profile_image" class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
-                                                                <i for="upload" class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image"></i>        
-                                                                <span id = "status"></span>
+                                                                
                                                                 <form class="upload" enctype="multipart/form-data" id="form_data" data-user_id="<%= items[i].user_id %>">
-                                                                        <input type="file" id="datafile" name="userPhoto"/>
-                                                                                 
-                                                                        <input type="submit" value="submit"/> 
-                                                                        </form>
-                                                                <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                        <label><i class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image" style="cursor: pointer"></i>
+                                                                        <input type="file" id="datafile" name="userPhoto" style="visibility:hidden">
+                                                                        </label>                 
+                                                                        <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                </form>
+                                                                
+
                                                                 <hr>
                                                                 <div class="socail_media text-center">
                                                                         <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
@@ -1056,7 +1057,7 @@ $(document).ready(function()
 
     // This is for updating or changing user profile image
     // currently it is not in use as this is not implemented still but code is fully working
-    $("#form_data").submit(function(e)
+    $("#form_data").change(function(e)
     {	 
             e.preventDefault();
             var formData = new FormData($(this)[0]);
