@@ -61,7 +61,7 @@ app.get('/graphsample', (req, res, next)=>
 app.get('/testingpurpose', (req, res, next)=>
 {
     const user_id = req.session.user_id;
-    res.render('showActivity',{title:'showActivity'});
+    res.render('editProfile',{title:'editProfile'});
     
 })
 

@@ -11,6 +11,10 @@ module.exports = (sequelize, type) => {
         user_email    	 : {type : Sequelize.STRING, required : true, unique : true, allowNull : false, trim : true},
         user_username    : {type : Sequelize.STRING, required : true, unique : true, allowNull : false, trim : true},
         user_password    : {type : Sequelize.STRING, required : true, allowNull : false, trim : true},
+        user_bio     	 : {type : Sequelize.STRING, allowNull : true, trim : true},
+        user_country     : {type : Sequelize.STRING, allowNull : true, trim : true},
+        user_state     	 : {type : Sequelize.STRING, allowNull : true, trim : true},
+        user_city     	 : {type : Sequelize.STRING, allowNull : true, trim : true},
         user_profile_pic : {type:Sequelize.STRING}
     })
 }

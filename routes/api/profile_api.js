@@ -124,6 +124,64 @@ router.post('/profile/image/:id',function (req,res)
     });
 });
 
+// update user bio
+
+router.post('/profile/user_bio_update',function (req,res)
+{
+    var user_id = req.session.user_id
+    Users.update({user_bio:req.body.user_bio},{where:{user_id:user_id}})
+    .then((updateddata)=>
+    {
+        Users.findOne({attributes:['user_bio'],where:{user_id:user_id}})
+        .then((user)=>
+        {
+            res.send(user);      
+        })
+        .catch((err)=>
+        {
+            console.error(err)
+            res.status(501).send({error : "error..... check console log"})
+        })
+            //res.send(updateddata);      
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({error : "error..... check console log"})
+    })
+    // console.log("success ....\n")
+    // res.send('success');      
+});
+
+// update user contacts
+
+router.post('/profile/user_contacts_update',function (req,res)
+{
+    var user_id = req.session.user_id
+    Users.update({user_email:req.body.user_email,user_country:req.body.user_country,user_state:req.body.user_state,user_city:req.body.user_city},{where:{user_id:user_id}})
+    .then((updateddata)=>
+    {
+        Users.findOne({attributes:['user_email','user_country','user_state','user_city'],where:{user_id:user_id}})
+        .then((user)=>
+        {
+            res.send(user);      
+        })
+        .catch((err)=>
+        {
+            console.error(err)
+            res.status(501).send({error : "error..... check console log"})
+        })
+            //res.send(updateddata);      
+    })
+    .catch((err)=>
+    {
+        console.error(err)
+        res.status(501).send({error : "error..... check console log"})
+    })
+    // console.log("success ....\n")
+    // res.send('success');      
+});
+
 router.put('/profile/updatauserdata/:id',function (req,res)
 {
     console.log(req)

@@ -11,7 +11,7 @@
                                 <div class="row">
                                                 <% if(items.length > 0){%>
                                                         <% for(var i = 0, len = items.length; i < len; i++){%>
-                                                        <div class="card" style="width: 18rem;margin-bottom:20px">
+                                                        <div class="card" style="width: 18rem;margin-bottom:5px">
                                                                 
                                                           
                                                         <div class="card-body text-center">
@@ -24,11 +24,29 @@
                                                                         </label>                 
                                                                         <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
                                                                 </form>
+
+                                                                <div class="form-group show_inputs_bio" style="display: none">
+                                                                        <input type="text" class="form-control biokadata" id="biokadata" placeholder="type your bio...">
+                                                                        <div class="updatecancelbtn" style="margin:5px">
+                                                                                        <button type="button" class="btn btn-success" id="update_bio_updatebtn">Update</button>
+                                                                                        <button type="button" class="btn btn-danger" id="bio_hide_cancel">Cancel</button> 
+                                                                        </div>
+               
+                                                                </div>
+
+                                                                <div class="row hide_bio_label">
+                                                                        <div class="col-10">
+                                                                                <p><small id="user_bio_update"><%=items[i].user_bio %></small></p>
+                                                                        </div>
+                                                                        <div class="col-2 update_bio">
+                                                                                <i class="fas fa-edit" style="margin-left:10px;cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Click to edit your bio"></i>
+                                                                        </div>
+                                                                </div>
+
                                                                 
-                                                                <p><small>I am a decent and a sweet guy</small></p>
                                                                 <hr>
                                                                 <div class="socail_media text-center">
-                                                                        <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
+                                                                        <i class="fab fa-facebook" style="cursor: pointer"></i><i class="fab fa-instagram" style="margin-left:10px;cursor: pointer"></i><i class="fab fa-twitter" style="margin-left:10px;cursor: pointer"></i><i class="fab fa-pinterest" style="margin-left:10px;cursor: pointer"></i><i class="fab fa-linkedin" style="margin-left:10px;cursor: pointer"></i>
                                                                 </div>
                                                                 <hr>
                                                                 <div class="row">
@@ -58,6 +76,12 @@
                                                          
                                 
                                         </div>
+                                        <div class="row" style="margin-bottom: 10px">
+                                                <div class="card" style="width: 18rem;cursor: pointer">
+                                                        <h5 class="card-header text-center">Edit Profile</h5>
+
+                                                </div>
+                                        </div>
 
                                         <div class="row">
                                                         
@@ -65,15 +89,16 @@
                                                                 <div class="item activityOptions" data-sender="image" style="cursor: pointer">
                                                                         <img src="../public/image/images.png" alt="Owl Image" style="width:30px; height:30px" class="card-img-top rounded-circle" id="image">
                                                                         <small class="card-title" style="color:black">Photos</small> 
-                                                                        </div>
                                                                 </div>
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                                <div class="item activityOptions" data-sender="Music" style="cursor: pointer">
+                                                                        <img src="../public/image/musicss.png" alt="Owl Image" style="width:30px; height:30px" class="card-img-top rounded-circle" id="image">
+                                                                        <small class="card-title" style="color:black">Musics</small> 
+                                                                </div>
+                                                        </div>
                                                                 
-                                                                <div class="col-4">
-                                                                        <div class="item activityOptions" data-sender="Music" style="cursor: pointer">
-                                                                                <img src="../public/image/music.png" alt="Owl Image" style="width:35px; height:35px" class="card-img-top rounded-circle"> 
-                                                                                <small class="card-title" style="color:black">Music</small>
-                                                                        </div> 
-                                                                </div>
                                                                                          
                                                                 <div class="col-4">
                                                                         <div class="item activityOptions" data-sender="Video" style="cursor: pointer">
@@ -85,24 +110,51 @@
                                                 </div>
 
                                         <div class="row">
+                                                <div class="card" style="width: 18rem">
+                                                        
+                                                <div class="form-group hide_contact_me_label" style="display: none">
+                                                        <div class="card-body">
+                                                                <input type="text" class="form-control user_email_take_input" id="user_email_take_input" placeholder="type your email">
+                                                                <input type="text" class="form-control user_country_take_input" id="user_country_take_input" placeholder="type your country">
+                                                                <input type="text" class="form-control user_state_take_input" id="user_state_take_input" placeholder="type your state">
+                                                                <input type="text" class="form-control user_city_take_input" id="user_city_take_input" placeholder="type your city">
+                                                                
+                                                                <div class="updatecancelbtn" style="margin:5px">
+                                                                        <button type="button" class="btn btn-success" id="update_contact_me_btn">Update</button>
+                                                                        <button type="button" class="btn btn-danger" id="contact_me_hide_cancel">Cancel</button> 
+                                                                </div>
+               
+                                                        </div>
+                                                </div>
+                                                </div>
+                                                        <div class="contact_me_inputs_bio">
                                                         <%if(items.length > 0){%>
                                                                 <%for(var i = 0, len = items.length; i < len; i++){%>
-                                                                <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                <div class="card" style="background:#ffffff;margin-top:10px;width: 18rem">
                                                                                 <div class="card about-user">
                                                                                 
                                                                                 
                                                                         <div class="card-body">  
-                                                                                        <h4 class="card-title">Contact Me</h4>       
+                                                                                        <div class="row">
+                                                                                                        <div class="col-10">
+                                                                                                                        <h4 class="card-title">Contact Me</h4>
+                                                                                                        </div>
+                                                                                                        <div class="col-2 update_contact_me">
+                                                                                                                <i class="fas fa-edit" style="margin-left:10px;cursor: pointer;" data-toggle="tooltip" data-placement="top" title="Click to update your contact details"></i>
+                                                                                                        </div>
+                                                                                        </div>
+                                                                                               
                                                                                 <div class="text-justify">
-                                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
+                                                                                    <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15" id="user_email_data"><%=items[i].user_email %></span></p>
                                                                                     <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
                                                                                     <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
-                                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
+                                                                                    <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span id="user_country_data"><%=items[i].user_country %></span>,<span id="user_state_data"><%=items[i].user_state %></span> <span id="user_city_data"><%=items[i].user_city %></span></p>
                                                                                 </div>			
                                                                                           
                                                                         </div>
                                                                 </div>	                        
                                                                 </div>
+                                                        </div>
                                                                 <%}%>
                                                         <%}else{%>
                                                                 
@@ -1035,7 +1087,6 @@ $(document).ready(function()
     {	 
             e.preventDefault();
             var formData = new FormData($(this)[0]);
-            alert(formData);
             $.ajax({
             url: '/profile/image/' + $(this).attr('data-user_id'),
             type: "POST",
@@ -1066,64 +1117,109 @@ $(document).ready(function()
             });
             return false;
     });
+// ----------------------------------- for updating a bio of user -------------------------------------------
+    // when you click on cancel for bio then hide input fields and show bio without updating
+    $(document).on('click','#bio_hide_cancel',function()
+    {
+        $(".show_inputs_bio").hide();
+        $(".hide_bio_label").show();
+    })
 
-    // This is for updaing or editing the user details like personal or private information
-    // This is not working still but for reference it is good.
-            var $hide_about_me = $('.hide-about-me') 
-            var $save_user_data_btn = $('.save-user-data-btn'); 
-            var $show_data = $('.collapse');              
-            $('.about-me').on('click', function(events)
-            {
-                    $hide_about_me.hide(400);
-                    //alert($("#user_full_name").html())
-                    $('input.fullname').val($("#user_full_name").html());
-                    $('input.profession').val($("#user_profession").html());
-                    $('.cancel-edit-btn').on('click', function(events)
-                    {
-                            $hide_about_me.show(400);
-                    })
-                    $save_user_data_btn.on('click',function(events)
-                    {
-                            var user_id = $(this).attr('data-user_id')
-                            //alert(user_id);
-                            var fullname = $('input.fullname').val()
-                            var data = {
-                                            name: fullname
-                            }
-                            //alert(fullname)
-                            $.ajax(
-                                    {
-                                           type: 'PUT',
-                                           url: '/profile/updatauserdata/' + $(this).attr('data-user_id'),
-                                           contentType: "application/json",
-                                           data: JSON.stringify(data),
-                                           success: function(user)
-                                           {
-                                           
-                                             user.forEach(function(item, index)
-                                            {
-                                                    //alert(item.user_lastname)
-                                                    $show_data.html(item.user_lastname)
-                                            })
-                                                
-                                                   
-                                                   
-                                           },
-                                           error: function(jqXHR, textStatus, errorThrown)
-                                           {
-                                                    console.log('jqXHR:');
-                                                    console.log(jqXHR);
-                                                    console.log('textStatus:');
-                                                    console.log(textStatus);
-                                                    console.log('errorThrown:');
-                                                    console.log(errorThrown);
-                                                    alert(errorThrown);
-                                           } 
-                                    }
-                            )
-                    }) 
-                    
-    
-           })
+    // when clicked on icon for updating your bio then hide bio field and show input fields to update bio
+    $(document).on('click','.update_bio',function()
+    {
+            $('input.biokadata').val($("#user_bio_update").html());
+            $(".hide_bio_label").hide();
+            $(".show_inputs_bio").show();
+
+    })
+
+    // update user bio when clicked on update bio btn
+    $(document).on('click','#update_bio_updatebtn',function()
+    {
+        var user_bio = $('input.biokadata').val()  
+        $.ajax(
+                {
+                        type: 'post',
+                        url: '/profile/user_bio_update',
+                        data: {user_bio:user_bio},
+                        success: function(response)
+                        {
+                                $("#user_bio_update").html(response.user_bio)
+                                $(".show_inputs_bio").hide();
+                                $(".hide_bio_label").show();                        
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        } 
+                })
+    })
+
+// -------------------------------- end implementation of updating a bio for user ------------------------------
+
+// -------------------------------- updating contact me for user  ----------------------------------------------
+
+$(document).on('click','#contact_me_hide_cancel',function()
+    {
+        $(".hide_contact_me_label").hide();
+        $(".contact_me_inputs_bio").show();
+    })
+
+// when clicked on icon for updating your contacts then hide contact field and show input fields to update contact
+$(document).on('click','.update_contact_me',function()
+    {
+            $('input.user_email_take_input').val($("#user_email_data").html());//user_country_input
+            $('input.user_country_take_input').val($("#user_country_data").html());//user_country_input
+            $('input.user_state_take_input').val($("#user_state_data").html());//user_country_input
+            $('input.user_city_take_input').val($("#user_city_data").html());//user_country_input
+            $(".contact_me_inputs_bio").hide();
+            $(".hide_contact_me_label").show();
+
+    })
+
+
+    // update user contacts when clicked on update bio btn
+    $(document).on('click','#update_contact_me_btn',function()
+    {
+        var user_email = $('input.user_email_take_input').val()
+        var user_country = $('input.user_country_take_input').val()
+        var user_state = $('input.user_state_take_input').val()
+        var user_city = $('input.user_city_take_input').val() 
+
+        $.ajax(
+                {
+                        type: 'post',
+                        url: '/profile/user_contacts_update',
+                        data: {user_email:user_email,user_country:user_country,user_state:user_state,user_city:user_city},
+                        success: function(response)
+                        {
+                                $("#user_email_data").html(response.user_email)
+                                $("#user_country_data").html(response.user_country)
+                                $("#user_state_data").html(response.user_state)
+                                $("#user_city_data").html(response.user_city)
+
+                                $(".hide_contact_me_label").hide();
+                                $(".contact_me_inputs_bio").show();                        
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        } 
+                })
+    })
+
 })
 </script>
