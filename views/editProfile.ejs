@@ -2,128 +2,236 @@
 <%- include('partials/includes/header') %>
 <%- include('partials/includes/navbar') %>
 
+<!-- <% if(items.length > 0){%>
+  <h5><%=items%>
+  </h5>
+  <% for(var i = 0, len = items.length; i < len; i++){%>
+    <%=items[i].user_firstname%>
+  <%}%>
+<%}else{%>
+  <h5>data not recieved</h5>
+<%}%> -->
+
 <div class="container">
     
         <div class="card" style="margin: 40px">
             <div class="card-body">
-              <div class="text-center">
-                    <img class="card-img rounded-circle" src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" alt="Card image" style="width:150px;height:150px">
-                    
-                    <form class="upload" enctype="multipart/form-data" id="form_data">
-                      <label><i class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image" style="cursor: pointer;margin-left: 250px"></i>
-                      <input type="file" id="datafile" name="userPhoto" style="visibility:hidden">
-                      </label>                 
-                    </form>
-                    <form>
-                        <div class="form-group col-md-6" style="margin-left: 260px">
-      
-                          <input type="text" class="form-control" id="exampleInputBio" placeholder="Type some cool bio...">
-                         
-                        </div>
-      
-                    </form>
-              </div>
+                <div class="text-center">
+
+                <% if(items.length > 0){%>
+                  <% for(var i = 0, len = items.length; i < len; i++){%>
+                    <% if(items[i].user_profile_pic){ %>
+                      <img class="card-img rounded-circle" src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="Card image" style="width:150px;height:150px">
+
+                      <% } else { %>
+                        <img src="../public/profile_image/icon.jpg" class="card-img rounded-circle" style="width:150px;height:150px">
+                      <% } %>
+
+                      <form class="upload" enctype="multipart/form-data" id="form_data">
+                        <label><i class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="Click to change your profile image" style="cursor: pointer;margin-left: 250px"></i>
+                        <input type="file" id="datafile" name="userPhoto" style="visibility:hidden">
+                        </label>                 
+                      </form>
+                      <form>
+                          <div class="form-group col-md-6" style="margin-left: 260px">  
+                                <input type="text" class="form-control user_bio_data" id="user_bio_data" name="user_bio[]" value="<%= items[i].user_bio %>" placeholder="Type some cool bio...">
+                          </div>
+        
+                      </form>
+
+                    <%}%>
+                </div>
+                  
+                <%}else{%>
+                  <h5>No record found</h5>
+                <%}%>
+
 
             </div>
         </div>
 
         <div class="card" style="margin: 40px">
-            <div class="card-body">
-                <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="firtsname" placeholder="Firstname">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="surname" placeholder="Surname">
-                      </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                          <input type="date" class="form-control" id="dateofbirth" placeholder="Date of Birth">
+          <% if(items.length > 0){%>
+              <% for(var i = 0, len = items.length; i < len; i++){%>
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <input type="text" class="form-control firstname" id="firstname" name="user_firstname" value="<%=items[i].user_firstname%>" placeholder="Firstname">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <input type="text" class="form-control surname" id="surname" name="user_lastname" value="<%=items[i].user_lastname%>" placeholder="Surname">
+                          </div>
                         </div>
-                        <div class="form-group col-md-6">
-                          <select id="genderstatus" class="form-control">
-                              <option selected>Male</option>
-                              <option>Female</option>
-                              <option>Other</option>
-                            </select>
-                        </div>
-                      </div>
+    
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <input type="date" class="form-control dateofbirth" id="dateofbirth" name="user_dob" value="<%=items[i].user_dob%>" placeholder="Date of Birth">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <select class="form-control genderstatus">
+                                  <option value="<%= items[i].user_gender%>"><%= items[i].user_gender%></option>
+                                  <option>Male</option>
+                                  <option>Female</option>
+                                  <option>Other</option>
+                              </select>
+                            </div>
+                          </div>
+                      </form>
+                    
+                </div>
+              <%}%>
+          <%}else{%>
+              <h5>No records found</h5>
+          <%}%>
 
-                   
-                
-                  
-                  </form>
-                
-            </div>
         </div>
 
 <!-- address-->
 <div class="card" style="margin: 40px">
-    <div class="card-body">
-            <form>
-                    <div class="row">
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Contry">
-                      </div>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="state">
-                      </div>
+
+    <% if(items.length > 0){%>
+      <div class="card-body">
+      <% for(var i = 0, len = items.length; i < len; i++){%>
+        <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control country" id="country" name="user_country" value="<%=items[i].user_country%>" placeholder="Contry">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control state" id="state" name="user_state" value="<%=items[i].user_state%>" placeholder="state">
+              </div>
+            </div>
+            <div class="row">
+                    <div class="col">
+                      <input type="text" class="form-control city" id="city" name="user_city" value="<%=items[i].user_city%>" placeholder="City">
                     </div>
-                    <div class="row">
-                            <div class="col">
-                              <input type="text" class="form-control" placeholder="City">
-                            </div>
-                            <div class="col">
-                              <input type="text" class="form-control" placeholder="Area">
-                            </div>
-                          </div>
-            </form>
-            
-    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Area">
+                    </div>
+                  </div>
+        </form>
+   
+
+      <%}%>
+       
+  </div>
+    <%}else{%>
+      <h5>No records found</h5>
+    <%}%>
+
+   
 </div>
 
 <!-- contacts-->
 <div class="card" style="margin: 40px">
-    <div class="card-body">
-            <form>
-                    <div class="row">
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Mobile Number">
-                      </div>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Email-Id">
-                      </div>
-                    </div>
-            </form>
+
+    <% if(items.length > 0){%>
+      <div class="card-body">
+      <% for(var i = 0, len = items.length; i < len; i++){%>
+        
+        <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control mobile" id="mobile" name="user_mobile_no" value="<%=items[i].user_mobile_no%>" placeholder="Mobile Number">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control emailid" id="emailid" name="user_email" value="<%=items[i].user_email%>" placeholder="Email-Id">
+              </div>
+            </div>
+        </form>
+
+      <%}%>
     </div>
+    <%}else{%>
+      <h5>No records found</h5>
+    <%}%>
 </div>
 
 <!-- password-->
 <div class="card" style="margin-left: 40px;margin-right: 40px;margin-top: 40px">
     <div class="card-body">
-            <form>
-                    <div class="row">
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Username">
-                      </div>
-                      <div class="col">
-                        <input type="password" class="form-control" placeholder="Old Password">
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <input type="password" class="form-control" placeholder="New Password">
-                        </div>
-                        <div class="col">
-                          <input type="password" class="form-control" placeholder="Confirm Password">
-                        </div>
-                      </div>
-            </form>
+        <% if(items.length > 0){%>
+          <form>
+              <div class="row">
+          <% for(var i = 0, len = items.length; i < len; i++){%>
+            <div class="col">
+                <input type="text" class="form-control username" id="username" name="user_username" value="<%=items[i].user_username%>" placeholder="Username">
+              </div>
+            
+          <%}%>
+                <div class="col">
+                  <input type="password" class="form-control oldpassword" id="oldpassword" placeholder="Old Password">
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                    <input type="password" class="form-control newpassword" id="newpassword" placeholder="New Password">
+                  </div>
+                  <div class="col">
+                    <input type="password" class="form-control confirmpassword" id="confirmpassword" placeholder="Confirm Password">
+                  </div>
+                </div>
+      </form>
+        <%}else{%>
+          <h5>No record found</h5>
+        <%}%>
     </div>
 </div>
-<button type="button" class="btn btn-primary" style="margin-top:10px;margin-left: 40px;">Submit</button>
+<button type="button" class="btn btn-primary submitbtn" style="margin-top:10px;margin-left: 40px;">Submit</button>
 
 </div>
+
+
+<script>
+$(document).ready(function()
+{
+  $(document).on('click','.submitbtn',function()
+  {  
+    var user_bio = $('input.user_bio_data').val()
+    var user_firstname = $('input.firstname').val()
+    var user_lastname = $('input.surname').val()
+    var user_dob = $('input.dateofbirth').val()
+    var user_gender = $('input.genderstatus').val()
+    var user_country = $('input.country').val()
+    var user_state = $('input.state').val()
+    var user_city = $('input.city').val()
+    var user_mobile = $('input.mobile').val()
+    var user_emailid = $('input.emailid').val()
+    var user_username = $('input.username').val()
+    var user_oldPassword = $('input.oldpassword').val()
+    var user_newPassword = $('input.newpassword').val()
+    var user_confirmPassword = $('input.confirmpassword').val()
+
+
+    if( user_newPassword == user_confirmPassword)
+    {
+      alert("dfjhk")
+      $.ajax(
+                {
+                        type: 'post',
+                        url: '/editprofile',
+                        data: {user_bio:user_bio,user_firstname:user_firstname,user_lastname:user_lastname,user_dob:user_dob,user_gender:user_gender,user_country:user_country,user_state:user_state,user_city:user_city,user_mobile:user_mobile,user_emailid:user_emailid,user_username:user_username,user_confirmPassword:user_confirmPassword},
+                        success: function(response)
+                        {
+                          window.location.assign('profile');
+                        },
+                        error: function(jqXHR, textStatus, errorThrown)
+                        {
+                                console.log('jqXHR:');
+                                console.log(jqXHR);
+                                console.log('textStatus:');
+                                console.log(textStatus);
+                                console.log('errorThrown:');
+                                console.log(errorThrown);
+                                alert(errorThrown);
+                        } 
+                })
+    }
+    else{
+      alert("password did not matched")
+    }
+  })
+})
+</script>
