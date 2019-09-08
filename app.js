@@ -116,6 +116,10 @@ app.use('/',createvent);
 const showActivity = require('./routes/api/showActivity');
 app.use('/',showActivity);
 
+// edit Profile
+const editProfile = require('./routes/api/editProfile');
+app.use('/',editProfile);
+
 
 // app.put('/updatauserdata/:id',function (req,res)
 // {

@@ -77,7 +77,7 @@
                                 
                                         </div>
                                         <div class="row" style="margin-bottom: 10px">
-                                                <div class="card" style="width: 18rem;cursor: pointer">
+                                                <div class="card" style="width: 18rem;cursor: pointer" id="editprofile">
                                                         <h5 class="card-header text-center">Edit Profile</h5>
 
                                                 </div>
@@ -361,6 +361,10 @@ $(document).ready(function()
 
         /****************************************************** It includes all profile.ejs files ********************************************************/
 
+        $(document).on('click','#editprofile',function()
+        {
+                window.location.assign('editProfile');  
+        })
         //activityOptions
         $(document).on('click','.activityOptions',function()
         {
