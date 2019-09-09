@@ -51,7 +51,7 @@ router.post('/editprofile', function(req, res)
     const user_state = req.body.user_state;
     const user_city = req.body.user_city;
 
-    Users.findAll({user_firstname:user_firstname,user_lastname:user_lastname,user_dob:user_dob,user_gender:user_gender,user_mobile_no:user_mobile_no,user_email:user_email,user_username:user_username,user_password:user_password,user_bio:user_bio,user_country:user_country,user_state:user_state,user_city:user_city},{where:{user_id:user_id}})
+    Users.update({user_firstname:user_firstname,user_lastname:user_lastname,user_dob:user_dob,user_gender:user_gender,user_mobile_no:user_mobile_no,user_email:user_email,user_username:user_username,user_password:user_password,user_bio:user_bio,user_country:user_country,user_state:user_state,user_city:user_city},{where:{user_id:user_id}})
     .then((user)=>
     {
         res.send(user)                
