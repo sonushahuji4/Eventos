@@ -3,7 +3,9 @@
 <%- include('partials/includes/navbar') %>
 
 <%- include('components/chat_side_bar') %>
-
+<div id="user_model_details">
+    
+</div>
 
 <div class="container">
         <div class="row">
@@ -353,6 +355,8 @@
         </div>
         </div>
 </div>
+<%- include('partials/includes/footer') %>
+
 
 <script>
 $(document).ready(function()
@@ -1226,4 +1230,89 @@ $(document).on('click','.update_contact_me',function()
     })
 
 })
+
+        // when user likes the post then it increaments by one and update the database and reflects the likes on posts
+        $(document).on('click', '.like', function(events)
+        {
+                
+                events.preventDefault();
+                events.stopPropagation();
+                var postId = $(this).attr('data-post');
+                var postId = parseInt(postId,10)
+
+                $.ajax(
+                        {
+                                type: 'POST',
+                                url:  '/posts/like/' + $(this).attr('data-post'),
+                                contentType: "application/json", 
+        
+                                success : function(response)
+                                {
+                                        
+                                        if(response == false)
+                                        {
+                                                alert("You have already liked this post")
+                                        }
+                                        else 
+                                        {
+                                                $('#countLikes'+postId).html(response.count);
+                                        }
+                                                
+                                
+                                },
+                                error : function()
+                                {
+                                        alert('error from server');
+                                }
+                        }
+                );
+        })// like post ends 
+
+        
+
+        // on submit comment, comments gets submited and stores in database
+        $(document).on('click', '.submit_comment', function()
+            {
+                    var post_id = $(this).attr('data-po')
+                    var comment = $('#comment'+post_id).val();
+                    var action = 'submit_comment';
+                            
+                    if(comment !='')
+                    {
+                            $.ajax({
+                                    url:"/posts/add_comment",
+                                    method:"POST",
+                                    data:{post_id:post_id,comment:comment,action:action},
+                                    success:function(data)
+                                    {
+                                            if(data == "success")
+                                            {
+                                                    document.getElementById("comment"+post_id).value=""
+                                                    //$('#comment_form'+post_id).slideUp('slow');
+                                            }
+                                            
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                   } 
+                            })
+                    }
+                    else{
+                            alert("comment connot be empty");
+                    }
+    
+        
+                    
+                    
+        });
+
+        
+
 </script>

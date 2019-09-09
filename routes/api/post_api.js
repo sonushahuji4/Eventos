@@ -445,9 +445,10 @@ router.post('/posts/processSearch', function(req,res,next)
     Users.findOne({where:{user_firstname:name},attributes:['user_id']})
     .then((user_id)=>
     {
-        //console.log("dkjgafkdsgfk dhskf ",user_id.user_id)
+        console.log("dkjgafkdsgfk dhskf ",user_id.user_id)
         
         req.session.otheruserid = user_id.user_id;
+        console.log("req.session.otheruserid =>",req.session.otheruserid)
         res.send("success")
     })
     .catch((err)=>

@@ -14,6 +14,33 @@ const path = require('path');
 router.use('/public', express.static(path.join(__dirname, 'public')));
 router.use('/views', express.static(path.join(__dirname, 'views')));
 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb)
+    {
+        cb(null,path.join(__dirname,'../../public/profile_image'))
+    },
+    filename: function(req, file, cb)
+    {
+        cb(null,Date.now() + path.extname(file.originalname))
+    }
+});
+
+var upload = multer({ 
+    storage: storage, 
+    fileFilter: function (req, file, cb) {
+            var types = ['image/jpeg','image/png'];
+                type  = types.find(type => type == file.mimetype);
+                  
+                  if(!type){
+                      return cb(null,false);
+                  }
+
+                  return cb(null,true);
+          
+    }
+}).single('userPhoto');
+
+
 router.get('/editprofile', function(req, res)
 {
     const user_id = req.session.user_id; 
@@ -64,6 +91,62 @@ router.post('/editprofile', function(req, res)
         })
     })
 	
+});
+
+
+router.post('/editprofile/profileImage',function (req,res)
+{
+    upload(req,res,function(err) 
+    {
+        if(err) 
+        {
+            return res.end("Error uploading file.");
+        }
+        if(req.file)
+        {
+        const user_id = req.session.user_id;
+        Users.findOne({ where:{user_id:user_id}})
+        .then((users)=>
+        {
+                 if(users)
+                 {
+                     const imagepath = req.file.filename;
+                    Users.update({user_profile_pic:imagepath},{where:{user_id:user_id}})
+                    .then((user)=>
+                    {
+                        Users.findAll({where:{user_id:user_id}})
+                        .then((userdata)=>
+                        {
+                            res.send(userdata);
+                        }) 
+                        .catch((err)=>
+                        {
+                            console.error(err)
+                            res.status(501)
+                            .send({
+                                    error : "error..... check console log"
+                                })    
+                        })
+                    })
+                    .catch((err)=>
+                    {
+                        console.error(err)
+                        res.status(501).send({
+                            error : "error..... check console log"
+                        })
+                    })
+                 }
+             
+        })
+        .catch((err)=>
+        {
+             console.error(err)
+             res.status(501).send({
+                 error : "error..... check console log"
+             })
+        })
+        }
+    });
 });
 
 module.exports = router;

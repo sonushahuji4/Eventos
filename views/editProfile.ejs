@@ -21,7 +21,7 @@
                 <% if(items.length > 0){%>
                   <% for(var i = 0, len = items.length; i < len; i++){%>
                     <% if(items[i].user_profile_pic){ %>
-                      <img class="card-img rounded-circle" src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="Card image" style="width:150px;height:150px">
+                      <img id="profile_image" class="card-img rounded-circle" src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="Card image" style="width:150px;height:150px">
 
                       <% } else { %>
                         <img src="../public/profile_image/icon.jpg" class="card-img rounded-circle" style="width:150px;height:150px">
@@ -233,4 +233,41 @@ $(document).ready(function()
     }
   })
 })
+
+    // This is for updating or changing user profile image
+    // currently it is not in use as this is not implemented still but code is fully working
+    $("#form_data").change(function(e)
+    {	 
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+            url: '/editprofile/profileImage',
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) 
+            {
+                    if(response.length > 0)
+                    {
+                            for(var i= 0; i< response.length; i++)
+                            {
+                                    var imagepath = response[i].user_profile_pic
+                                    $('#profile_image').attr('src', "../public/profile_image/"+imagepath);
+                            }
+                    }
+            },
+            error : function(jqXHR, textStatus, errorThrown)
+            {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+            } 
+            });
+            return false;
+    });
 </script>

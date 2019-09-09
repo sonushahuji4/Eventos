@@ -17,8 +17,9 @@ router.get('/viewprofile', function(req, res)
 {
     var onlyDate = new Date();
     onlyDate = onlyDate.toISOString().slice(0,10)
-    
-    Users.findAll({where:{user_id:req.session.otheruserid},include:[{model:Posts,include:[{model:Likes,include:[{model:Users}]},{model:Comments,include:[{model:Users}]}]}]})
+    const otheruserid = req.session.otheruserid;
+    console.log("////////////////////////////////////////////////////////////////////// ",otheruserid)
+    Users.findAll({where:{user_id:otheruserid},include:[{model:Posts,include:[{model:Likes,include:[{model:Users}]},{model:Comments,include:[{model:Users}]}]}]})
     .then((user)=>
     {
       // res.send(user)
