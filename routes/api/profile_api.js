@@ -212,9 +212,14 @@ router.put('/profile/updatauserdata/:id',function (req,res)
 
 router.get('/profile/heap_map_data', function(req,res)
 {
+    
     console.log("No. of time being called 1")
     const user_id = req.session.user_id;
-    Posts.findAll()
+    // Posts.findAll({where:{user_id:user_id}})
+    Posts.findAll({
+        attributes: ['event_start_date', [sequelize.fn('count', sequelize.col('event_start_date')), 'count']],
+        group: ['event_start_date'],where:{user_id:user_id}
+  })
     .then((data)=>
     {
         res.send(data);

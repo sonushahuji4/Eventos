@@ -870,6 +870,7 @@ $(document).ready(function()
             success: function(response) 
             {
     
+                // alert(JSON.stringify(response))
                 var chart_data = [];
                 var data = 1;
                 var dataExists;
@@ -877,6 +878,8 @@ $(document).ready(function()
                 var k = 0;
                 for(var i = 0, len = response.length; i < len; i++)
                 {
+                        // alert(response[i].event_start_date)
+                        // alert(response[i].count)
                     date_value = response[i].event_start_date;
                     var d = new Date(date_value);   
                     var year = d.getFullYear();
@@ -884,7 +887,14 @@ $(document).ready(function()
                     var day = d.getDay();
                     var actualDay = day -1;
                     
-                    chart_data.push([month,actualDay,data]);
+                    // checking if the event is already present in the specific day and month then increament the event by one 
+                    // use get() to get number of events from chart_data and then inceaement that by one
+                //     if (data in chart_data)
+                //     {
+
+                //     }
+                    
+                    chart_data.push([month,actualDay,response[i].count]);
                 }
                 //alert(chart_data[1]);
                 console.log(chart_data[1]);
