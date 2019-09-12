@@ -76,7 +76,7 @@ $(document).ready(function()
                                 if(response.length > 0)
                                 {
 
-                                        var suggestion_for_user = document.getElementById("slides")
+                                        $("#slides").html('<div id="testing" class="owl-carousel"></div>');
 
                                        
                                         for (var i = 0, len = response.length; i < len; i++)
@@ -124,7 +124,8 @@ $(document).ready(function()
                                                        if((user_id == follow_receiver_id) && (status !=""))
                                                         {
                                                                flag = true
-                                                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML +`<div class="card col-lg-4" data-user_id="${user_id}"><img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/><p style="font-size:10px;"><strong>${fullname}</strong></p><button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a></div>`;
+                                                               $(".owl-carousel").append('<div class="item"  style="width:450px;"><div class="card col-lg-4" data-user_id="'+user_id+'"><img src="../public/profile_image/'+image+'" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px;margin-left:30px;margin-top:5px"/><p style="font-size:10px;"><strong>'+fullname+'</strong></p><button id="followbtn'+userid+'" data-action="'+status+'" data-sender_id="'+userid+'" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">'+status+'</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile'+userid+'" class="card-footer bg-transparent">View Profile</div></a></div></div>');                       
+                       
 
                                                        }
                                         
@@ -137,8 +138,10 @@ $(document).ready(function()
                                                                 {
 
                                                                 alert(status);
+                                                                
                                                                 status = "Follow";
-                                                                suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML +`<div class="card col-lg-4" data-user_id="${user_id}"><img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/><p style="font-size:10px;"><strong>${fullname}</strong></p><button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a></div>`;
+                                                                $(".owl-carousel").append('<div class="item"  style="width:450px;"><div class="card col-lg-4" data-user_id="'+user_id+'"><img src="../public/profile_image/'+image+'" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px;margin-left:30px;margin-top:5px"/><p style="font-size:10px;"><strong>'+fullname+'</strong></p><button id="followbtn'+userid+'" data-action="'+status+'" data-sender_id="'+userid+'" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">'+status+'</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile'+userid+'" class="card-footer bg-transparent">View Profile</div></a></div></div>');                       
+                       
                                                                 }
                                                         }
                                                         else
@@ -147,20 +150,19 @@ $(document).ready(function()
                                                                 {
                                                                 
                                                         
-                                                
-                        suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + `<div class="card col-lg-4" data-user_id="${user_id}">
-                                <img src="../public/profile_image/${image}" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px"/>
-                                <p style="font-size:10px;"><strong>${fullname}</strong></p>
-                                <button id="followbtn${userid}" data-action="${status}" data-sender_id="${userid}" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">${status}</button>
-                                <button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button>
-                                <a href="#"> <div id="viewprofile${userid}" class="card-footer bg-transparent">View Profile</div></a>
-                        </div>`;
+                                                                        $(".owl-carousel").append('<div class="item"  style="width:450px;"><div class="card col-lg-4" data-user_id="'+user_id+'"><img src="../public/profile_image/'+image+'" alt="" class="rounded-circle border border-danger" style="width:60px; height:60px;margin-left:30px;margin-top:5px"/><p style="font-size:10px;"><strong>'+fullname+'</strong></p><button id="followbtn'+userid+'" data-action="'+status+'" data-sender_id="'+userid+'" class="btn-post mr-2 btn btn-dark followbtn" style="font-size:6px;" type="button">'+status+'</button><button class="btn-post mr-2 btn btn-success" style="font-size:6px;" type="button">message</button><a href="#"> <div id="viewprofile'+userid+'" class="card-footer bg-transparent">View Profile</div></a></div></div>');                       
+                       
                 }
                 }
                                                 }
                                           
                                                 
                                         }
+                                        var owl = $("#testing");
+                                        owl.owlCarousel({
+                                            items: 3,
+                                            
+                                        });
                          
                                 }
                                 else{
@@ -246,6 +248,8 @@ $(document).ready(function()
                                         {
                                                 
                                                 alert("requested")
+                                                action = "Requested"
+                                                $('#followbtn'+sender_id).html(action);
                                         }
                                         else{
                                                 if((response.msg) && (response.success == true))

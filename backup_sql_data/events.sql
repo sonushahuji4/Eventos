@@ -500,3 +500,25 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+                          <!-- user suggestion box diplay -->
+                          
+                          <% if (user.length > 0){ %>
+                            <% user.forEach(function(item,  index){%>
+                            <div class="card mb-4" id="suggestionBox" data-userid="<%=item.user_id%>">
+                                    <div class="card-header">Suggestions</div>
+                                    <div class="card-body">
+                                        <ul class="nav">
+                                                <li class="card-body text-center">
+                                                    <div class="row" id="slides" data-userid="<%=item.user_id%>">
+                                                            <!-- users displayed from server side using ajax-->
+                                                    </div>
+                                                  
+                                                </li>
+                                        </ul>          
+                                    </div>
+                            </div>
+                            <%}); %>
+                            <%}%>

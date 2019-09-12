@@ -5,16 +5,8 @@
                             <% user.forEach(function(item,  index){%>
                             <div class="card mb-4" id="suggestionBox" data-userid="<%=item.user_id%>">
                                     <div class="card-header">Suggestions</div>
-                                    <div class="card-body">
-                                        <ul class="nav">
-                                                <li class="card-body text-center item">
-                                                    <div class="row" id="slides" data-userid="<%=item.user_id%>">
-                                                            <!-- users displayed from server side using ajax-->
-                                                    </div>
-                                                  
-                                                </li>
-                                        </ul>          
-                                    </div>
+                                    <div class="card-body text-center" id="slides" data-userid="<%=item.user_id%>">
+                                            </div>
                             </div>
                             <%}); %>
                             <%}%>
