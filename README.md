@@ -101,8 +101,11 @@ Create a small social network
     server.js
 
 # 4. Documentation
+- [System Architecture](https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing/) - Internal Flow
+
 <p align="center">
   <a href="" rel="noopener">
+  
     <img src="./cousecode/internalflow.jpg" alt="Project logo">
   </a>
 
