@@ -45,7 +45,7 @@ Create a small social network
     
 
 # 2. Commit history to see how your work evolved
-- [See Commit History](https://github.com/sonushahuji4/Eventos/) - Social Network
+- [See Commit History](https://github.com/sonushahuji4/Eventos/commits/master/) - Social Network
     
 # 3. Code quality and best practices
 
@@ -173,20 +173,27 @@ Create a small social network
     ❖ User 
 
 
-## 💡 Idea / Solution <a name = "idea"></a>
-This section is used to describe potential solutions. 
-
-    ❖ Notification
-Once the ideal, reality, and consequences sections have been 
-completed, and understood, it becomes easier to provide a solution for solving the problem.
 
 ## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
-- What are the dependencies of your project?
-- Describe each limitation in detailed but concise terms
-- Explain why each limitation exists
-- Provide the reasons why each limitation could not be overcome using the method(s) chosen to acquire.
-- Assess the impact of each limitation in relation to the overall findings and conclusions of your project, and if 
-appropriate, describe how these limitations could point to the need for further research.
+    npm init
+    npm install --save express
+    npm install bootstrap
+    npm install --save ejs
+    npm install --save dateformat
+    npm install --save jquery
+    npm install --save mysql
+    npm install --save body-parser
+    npm install --save express-partials  
+    npm install --save tether
+    npm install -g  nodemon
+    npm install --save express-session
+    npm install --save session-file-store
+    npm install local-storage --save
+    bower install localstorage --save
+    npm install -g jshint
+    npm install express express-hbs sequelize mysql2
+    npm install -D eslint eslint-config-standard
+
 
 ## 🚀 Future Scope <a name = "future_scope"></a>
 Write about what you could not develop during the course of the Hackathon; and about what your project can achieve 
