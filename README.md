@@ -102,17 +102,7 @@ Create a small social network
 
 # 4. Documentation
 - [System Architecture](https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing/) - Internal Flow
-
-<p align="center">
-  <a href="" rel="noopener">
-  
-    <img src="./cousecode/internalflow.jpg" alt="Project logo">
-  </a>
-
-  <a href="" rel="noopener">
-    <img src="./cousecode/systemflow.jpg" alt="Project logo">
-  </a>
-</p>
+- [System Architecture](https://drive.google.com/file/d/1h6Sp4qFA33-5ASUPVhK6cxZbrjHV2EiL/view?usp=sharing/) - System Flow
 
 # Features:
 
@@ -187,27 +177,6 @@ Create a small social network
 
 
 
-## ⛓️ Dependencies / Limitations <a name = "limitations"></a>
-    npm init
-    npm install --save express
-    npm install bootstrap
-    npm install --save ejs
-    npm install --save dateformat
-    npm install --save jquery
-    npm install --save mysql
-    npm install --save body-parser
-    npm install --save express-partials  
-    npm install --save tether
-    npm install -g  nodemon
-    npm install --save express-session
-    npm install --save session-file-store
-    npm install local-storage --save
-    bower install localstorage --save
-    npm install -g jshint
-    npm install express express-hbs sequelize mysql2
-    npm install -D eslint eslint-config-standard
-
-
 ## 🚀 Future Scope <a name = "future_scope"></a>
 Write about what you could not develop during the course of the Hackathon; and about what your project can achieve 
 in the future.
@@ -226,13 +195,46 @@ Give examples
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+-[NodeJS](https://nodejs.org/en/) - Version v10.16.0
 
-Say what the step will be
+-Create a Folder:
+    npm init
+    npm install
+        "body-parser": "^1.19.0",
+        "bootstrap": "^4.3.1",
+        "bower": "^1.8.8",
+        "cors": "^2.8.5",
+        "dateformat": "^3.0.3",
+        "ejs": "^2.6.1",
+        "express": "^4.16.4",
+        "express-ejs-layouts": "^2.5.0",
+        "express-hbs": "^2.1.2",
+        "express-mysql-session": "^2.1.0",
+        "express-partials": "^0.3.0",
+        "express-session": "^1.16.1",
+        "express-validator": "^5.3.1",
+        "install": "^0.13.0",
+        "joi": "^14.3.1",
+        "jquery": "^3.4.0",
+        "jquery-browserify": "^1.8.1",
+        "jquery-mousewheel": "^3.1.13",
+        "local-storage": "^2.0.0",
+        "multer": "^1.4.1",
+        "mysql2": "^1.6.5",
+        "node-datetime": "^2.1.2",
+        "owl.carousel": "^2.3.4",
+        "passport": "^0.4.0",
+        "router": "^1.3.3",
+        "sequelize": "^5.11.0",
+        "session-file-store": "^1.2.0",
+   
+-[XAMPP](https://www.apachefriends.org/index.html/)
+
 
 ```
-Give the example
-```
+#Give the example
+- Open Terminal and type
+    nodemon server.js
 
 And repeat
 
@@ -257,6 +259,10 @@ until finished
 - [@Sonu Shahuji](https://github.com/sonushahuji4) - Evento a Social Network
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
-- Hat tip to anyone whose code was used
-- Inspiration
 - References
+- [TownScript](https://www.townscript.com/)
+- [Know A Fest](http://www.knowafest.com/)
+- [College Fever](https://www.thecollegefever.com/)
+
+ 
+ 
