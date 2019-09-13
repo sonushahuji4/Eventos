@@ -21,6 +21,14 @@
     <br> 
 </p>
 
+<div align="center">
+
+  # DEMO 
+  - [EvenTo a Social Network](https://drive.google.com/file/d/1KTsTd1b3otCGb4R34EdpITnGXM-foNH4/view?usp=sharing/) - See Video
+
+</div>
+
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development 
 and testing purposes.
@@ -69,17 +77,6 @@ and testing purposes.
 
 - Open Terminal and type...
     - nodemon server.js
-
-## ⛏️ Built With <a name = "tech_stack"></a>
-- [MySQL](https://https://www.mysql.com/) - Database
-- [Sequelize ORM](https://sequelize.org//) - ORM
-- [Express](https://expressjs.com/) - Server Framework
-- [EJS Tamplate](https://ejs.co/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-- [Google Map API](https://cloud.google.com/) - Library
-- [BootStrap 4](https://getbootstrap.com/) - Library
-- [Highcharts](https://www.highcharts.com/) - Library
-- [AJAX](https://jquery.com/)
 
 ## Project Structure <a name = "getting_started"></a>
     => backup_sql_data
