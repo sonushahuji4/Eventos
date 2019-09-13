@@ -52,8 +52,10 @@ Create a small social network
     ❖ Project Structure
 
     => backup_sql_data
+    
     => config
         - db.js
+
     => model
         - comment_model.js
         - like_model.js
@@ -77,6 +79,16 @@ Create a small social network
 
     => routes
         => api
+            - chatapi.js
+            - edit[Profile.js
+            - event_page.js
+            - login.js
+            - logout.js
+            - post_api.js
+            - profile_api.js
+            - registeration.js
+            - showActivity.js
+            - viewprofile.js
            
     => sessions
     => views
@@ -94,6 +106,17 @@ Create a small social network
            - footer.ejs
            - header.ejs
            - navbar.ejs
+
+        - editProfile.ejs
+        - event_page.ejs
+        - findUserProfile.ejs
+        - home.ejs
+        - login.ejs
+        - profile.ejs
+        - registeration.esj
+        - showActivity.ejs
+        - viewprofile.ejs
+
     app.js
     package-lock.json
     package.json
@@ -176,22 +199,9 @@ Create a small social network
     ❖ User 
 
 
-
-## 🚀 Future Scope <a name = "future_scope"></a>
-Write about what you could not develop during the course of the Hackathon; and about what your project can achieve 
-in the future.
-
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development 
-and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+and testing purposes.
 
 ### Installing
 
@@ -199,7 +209,7 @@ Give examples
 
 -Create a Folder:
     npm init
-    npm install
+    <!-- npm install
         "body-parser": "^1.19.0",
         "bootstrap": "^4.3.1",
         "bower": "^1.8.8",
@@ -226,7 +236,7 @@ Give examples
         "passport": "^0.4.0",
         "router": "^1.3.3",
         "sequelize": "^5.11.0",
-        "session-file-store": "^1.2.0",
+        "session-file-store": "^1.2.0", -->
    
 -[XAMPP](https://www.apachefriends.org/index.html/)
 
@@ -236,17 +246,13 @@ Give examples
 - Open Terminal and type
     nodemon server.js
 
-And repeat
-
-```
-until finished
-```
 
 ## 🎈 Usage <a name="usage"></a>
  Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends. 
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 - [MySQL](https://https://www.mysql.com/) - Database
+- [Sequelize ORM](https://sequelize.org//) - ORM
 - [Express](https://expressjs.com/) - Server Framework
 - [EJS Tamplate](https://ejs.co/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
