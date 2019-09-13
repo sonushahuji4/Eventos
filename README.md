@@ -26,8 +26,8 @@ These instructions will get you a copy of the project up and running on your loc
 and testing purposes.
 
 ### Installing
-
--[NodeJS](https://nodejs.org/en/) - Version v10.16.0
+- [XAMPP](https://www.apachefriends.org/index.html/) - Install XAMPP
+- [NodeJS](https://nodejs.org/en/) - Install NodeJS Version v10.16.0
 
     -Create a Folder:
         npm init
@@ -60,14 +60,14 @@ and testing purposes.
             "sequelize": "^5.11.0",
             "session-file-store": "^1.2.0",
     
--[XAMPP](https://www.apachefriends.org/index.html/)
--Start XAMPP
--Create a database "events"
--Populate the database with data
+
+- Start XAMPP
+- Create a database "events"
+- Populate the database with data
     - Open backup_sql_data
         - open events.sql 
 
--Open Terminal and type
+- Open Terminal and type
     nodemon server.js
 
 ## 🧐 Coding Challenge <a name = "Create s small social network"></a>
