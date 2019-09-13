@@ -144,31 +144,31 @@ Create a small social network
             User can chat with each other
 
 # 5. Functionality
-  ❖ Registration
-  ❖ Login
-  ❖ Update your profile picture and personal details anytime
-  ❖ Create Event/Post
-  ❖ Tools to create events/posts
-  ❖ Like,comment
-  ❖ Friends/User suggestion
-  ❖ Follow or Unfollow
-  ❖ Post/Event is seen based on follow or unfollow
-  ❖ View Events/Post based on location like current location,by area, by city,by state, by country
-  ❖ View Active,Upcoming,Past events details
-  ❖ Shows Number of followers and followings
-  ❖ Onmouse on post zoom effect
-  ❖ Onclcik post, closer view
-  ❖ Show number of active,upcoming,past and total events
-  ❖ Chat box side bar with online user list
-  ❖ Indication of Online/Offline user list
-  ❖ Events recommendation based on user activity
-  ❖ No need to type address, just keyword the address google map API will fetch the address
-  ❖ Event itself contents "MAP" indication which points to the address of the event
-  ❖ Last seen of user
-  ❖ Notification
-  ❖ You can search a particular user
-  ❖ Dashboard, which keeps the record of user activities
-  ❖ User 
+    ❖ Registration
+    ❖ Login
+    ❖ Update your profile picture and personal details anytime
+    ❖ Create Event/Post
+    ❖ Tools to create events/posts
+    ❖ Like,comment
+    ❖ Friends/User suggestion
+    ❖ Follow or Unfollow
+    ❖ Post/Event is seen based on follow or unfollow
+    ❖ View Events/Post based on location like current location,by area, by city,by state, by country
+    ❖ View Active,Upcoming,Past events details
+    ❖ Shows Number of followers and followings
+    ❖ Onmouse on post zoom effect
+    ❖ Onclcik post, closer view
+    ❖ Show number of active,upcoming,past and total events
+    ❖ Chat box side bar with online user list
+    ❖ Indication of Online/Offline user list
+    ❖ Events recommendation based on user activity
+    ❖ No need to type address, just keyword the address google map API will fetch the address
+    ❖ Event itself contents "MAP" indication which points to the address of the event
+    ❖ Last seen of user
+    ❖ Notification
+    ❖ You can search a particular user
+    ❖ Dashboard, which keeps the record of user activities
+    ❖ User 
 
 
 ## 💡 Idea / Solution <a name = "idea"></a>
