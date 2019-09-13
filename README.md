@@ -166,13 +166,11 @@ and testing purposes.
 
 # 4. Documentation
 
- => System Architecture
+### ER Diagram
 
-        - Internal Flow
+    => System Architecture
 
    ![](cousecode/internalflow.jpeg)
-
-        - System Flow 
 
    ![](cousecode/systemflow.jpeg)
 
