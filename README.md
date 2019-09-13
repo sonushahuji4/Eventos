@@ -45,7 +45,8 @@ Create a small social network
     
 
 # 2. Commit history to see how your work evolved
-    https://github.com/sonushahuji4/Eventos
+- [See Commit History](https://github.com/sonushahuji4/Eventos/) - Social Network
+    
 # 3. Code quality and best practices
 
     ❖ Project Structure
@@ -167,7 +168,6 @@ Create a small social network
     ❖ No need to type address, just keyword the address google map API will fetch the address
     ❖ Event itself contents "MAP" indication which points to the address of the event
     ❖ Last seen of user
-    ❖ Notification
     ❖ You can search a particular user
     ❖ Dashboard, which keeps the record of user activities
     ❖ User 
@@ -176,6 +176,7 @@ Create a small social network
 ## 💡 Idea / Solution <a name = "idea"></a>
 This section is used to describe potential solutions. 
 
+    ❖ Notification
 Once the ideal, reality, and consequences sections have been 
 completed, and understood, it becomes easier to provide a solution for solving the problem.
 
