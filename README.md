@@ -3,7 +3,7 @@
     <img src="public/image/eventologo1.png" alt="Project logo">
  </a>
 </p>
-<h3 align="center">Socila Network</h3>
+<h3 align="center">Social Network</h3>
 
 <div align="center">
 
@@ -14,7 +14,12 @@
   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 </div>
+
 ---
+
+<p align="center"> Few lines describing your project.
+    <br> 
+</p>
 
 ## 🧐 Coding Challenge <a name = "Create s small social network"></a>
 Create a small social network
