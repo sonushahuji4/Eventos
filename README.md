@@ -29,36 +29,36 @@ and testing purposes.
 - [XAMPP](https://www.apachefriends.org/index.html/) - Install XAMPP
 - [NodeJS](https://nodejs.org/en/) - Install NodeJS Version v10.16.0
 
-    -Create a Folder:
-        npm init
-        npm install
-            "body-parser": "^1.19.0",
-            "bootstrap": "^4.3.1",
-            "bower": "^1.8.8",
-            "cors": "^2.8.5",
-            "ejs": "^2.6.1",
-            "express": "^4.16.4",
-            "express-ejs-layouts": "^2.5.0",
-            "express-hbs": "^2.1.2",
-            "express-mysql-session": "^2.1.0",
-            "express-partials": "^0.3.0",
-            "express-session": "^1.16.1",
-            "express-validator": "^5.3.1",
-            "dateformat": "^3.0.3",
-            "install": "^0.13.0",
-            "joi": "^14.3.1",
-            "jquery": "^3.4.0",
-            "jquery-browserify": "^1.8.1",
-            "jquery-mousewheel": "^3.1.13",
-            "local-storage": "^2.0.0",
-            "multer": "^1.4.1",
-            "mysql2": "^1.6.5",
-            "node-datetime": "^2.1.2",
-            "owl.carousel": "^2.3.4",
-            "passport": "^0.4.0",
-            "router": "^1.3.3",
-            "sequelize": "^5.11.0",
-            "session-file-store": "^1.2.0",
+        -Create a Folder:
+            npm init
+            npm install
+                "body-parser": "^1.19.0",
+                "bootstrap": "^4.3.1",
+                "bower": "^1.8.8",
+                "cors": "^2.8.5",
+                "ejs": "^2.6.1",
+                "express": "^4.16.4",
+                "express-ejs-layouts": "^2.5.0",
+                "express-hbs": "^2.1.2",
+                "express-mysql-session": "^2.1.0",
+                "express-partials": "^0.3.0",
+                "express-session": "^1.16.1",
+                "express-validator": "^5.3.1",
+                "dateformat": "^3.0.3",
+                "install": "^0.13.0",
+                "joi": "^14.3.1",
+                "jquery": "^3.4.0",
+                "jquery-browserify": "^1.8.1",
+                "jquery-mousewheel": "^3.1.13",
+                "local-storage": "^2.0.0",
+                "multer": "^1.4.1",
+                "mysql2": "^1.6.5",
+                "node-datetime": "^2.1.2",
+                "owl.carousel": "^2.3.4",
+                "passport": "^0.4.0",
+                "router": "^1.3.3",
+                "sequelize": "^5.11.0",
+                "session-file-store": "^1.2.0",
     
 
 - Start XAMPP
