@@ -138,6 +138,34 @@ Create a small social network
 # Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
+- Nav Bar
+
+<img src="cousecode/ScreenShots/nav_bar.png" alt="Project logo">
+
+- Create Post
+
+<img src="cousecode/ScreenShots/create_events_or_post.png" alt="Project logo">
+
+- Post View
+
+<img src="cousecode/ScreenShots/post_display.png" alt="Project logo">
+
+- Like Comment
+
+<img src="cousecode/ScreenShots/likes_and_comments_on_post.png" alt="Project logo">
+
+- List of Active Events
+
+<img src="cousecode/ScreenShots/likes_and_comments_on_post.png" alt="Project logo">
+
+- List of Upcoming Events
+
+<img src="cousecode/ScreenShots/list_of_all_upcoming_events.png" alt="Project logo">
+
+- List of Previous Events
+
+<img src="cousecode/ScreenShots/list_of_all_previous_events.png" alt="Project logo">
+
 - User Profile Update
 
 <img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
