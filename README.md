@@ -133,10 +133,11 @@ Create a small social network
 
 
 # Images:
-# Login & Registeration:
+    - Login & Registeration:
 ![](cousecode/ScreenShots/Registeration_And_Login_Page.png)
 
-    <img src="cousecode/internalflow.jpeg" width="400">
+
+    <img src="cousecode/internalflow.jpg" width="400">
 # Features:
 
 
