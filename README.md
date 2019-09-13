@@ -138,6 +138,8 @@ Create a small social network
 # Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
+- User Profile Update
+
 <div class="row">
 <img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo" width=300; height=400>
 <img src="cousecode/ScreenShots/update_user_bio.png" alt="Project logo" width=300; height=400>
