@@ -67,8 +67,54 @@ and testing purposes.
     - Open backup_sql_data
         - open events.sql 
 
-- Open Terminal and type
-    nodemon server.js
+- Open Terminal and type...
+    - nodemon server.js
+
+## Project Structure <a name = "getting_started"></a>
+    => backup_sql_data
+    => config
+        - db.js
+    => model
+        - comment_model.js
+        - like_model.js
+        - login_details_modul.js
+        - model_follow.js
+        - model_index.js
+        - postbody_model.js
+        - send_message_model.js
+        - user_model.js
+    => node_modules
+    => public
+        => bootstrap
+           => css
+           => js
+        => css
+        => image
+        => jquery
+        => profile_image
+    => routes
+        => api     
+    => views
+       => components
+       => partials
+         => includes
+           - footer.ejs
+           - header.ejs
+           - navbar.ejs
+        - editProfile.ejs
+        - event_page.ejs
+        - findUserProfile.ejs
+        - home.ejs
+        - login.ejs
+        - profile.ejs
+        - registeration.esj
+        - showActivity.ejs
+        - viewprofile.ejs
+    app.js
+    package-lock.json
+    package.json
+    README.md
+    server.js
 
 ## 🧐 Coding Challenge <a name = "Create s small social network"></a>
 Create a small social network
