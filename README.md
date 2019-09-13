@@ -146,14 +146,16 @@ and testing purposes.
 ## 🧐 Problem Statement Selected <a name = "problem_statement"></a>
     2) Create a small social network
 
-## Fontend/Backend Both
-
 ## What are we looking for ? **
     
 # 1. How creative is your solution ?
-    - Easy communication
-    - Event notification
-    -
+    - Fills the gap between organizers and common people who are interest in attending events nearby.
+    - Students of other colleges get to know what all events are happening in their neighboring colleges.
+    - Gives the platform to advertise the events and promote it through socail media
+    - Provides with the notication so that user can be immediately be notified whenever event is happening around them
+    - User can keep track of various events happening in their neighboring colleges.
+    - User dashboard provides the records of the user activity and represents the over all activity of user.
+    - User can get event details easily based on their current location or area wise, city wise, state wise or country wise.
     
 
 # 2. Commit history to see how your work evolved
