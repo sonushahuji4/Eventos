@@ -100,48 +100,48 @@ Create a small social network
 # 4. Documentation
 # Features:
 
-Registration and Login 
-• User will have to register themselves by providing basic information about them and then they can login into the system. 
-• Once users have logged in, users will be provided with Feeds Section, Profile, Notification page and Maps. 
+    Registration and Login 
+        • User will have to register themselves by providing basic information about them and then they can login into the system. 
+        • Once users have logged in, users will be provided with Feeds Section, Profile, Notification page and Maps. 
 
-Feeds section:   
-• All the posts like images, videos or events related articles will be viewed here.
-• Event stories, Live Video streaming for an event. 
-• Can create own event (snap, images, videos, GIF) with many different artificial effects to look more attractive to audience. 
-• Can also Like, Comment, Follow, Share, Report, Going, Interested In, set a Reminder, buy/sell passes 
-• Theses post will be recoded to user’s dashboard so that other users can snoop through what all events had happened in past and get all related events information like upcoming, Active events, number of people attended the events, their review on events, comments, like and rating and so on through user’s dashboard. 
-• Side bar Recommendation section where all recommended events, groups, people with similar interest will be recommended to users.  
-• This will also involve user interaction with post by doing some action on posts. 
-• Can view snap, images, Videos, Gif of past events and get to know many more details about the events.
+    Feeds section:   
+        • All the posts like images, videos or events related articles will be viewed here.
+        • Event stories, Live Video streaming for an event. 
+        • Can create own event (snap, images, videos, GIF) with many different artificial effects to look more attractive to audience. 
+        • Can also Like, Comment, Follow, Share, Report, Going, Interested In, set a Reminder, buy/sell passes 
+        • Theses post will be recoded to user’s dashboard so that other users can snoop through what all events had happened in past and get all related events information like upcoming, Active events, number of people attended the events, their review on events, comments, like and rating and so on through user’s dashboard. 
+        • Side bar Recommendation section where all recommended events, groups, people with similar interest will be recommended to users.  
+        • This will also involve user interaction with post by doing some action on posts. 
+        • Can view snap, images, Videos, Gif of past events and get to know many more details about the events.
 
-❖ Profile Section:    
-• Basic information about the user will be accessible if it is not private. 
-• Dashboard with brief information for upcoming events, Active event, Past events, Number of people attending, participating, Followers, reviews and so on. 
-• Store (Gallery) where people can view event photos, snap, videos. 
-• Mission, Vision, Status and Difference. 
-• Can create own event (snap, images, videos, GIF) with many different artificial effects to look more attractive to audience. 
+    ❖ Profile Section:    
+        • Basic information about the user will be accessible if it is not private. 
+        • Dashboard with brief information for upcoming events, Active event, Past events, Number of people attending, participating, Followers, reviews and so on. 
+        • Store (Gallery) where people can view event photos, snap, videos. 
+        • Mission, Vision, Status and Difference. 
+        • Can create own event (snap, images, videos, GIF) with many different artificial effects to look more attractive to audience. 
 
-❖ Notification: 
-• All the notifications related to user interests will be received here. 
-• Like who wants to buy passes, number of people attending events. 
-• They will be notified if users want to buy passes, going, attending, interested in or wants to work in collaboration. 
-• If people set reminders for any event, they will be notified here.
+    ❖ Notification: 
+        • All the notifications related to user interests will be received here. 
+        • Like who wants to buy passes, number of people attending events. 
+        • They will be notified if users want to buy passes, going, attending, interested in or wants to work in collaboration. 
+        • If people set reminders for any event, they will be notified here.
 
-❖ Map: 
-• User can also make a use of map like search for an event on map and map will show all related and nearby events to user by popping up event information with different colours. 
+    ❖ Map: 
+        • User can also make a use of map like search for an event on map and map will show all related and nearby events to user by popping up event information with different colours. 
 
-❖ Common Features 
-=> Search Events by Location:
-   User can search/view events based on location like from current location, by area, by state, by country.
+    ❖ Common Features 
+        => Search Events by Location:
+            User can search/view events based on location like from current location, by area, by state, by country.
 
-=> Follow/Unfollow:
-   User can follow or unfollow others user. If user is following a particular user, then that user can see their post/events on FEED SECTION.
+        => Follow/Unfollow:
+            User can follow or unfollow others user. If user is following a particular user, then that user can see their post/events on FEED SECTION.
 
-=> Search Bar: 
-   User can find other people, other colleges, events. 
- 
-=> Chat: 
-   User can chat with each other
+        => Search Bar: 
+            User can find other people, other colleges, events. 
+        
+        => Chat: 
+            User can chat with each other
 
 # 5. Functionality
   ❖ Registration
@@ -218,19 +218,20 @@ until finished
 ```
 
 ## 🎈 Usage <a name="usage"></a>
-Add notes about how to use the system.
+ Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends. 
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
-- [MongoDB](https://www.mongodb.com/) - Database
+- [MySQL](https://https://www.mysql.com/) - Database
 - [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
+- [EJS Tamplate](https://ejs.co/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Google Map API](https://cloud.google.com/) - Library
+- [BootStrap 4](https://getbootstrap.com/) - Library
+- [Highcharts](https://www.highcharts.com/) - Library
+- [AJAX](https://jquery.com/)
 
 ## ✍️ Authors <a name = "authors"></a>
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) 
-who participated in this project.
+- [@Sonu Shahuji](https://github.com/sonushahuji4) - Evento a Social Network
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 - Hat tip to anyone whose code was used
