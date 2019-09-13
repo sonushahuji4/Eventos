@@ -174,42 +174,30 @@ and testing purposes.
 
    ![](cousecode/systemflow.jpeg)
 
-### Screenshots <a name = "Screenshots"></a>
+# Screenshots <a name = "Screenshots"></a>
 
-# Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
 - User Stories
 
 <img src="cousecode/ScreenShots/user_stories.png" alt="Project logo">
 
-- User Gallery
-
-<img src="cousecode/ScreenShots/user_gallery_list.png" alt="Project logo">
-
-- Nav Bar
-
-<img src="cousecode/ScreenShots/nav_bar.png" alt="Project logo">
-
 - Search User
 
 <img src="cousecode/ScreenShots/search_for_user.png" alt="Project logo">
 
-- View User profile
+- Chat Application
 
-<img src="cousecode/ScreenShots/view_user_proflie.png" alt="Project logo">
+<img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
 
-- Create Post
+- Notification for message
 
-<img src="cousecode/ScreenShots/create_events_or_post.png" alt="Project logo">
+<img src="cousecode/ScreenShots/notification_for_message.png" alt="Project logo">
+
 
 - Post View
 
 <img src="cousecode/ScreenShots/post_display.png" alt="Project logo">
-
-- Like Comment
-
-<img src="cousecode/ScreenShots/likes_and_comments_on_post.png" alt="Project logo">
 
 
 - List of Upcoming Events
@@ -235,30 +223,16 @@ and testing purposes.
 
 - User Profile Update
 
+<div class="row">
 <img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
-
-<img src="cousecode/ScreenShots/update_user_bio.png" alt="Project logo">
-
-
 <img src="cousecode/ScreenShots/user_contact_information.png" alt="Project logo">
-
-<img src="cousecode/ScreenShots/update_user_contact_information.png" alt="Project logo">
+<img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
+</div>
 
 - Update Personal Details
 
 <img src="cousecode/ScreenShots/edit_profile_details.png" alt="Project logo">
 
-- Chat Application
-
-<img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
-
-- Notification for message
-
-<img src="cousecode/ScreenShots/notification_for_message.png" alt="Project logo">
-
-- Online - Offline User list
-
-<img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
 
 - Search events by
 
@@ -272,9 +246,6 @@ and testing purposes.
 
 <img src="cousecode/ScreenShots/search_for_events.png" alt="Project logo">
 
-- User home profile view
-
-<img src="cousecode/ScreenShots/user_home_profile_display.png" alt="Project logo">
 
 - Follow - Unfollow user 
 
