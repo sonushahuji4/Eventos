@@ -70,6 +70,17 @@ and testing purposes.
 - Open Terminal and type...
     - nodemon server.js
 
+## ⛏️ Built With <a name = "tech_stack"></a>
+- [MySQL](https://https://www.mysql.com/) - Database
+- [Sequelize ORM](https://sequelize.org//) - ORM
+- [Express](https://expressjs.com/) - Server Framework
+- [EJS Tamplate](https://ejs.co/) - Web Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Google Map API](https://cloud.google.com/) - Library
+- [BootStrap 4](https://getbootstrap.com/) - Library
+- [Highcharts](https://www.highcharts.com/) - Library
+- [AJAX](https://jquery.com/)
+
 ## Project Structure <a name = "getting_started"></a>
     => backup_sql_data
     => config
@@ -413,16 +424,6 @@ Create a small social network
 ## 🎈 Usage <a name="usage"></a>
  Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends. 
 
-## ⛏️ Built With <a name = "tech_stack"></a>
-- [MySQL](https://https://www.mysql.com/) - Database
-- [Sequelize ORM](https://sequelize.org//) - ORM
-- [Express](https://expressjs.com/) - Server Framework
-- [EJS Tamplate](https://ejs.co/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-- [Google Map API](https://cloud.google.com/) - Library
-- [BootStrap 4](https://getbootstrap.com/) - Library
-- [Highcharts](https://www.highcharts.com/) - Library
-- [AJAX](https://jquery.com/)
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@Sonu Shahuji](https://github.com/sonushahuji4) - Evento a Social Network
