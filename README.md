@@ -17,7 +17,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center">  Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends..
     <br> 
 </p>
 
