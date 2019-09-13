@@ -178,10 +178,6 @@ and testing purposes.
 
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
-- User Stories
-
-<img src="cousecode/ScreenShots/user_stories.png" alt="Project logo">
-
 - Search User
 
 <img src="cousecode/ScreenShots/search_for_user.png" alt="Project logo">
@@ -229,14 +225,12 @@ and testing purposes.
 </div>
 
 - Search events by
-<img src="cousecode/ScreenShots/search_events_by_locations.png" alt="Project logo">
 <img src="cousecode/ScreenShots/search_for_events.png" alt="Project logo">
 
 
 - Follow - Unfollow user 
 
 <img src="cousecode/ScreenShots/follow_or_unfollow_a_user.png" alt="Project logo">
-<img src="cousecode/ScreenShots/recommend_events_for_users.png" alt="Project logo">
 
 
 
