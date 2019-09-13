@@ -138,9 +138,11 @@ Create a small social network
 # Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
-
+<div class="row">
 <img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
 <img src="cousecode/ScreenShots/update_user_bio.png" alt="Project logo">
+</div>
+
 
 
 
