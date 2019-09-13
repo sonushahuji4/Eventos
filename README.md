@@ -150,6 +150,10 @@ Create a small social network
 <img src="cousecode/ScreenShots/update_user_contact_information.png" alt="Project logo" width=300; height=400>
 </div>
 
+- Update Personal Details
+
+<img src="cousecode/ScreenShots/edit_profile_details.png" alt="Project logo">
+
 
 
 
