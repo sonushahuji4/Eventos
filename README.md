@@ -125,13 +125,16 @@ Create a small social network
 
 # 4. Documentation
  => System Architecture
-    - Internal Flow
-   ![](cousecode/internalflow.jpeg)
-    - System Flow 
-    ![](cousecode/systemflow.jpeg)
-- [System Architecture](https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing/) - Internal Flow
-- [System Architecture](https://drive.google.com/file/d/1h6Sp4qFA33-5ASUPVhK6cxZbrjHV2EiL/view?usp=sharing/) - System Flow
 
+        - Internal Flow
+   ![](cousecode/internalflow.jpeg)
+        - System Flow 
+    ![](cousecode/systemflow.jpeg)
+
+
+# Images:
+# Login & Registeration:
+       ![](cousecode/ScreenShots/Registeration_And_Login_Page.png)
 # Features:
 
 

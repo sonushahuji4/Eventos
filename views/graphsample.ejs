@@ -1,124 +1,1326 @@
 
-    <!-- nav bar -->
-    <%- include('partials/includes/header') %>
-    <%- include('partials/includes/navbar') %>
+<br /> <br /> <br /> <br /> <br /> <br />
+<%- include('partials/includes/header') %>
+<%- include('partials/includes/navbar') %>
 
+<%- include('components/chat_side_bar') %>
+<div class="container">
+        <div class="row">
+                <div class="col-4">
+                                <div class="drawer-body">
+                                                <div class="row">
+                                                        <% if(items.length > 0){%>
+                                                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                                                <div class="card" style="width: 18rem">
+                                                                                <ul class="nav">
+                                                                                        <li class="text-center"> 
+                                                                                                <div class="card-body"> 
+                                                                                                <img class="card-img" src="https://qpr2l7.pixelcrush.io/large/static1.chamonet.com%2Fimage_uploader%2Fphotos%2Fe5%2Flarge%2Falmost-time-to-put-away-the-skis-in-chamonix-chamonix-mont-blanc-valley.jpg?auth=41e199f01371394397152a3446ee7ae48879da30" alt="Card image" style="width: 200px; height:200px">  
+                                                                                                <div class="card-img-overlay">
+                                                                                                <div class="text-center" style="margin-top:10%">
+                                                                                                        <img class="card-img border border-light" src="../public/profile_image/<%=items[i].user_profile_pic %>" alt="Card image"  style="width:150px; height:150px;border-radius: 50%">
+                                                                                                </div>
+                                        
+                                                                                                </div>
+                                                                                                </div>
+                                                                                        
+                                                                                        
+                                                                                        </li>
+                                                                                        <li class="text-center">
+                                                                                                <div class="card-body">
+                                                                                                        <h5><%=items[i].user_firstname %> <%=items[i].user_lastname %> </h5>
+                                                                                                        <hr>
+                                                                                                        <div class="socail_media">
+                                                                                                                <i class="fab fa-facebook"></i><i class="fab fa-instagram" style="margin-left:10px"></i><i class="fab fa-twitter" style="margin-left:10px"></i><i class="fab fa-pinterest" style="margin-left:10px"></i><i class="fab fa-linkedin" style="margin-left:10px"></i>
+                                                                                                        </div>
+                                                                                                        <hr>
+                                                                                                        <div class="row">
+                                                                                                                        <div class="col-4">
+                                                                                                                                        <small><span class="countFollowers" style="cursor: pointer"></span></small><br />Followers
+                                                                                                                                        
+                                                                                                                        </div>
+                                                                                                                        <div class="col-4">
+                                                                                                                                        <small><span class="countFollowing" style="cursor: pointer"></span></small><br />Following
+                                                                                                                        </div>
+                                                                                                                        <div class="col-4">
+                                                                                                                                        <small>100k</small><br /><i class="far fa-eye"></i>
+                                                                                                                        </div>
+                                                                                                                        
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                        
+                                                                                        </li>
+                                                                                                
+                                                                                                
+                                                                                       
+                                                                                                
+                                                                                        
+                                                                                </ul>
+                                                                                
+                                                                                   
+                                                                        
+                                                                            
+                                                                        </div> 
+                                                                        <%}%>
+                                                                        <%}else{%>
+                                                                                <span>Need To Fix This</span>
+                                                                        <%}%>  
+                                                                 
+                                        
+                                                </div>
+                                                <div class="row">
+                                                                <%if(items.length > 0){%>
+                                                                        <%for(var i = 0, len = items.length; i < len; i++){%>
+                                                                        <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                        <div class="card about-user">
+                                                                                        
+                                                                                        
+                                                                                <div class="card-body">  
+                                                                                                <h4 class="card-title">Contact Me</h4>       
+                                                                                        <div class="text-justify">
+                                                                                            <p class="card-text"><strong><i class="far fa-envelope"></i> </strong> <span class="m-l-15"><%=items[i].user_email %></span></p>
+                                                                                            <p class="card-text"><strong><i class="fas fa-link"></i> </strong><span class="m-l-15">www.facebook.com</span></p>
+                                                                                            <p class="card-text"><strong><i class="fas fa-comment-dots"></i> </strong><span class="m-l-15">Leave a message</span></p>
+                                                                                            <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i> </strong> <span class="m-l-15">India,Maharashtra Mumbai</span></p>
+                                                                                        </div>			
+                                                                                                  
+                                                                                </div>
+                                                                        </div>	                        
+                                                                        </div>
+                                                                        <%}%>
+                                                                <%}else{%>
+                                                                        
+                                                                <%}%>
+                                                        </div>
+                                                        <div class="row">
+                                                                        <div class="card" style="background:#ffffff;margin-top:30px;width: 18rem">
+                                                                                        <div class="card about-user">
+                                                                                                 <div class="card-body">
+                                                                                                  <div class="card-block">
+                                                                                                       <h4 class="card-title info">About Me</h4>
+                                                                                                       
+                                                                                                       <p class="card-text">Life is too short. Don't waste it reading my status, come on follow me
+                                                                                                        dsahfh disahfo dsa hdosaf dhfayew wry98f kdhsaywer hdshfewr bklmzxbe hd98fwmk dhofg knoas fhw
+                                                                                                        asfoh awFKO SDFHHHHHHHHHHHHHHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                                                        DAFOEH       
+                                                                                                        .</p>
+                                                                                                                   
+                                                                                                  </div>
+                                                                                                 </div>
+                                                                                        </div>	                        
+                                                                        </div>
+                                                        </div>
+                                                        <div class="drawer-footer">Drawer footer</div>
 
-    <br /> <br /> <br /> <br />
+                                              
+                                            </div>
+                </div>
 
-    <br /> <br /> <br /> <br />
+                        <div class="col-8">
+                        
+                                <div class="card">
+                                                <div class="row">
 
-    <div class="container">
+                                                        <div class="col-1 text-center" style="margin-top:50px">
+                                                                        <ul class="nav">
+                                                                                        <li class="nav-item" style="margin-left:25px">
+                                                                                                
+                                                                                        <span class="total_active_event_count"></span><br />
+                                                                                        <small>LIVE</small>            
+                                                                                               
+                                                                                        <hr>
+                                                                                       
+                                                                                        </li>
+                                                                                        <li class="nav-item" style="margin-left:10px">
+                                                                                                       
+                                                                                        <span class="total_upcoming_event_count"></span><br />
+                                                                                        <small >UPCOMING</small>            
+                                                                                        <hr>                  
+                                                                                        </li>
+                                                                                        <li class="nav-item" style="margin-left:10px">
+                                                                                                       
+                                                                                        <span class="total_past_event_count"></span><br />
+                                                                                        <small >PREVIOUS</small>            
+                                                                                        <hr>                              
+                                                                                        </li>
+                                                                                        <li class="nav-item" style="margin-left:10px">
+                                                                                                       
+                                                                                        <span class="total_total_event_count"></span><br />
+                                                                                        <small >Total Events</small>            
+                                                                                        <hr>                        
+                                                                                        </li>
+                                                                                       
+                                                                                       
+                                                                                      
+                                                                                      </ul>
+                                                        </div>
+                                                        <div class="col-11">
+                                                                        <div class="card" id="heap_map_chart" name="heap_map_chart">
 
-        
-                          <!-- user suggestion box diplay -->
-                          
-
-
-
-                                <div id="slides">
+                                                                        </div>
+                                                        </div>
+                                                </div>
+                                                
+                                                
+                                                
+                                                <div class="card-body">
+                                                        
+                                                                <ul class="nav" style="margin-left:60px;padding-left: 30px">
+                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                        
+                                                                                <span class="total_upcoming_event_count" style="margin: 10px"></span><br />
+                                                                                <small >LIKES</small>            
+                                                                                       
+                                                                                
+                                                                               
+                                                                                </li>
+                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_active_event_count" style="margin: 10px"></span><br />
+                                                                                <small >COMMENTS</small>            
+                                                                                                                
+                                                                                </li>
+                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_past_event_count" style="margin: 10px"></span><br />
+                                                                                <small >PROFILE VIEWS</small>            
+                                                                                                                    
+                                                                                </li>
+                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                <span class="total_total_event_count" style="margin: 10px"></span><br />
+                                                                                <small >INTERESTED</small>            
+                                                                                                              
+                                                                                </li>
+                                                                                <li class="nav-item text-center" style="margin-left: 5px;margin-right: 5px">
+                                                                                               
+                                                                                                <span class="total_total_event_count" style="margin: 10px"></span><br />
+                                                                                                <small >GOING</small>            
+                                                                                                                              
+                                                                                                </li>
+                                                                               
+                                                                               
+                                                                              
+                                                                              </ul>
+                                                        
+                                                </div>
+                                                 
+                                </div>
                                 
- 
+
+                                        <div class="card" style="margin-top:30px">
+                                                
+                                                <div class="card-group owl-carousel text-center" id="owl-demo" style="width: 800px; margin-left:90px">
+                                                       
+                                                                <div class="item">
+                                                                        <img src="../public/image/Instagram-512.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Gallery</h5>
+                                                                </div>
+                                                                <div class="item">
+                                                                        <img src="../public/image/musiclogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Music</h5>
+                                                                </div>
+                                                                <div class="item">
+                                                                        <img src="../public/image/play-button-3364880_960_720.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Videos</h5>
+                                                                </div>
+                                                                
+                                                                <div class="item">
+                                                                        <img src="../public/image/activitylogo.png" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Activity</h5>
+                                                                </div>
+                                                                <div class="item">
+                                                                        <img src="../public/image/pagelogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Page</h5>
+                                                                </div>
+                                                                <div class="item">
+                                                                        <img src="../public/image/eventlogo.jpg" alt="Owl Image" style="width:50px; height:50px" class="card-img-top rounded-circle"> 
+                                                                        <h5 class="card-title" style="color:black">Events</h5>
+                                                                </div>
+                                                                
+                                                        
+                                                       
+                                                </div>
+                                        </div>
+                               
+                                        
+                                              
+
+                                <div class="card" style="margin-top:30px">
+                                                <div class="card-body">
+                                                
+                                                <% if(items.length > 0){%>
+                                                   <% for( var i = 0, len = items.length; i < len; i++){%>
+                                                        <% if (items[i].user_profile_pic)
+                                                        { %>
+                                                                <a href=""><img src="../public/profile_image/<%= items[i].user_profile_pic %>" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                                
+                                                        <%} else 
+                                                        {%>
+                                                                <a href=""><img src="../public/image/1.jpg" alt="" class="rounded-circle border border-danger" style="width:50px; height:50px"></a>
+                                                        <%}%>  
+                                                        <a href="event"><button class="btn btn-light" style="position: absolute;right:150px;">Create Event</button></a>
+                                                        <a href="#"><button class="btn btn-dark" style="position: absolute;right:5px;">Create Video</button></a>   
+                                                   <%}%>     
+                                                <%}%>
+
+                                   
+                                                
+                                                
+            
+                  
+                                                </div>
                                 </div>
 
+                               
+                                 <!-- Modal: show events data -->
+                                 <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                 <div class="modal-dialog modal-lg" role="document">
+                                   <div class="modal-content">
+                                     <div class="modal-body">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                         aria-hidden="true">&times;</span></button>
+                                       <div class="row" id="show_data">
 
-    
-            
-    </div>
+                                       </div>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
 
-    <script>
-    $(document).ready(function()
-    {
-        //    $("#owl-demo").owlCarousel(
-        // {
- 
-        //         autoPlay: 3000, //Set AutoPlay to 3 seconds
-                
-        //         items : 3,
-        //         itemsDesktop : [1199,3],
-        //         itemsDesktopSmall : [979,3]
-                
-        // });
-        user_id = 12
+                                <!-- Live Events -->
+                                <hr>
+                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_active_event_count" style="padding:10px"></span>LIVE EVENTS</h5>
+                                <hr>
+                                <div class="row">
+                                <% if(items.length > 0){ %> 
+                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                <% var post_data = items[i].Posts; %> 
+                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                <% if(post_data[j].event_start_date == onlyDate){%>
+                                <div class="col-4 postfullview zoom" style="margin-bottom:30px" data-onclickview="<%= post_data[j].event_id %>">
+                                        <div class="card text-white">
+                                                <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:300px;height:200px">
+                                                        <div class="card-img-overlay">
+                                                                <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                                        </div>
+                                        </div>
+                                </div>
+                                <%}%>
+                                <%}%> 
+                                <%}%> 
+                                <%}else{%>
+                                <%}%>
+                                </div>
 
-            
-        // this function list out all the users which are following you and suggests you to follow or accept the any user has requested you
-        fetch_user(); // calling fetch_user() function
-        function fetch_user()
-        {
-                $.ajax(
-                {
-                        url:"/posts/get_user",
-                        method:"GET",
-                        success:function(response)
-                        {       
-                                if(response.length > 0)
-                                {
+                                <!-- upcoming Events-->
+                                <hr>
+                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_upcoming_event_count" style="padding: 10px"></span>UPCOMING EVENTS</h5>
+                                <hr>
+                                <div class="row">
+                                <% if(items.length > 0){ %> 
+                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                <% var post_data = items[i].Posts; %> 
+                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                <% if(post_data[j].event_start_date > onlyDate){%>
+                                <div class="col-4 postfullview zoom" style="margin-bottom:30px"  data-onclickview="<%= post_data[j].event_id %>">
+                                        <div class="card text-white" style="cursor: pointer">
+                                                <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:320px;height:200px">
+                                                        <div class="card-img-overlay">
+                                                                <h5 class="card-title"><%= post_data[j].event_message %></h5>
+                                                        </div>
+                                        </div>
+                                </div>
+                                <%}%>
+                                <%}%> 
+                                <%}%> 
+                                <%}else{%>
+                                <%}%>
+                                </div>
 
-                                        var suggestion_for_user = document.getElementById("slides")
-                                        $("#slides").html('<div id="testing" class="owl-carousel"></div>');
+                                <!--Privious Events-->
 
-                                        for (var i = 0, len = response.length; i < len; i++)
-                                        {       var flag = false;
-                                                var already_following = false; 
-                                                var status =""
-                                                let fullname = response[i].user_firstname + ' ' + response[i].user_lastname;
-                                                let image = response[i].user_profile_pic 
-                                        
-                                                let userid = response[i].user_id;
-                                                // suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + `<div id="owl-demo" class="owl-carousel"> `
-                                               
+                                <hr>
+                                <h5 class="font-weight-normal" style="margin-top:30px"><span class="total_past_event_count" style="padding: 10px"></span>PREVIOUS EVENTS</h5>
+                                <hr>
+                                <div class="row">
+                                <% if(items.length > 0){ %> 
+                                <% for(var i = 0, len = items.length; i < len; i++){%>
+                                <% var post_data = items[i].Posts; %> 
+                                <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+                                <% if(post_data[j].event_start_date < onlyDate){%>
+                                <div class="col-6 postfullview" style="margin-bottom:30px; cursor: pointer;" data-onclickview="<%= post_data[j].event_id %>">
+                                        <div class="card zoom">
+                                                <div class="row">
+                                                        <div class="col-4">
+                                                        <img class="card-img" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image" style="width:150px;height:100px">
+                                                        </div>
+                                                        <div class="col-8">
+                                                                
+                                                                        <h5 class="font-weight-bold" style="margin: 10px"><%= post_data[j].event_message %></h5>
+                                                                        
+                                                                        <small style="margin: 10px"><a href="http://maps.google.com/?q=<%= post_data[j].event_latitude %>,<%= post_data[j].event_logitude %>"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                        <small style="padding-left:10px" id="show_location"></small>
+                                                                        <small style="margin: 10px"><i class="far fa-calendar-alt"></i> <%= post_data[j].event_start_date %> </small>
+                                                                        
+                                                                        <ul class="nav" style="margin: 10px">
+                                                                                        <li class="nav-item">
+                                                                                                <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
+                                                                                        </li>
+                                                                        
+                                                                                        <li class="nav-item" style="padding-left: 10px">
+                                                                                                <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                                                                        </li>
 
-                                                        for(var j = 0, len_follow = response[i].Follows.length; j < len_follow; j++)
-                                                {
+                                                                                        
+                                                                        </ul>
+                                                                
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <%}%>
+                                <%}%> 
+                                <%}%> 
+                                <%}else{%>
+                                <%}%>
+                                </div>
+                                
 
-                                                       
-                                                       status =  response[i].Follows[j].status
-                                                      
-                                                       var receiver_id =  response[i].Follows[j].receiver_id
-                                                       var follow_user_id = response[i].Follows[j].user_id
-                                                       var follow_receiver_id = response[i].Follows[j].receiver_id
+                                
 
-            
-        $(".owl-carousel").append('<div class="item"><img src="../public/profile_image/'+image+'" alt="Owl Image"></div>');
-        
 
-                                                                                
-                        // suggestion_for_user.innerHTML =  suggestion_for_user.innerHTML + `
-                        // <div class="item"><img src="../public/profile_image/${image}" alt="Owl Image"></div>`;
-                                                     
+                </div>
 
-                                                }
-       
-                                               
-                                                
-                                                                 
-                                                
-                                        }
-                                        var owl = $("#testing");
-            owl.owlCarousel({
-                items: 3,
-                navigation: true
-            });
-                         
-                                }
-                                else{
-                                        //do nothing
-                                }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown)
-                                {
-                                        console.log('jqXHR:');
-                                        console.log(jqXHR);
-                                        console.log('textStatus:');
-                                        console.log(textStatus);
-                                        console.log('errorThrown:');
-                                        console.log(errorThrown);
-                                        alert(errorThrown);
-                               }
-                });
-                
+        </div>
+</div>
 
-        } // fetch_user() function ends
+<script>
+$(document).ready(function()
+{
+                /****************************************************** profile.ejs Ajax, Jquery Call ********************************************************/
+
+        /****************************************************** It includes all profile.ejs files ********************************************************/
+
+        // onClikc following show all the followers to user
+        $(document).on('click','.countFollowing',function(){
+            alert("cliekd");
+            var $followingList= document.getElementById("following_data_show");
+            $followingList.innerHTML = "";
+            var innerHTML = ''
+            $.ajax(
+                    {
+                            url:  '/profile/countFollowing',
+                            type: 'get',
+                            success : function(response)
+                            {    
+                                    if(response !="")
+                                    {
+
+                                            alert(response.rows.length)
+                                            for(var i = 0, len = response.rows.length; i < len; i++)
+                                            {
+                                                    alert(response.rows[i].user_firstname);
+                                            }
+
+
+                                            $chat_history.innerHTML = innerHTML; 
+                                            $('#following_list').modal('show');
+                                            
+                                    }else{
+                                            alert("countFollowing Null")
+                                    }
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                    console.log('jqXHR:');
+                                    console.log(jqXHR);
+                                    console.log('textStatus:');
+                                    console.log(textStatus);
+                                    console.log('errorThrown:');
+                                    console.log(errorThrown);
+                                    alert(errorThrown);
+                            } 
+                    }
+            );
     })
-    </script>
+
+    // count number of people I am following i.e (Following)
+    countFollowing()
+    function countFollowing()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/countFollowing',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+
+                                                    $('.countFollowing').html(response.length)
+                                                    
+                                            }else{
+                                                    alert("countFollowing Null")
+                                            }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                    } 
+                            }
+                    );
+    }
+
+
+    // onClikc followers show all the followers to user
+    $(document).on('click','.countFollowers',function(){
+            alert("cliekd");
+    })
+
+    //count number of people are following me i.e (my followers)
+    
+    countFollowers()
+    function countFollowers()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/countFollowers',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                   // alert(JSON.stringify(response.length));
+                                                    $('.countFollowers').html(response.length)
+                                                    
+                                            }else{
+                                                    alert("countFollowers Null")
+                                            }
+                                    },
+                                    error : function()
+                                    {
+                                            alert('error from server');
+                                    }
+                            }
+                    );
+    }
+
+    // count total number of upcoming events
+    totalUpcomingEvents()
+    function totalUpcomingEvents()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/totalUpcomingEvents',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                    $('.total_upcoming_event_count').html(response.count)
+                                                    
+                                            }else{
+                                                    alert("upcomingtotal events count null")
+                                            }
+                                    },
+                                    error : function()
+                                    {
+                                            alert('error from server');
+                                    }
+                            }
+                    );
+    }
+
+    // count total number of active events 
+    
+    totalActiveEvents()        
+    function totalActiveEvents()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/totalActiveEvents',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                   // alert(JSON.stringify(response.count))
+                                                    $('.total_active_event_count').html(response.count)
+                                                    
+                                            }else{
+                                                    alert("totalActiveEvents Null")
+                                            }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                    } 
+                            }
+                    );
+    }
+
+    // count total number of past events
+
+    totalPastEvents()
+    function totalPastEvents()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/totalPastEvents',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                    $('.total_past_event_count').html(response.count)
+                                                    
+                                            }else{
+                                                    alert("totalPastEvents null")
+                                            }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                   } 
+                            }
+                    );
+    }
+
+    // count total number of events
+    totaltotalEvents()
+    function totaltotalEvents()
+    {
+
+            $.ajax(
+                            {
+                                    url:  '/profile/totaltotalEvents',
+                                    type: 'get',
+                                    success : function(response)
+                                    {    
+                                            if(response !="")
+                                            {
+                                                    $('.total_total_event_count').html(response.count)
+                                                    
+                                            }else{
+                                                    alert("totaltotalEvents")
+                                            }
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown)
+                                    {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+                                    } 
+                            }
+                    );
+    }
+
+    // slider for upcoming, active and past events
+
+    // This is for upcoming events
+    $("#owl-demo").owlCarousel(
+            {
+    
+                    autoPlay: 3000, //Set AutoPlay to 3 seconds
+                    touchDrag:true,
+                    items : 6,
+                    dots:true,
+                    autoplayHoverPause:true,
+                    animateOut:true,
+                    itemsDesktop : [1199,3],
+                    itemsDesktopSmall : [979,3]
+    
+            });
+    
+
+
+    // on click view events details using bootsrap models
+
+    // This model is for post event view like when user clicks on upcoming or active or past events on slider
+    // This click calls a function and pass a event_id to it to display event UI
+    $(document).on('click','.postfullview',function(events)
+    {
+    
+            events.preventDefault();
+            events.stopPropagation();
+            var event_id =$(this).data('onclickview'); 
+            modal_view_event_details(event_id);
+
+
+    })
+
+    // This is the UI on which events data will be displayed when user cliks any of upcoming,active or past events and 
+    //also when user clicks on heatMap and then list a specific event then this function will be called which takes one parameters i.e event_di
+    function modal_view_event_details(event_id)
+            {
+                    var $chat_history= document.getElementById("show_data");
+                    $chat_history.innerHTML = "";
+                    var innerHTML = ''
+                    $.ajax(
+                            {
+                                    url:  '/profile/modeldata', 
+                                    type: 'POST',
+                                    data:{event_id:event_id},
+
+            
+                                    success : function(response)
+                                    {
+                                            if(response !="")
+                                            {
+
+                                                    for(var i=0, len = response.event_details.length; i < len; i++)
+                                                    {
+
+
+                                                    innerHTML = `<div class="col-7" style="padding-left:50px;padding-top:20px"><div class="row">
+                                                                    <div class="d-flex bd-highlight">`;
+                                                                            if (response.user[i].user_profile_pic) 
+                                                                            {
+                                                                                    innerHTML += ` <div class="img_cont"> 
+                                                                                    <img src="../public/profile_image/${response.user[i].user_profile_pic}" class="rounded-circle user_img"> 
+                                                                                    </div> `
+                                                                            } 
+                                                                            else 
+                                                                            {
+                                                                                    innerHTML += ` <div class="img_cont"><img src="../public/profile_image/icon.jpg" class="rounded-circle user_img"></div> `
+                                                                            }
+                                                            innerHTML += ` <div class="user_info viewclick" data-view="${response.user[i].user_id}">${response.user[i].user_firstname} ${response.user[i].user_lastname}<br/>
+                                                                                    <small><i class="far fa-clock"></i> 2 hrs ago</small><br/>
+                                                                                    <small><a href="http://maps.google.com/?q=${response.event_details[i].event_latitude},${response.event_details[i].event_logitude}"><i class="fas fa-map-marker-alt"></i> Map</a></small>
+                                                                                    <small style="padding-left:10px" id="show_location"></small>
+                                                                            </div> 
+                                                                    </div></div>
+
+                                                                    <div class="row">
+                                                                                    <div class="title">
+                                                                                  <h5><span style="padding-left:20px" id="show_title">${response.event_details[i].event_message}</span></h5>
+                                                                            </div>
+                                                                                    <div class="container" style="margin-left:20px;margin-right:20px;margin-top:5px">
+                           
+                                                                                            <p>${response.event_details[i].event_description}<span id="dots">...</span><span id="more" style="display: none;">${response.event_details[i].event_read_more_option}</span>
+                                                                                            <span data-btn_hide_show="${response.event_details[i].event_id}" class="hide_show" id="myBtn" style="cursor: pointer;color:cornflowerblue">Read more</span>
+                                                                                            </p>
+                                                                                    </div>
+                                                                    </div>
+
+                                                                    <ul class="nav">
+                                                                            <li>
+                                                                                    <a href="/post/${response.event_details[i].event_id}">
+                                                                                    <img src="../public/image/${response.event_details[i].e_imagepath}" alt="error check >" class="img-fluid">
+                                                                                    </a>
+                                                                            
+                                                                            </li>
+                                                                    </ul>`;
+
+                                      innerHTML += `<div class="container">
+                                                            <div class="row">
+                                                                    <div class="col-md-6 like" style="padding-top:10px" data-post="${response.event_details[i].event_id}">
+                                                                            <a href=""><i class="fas fa-thumbs-up"></i></a>
+                                   
+                                                                            <span class="countLikes" id="countLikes${response.event_details[i].event_id}" style="cursor: pointer;"> ${response.event_details[i].Likes.length} Like</span>
+                            
+                                                                    </div>`;
+
+                                              innerHTML += `        <div class="col-md-4 post_comment" id="${response.event_details[i].event_id}" style="padding-top:10px">
+                                                                            <i class="fas fa-comments" style="cursor: pointer;"></i>
+                                                                            <span class="countComments" style="cursor: pointer;"> ${response.event_details[i].Comments.length} comments</span>
+                                                                    
+                                                                    </div>
+
+                                                                    <div class="col-md-2" style="padding-top:10px">
+                                                                                    <i class="fas fa-share"></i>
+                                                                                    <span>share</span>
+                                                                    
+                                                                    </div>
+
+                                                            </div>
+                                                    </div>
+
+                                                            </div>`;
+                                                            var comments_data = response.event_details[i].Comments.length;
+                                                    
+                                                            innerHTML += `<div class="col-5">`;
+                                                                    
+                                                                    
+                                                            for(var j=0, len_comment = comments_data; j < len_comment; j++)
+                                                            {
+                                                                    innerHTML += `<div class="row"><div class="col-1"><a href=""><img class="rounded-circle" src="../public/profile_image/${response.event_details[i].Comments[j].User.user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a></div><div class="col-11"><p>${response.event_details[i].Comments[j].comment} <br/><small>${response.event_details[i].Comments[j].createdAt}</small></p></div></div><hr>`;
+
+                                                            }
+
+                                                            innerHTML += ` 
+                                                            
+                                                            <div class="container">
+                                                                                    <div class="row">`;
+                                                                                            
+                                                                                            if(response.user[i].user_profile_pic)
+                                                                                            {
+                                                                                                    innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                    <a href=""><img class="rounded-circle" src="../public/profile_image/${response.user[i].user_profile_pic}" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                            </div>`
+                                                                                            }
+                                                                                            else 
+                                                                                            { 
+                                                                                                    innerHTML += `<div class="col-md-2" style="padding-top:10px">
+                                                                                                                    <a href=""><img class="rounded-circle" src="../public/profile_image/icon.jpg" alt="error" class="rounded-circle border border-danger" style="width:40px; height:40px"></a>
+                                                                                                            </div>`
+                                                                                            }
+                                                                                            
+                                                                                            innerHTML += `  <div class="col-md-7">
+                                                                                                                    <div class="form-group" id="comment_form${response.event_details[i].event_id}">
+                                                                                                                            <input class="form-control" name="comment" type="text" placeholder="Your comments" id="comment${response.event_details[i].event_id}"/>
+                                                                                                                    </div>
+                                                                                                            </div>
+
+                                                                                                            <div class="col-md-3" style="padding-top:10px">
+                                                                                                                    <button type="button" data-po="${response.event_details[i].event_id}" name="submit_comment" class="btn btn-default submit_comment">comment</button>
+                                                                                                            </div>
+                                                                                    </div>
+                                                                                    
+
+                                                                                    <div class="container" id="old_comment${response.event_details[i].event_id}">
+                                                                                            
+
+                                                                                    </div>
+                                                                                            
+                                                                                            
+                                                                                    
+
+                                                                            </div>
+                                                            </div>`;
+                                                            $chat_history.innerHTML = innerHTML;    
+                                                            $('#modalQuickView').modal('show');
+
+                                                    }
+                                            }
+                                            else{
+                                                    alert("data null from modeldata")
+                                            }
+
+                                    
+                                    },
+                                    error:function(jqXHR, textStatus, errorThrown)
+                    {
+                            console.log('jqXHR:');
+                            console.log(jqXHR);
+                            console.log('textStatus:');
+                            console.log(textStatus);
+                            console.log('errorThrown:');
+                            console.log(errorThrown);
+                            alert(errorThrown);
+                    }
+                            }
+                    );
+    }
+
+    // Now this is the heatMap which includes all the details about the user events 
+    // needs to be completed 
+    
+    requestData();
+    function requestData()
+    {
+        $.ajax(
+        {
+            url: '/profile/heap_map_data',
+            type: 'GET',
+            success: function(response) 
+            {
+    
+                var chart_data = [];
+                var data = 1;
+                var dataExists;
+                
+                var k = 0;
+                for(var i = 0, len = response.length; i < len; i++)
+                {
+                    date_value = response[i].event_start_date;
+                    var d = new Date(date_value);   
+                    var year = d.getFullYear();
+                    var month = d.getMonth();
+                    var day = d.getDay();
+                    var actualDay = day -1;
+                    
+                    chart_data.push([month,actualDay,data]);
+                }
+                //alert(chart_data[1]);
+                console.log(chart_data[1]);
+                console.log("chart_data ==",chart_data);
+                
+
+                Highcharts.chart('heap_map_chart', 
+                {colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+
+                        chart: {
+                            type: 'heatmap',
+                            marginTop: 40,
+                            marginBottom: 80,
+                        
+                            backgroundColor: 
+                            {
+                                        linearGradient: [400, 0, 400, 400],
+                                        stops: [
+                                                [0, 'rgb(96, 96, 96)'],
+                                                [1, 'rgb(16, 16, 16)']
+                                        ]
+                           },
+                        borderWidth: 0,
+                        
+                        plotBackgroundColor: null,
+                        plotShadow: false,
+                        plotBorderWidth: 0
+                            
+                        },
+
+
+                        title: {
+                                style: { 
+                        color: '#FFF',
+                        font: '16px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                },
+                            text: 'Project Details'
+                        },
+
+                        xAxis: {
+
+                                lineColor: '#999',
+                                tickColor: '#999',
+                                labels: 
+                                {
+                                        style: 
+                                        {
+                                                color: '#999',
+                                                fontWeight: 'bold'
+                                        }
+                                },
+                                title: 
+                                {
+                                        style: 
+                                        {
+                                                color: '#AAA',
+                                                font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                                        }				
+                                },
+                            categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                        },
+
+                        yAxis: {
+
+                                lineColor: '#999',
+                                tickColor: '#999',
+                                labels: 
+                                {
+                                        style: 
+                                        {
+                                                color: '#999',
+                                                fontWeight: 'bold'
+                                        }
+                                },
+                                title: 
+                                {
+                                        style: 
+                                        {
+                                                color: '#AAA',
+                                                font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+                                        }				
+                                },
+                                
+                            categories: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun'],
+                            title: null
+                        },
+
+                        
+
+                        colorAxis: {
+                            min: 2,
+                            minColor: '#ECF0F1',
+                            maxColor: Highcharts.getOptions().colors[0]
+                        },
+
+                        legend: {
+                            align: 'right',
+                            layout: 'vertical',
+                            margin: 0,
+                            verticalAlign: 'top',
+                            y: 25,
+                            symbolHeight: 280
+                        },
+
+                        tooltip: {
+                                backgroundColor: {
+                        linearGradient: [0, 0, 0, 50],
+                        stops: [
+                                [0, 'rgba(96, 96, 96, .8)'],
+                                [1, 'rgba(16, 16, 16, .8)']
+                        ]
+                },
+                borderWidth: 0,
+                style: {
+                        color: '#FFF'
+                },
+                            formatter: function () 
+                            {
+                                return  + this.point.value + ' <b> project was uploaded on ' + this.series.xAxis.categories[this.point.x] + ' date, 2019' + '<br /> click to view more' ;
+                            }
+                        },
+
+                        plotOptions: 
+                        {
+                                series: 
+                                {
+                                        color: '#212F3D',
+                                    cursor: 'pointer',
+                                    point: 
+                                    {
+                                        events: 
+                                        {
+                                            click: function () 
+                                            {
+
+                                                var year = 2019;
+                                                var month = this.x;
+                                                var y_axis_day = this.y;
+
+                                                $.ajax(
+                                                    {
+                                                        url: '/profile/heap_map_event_details',
+                                                        type: "POST",
+                                                        data: {year:year,month:month},
+                                                        success: function (response) 
+                                                        {
+                                                                
+                                                                var $message_list= document.getElementById("event_heatmap_info");
+                                                                $message_list.innerHTML = '';
+                                                                for(var i = 0, len = response.length; i < len; i++)
+                                                                {
+
+                                                                    var date = new Date(response[i].event_start_date);   
+                                                                    var day = date.getDay();
+                                                                    var actualDay = day -1;
+                                                                    actualDay = Number(actualDay)
+                                                                    
+                                                                    if(y_axis_day == actualDay)
+                                                                    {
+                                                                       $message_list.innerHTML = $message_list.innerHTML + `<div class="card" ><li class="list-group-item link-class" style="cursor: pointer;"><span class="postfullview" data-onclickview="${response[i].event_id}"</span> <div class="d-flex bd-highlight"> <div class="img_cont"><img src="../public/image/${response[i].e_imagepath}" class="rounded-circle user_img"></div><div class="user_info">${response[i].event_message}<br/><small style="color:#F44336"><strong>${response[i].event_start_date}</strong></small><br/><small>Last seen <small>${response[i].event_end_date}</small></small></div> </div> </li></div>`;
+                                                                        $('#centralModalSm').modal('show')
+                                                                    }
+                                                                    
+                                                                    
+                                                                   
+                                                                    
+                                                                }
+                                                                
+                                                        },
+                                                        error : function(jqXHR, textStatus, errorThrown)
+                                                        {
+                                                            console.log('jqXHR:');
+                                                            console.log(jqXHR);
+                                                            console.log('textStatus:');
+                                                            console.log(textStatus);
+                                                            console.log('errorThrown:');
+                                                            console.log(errorThrown);
+                                                            alert(errorThrown);                            
+                                                        } 
+                                                    });
+
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+
+                        series: [
+                            {
+
+                            data: chart_data,
+                            
+                            lineColor: '#999',
+                                tickColor: '#999',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#999'
+                            }
+                        }]
+
+                }); 
+                
+
+            },
+            error : function(jqXHR, textStatus, errorThrown)
+            {
+                console.log('jqXHR:');
+                console.log(jqXHR);
+                console.log('textStatus:');
+                console.log(textStatus);
+                console.log('errorThrown:');
+                console.log(errorThrown);
+                alert(errorThrown);
+            } 
+        
+        });
+    }
+
+    // This is for updating or changing user profile image
+    // currently it is not in use as this is not implemented still but code is fully working
+    $("#form_data").submit(function(e)
+    {	 
+            e.preventDefault();
+            var formData = new FormData($(this)[0]);
+            alert(formData);
+            $.ajax({
+            url: '/profile/image/' + $(this).attr('data-user_id'),
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) 
+            {
+                    if(response.length > 0)
+                    {
+                            for(var i= 0; i< response.length; i++)
+                            {
+                                    var imagepath = response[i].user_profile_pic
+                                    $('#profile_image').attr('src', "../public/profile_image/"+imagepath);
+                            }
+                    }
+            },
+            error : function(jqXHR, textStatus, errorThrown)
+            {
+                                            console.log('jqXHR:');
+                                            console.log(jqXHR);
+                                            console.log('textStatus:');
+                                            console.log(textStatus);
+                                            console.log('errorThrown:');
+                                            console.log(errorThrown);
+                                            alert(errorThrown);
+            } 
+            });
+            return false;
+    });
+
+    // This is for updaing or editing the user details like personal or private information
+    // This is not working still but for reference it is good.
+            var $hide_about_me = $('.hide-about-me') 
+            var $save_user_data_btn = $('.save-user-data-btn'); 
+            var $show_data = $('.collapse');              
+            $('.about-me').on('click', function(events)
+            {
+                    $hide_about_me.hide(400);
+                    //alert($("#user_full_name").html())
+                    $('input.fullname').val($("#user_full_name").html());
+                    $('input.profession').val($("#user_profession").html());
+                    $('.cancel-edit-btn').on('click', function(events)
+                    {
+                            $hide_about_me.show(400);
+                    })
+                    $save_user_data_btn.on('click',function(events)
+                    {
+                            var user_id = $(this).attr('data-user_id')
+                            //alert(user_id);
+                            var fullname = $('input.fullname').val()
+                            var data = {
+                                            name: fullname
+                            }
+                            //alert(fullname)
+                            $.ajax(
+                                    {
+                                           type: 'PUT',
+                                           url: '/profile/updatauserdata/' + $(this).attr('data-user_id'),
+                                           contentType: "application/json",
+                                           data: JSON.stringify(data),
+                                           success: function(user)
+                                           {
+                                           
+                                             user.forEach(function(item, index)
+                                            {
+                                                    //alert(item.user_lastname)
+                                                    $show_data.html(item.user_lastname)
+                                            })
+                                                
+                                                   
+                                                   
+                                           },
+                                           error: function(jqXHR, textStatus, errorThrown)
+                                           {
+                                                    console.log('jqXHR:');
+                                                    console.log(jqXHR);
+                                                    console.log('textStatus:');
+                                                    console.log(textStatus);
+                                                    console.log('errorThrown:');
+                                                    console.log(errorThrown);
+                                                    alert(errorThrown);
+                                           } 
+                                    }
+                            )
+                    }) 
+                    
+    
+           })
+})
+</script>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- <%- include('partials/includes/header') %>
+<%- include('partials/includes/navbar') %>
+
+
+<br /> <br /> <br /> <br /><br /> <br /> <br /> <br />
+<div class="container">
+  
+<div id="slider_out"></span>
+    <ul class="slides_in">
+        <li class="slide_data"><img src="https://resources.stuff.co.nz/content/dam/images/1/a/d/h/f/d/image.related.StuffLandscapeSixteenByNine.620x349.1l14af.png/1502764787499.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://www.enca.com/sites/default/files/Kendall.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://cdn.cnn.com/cnnnext/dam/assets/190121090951-04-blood-moon-global-01212019-exlarge-169.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2014/10/dani-diamond-posing-how-to-model-photogaphy-best-top-fstoppersb.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://o.aolcdn.com/images/dims?quality=85&image_uri=https%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fresize%3D2000%252C2000%252Cshrink%26image_uri%3Dhttps%253A%252F%252Fs.yimg.com%252Fos%252Fcreatr-uploaded-images%252F2019-05%252F574ea1c0-7c36-11e9-a7fe-d8f513b4c134%26client%3Da1acac3e1b3290917d92%26signature%3Da3863a4559e951679b078256984ca26c79d887e0&client=amp-blogside-v2&signature=6193d52e2ff7676643d823d8276085d5698abe9b" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="http://modelsfashionpk.com/mfp-images/mfp_profile_thumb/Ammara-Butt-Actress-Model-375.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F845747642%2F960x0.jpg%3Ffit%3Dscale" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="http://modelsfashionpk.com/mfp-images/mfp_profile_thumb/Ammara-Butt-Actress-Model-375.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://amp.insider.com/images/599e0ccf8fe9d333008b46c2-750-563.jpg" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fdam%2Fimageserve%2F1080529720%2F960x0.jpg%3Ffit%3Dscale" style="height: 300px; width: 400px"></li>
+        <li class="slide_data"><img src="https://resources.stuff.co.nz/content/dam/images/1/a/d/h/f/d/image.related.StuffLandscapeSixteenByNine.620x349.1l14af.png/1502764787499.jpg" style="height: 300px; width: 400px"></li>
+
+      
+    </ul>
+</div>
+
+<script>
+$(document).ready(function()
+{
+
+  
+  var $slider = $('#slider_out'); //div
+  var $slidesContainer = $slider.find('.slides_in'); //ul
+  var $slide = $slidesContainer.find('.slide_data'); // li
+
+  var animationSpeed = 4000;
+  var pause = 1000;
+  var width = 1200;
+  var currentSlide = 3;
+
+  //images = ["1558027346070.jpg","3.jpg","1.jpg","1557078704640.jpg","1563639100367.jpg","1556899377959.jpg","1556968308766.jpg","1556889462194.jpg","1558169613861.jpg"];
+
+  var interval; 
+  function startSlider()
+  {
+  interval = setInterval(function()
+          {
+
+            $slidesContainer.animate({'margin-left':'-='+width},animationSpeed,function()
+            {
+
+              currentSlide = currentSlide + 3;
+              //alert(currentSlide)
+              if(currentSlide === $slide.length)
+              {
+
+                currentSlide=0;
+                $slidesContainer.css('margin-left',0);
+
+              } 
+            });
+          },pause);
+  }
+
+  function stopSlider()
+  {
+    clearInterval(interval);
+  }
+
+  $slide.on('mouseenter',stopSlider).on('mouseleave',startSlider);
+startSlider();
+})
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="card" style="margin-top:30px">
+    <% if(items.length > 0){ %>   
+            <% for(var i = 0, len = items.length; i < len; i++){%>
+            <% var post_data = items[i].Posts; %> 
+            <h5 class="card-title" style="margin-left:30px; margin-top:15px">100 Upcoming Events</h5>
+            <div class="card-group" style="margin: 15px">               
+                            
+            <% for (var j = 0, len_1 = post_data.length; j < len_1; j++) {%> 
+            
+            <% if(post_data[j].event_start_date < onlyDate){%>
+                    <div class="col-4">
+                            <div class="card">
+           
+                                    <img class="card-img-top" src="../public/image/<%=post_data[j].e_imagepath %>" alt="Card image cap" style="height: 300px">                                        
+                                    <div class="card-footer bg-transparent border-success">
+                                    <ul class="nav">
+                                            <li class="nav-item">
+                                                    <i class="fas fa-thumbs-up" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Likes.length %></span></i>
+                                            </li>
+                            
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <i class="fas fa-comments" style="cursor: pointer;"><span style="padding:2px"><%= post_data[j].Comments.length %></span></i>
+                                            </li>
+                            
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <i class="fas fa-share" style="cursor: pointer;"></i>
+                                            </li>
+
+                                            <li class="nav-item" style="padding-left: 10px">
+                                                    <span style="cursor: pointer;">Read More</span>
+                                            </li>
+
+                                            <li class="nav-item" style="padding-left:20px">
+                                                    <i class="fas fa-ellipsis-v" style="cursor: pointer;"></i>
+                                            </li>
+                                    </ul>
+                                    </div>
+                            </div>
+                    </div>  
+                   
+            <%}%> 
+            <%}%> 
+
+            </div>
+            <%}%> 
+            <%} else {%>
+                    <span>No Upcoming events yet</span>
+            <%}%>    
+   </div> -->
