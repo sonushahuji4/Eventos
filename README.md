@@ -140,26 +140,34 @@ Create a small social network
 
 - User Profile Update
 
-<div class="row">
-<img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo" width=300; height=400>
-<img src="cousecode/ScreenShots/update_user_bio.png" alt="Project logo" width=300; height=400>
-</div>
+<img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
 
-<div class="row">
-<img src="cousecode/ScreenShots/user_contact_information.png" alt="Project logo" width=300; height=400>
-<img src="cousecode/ScreenShots/update_user_contact_information.png" alt="Project logo" width=300; height=400>
-</div>
+<img src="cousecode/ScreenShots/update_user_bio.png" alt="Project logo">
+
+
+<img src="cousecode/ScreenShots/user_contact_information.png" alt="Project logo">
+
+<img src="cousecode/ScreenShots/update_user_contact_information.png" alt="Project logo">
 
 - Update Personal Details
 
 <img src="cousecode/ScreenShots/edit_profile_details.png" alt="Project logo">
 
-<div class="row">
+- Chat Application
+
 <img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
+
+- Online - Offline User list
+
 <img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
+
+- Search events by
+
 <img src="cousecode/ScreenShots/find_events_by_location_and_by_upcoming_or_active_or_past_events.png" alt="Project logo">
+
+- User home profile view
+
 <img src="cousecode/ScreenShots/user_home_profile_display.png" alt="Project logo">
-</div>
 
 
 
