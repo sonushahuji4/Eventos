@@ -21,6 +21,55 @@
     <br> 
 </p>
 
+## 🏁 Getting Started <a name = "getting_started"></a>
+These instructions will get you a copy of the project up and running on your local machine for development 
+and testing purposes.
+
+### Installing
+
+-[NodeJS](https://nodejs.org/en/) - Version v10.16.0
+
+    -Create a Folder:
+        npm init
+        npm install
+            "body-parser": "^1.19.0",
+            "bootstrap": "^4.3.1",
+            "bower": "^1.8.8",
+            "cors": "^2.8.5",
+            "ejs": "^2.6.1",
+            "express": "^4.16.4",
+            "express-ejs-layouts": "^2.5.0",
+            "express-hbs": "^2.1.2",
+            "express-mysql-session": "^2.1.0",
+            "express-partials": "^0.3.0",
+            "express-session": "^1.16.1",
+            "express-validator": "^5.3.1",
+            "dateformat": "^3.0.3",
+            "install": "^0.13.0",
+            "joi": "^14.3.1",
+            "jquery": "^3.4.0",
+            "jquery-browserify": "^1.8.1",
+            "jquery-mousewheel": "^3.1.13",
+            "local-storage": "^2.0.0",
+            "multer": "^1.4.1",
+            "mysql2": "^1.6.5",
+            "node-datetime": "^2.1.2",
+            "owl.carousel": "^2.3.4",
+            "passport": "^0.4.0",
+            "router": "^1.3.3",
+            "sequelize": "^5.11.0",
+            "session-file-store": "^1.2.0",
+    
+-[XAMPP](https://www.apachefriends.org/index.html/)
+-Start XAMPP
+-Create a database "events"
+-Populate the database with data
+    - Open backup_sql_data
+        - open events.sql 
+
+-Open Terminal and type
+    nodemon server.js
+
 ## 🧐 Coding Challenge <a name = "Create s small social network"></a>
 Create a small social network
 
@@ -313,52 +362,7 @@ Create a small social network
     ❖ Dashboard, which keeps the record of user activities
     ❖ User 
 
-## 🏁 Getting Started <a name = "getting_started"></a>
-These instructions will get you a copy of the project up and running on your local machine for development 
-and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
-### Installing
-
--[NodeJS](https://nodejs.org/en/) - Version v10.16.0
-
-    -Create a Folder:
-        npm init
-        npm install
-            "body-parser": "^1.19.0",
-            "bootstrap": "^4.3.1",
-            "bower": "^1.8.8",
-            "cors": "^2.8.5",
-            "ejs": "^2.6.1",
-            "express": "^4.16.4",
-            "express-ejs-layouts": "^2.5.0",
-            "express-hbs": "^2.1.2",
-            "express-mysql-session": "^2.1.0",
-            "express-partials": "^0.3.0",
-            "express-session": "^1.16.1",
-            "express-validator": "^5.3.1",
-            "dateformat": "^3.0.3",
-            "install": "^0.13.0",
-            "joi": "^14.3.1",
-            "jquery": "^3.4.0",
-            "jquery-browserify": "^1.8.1",
-            "jquery-mousewheel": "^3.1.13",
-            "local-storage": "^2.0.0",
-            "multer": "^1.4.1",
-            "mysql2": "^1.6.5",
-            "node-datetime": "^2.1.2",
-            "owl.carousel": "^2.3.4",
-            "passport": "^0.4.0",
-            "router": "^1.3.3",
-            "sequelize": "^5.11.0",
-            "session-file-store": "^1.2.0",
-    
--[XAMPP](https://www.apachefriends.org/index.html/)
-
-```
-Give the example
-- Open Terminal and type
-    nodemon server.js
-```
 
 ## 🎈 Usage <a name="usage"></a>
  Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends. 
