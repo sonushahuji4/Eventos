@@ -124,6 +124,7 @@ Create a small social network
     server.js
 
 # 4. Documentation
+![](cousecode/internalflow.jpg)
 - [System Architecture](https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing/) - Internal Flow
 - [System Architecture](https://drive.google.com/file/d/1h6Sp4qFA33-5ASUPVhK6cxZbrjHV2EiL/view?usp=sharing/) - System Flow
 
@@ -197,10 +198,6 @@ Create a small social network
     ❖ You can search a particular user
     ❖ Dashboard, which keeps the record of user activities
     ❖ User 
-
-## 🚀 Future Scope <a name = "future_scope"></a>
-Write about what you could not develop during the course of the Hackathon; and about what your project can achieve 
-in the future.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development 
