@@ -138,9 +138,25 @@ Create a small social network
 # Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
+- User Stories
+
+<img src="cousecode/ScreenShots/user_stories.png" alt="Project logo">
+
+- User Gallery
+
+<img src="cousecode/ScreenShots/user_gallery_list.png" alt="Project logo">
+
 - Nav Bar
 
 <img src="cousecode/ScreenShots/nav_bar.png" alt="Project logo">
+
+- Search User
+
+<img src="cousecode/ScreenShots/search_for_user.png" alt="Project logo">
+
+- View User profile
+
+<img src="cousecode/ScreenShots/view_user_proflie.png" alt="Project logo">
 
 - Create Post
 
@@ -154,9 +170,6 @@ Create a small social network
 
 <img src="cousecode/ScreenShots/likes_and_comments_on_post.png" alt="Project logo">
 
-- List of Active Events
-
-<img src="cousecode/ScreenShots/likes_and_comments_on_post.png" alt="Project logo">
 
 - List of Upcoming Events
 
@@ -165,6 +178,19 @@ Create a small social network
 - List of Previous Events
 
 <img src="cousecode/ScreenShots/list_of_all_previous_events.png" alt="Project logo">
+
+- User Activity Dashboard
+
+<img src="cousecode/ScreenShots/user_dashboard_for_event_details.png" alt="Project logo">
+
+- Onclick dashboard, get all particular events
+
+<img src="cousecode/ScreenShots/onclick_event_view_list_of_events.png" alt="Project logo">
+
+- Closer view for events
+
+<img src="cousecode/ScreenShots/onclick_particular_events_from_the_list_event_view.png" alt="Project logo">
+
 
 - User Profile Update
 
@@ -184,6 +210,10 @@ Create a small social network
 - Chat Application
 
 <img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
+
+- Notification for message
+
+<img src="cousecode/ScreenShots/notification_for_message.png" alt="Project logo">
 
 - Online - Offline User list
 
