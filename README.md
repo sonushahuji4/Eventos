@@ -39,11 +39,13 @@ Create a small social network
 
 ## What are we looking for ? **
 # 1. How creative is your solution ?
-    communication purpose
-    event notifications
+    - Easy communication
+    - Event notification
+    -
     
 
 # 2. Commit history to see how your work evolved
+    https://github.com/sonushahuji4/Eventos
 # 3. Code quality and best practices
 
     ❖ Project Structure
