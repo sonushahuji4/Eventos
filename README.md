@@ -166,14 +166,15 @@ and testing purposes.
 
 # 4. Documentation
 
-### ER Diagram
+### ER Diagram <a name = "ER"></a>
 
-    => System Architecture
+    System Architecture
 
    ![](cousecode/internalflow.jpeg)
 
    ![](cousecode/systemflow.jpeg)
 
+### Screenshots <a name = "Screenshots"></a>
 
 # Images:
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
