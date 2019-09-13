@@ -1,36 +1,6 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
-</p>
-<h3 align="center">Project Title</h3>
-
-<div align="center">
-
-  [![Hackathon](https://img.shields.io/badge/hackathon-name-orange.svg)](http://hackathon.url.com) 
-  [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
-  [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-  [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
-
-</div>
+<h3 align="center">EvenTO a Social Network</h3>
 
 ---
-
-<p align="center"> Few lines describing your project.
-    <br> 
-</p>
-
-## 📝 Table of Contents
-- [Problem Statement](#problem_statement)
-- [Idea / Solution](#idea)
-- [Dependencies / Limitations](#limitations)
-- [Future Scope](#future_scope)
-- [Setting up a local environment](#getting_started)
-- [Usage](#usage)
-- [Technology Stack](#tech_stack)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
 
 ## 🧐 Coding Challenge <a name = "Create s small social network"></a>
 Create a small social network
@@ -38,6 +8,10 @@ Create a small social network
 ## Fontend/Backend Both
 
 ## What are we looking for ? **
+
+# 0. DEMO 
+-[EvenTo a Social Network](https://drive.google.com/file/d/1KTsTd1b3otCGb4R34EdpITnGXM-foNH4/view?usp=sharing/) - See Video
+    
 # 1. How creative is your solution ?
     - Easy communication
     - Event notification
@@ -124,6 +98,7 @@ Create a small social network
     server.js
 
 # 4. Documentation
+
  => System Architecture
 
         - Internal Flow
