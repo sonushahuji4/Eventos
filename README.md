@@ -33,6 +33,17 @@
 These instructions will get you a copy of the project up and running on your local machine for development 
 and testing purposes.
 
+## ⛏️ Built With <a name = "tech_stack"></a>
+- [MySQL](https://https://www.mysql.com/) - Database
+- [Sequelize ORM](https://sequelize.org//) - ORM
+- [Express](https://expressjs.com/) - Server Framework
+- [EJS Tamplate](https://ejs.co/) - Web Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Google Map API](https://cloud.google.com/) - Library
+- [BootStrap 4](https://getbootstrap.com/) - Library
+- [Highcharts](https://www.highcharts.com/) - Library
+- [AJAX](https://jquery.com/)
+
 ### Installing
 - [XAMPP](https://www.apachefriends.org/index.html/) - Install XAMPP
 - [NodeJS](https://nodejs.org/en/) - Install NodeJS Version v10.16.0
