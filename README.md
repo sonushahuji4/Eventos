@@ -130,6 +130,7 @@ Create a small social network
 
 # Features:
 
+
     Registration and Login 
         • User will have to register themselves by providing basic information about them and then they can login into the system. 
         • Once users have logged in, users will be provided with Feeds Section, Profile, Notification page and Maps. 
