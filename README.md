@@ -154,6 +154,13 @@ Create a small social network
 
 <img src="cousecode/ScreenShots/edit_profile_details.png" alt="Project logo">
 
+<div class="row">
+<img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
+<img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
+<img src="cousecode/ScreenShots/find_events_by_location_and_by_upcoming_or_active_or_past_events.png" alt="Project logo">
+<img src="cousecode/ScreenShots/user_home_profile_display.png" alt="Project logo">
+</div>
+
 
 
 
