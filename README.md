@@ -135,15 +135,20 @@ and testing purposes.
     README.md
     server.js
 
-## 🧐 Coding Challenge <a name = "Create s small social network"></a>
-Create a small social network
+## 🧐 CauseCode Coding Challenge <a name = "Create s small social network"></a>
+
+### Fullstack
+    1) Create an inventory management platform for { pick an industry, product or service }. For example, inventory management for TVs.
+    2) Create a small social network
+    3) Find a website with public profiles and write a scraper to scrape those profiles
+    4) Create a realtime video/audio/text chat application
+
+## 🧐 Problem Statement Selected <a name = "problem_statement"></a>
+    2) Create a small social network
 
 ## Fontend/Backend Both
 
 ## What are we looking for ? **
-
-# 0. DEMO 
--[EvenTo a Social Network](https://drive.google.com/file/d/1KTsTd1b3otCGb4R34EdpITnGXM-foNH4/view?usp=sharing/) - See Video
     
 # 1. How creative is your solution ?
     - Easy communication
@@ -156,79 +161,6 @@ Create a small social network
     
 # 3. Code quality and best practices
 
-    ❖ Project Structure
-
-    => backup_sql_data
-    
-    => config
-        - db.js
-
-    => model
-        - comment_model.js
-        - like_model.js
-        - login_details_modul.js
-        - model_follow.js
-        - model_index.js
-        - postbody_model.js
-        - send_message_model.js
-        - user_model.js
-
-    => node_modules
-
-    => public
-        => bootstrap
-           => css
-           => js
-        => css
-        => image
-        => jquery
-        => profile_image
-
-    => routes
-        => api
-            - chatapi.js
-            - edit[Profile.js
-            - event_page.js
-            - login.js
-            - logout.js
-            - post_api.js
-            - profile_api.js
-            - registeration.js
-            - showActivity.js
-            - viewprofile.js
-           
-    => sessions
-    => views
-       => components
-          - chat_side_bar.ejs
-          - create_posts.ejs
-          - display_events_options.ejs
-          - find_events.ejs
-          - psots.ejs
-          - recomment_events_for_users.ejs
-          - user_suggestion_box.ejs
-          - view_story.ejs
-       => partials
-         => includes
-           - footer.ejs
-           - header.ejs
-           - navbar.ejs
-
-        - editProfile.ejs
-        - event_page.ejs
-        - findUserProfile.ejs
-        - home.ejs
-        - login.ejs
-        - profile.ejs
-        - registeration.esj
-        - showActivity.ejs
-        - viewprofile.ejs
-
-    app.js
-    package-lock.json
-    package.json
-    README.md
-    server.js
 
 # 4. Documentation
 
@@ -426,11 +358,6 @@ Create a small social network
     ❖ You can search a particular user
     ❖ Dashboard, which keeps the record of user activities
     ❖ User 
-
-
-
-## 🎈 Usage <a name="usage"></a>
- Evento is a social media platform where people who wants to participate or wants to be active in attending events or wants to be aware of different events happening around them or get notified for a particular event or interested in promoting events. This is a platform where people can keep track of certain events and have access to various information like upcoming, active, past events, user’s gallery for viewing the event photos, videos, stories, live video streaming and so on and have interaction through post and with friends. 
 
 
 ## ✍️ Authors <a name = "authors"></a>
