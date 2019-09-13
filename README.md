@@ -3,7 +3,7 @@
     <img src="public/image/eventologo1.png" alt="Project logo">
  </a>
 </p>
-<h3 align="center">EvenTo</h3>
+<h3 align="center">Socila Network</h3>
 
 <div align="center">
 
