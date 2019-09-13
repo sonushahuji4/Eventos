@@ -225,34 +225,17 @@ and testing purposes.
 
 <div class="row">
 <img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
-<img src="cousecode/ScreenShots/user_contact_information.png" alt="Project logo">
 <img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
 </div>
 
-- Update Personal Details
-
-<img src="cousecode/ScreenShots/edit_profile_details.png" alt="Project logo">
-
-
 - Search events by
-
-<img src="cousecode/ScreenShots/find_events_by_location_and_by_upcoming_or_active_or_past_events.png" alt="Project logo">
-
-- Search events by location
-
 <img src="cousecode/ScreenShots/search_events_by_locations.png" alt="Project logo">
-
-- Search events by specific dates
-
 <img src="cousecode/ScreenShots/search_for_events.png" alt="Project logo">
 
 
 - Follow - Unfollow user 
 
 <img src="cousecode/ScreenShots/follow_or_unfollow_a_user.png" alt="Project logo">
-
-- Recommend events for users
-
 <img src="cousecode/ScreenShots/recommend_events_for_users.png" alt="Project logo">
 
 
