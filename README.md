@@ -124,7 +124,11 @@ Create a small social network
     server.js
 
 # 4. Documentation
-![](cousecode/internalflow.jpg)
+ => System Architecture
+    - Internal Flow
+   ![](cousecode/internalflow.jpeg)
+    - System Flow 
+    ![](cousecode/systemflow.jpeg)
 - [System Architecture](https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing/) - Internal Flow
 - [System Architecture](https://drive.google.com/file/d/1h6Sp4qFA33-5ASUPVhK6cxZbrjHV2EiL/view?usp=sharing/) - System Flow
 
