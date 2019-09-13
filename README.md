@@ -136,9 +136,10 @@ Create a small social network
 
 
 # Images:
-    - Login & Registeration:
+    - Login & Regiseration
 
-    ![](cousecode/ScreenShots/Registeration_And_Login_Page.png)
+       ![](cousecode/ScreenShots/Registeration_And_Login_Page.png)
+
 
 
 # Features:
