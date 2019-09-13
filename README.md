@@ -1,6 +1,5 @@
 <h3 align="center">Social Network</h3>
-<img src="public/public/eventologo1.png" alt="Project logo">
-public\public
+<img src="public/image/eventologo1.png" alt="Project logo">
 
 ---
 
