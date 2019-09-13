@@ -127,7 +127,7 @@ Create a small social network
  => System Architecture
 
         - Internal Flow
-        
+
    ![](cousecode/internalflow.jpeg)
 
         - System Flow 
@@ -136,7 +136,6 @@ Create a small social network
 
 
 # Images:
-
     - Login & Registeration:
 
     ![](cousecode/ScreenShots/Registeration_And_Login_Page.png)
