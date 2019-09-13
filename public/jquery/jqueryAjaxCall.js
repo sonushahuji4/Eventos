@@ -1217,7 +1217,7 @@ $(document).ready(function()
                                         console.log(textStatus);
                                         console.log('errorThrown:');
                                         console.log(errorThrown);
-                                        alert(errorThrown);
+                                
                         }
                 });
         } // get_user_id() function ends
@@ -1431,7 +1431,7 @@ $(document).ready(function()
                                         console.log(textStatus);
                                         console.log('errorThrown:');
                                         console.log(errorThrown);
-                                        alert(errorThrown);
+                        
                         }
                 });
         }
@@ -1485,7 +1485,7 @@ $(document).ready(function()
                                         console.log(textStatus);
                                         console.log('errorThrown:');
                                         console.log(errorThrown);
-                                        alert(errorThrown);
+                                
                         }
                 });
 
@@ -1568,7 +1568,7 @@ $(document).ready(function()
                         console.log(textStatus);
                         console.log('errorThrown:');
                         console.log(errorThrown);
-                        alert(errorThrown);
+                        
                         }
 
                         })
@@ -1626,7 +1626,7 @@ $(document).ready(function()
                                                 console.log(textStatus);
                                                 console.log('errorThrown:');
                                                 console.log(errorThrown);
-                                                alert(errorThrown);
+                                        
                                         }
                                 })
                         })
@@ -1640,7 +1640,7 @@ $(document).ready(function()
                         console.log(textStatus);
                         console.log('errorThrown:');
                         console.log(errorThrown);
-                        alert(errorThrown);
+                        
                 }
 
                 })
