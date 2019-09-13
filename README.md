@@ -101,6 +101,11 @@ Create a small social network
     server.js
 
 # 4. Documentation
+<p align="center">
+  <a href="" rel="noopener">
+ <img src="https://drive.google.com/file/d/1GDtNvL4rzv6XML_T0vQGpapvElI1Ji-u/view?usp=sharing" alt="Project logo"></a>
+</p>
+<h3 align="center">Project Title</h3>
 # Features:
 
     Registration and Login 
