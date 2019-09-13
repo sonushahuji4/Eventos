@@ -1,4 +1,6 @@
-<h3 align="center">EvenTO a Social Network</h3>
+<h3 align="center">Social Network</h3>
+<img src="public/public/eventologo1.png" alt="Project logo">
+public\public
 
 ---
 
@@ -309,7 +311,6 @@ and testing purposes. See [deployment](#deployment) for notes on how to deploy t
             "bootstrap": "^4.3.1",
             "bower": "^1.8.8",
             "cors": "^2.8.5",
-            "dateformat": "^3.0.3",
             "ejs": "^2.6.1",
             "express": "^4.16.4",
             "express-ejs-layouts": "^2.5.0",
@@ -318,6 +319,7 @@ and testing purposes. See [deployment](#deployment) for notes on how to deploy t
             "express-partials": "^0.3.0",
             "express-session": "^1.16.1",
             "express-validator": "^5.3.1",
+            "dateformat": "^3.0.3",
             "install": "^0.13.0",
             "joi": "^14.3.1",
             "jquery": "^3.4.0",
