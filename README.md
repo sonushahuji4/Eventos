@@ -178,22 +178,17 @@ and testing purposes.
 
 <img src="cousecode/ScreenShots/Registeration_And_Login_Page.png" alt="Project logo">
 
+- Feed Section
+
+<img src="cousecode/ScreenShots/home.png" alt="Project logo">
+
 - Search User
 
 <img src="cousecode/ScreenShots/search_for_user.png" alt="Project logo">
 
-- Chat Application
+- Chat and Notification 
 
-<img src="cousecode/ScreenShots/chat_box.png" alt="Project logo">
-
-- Notification for message
-
-<img src="cousecode/ScreenShots/notification_for_message.png" alt="Project logo">
-
-
-- Post View
-
-<img src="cousecode/ScreenShots/post_display.png" alt="Project logo">
+<img src="cousecode/ScreenShots/chatnoti.png" alt="Project logo">
 
 
 - List of Upcoming Events
@@ -204,9 +199,6 @@ and testing purposes.
 
 <img src="cousecode/ScreenShots/list_of_all_previous_events.png" alt="Project logo">
 
-- User Activity Dashboard
-
-<img src="cousecode/ScreenShots/user_dashboard_for_event_details.png" alt="Project logo">
 
 - Onclick dashboard, get all particular events
 
@@ -215,24 +207,6 @@ and testing purposes.
 - Closer view for events
 
 <img src="cousecode/ScreenShots/onclick_particular_events_from_the_list_event_view.png" alt="Project logo">
-
-
-- User Profile Update
-
-<div class="row">
-<img src="cousecode/ScreenShots/user_personal_profile.png" alt="Project logo">
-<img src="cousecode/ScreenShots/online_offline_user_list.png" alt="Project logo">
-</div>
-
-- Search events by
-<img src="cousecode/ScreenShots/search_for_events.png" alt="Project logo">
-
-
-- Follow - Unfollow user 
-
-<img src="cousecode/ScreenShots/follow_or_unfollow_a_user.png" alt="Project logo">
-
-
 
 
 
